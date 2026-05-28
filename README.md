@@ -79,6 +79,19 @@ data/d455_capture/tests/<TEST_NAME>/
 
 ## Environment
 
+Create the Conda environment:
+
+```bash
+conda env create -f environment.yml
+conda activate pick-place-occlusion
+```
+
+Or install the Python dependencies with pip:
+
+```bash
+pip install -r requirements.txt
+```
+
 Create a `.env` file from the example:
 
 ```bash
@@ -95,6 +108,43 @@ GEMINI_API_KEY=
 The current planner configuration prefers Gemini when `GEMINI_API_KEY` is set.
 The validator uses OpenAI first when `OPENAI_API_KEY` is available, otherwise it
 uses Gemini.
+
+## YOLO-World and FastSAM Setup
+
+YOLO-World and FastSAM model weights are not included in this repository. Keep
+the downloaded `.pt` files local and do not push them to git.
+
+Install the environment first:
+
+```bash
+conda env create -f environment.yml
+conda activate pick-place-occlusion
+```
+
+Download the model weights into the project root. The current pipeline expects
+these filenames:
+
+- `yolov8l-worldv2.pt`
+- `FastSAM-s.pt`
+
+You can let Ultralytics download them automatically by running:
+
+```bash
+python3 -c "from ultralytics import YOLOWorld, FastSAM; YOLOWorld('yolov8l-worldv2.pt'); FastSAM('FastSAM-s.pt')"
+```
+
+After the download, confirm the files exist:
+
+```bash
+ls yolov8l-worldv2.pt FastSAM-s.pt
+```
+
+Some test scripts use smaller YOLO-World variants. Download these only if you
+need those scripts:
+
+```bash
+python3 -c "from ultralytics import YOLOWorld; YOLOWorld('yolov8s-world.pt'); YOLOWorld('yolov8s-worldv2.pt')"
+```
 
 ## Basic Usage
 
