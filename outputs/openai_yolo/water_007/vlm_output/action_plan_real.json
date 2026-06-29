@@ -1,0 +1,53 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "sprite soda can",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red soda can",
+      "description": "coca cola soda can",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "blue bottle",
+      "description": "water bottle",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red packet",
+      "description": "snack packet",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "yellow noodle cup",
+      "description": "instant noodle cup",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "brown box",
+      "description": "cardboard box",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "sprite can is clear and accessible"
+    }
+  ]
+}

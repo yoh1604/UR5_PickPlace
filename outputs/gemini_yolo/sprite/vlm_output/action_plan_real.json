@@ -1,0 +1,29 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green and silver soda can with the word 'Sprite' on it, located in the center of the wooden surface.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "wooden shelf",
+      "description": "The wooden shelf the can is resting on.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested to drink sprite, and the green soda can is clearly visible and unobstructed on the shelf."
+    }
+  ]
+}

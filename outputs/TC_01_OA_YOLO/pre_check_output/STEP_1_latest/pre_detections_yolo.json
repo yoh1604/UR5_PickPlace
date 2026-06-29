@@ -1,0 +1,15 @@
+[
+  {
+    "label": "brown bottle",
+    "confidence": 0.8490791320800781,
+    "bbox": [
+      288,
+      138,
+      338,
+      287
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "brown bottle"
+  }
+]

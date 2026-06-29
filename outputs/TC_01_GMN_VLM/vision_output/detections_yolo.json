@@ -1,0 +1,15 @@
+[
+  {
+    "label": "bottle",
+    "confidence": 0.7772684693336487,
+    "bbox": [
+      288,
+      138,
+      338,
+      288
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "brown coffee bottle"
+  }
+]

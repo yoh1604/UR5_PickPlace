@@ -1,0 +1,68 @@
+[
+  {
+    "label": "brown cardboard box",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A large brown cardboard box is sitting on the middle shelf of a black metal and wood shelving unit.",
+    "status": "clear",
+    "target_role": "background"
+  },
+  {
+    "label": "black dumbbell",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A black dumbbell with weight plates is on the floor in the bottom left corner.",
+    "status": "clear_background",
+    "target_role": "background"
+  },
+  {
+    "label": "silver stool",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "Two silver-colored stools are positioned under the main shelf.",
+    "status": "clear_background",
+    "target_role": "background"
+  }
+]

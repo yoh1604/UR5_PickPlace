@@ -133,11 +133,29 @@ def create_planner(openai_key, gemini_key):
             api_key=gemini_key,
             provider="gemini"
         )
+    
+    # use_local = os.getenv("USE_LOCAL_VLM", "False").lower() in ("true", "1", "yes")
+
+    # if use_local:
+    #     print("Menggunakan Local/Ollama LogicValidator...")
+    #     return VLMEngine(
+    #         api_key=None,
+    #         provider="local"  # Ini akan memicu _validate_local di validator_engine.py
+    #     )
 
     raise RuntimeError("Tidak ada API key untuk planner.")
 
 
 def create_validator(openai_key, gemini_key):
+    use_local = os.getenv("USE_LOCAL_VLM", "False").lower() in ("true", "1", "yes")
+
+    if use_local:
+        print("Menggunakan Local/Ollama LogicValidator...")
+        return LogicValidator(
+            api_key=None,
+            provider="local"  # Ini akan memicu _validate_local di validator_engine.py
+        )
+    
     if openai_key:
         print("Menggunakan OpenAI Cloud LogicValidator...")
         return LogicValidator(
@@ -519,11 +537,6 @@ def run_graspnet_stage():
 
     return result
 
-
-# ============================================================
-# CAMERA GRASP TO BASE GRASP TRANSFORM
-# ============================================================
-
 def validate_rotation_matrix(R):
     R = np.asarray(R, dtype=np.float64)
 
@@ -705,11 +718,6 @@ def run_vlm_and_validator(user_query):
     print(json.dumps(validation_result, indent=2, ensure_ascii=False))
 
     return planner_result, validation_result
-
-
-# ============================================================
-# SPATIAL PIPELINE
-# ============================================================
 
 def run_spatial_pipeline(validation_result):
     target, first_step, final_plan = get_first_target_from_validation(

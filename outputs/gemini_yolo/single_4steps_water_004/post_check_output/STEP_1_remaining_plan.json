@@ -1,0 +1,26 @@
+[
+  {
+    "step": 2,
+    "action": "remove",
+    "target": "green soda can",
+    "target_role": "search_occluder",
+    "step_intent": "clear_occluder_to_reveal_primary_target",
+    "explanation": "The green soda can is directly in front of the water bottle and must be removed to gain access."
+  },
+  {
+    "step": 3,
+    "action": "remove",
+    "target": "red soda can",
+    "target_role": "search_occluder",
+    "step_intent": "clear_occluder_to_reveal_primary_target",
+    "explanation": "The red soda can also obstructs the path to the water bottle and needs to be cleared."
+  },
+  {
+    "step": 4,
+    "action": "pick",
+    "target": "clear water bottle",
+    "target_role": "primary_target",
+    "step_intent": "pick_primary_target",
+    "explanation": "All obstacles have been cleared, and the water bottle is now accessible."
+  }
+]

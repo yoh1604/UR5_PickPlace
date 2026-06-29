@@ -1,0 +1,43 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "brown bottle",
+      "description": "brown bottle with blue cap",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "green soda can behind the brown bottle",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown envelope",
+      "description": "large brown envelope",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "brown bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "brown bottle is obstructing the green soda can"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the unobstructed green soda can"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "test_name": "sprite_3steps_006",
+  "step_index": 1,
+  "target": "brown bottle",
+  "post_check_status": "STILL_FOUND",
+  "target_found_after_action": true,
+  "best_detection": {
+    "label": "brown bottle",
+    "confidence": 0.8176971077919006,
+    "bbox": [
+      288,
+      128,
+      339,
+      288
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "brown bottle"
+  },
+  "all_detections": [
+    {
+      "label": "brown bottle",
+      "confidence": 0.8176971077919006,
+      "bbox": [
+        288,
+        128,
+        339,
+        288
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "brown bottle"
+    }
+  ],
+  "post_image_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg",
+  "post_yolo_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/sprite_3steps_006/post_check_output/STEP_1_post_check_yolo_result.jpg",
+  "post_fastsam_mask": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/sprite_3steps_006/post_check_output/STEP_1_post_check_fastsam_mask.png",
+  "post_fastsam_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/sprite_3steps_006/post_check_output/STEP_1_post_check_fastsam_result.jpg",
+  "note": "Target masih terdeteksi setelah aksi robot. Step belum dianggap selesai."
+}

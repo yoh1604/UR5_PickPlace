@@ -1,0 +1,29 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red Coca-Cola can is on a wooden shelf. While the user requested 'sprite', this is the only soda available.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "wooden shelf",
+      "description": "The wooden shelf the can is resting on.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested a sprite, but a red soda can is the only available beverage. It is clear and ready to be picked."
+    }
+  ]
+}

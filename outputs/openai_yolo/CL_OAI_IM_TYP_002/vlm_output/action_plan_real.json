@@ -1,0 +1,35 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "tall red can with white text",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red snack bag",
+      "description": "red bag with snack image",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "brown envelope",
+      "description": "large brown envelope",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The red soda can is the primary target and is unobstructed."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "label": "red bowl",
+    "confidence": 0.9440374374389648,
+    "bbox": [
+      151,
+      231,
+      259,
+      274
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "red bowl"
+  },
+  {
+    "label": "bowl",
+    "confidence": 0.51067715883255,
+    "bbox": [
+      306,
+      431,
+      383,
+      480
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "red bowl"
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "green can with Sprite label",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red soda can",
+      "description": "red can partially visible behind the green one",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown box",
+      "description": "brown box supporting the cans",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove green can obstructing access to the red soda can behind it"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the red can now that it's accessible"
+    }
+  ]
+}

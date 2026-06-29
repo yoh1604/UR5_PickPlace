@@ -1,432 +1,445 @@
-import base64
+import os
 import json
-import re
-import traceback
-
-import ollama
-from openai import OpenAI
+import base64
+import requests
+from langfuse.decorators import observe, langfuse_context
+import io                   # TAMBAHKAN INI
+from PIL import Image
 
 try:
-    from google import genai
-    from google.genai import types
+    from openai import OpenAI
 except ImportError:
-    genai = None
-    types = None
+    pass
+
+try:
+    import google.generativeai as genai
+except ImportError:
+    pass
+
+from .base_vlm import BaseVLMClient
+# Tambahkan import httpx
+import httpx
+
+# ... di dalam _validate_local ...
 
 
-class LogicValidator:
-    """
-    LogicValidator hanya bertugas sebagai gatekeeper:
-    - PASS jika action_plan aman/logis
-    - FAIL jika action_plan tidak aman/tidak logis
-    - TIDAK BOLEH mengubah, menambah, menghapus, atau menyusun ulang action_plan
+# class LogicValidator():
+class LogicValidator(BaseVLMClient):
+    def __init__(self, api_key=None, provider="openai", model_name=None):
+        super().__init__(api_key, provider, model_name)
 
-    Executor harus selalu memakai action_plan asli dari Planner.
-    """
+    @observe(as_type="generation")
+    def validate_strategy(self, image_path, user_query, planner_json):
+        
+        # Extract the original plan to show the validator explicitly
+        original_plan = planner_json.get("action_plan", [])
+        
+        prompt_text = f"""
+You are a Robotic Safety Validator for a UR5e robot manipulating objects on a table.
 
-    def __init__(self, api_key=None, model_name=None, provider=None):
-        self.api_key = api_key
-        self.model_name = model_name
-        self.cloud_provider = None
-        self.provider = (provider or "auto").lower()
-        self.client = None
+Your role is ONLY to validate the Planner's proposed action_plan.
 
-        if self.model_name:
-            self.mode = "LOCAL"
-            print(f"LogicValidator berjalan di mode LOKAL dengan model: {self.model_name}")
-        elif self.api_key:
-            self.mode = "CLOUD"
-            print("LogicValidator berjalan di mode CLOUD")
-        else:
-            raise ValueError("Harus memasukkan api_key atau model_name")
+You are a gatekeeper.
 
-        if self.api_key is not None:
-            if self.provider in ["gemini", "google", "gcp", "auto"] and genai is not None:
-                try:
-                    self.client = genai.Client(api_key=self.api_key)
-                    self.cloud_model = "gemini-2.5-pro"
-                    self.cloud_provider = "gemini"
-                    print("☁️ LogicValidator diinisialisasi untuk mode CLOUD (Gemini).")
-                except Exception as e:
-                    if self.provider in ["gemini", "google", "gcp"]:
-                        raise RuntimeError(
-                            "Gemini initialization failed. Make sure google-genai is installed "
-                            "and the Gemini API key is valid."
-                        ) from e
+You MUST NOT modify the Planner output.
 
-            if self.cloud_provider is None:
-                self.client = OpenAI(api_key=self.api_key)
-                self.cloud_model = "gpt-4o"
-                self.cloud_provider = "openai"
-                print("☁️ LogicValidator diinisialisasi untuk mode CLOUD (OpenAI).")
-        else:
-            print(f"🔌 LogicValidator diinisialisasi untuk mode LOKAL (Model: {self.model_name}).")
+# IMPORTANT CONTRACT
 
-    # -------------------------------------------------------------------------
-    # Basic utilities
-    # -------------------------------------------------------------------------
+You MUST NOT:
 
-    def encode_image(self, image_path):
-        with open(image_path, "rb") as image_file:
-            return base64.b64encode(image_file.read()).decode("utf-8")
+* rewrite the action_plan
+* add new steps
+* remove existing steps
+* reorder steps
+* replace objects
+* create an improved plan
+* suggest a new plan
 
-    def _extract_planner_action_plan(self, planner_json):
-        """
-        Ambil action_plan asli dari Planner.
-        Ini adalah satu-satunya plan yang boleh dieksekusi.
-        """
-        if isinstance(planner_json, dict):
-            plan = planner_json.get("action_plan") or planner_json.get("final_action_plan")
-            return plan if isinstance(plan, list) else []
+You MUST ONLY decide whether the existing action_plan is acceptable.
 
-        return planner_json if isinstance(planner_json, list) else []
+Primary User Request
 
-    def _safe_json_loads(self, raw_text):
-        """
-        Parse JSON secara defensif.
-        Berguna untuk local model yang kadang membungkus JSON dengan teks tambahan.
-        """
-        if isinstance(raw_text, dict):
-            return raw_text
+{user_query}
 
-        if raw_text is None:
-            raise ValueError("Empty model response")
+Planner JSON
 
-        text = str(raw_text).strip()
-        text = text.replace("```json", "").replace("```", "").strip()
+{json.dumps(planner_json, indent=2)}
 
-        try:
-            return json.loads(text)
-        except json.JSONDecodeError:
-            json_match = re.search(r"\{.*\}", text, re.DOTALL)
-            if not json_match:
-                raise
-            return json.loads(json_match.group(0))
+Planner action_plan
 
-    def _normalize_validation_result(self, validation_result, planner_json):
-        """
-        Normalisasi output validator.
+{json.dumps(original_plan, indent=2)}
 
-        PENTING:
-        - Validator boleh memberi validation_status dan feedback.
-        - Validator TIDAK BOLEH menentukan final_action_plan.
-        - final_action_plan selalu dipaksa menjadi action_plan asli dari Planner.
-        """
-        original_plan = self._extract_planner_action_plan(planner_json)
+# Validation Rules
 
-        if not isinstance(validation_result, dict):
-            return {
-                "validation_status": "FAIL",
-                "feedback": f"Validator returned invalid result type: {type(validation_result).__name__}",
-                "final_action_plan": original_plan,
+1. User target consistency
+
+The final object picked by the action_plan must correspond to the user's requested object.
+
+Do not silently substitute another object.
+
+Examples:
+
+User:
+"I want Coca Cola"
+
+Planner:
+pick Sprite
+
+→ FAIL
+
+User:
+"I want a Sprite"
+
+Planner:
+pick green soda can
+
+Image clearly shows a Sprite can
+
+→ PASS
+
+2. Semantic matching
+
+Minor naming differences are allowed if they refer to the same physical object.
+
+Examples
+
+"sprite"
+
+"green sprite can"
+
+"green soda can"
+
+"soda can"
+
+may refer to the same object.
+
+Do NOT allow semantic matching between different brands or products.
+
+Examples
+
+Coca Cola ≠ Sprite
+
+Water bottle ≠ Soda can
+
+Orange ≠ Lemon
+
+3. Occluders
+
+Objects with
+
+target_role = "search_occluder"
+
+are temporary objects.
+
+They are not the user's desired object.
+
+Removing occluders is acceptable if those objects physically block access to the primary target. or if it is unsafe to directly pick the target since the robot's gripper crash with other.
+
+4. Safety
+
+Fail the plan if
+
+• a grasped object visually consists of multiple touching objects
+
+• the grasp would simultaneously pick two independent objects
+
+• the selected target is clearly different from the requested object
+
+• an object mentioned in the plan does not exist in the current scene, but if there is a chance to search it then PASS the plan
+
+• the sequence is logically impossible
+
+5. Ignore geometric details
+
+Do NOT evaluate
+
+bbox
+
+pixel coordinates
+
+grasp_pixel_2d
+
+3D coordinates
+
+grasp points
+
+robot trajectories
+
+These values are only hints.
+
+Localization and grasp generation are handled later.
+
+6. Background objects
+
+Never consider these objects removable targets
+
+table
+
+countertop
+
+floor
+
+wall
+
+cabinet
+
+shelf
+
+background
+
+surface
+
+Decision Policy
+
+Return PASS only when
+
+* the final picked object matches the user's request
+
+* all intermediate obstacle removals are reasonable
+
+* the sequence is executable
+
+* the action plan is empty because user's request do not have possibility to be visible 
+
+Return FAIL if
+
+* the primary target is incorrect
+
+* the plan contains hallucinated objects
+
+* the sequence is unsafe
+
+* the sequence is impossible
+
+* the sequence have unnecessary move
+
+Return ONLY valid JSON
+
+{{
+"validation_status":"PASS" or "FAIL",
+"feedback":"Detailed explanation",
+"final_action_plan":[
+    exact original action_plan
+]
+}}
+"""
+        
+        langfuse_context.update_current_observation(
+            name="vlm_logic_validation",
+            model=self.model_name,
+            input=prompt_text,
+            metadata={
+                "provider": self.provider,
+                "image_file": str(image_path)
             }
-
-        status = str(validation_result.get("validation_status", "FAIL")).upper().strip()
-        if status not in ["PASS", "FAIL"]:
-            status = "FAIL"
-
-        feedback = validation_result.get("feedback", "")
-        if not isinstance(feedback, str):
-            feedback = str(feedback)
-
-        return {
-            "validation_status": status,
-            "feedback": feedback,
-            "final_action_plan": original_plan,
-        }
-
-    def _error_result(self, error_type, error_message, planner_json):
-        """
-        Error juga harus berbentuk dict supaya main_teleop.py tidak crash.
-        """
-        return {
-            "error": error_type,
-            "validation_status": "FAIL",
-            "feedback": error_message,
-            "final_action_plan": self._extract_planner_action_plan(planner_json),
-        }
-
-    # -------------------------------------------------------------------------
-    # Cloud/local model callers
-    # -------------------------------------------------------------------------
-
-    def _call_gemini_vision_json(self, image_path, prompt):
-        """
-        Gemini SDK baru: google-genai.
-        Install:
-            pip install -U google-genai
-        """
-        if types is None:
-            raise RuntimeError(
-                "google.genai.types tidak tersedia. Install ulang dengan: pip install -U google-genai"
-            )
-
-        with open(image_path, "rb") as image_file:
-            image_bytes = image_file.read()
-
-        response = self.client.models.generate_content(
-            model=self.cloud_model,
-            contents=[
-                types.Part.from_text(text=prompt),
-                types.Part.from_bytes(
-                    data=image_bytes,
-                    mime_type="image/jpeg",
-                ),
-            ],
-            config=types.GenerateContentConfig(
-                temperature=0.2,
-                response_mime_type="application/json",
-            ),
         )
 
-        return self._safe_json_loads(response.text)
 
-    def _call_openai_vision_json(self, image_path, prompt):
-        base64_image = self.encode_image(image_path)
+        try:
+            if self.provider == "openai":
+                response_data, input_tokens, output_tokens = self._validate_openai(image_path, prompt_text)
+            elif self.provider == "gemini":
+                response_data, input_tokens, output_tokens = self._validate_gemini(image_path, prompt_text)
+            elif self.provider == "local" or self.provider == "ollama":
+                response_data, input_tokens, output_tokens = self._validate_local(image_path, prompt_text)
+            else:
+                raise ValueError(f"Unknown provider: {self.provider}")
 
-        response = self.client.chat.completions.create(
-            model=self.cloud_model,
+            langfuse_context.update_current_observation(
+                usage={
+                    "input": input_tokens,
+                    "output": output_tokens
+                },
+                output=response_data
+            )
+            
+            return response_data
+
+        except Exception as e:
+            langfuse_context.update_current_observation(level="ERROR", status_message=str(e))
+            return {"error": str(e), "validation_status": "FAIL"}
+
+    def _validate_openai(self, img_path, prompt_text):
+        base64_image = self._encode_image(img_path)
+        
+        response = self.openai_client.chat.completions.create(
+            model=self.model_name,
+            response_format={ "type": "json_object" },
             messages=[
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": prompt},
+                        {"type": "text", "text": prompt_text},
+                        {
+                            "type": "image_url",
+                            "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}
+                        }
+                    ]
+                }
+            ]
+        )
+        
+        raw_content = response.choices[0].message.content
+        parsed_json = json.loads(raw_content)
+        
+        return parsed_json, response.usage.prompt_tokens, response.usage.completion_tokens
+
+    def _validate_gemini(self, img_path, prompt_text):
+        import PIL.Image
+        img = PIL.Image.open(img_path)
+        
+        response = self.gemini_model.generate_content(
+            [prompt_text, img],
+            generation_config=genai.types.GenerationConfig(response_mime_type="application/json")
+        )
+        
+        parsed_json = json.loads(response.text)
+        
+        input_tokens = response.usage_metadata.prompt_token_count
+        output_tokens = response.usage_metadata.candidates_token_count
+        
+        return parsed_json, input_tokens, output_tokens
+
+    def _encode_and_resize_image(self, img_path):
+        """Mengecilkan gambar sebelum dikirim ke VLM agar VRAM tidak jebol."""
+        img = Image.open(img_path)
+        img.thumbnail((800, 800)) # Batas aman resolusi
+        buffer = io.BytesIO()
+        img.save(buffer, format="JPEG", quality=80)
+        return base64.b64encode(buffer.getvalue()).decode('utf-8')
+
+    def _validate_local(self, img_path, prompt_text):
+        # 1. Gunakan fungsi resize yang baru
+        base64_image = self._encode_and_resize_image(img_path)
+        
+        url = f"{self.ollama_host}/v1/chat/completions"
+        headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+        
+        # 2. Gunakan format payload yang SUDAH TERBUKTI berhasil di test_ollama
+        payload = {
+            "model": self.model_name,
+            "stream": False,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt_text},
                         {
                             "type": "image_url",
                             "image_url": {
                                 "url": f"data:image/jpeg;base64,{base64_image}"
-                            },
-                        },
-                    ],
+                            }
+                        }
+                    ]
                 }
-            ],
-            response_format={"type": "json_object"},
-            temperature=0.2,
-        )
-
-        return self._safe_json_loads(response.choices[0].message.content)
-
-    def _call_ollama_vision_json(self, image_path, prompt):
-        response = ollama.chat(
-            model=self.model_name,
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt,
-                    "images": [image_path],
-                }
-            ],
-            format="json",
-        )
-
-        raw_output = response["message"]["content"]
-        return self._safe_json_loads(raw_output)
-
-    # -------------------------------------------------------------------------
-    # Main validation
-    # -------------------------------------------------------------------------
-
-    def validate_strategy(self, image_path, user_query, planner_json):
-        """
-        Evaluasi rencana dari Planner.
-
-        Kontrak output:
-        {
-            "validation_status": "PASS" atau "FAIL",
-            "feedback": "...",
-            "final_action_plan": planner_json["action_plan"]  # selalu asli dari Planner
+            ]
+            # CATATAN PENTING: Jangan gunakan "response_format": {"type": "json_object"} 
+            # karena Qwen di Ollama sering crash dengan parameter itu. 
+            # Prompt kamu sudah menyuruhnya mengembalikan JSON.
         }
+        
+        # 3. Kirim request dengan timeout panjang (180 detik)
+        response = requests.post(url, json=payload, headers=headers, timeout=300)
+        
+        if response.status_code != 200:
+            raise RuntimeError(f"Error {response.status_code} dari Ollama: {response.text}")
+            
+        data = response.json()
+        
+        # 4. Parsing response
+        choice = data.get("choices", [{}])[0]
+        message = choice.get("message", {})
+        raw_content = message.get("content", "")
+        
+        # Trik Ekstra: LLM lokal sering membungkus JSON dengan ```json ... ```
+        # Kita bersihkan teksnya sebelum di parse
+        cleaned_content = raw_content.strip()
+        if cleaned_content.startswith("```json"):
+            cleaned_content = cleaned_content[7:]
+        if cleaned_content.startswith("```"):
+            cleaned_content = cleaned_content[3:]
+        if cleaned_content.endswith("```"):
+            cleaned_content = cleaned_content[:-3]
+            
+        cleaned_content = cleaned_content.strip()
+        
+        try:
+            parsed_json = json.loads(cleaned_content)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Gagal memparsing JSON dari VLM lokal.\nOutput mentah:\n{raw_content}") from e
+        
+        # 5. Ambil metrik token
+        usage = data.get("usage", {})
+        input_tokens = usage.get("prompt_tokens", 0)
+        output_tokens = usage.get("completion_tokens", 0)
+        
+        return parsed_json, input_tokens, output_tokens
+    
+class PostCheckValidator(LogicValidator):
 
-        Validator tidak boleh membuat corrected plan.
-        """
-        original_plan = self._extract_planner_action_plan(planner_json)
 
-        prompt = f"""
-You are a strictly logical Robotic Safety Validator for a UR5e robot picking objects on a table.
+    def validate_target_presence(
+            self,
+            image_path,
+            target
+    ):
 
-Your task:
-Verify whether the Planner's proposed action_plan is safe and logically valid.
 
-IMPORTANT CONTRACT:
-- You are ONLY a validator.
-- You MUST NOT rewrite the action_plan.
-- You MUST NOT add steps.
-- You MUST NOT remove steps.
-- You MUST NOT reorder steps.
-- You MUST NOT create a corrected plan.
-- You only return PASS or FAIL with feedback.
-- The executor will use the Planner's original action_plan, not your generated plan.
+        prompt=f"""
 
-Primary Target Object:
-{user_query}
+You are a visual object verifier.
 
-Planner JSON:
-{json.dumps(planner_json, indent=2)}
 
-Planner action_plan that must be judged:
-{json.dumps(original_plan, indent=2)}
+Target:
+{target}
+Determine if target still exists.
 
-Validation rules:
-1. Validate whether the action_plan matches the user's primary target semantically.
-2. Do not fail only because of strict string mismatch.
-   Example: if user says "cam" but the visible object is a "soda can", this can be valid.
-3. Do not fail because of bbox, pixel coordinates, grasp_pixel_2d, 3D coordinates, or grasp-point placement.
-   Coordinates are only hints and will be recomputed later by YOLO/SAM/depth.
-4. A step with target_role="search_occluder" is not the final user target. It is only a temporary search/removal object.
-5. If the Planner's own action_plan contains obstacle removal before picking the primary target, judge whether that sequence is safe.
-6. If the Planner's own action_plan directly picks the primary target and does not include obstacle removal, do not invent an obstacle-removal step.
-7. visual_analysis is context only. It is NOT an executable plan.
-8. Table, countertop, counter, floor, wall, cabinet, shelf, surface, and background are support/background items and must not be treated as removable targets.
-9. Return FAIL only if the Planner's existing action_plan is clearly unsafe, irrelevant, or logically impossible.
-10. If the plan is reasonable, return PASS.
+Return ONLY JSON
 
-Output format:
-Return ONLY a valid JSON object.
-Do not use markdown.
-Do not include corrected action_plan.
-Do not include final_action_plan.
 
-Exact schema:
 {{
-  "validation_status": "PASS" or "FAIL",
-  "feedback": "Detailed explanation of the validation decision."
+"target_found_after_action":true,
+"confidence":0.91,
+"bbox":[120,130,220,310],
+"reason":"object visible"
 }}
+
+
+
+OR
+
+
+{{
+"target_found_after_action":false,
+"confidence":0.0,
+"bbox":null,
+"reason":"object absent"
+}}
+
+
 """
 
-        if self.api_key is not None:
-            print("☁️ [LogicValidator] Menggunakan mode CLOUD...")
-            try:
-                if self.cloud_provider == "gemini":
-                    result = self._call_gemini_vision_json(image_path, prompt)
-                elif self.cloud_provider == "openai":
-                    result = self._call_openai_vision_json(image_path, prompt)
-                else:
-                    raise RuntimeError(f"Unknown cloud provider: {self.cloud_provider}")
-
-                return self._normalize_validation_result(result, planner_json)
-
-            except Exception as e:
-                print(f"❌ Safety check gagal: {type(e).__name__}: {repr(e)}")
-                traceback.print_exc()
-                return self._error_result(
-                    "validator_exception",
-                    f"{type(e).__name__}: {str(e)}",
-                    planner_json,
-                )
-
-        print(f"🔌 [LogicValidator] Menggunakan mode LOKAL ({self.model_name})...")
-        try:
-            result = self._call_ollama_vision_json(image_path, prompt)
-            return self._normalize_validation_result(result, planner_json)
-
-        except Exception as e:
-            print(f"❌ Safety check gagal: {type(e).__name__}: {repr(e)}")
-            traceback.print_exc()
-            return self._error_result(
-                "validator_local_exception",
-                f"{type(e).__name__}: {str(e)}",
-                planner_json,
+        if self.provider=="openai":
+            result,_,_=self._validate_openai(
+                    image_path,
+                    prompt
             )
 
-    # -------------------------------------------------------------------------
-    # Remaining-plan validation
-    # -------------------------------------------------------------------------
+        elif self.provider=="gemini":
 
-    def _remaining_plan_should_continue(self, remaining_plan):
-        """
-        Fast-path untuk kasus obstacle/search sudah berhasil dan sisa plan masih masuk akal.
-        Ini tidak mengubah plan, hanya memberi izin lanjut.
-        """
-        if not isinstance(remaining_plan, list) or len(remaining_plan) == 0:
-            return False
-
-        for step in remaining_plan:
-            if not isinstance(step, dict):
-                continue
-
-            action = str(step.get("action", "")).lower()
-            explanation = str(step.get("explanation", "")).lower()
-            target = str(step.get("target", "")).lower()
-
-            if action in ["pick", "search", "find"] or any(
-                keyword in explanation or keyword in target
-                for keyword in ["target", "hidden", "search", "reveal", "remaining"]
-            ):
-                return True
-
-        return False
-
-    def validate_remaining_plan(self, image_path, original_query, remaining_plan):
-        """
-        Closed-loop validation untuk sisa antrean.
-
-        Return tetap tuple:
-            (True/False, feedback)
-
-        Fungsi ini juga tidak boleh mengubah remaining_plan.
-        """
-        print("\n[Validator Engine] Memulai evaluasi keamanan sisa antrean...")
-
-        validation_prompt = f"""
-You are a strict Closed-Loop Robotic Safety Validator.
-
-Original User Query:
-{original_query}
-
-Remaining Action Plan:
-{json.dumps(remaining_plan, indent=2)}
-
-Your task:
-Evaluate whether it is safe and logical for the robot to continue executing the remaining action plan.
-
-IMPORTANT CONTRACT:
-- You are ONLY a validator.
-- You MUST NOT rewrite the remaining plan.
-- You MUST NOT add, remove, or reorder steps.
-- Return only PASS or FAIL with feedback.
-
-Rules:
-1. Return PASS if the environment is safe, the previous action succeeded, and the remaining plan makes sense.
-2. If the previous step removed an obstacle/occluder and the remaining plan is to search for or pick the original target, this is a valid continuation.
-3. Do not fail because coordinates, grasp points, bbox, or pixels are wrong. Those are recomputed later.
-4. Return FAIL only if something is clearly wrong or unsafe, for example the target fell off the table or the remaining action is irrelevant.
-
-Return ONLY a valid JSON object.
-Do not use markdown.
-
-Exact schema:
-{{
-  "validation_status": "PASS" or "FAIL",
-  "feedback": "brief explanation of your decision based on the image"
-}}
-"""
-
-        if self._remaining_plan_should_continue(remaining_plan):
-            return True, "Remaining plan is a valid continuation after obstacle removal/search."
-
-        if self.api_key is not None:
-            try:
-                if self.cloud_provider == "gemini":
-                    response = self._call_gemini_vision_json(image_path, validation_prompt)
-                elif self.cloud_provider == "openai":
-                    response = self._call_openai_vision_json(image_path, validation_prompt)
-                else:
-                    raise RuntimeError(f"Unknown cloud provider: {self.cloud_provider}")
-
-            except Exception as e:
-                traceback.print_exc()
-                return False, f"Error validasi remaining plan: {type(e).__name__}: {e}"
-
+            result,_,_=self._validate_gemini(
+                    image_path,
+                    prompt
+            )
         else:
-            try:
-                response = self._call_ollama_vision_json(image_path, validation_prompt)
-            except Exception as e:
-                traceback.print_exc()
-                return False, f"Error validasi remaining plan lokal: {type(e).__name__}: {e}"
 
-        if isinstance(response, dict):
-            status = str(response.get("validation_status", "FAIL")).upper().strip()
-            feedback = response.get("feedback", "Tidak ada alasan spesifik.")
-            return status == "PASS", feedback
+            result,_,_=self._validate_local(
+                    image_path,
+                    prompt
+            )
+        return result
 
-        return False, "Respons validator tidak dikenali."
+

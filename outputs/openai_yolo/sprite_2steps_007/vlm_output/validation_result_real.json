@@ -1,0 +1,22 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The action plan logically identifies the 'green soda can' (Sprite) as the primary target despite partial occlusion by a brown bottle. Step 1 correctly prioritizes removing/moving the obstructing object ('brown bottle') to ensure safe access, which aligns with standard robotic manipulation safety protocols for cluttered scenes. Step 2 executes the user's actual intent of picking the sprite can once it is reachable.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "brown bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "brown bottle is blocking access to the green soda can"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "green soda can is now reachable"
+    }
+  ]
+}

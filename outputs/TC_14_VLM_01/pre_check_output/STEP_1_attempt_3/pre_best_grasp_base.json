@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "method": "camera_to_base_transform",
+  "translation_base": [
+    -0.6758742843859931,
+    0.5053875610531364,
+    0.3353075576568624
+  ],
+  "rotation_matrix_base": [
+    [
+      -0.5686734213825937,
+      -0.5379466901448595,
+      -0.6222731575604906
+    ],
+    [
+      0.7656194305846536,
+      -0.06958240612192587,
+      -0.6395194889729278
+    ],
+    [
+      0.3007281291678153,
+      -0.840102151181913,
+      0.45143211894090635
+    ]
+  ],
+  "score": 0.47600269317626953,
+  "width": 0.07246340066194534,
+  "height": 0.019999999552965164,
+  "depth": 0.029999999329447746,
+  "object_id": -1,
+  "frame": "UR5 base frame",
+  "source_frame": "RealSense D455 aligned color camera frame",
+  "rotation_validation": {
+    "determinant": 0.9999999874282531,
+    "orthonormal_error": 3.680723174342888e-08
+  },
+  "camera_grasp_used": {
+    "translation_camera": [
+      -0.023327963426709175,
+      -0.12414057552814484,
+      0.39900001883506775
+    ],
+    "rotation_matrix_camera": [
+      [
+        0.14391817152500153,
+        -0.43786168098449707,
+        -0.8874484300613403
+      ],
+      [
+        -0.2771056890487671,
+        0.8430759906768799,
+        -0.4609070420265198
+      ],
+      [
+        0.949999988079071,
+        0.31224989891052246,
+        -1.3648876695526724e-08
+      ]
+    ]
+  },
+  "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
+  "pre_grasp_preview": {
+    "translation_base": [
+      -0.6758742843859931,
+      0.5053875610531364,
+      0.43530755765686235
+    ],
+    "offset_z_m": 0.1,
+    "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
+  },
+  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_14_VLM_01/vision_output/best_grasp_camera.json",
+  "source_transform": "/home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json"
+}

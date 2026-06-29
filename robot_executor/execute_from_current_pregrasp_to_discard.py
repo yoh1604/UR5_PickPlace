@@ -288,37 +288,27 @@ def main():
     group.set_planning_time(5.0)
     group.set_num_planning_attempts(5)
 
-    print("\n========== LIFT 3CM -> DISCARD WAYPOINTS ==========")
-    print("robot_ip:", args.robot_ip)
-    print("group_name:", args.group_name)
-    print("eef_link:", args.eef_link)
-    print("waypoints_json:", resolve_path(args.waypoints_json))
-    print("lift_up:", args.lift_up)
-    print("velocity:", args.velocity)
-    print("acceleration:", args.acceleration)
-    print("disable_gripper:", args.disable_gripper)
-    print("skip_lift:", args.skip_lift)
-    print("plan_only:", args.plan_only)
-    print("===================================================\n")
+    # print("\n========== LIFT 3CM -> DISCARD WAYPOINTS ==========")
+    # print("robot_ip:", args.robot_ip)
+    # print("group_name:", args.group_name)
+    # print("eef_link:", args.eef_link)
+    # print("waypoints_json:", resolve_path(args.waypoints_json))
+    # print("lift_up:", args.lift_up)
+    # print("velocity:", args.velocity)
+    # print("acceleration:", args.acceleration)
+    # print("disable_gripper:", args.disable_gripper)
+    # print("skip_lift:", args.skip_lift)
+    # print("plan_only:", args.plan_only)
+    # print("===================================================\n")
 
-    print("[INFO] Current joints:")
-    print(group.get_current_joint_values())
+    # print("[INFO] Current joints:")
+    # print(group.get_current_joint_values())
 
-    print_pose(
-        "CURRENT TOOL0 POSE",
-        group.get_current_pose(end_effector_link=args.eef_link).pose,
-    )
+    # print_pose(
+    #     "CURRENT TOOL0 POSE",
+    #     group.get_current_pose(end_effector_link=args.eef_link).pose,
+    # )
 
-    print("URUTAN:")
-    print("1. Objek diasumsikan SUDAH tergenggam.")
-    print(f"2. Naik {args.lift_up:.3f} m dari posisi sekarang.")
-    print("3. group.go(DISCARD_INIT).")
-    print("4. group.go(DISCARD_STEP_1).")
-    print("5. group.go(DISCARD_STEP_2).")
-    print("6. group.go(DISCARD).")
-    print("7. Open gripper.")
-    print("8. group.go(DISCARD_TO_IDLE).")
-    print()
 
     # if not args.execute:
     #     input("Tekan ENTER untuk mulai, atau CTRL+C untuk batal... ")
@@ -358,12 +348,12 @@ def main():
             execute=do_execute,
         )
 
-        go_joint_direct(
-            group,
-            waypoints["DISCARD"],
-            "DISCARD",
-            execute=do_execute,
-        )
+        # go_joint_direct(
+        #     group,
+        #     waypoints["DISCARD"],
+        #     "DISCARD",
+        #     execute=do_execute,
+        # )
 
         # 3. Open gripper di discard
         if not args.disable_gripper:
@@ -376,12 +366,12 @@ def main():
 
                 # 4. Kembali ke idle / safe pose
 
-        go_joint_soft(
-            group,
-            waypoints["UP_DISCARD"],
-            "UP_DISCARD",
-            execute=do_execute,
-        )
+        # go_joint_soft(
+        #     group,
+        #     waypoints["UP_DISCARD"],
+        #     "UP_DISCARD",
+        #     execute=do_execute,
+        # )
 
         go_joint_soft(
             group,
@@ -407,10 +397,6 @@ def main():
     finally:
         if gripper is not None:
             gripper.close_socket()
-
-    print("\n========== DONE ==========")
-    print("Selesai: lift 3 cm -> discard waypoint -> open -> idle.")
-    print("==========================\n")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,22 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The action plan correctly identifies a mineral water proxy (clear plastic bottle) matching user intent and logically sequences obstacle removal before target picking.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can is directly in front of and blocking the clear water bottle."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The clear water bottle is now accessible after removing the obstacle."
+    }
+  ]
+}

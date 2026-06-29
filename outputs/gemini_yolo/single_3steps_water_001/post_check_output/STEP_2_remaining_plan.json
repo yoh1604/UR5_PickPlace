@@ -1,0 +1,10 @@
+[
+  {
+    "step": 3,
+    "action": "pick",
+    "target": "clear water bottle",
+    "target_role": "primary_target",
+    "step_intent": "pick_primary_target",
+    "explanation": "Pick the clear water bottle now that the path is clear."
+  }
+]

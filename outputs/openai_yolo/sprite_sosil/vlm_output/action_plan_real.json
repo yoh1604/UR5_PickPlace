@@ -1,0 +1,41 @@
+{
+  "resolved_primary_target": "green sprite can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green sprite can",
+      "description": "green soda can with Sprite label",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red bowl",
+      "description": "red bowl on the left side",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "yellow cup noodles",
+      "description": "yellow cup noodles in front on the lower shelf",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown cardboard box",
+      "description": "large brown cardboard box behind the Sprite can",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green sprite can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "directly pick the clear primary target"
+    }
+  ]
+}

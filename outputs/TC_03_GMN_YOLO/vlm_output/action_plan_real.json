@@ -1,0 +1,59 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red and white soda can with 'Coca-Cola' written on it, located in the center of the shelf.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green and silver soda can with 'Sprite' written on it, to the left of the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "orange bottle",
+      "description": "An orange plastic bottle with a green cap, to the left of the green soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "black soda can",
+      "description": "A black soda can with white text, located behind the orange bottle.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle with a blue cap, to the right of the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white can",
+      "description": "A white and pink can with 'Milkis' written on it, to the right of the water bottle.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "wooden shelf",
+      "description": "The wooden surface where all the drinks are placed.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user wants to drink Coca-Cola. The red soda can is clearly visible and directly accessible."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green soda can with the brand name 'Sprite' clearly visible, sitting on a wooden surface.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "wooden table",
+      "description": "The wooden surface upon which the green soda can is placed.",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "instant noodle cup",
+      "description": "An open cup of instant noodles on a lower surface, not obstructing the target.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "red snack bag",
+      "description": "A red bag on a lower surface, not obstructing the target.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested 'sprite', which is resolved to the clearly visible and unobstructed green soda can."
+    }
+  ]
+}

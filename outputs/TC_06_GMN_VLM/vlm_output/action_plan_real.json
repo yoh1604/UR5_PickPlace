@@ -1,0 +1,35 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green soda can with 'Sprite' written on it, located on the left side of the shelf.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red soda can with 'Coca-Cola' written on it, located behind and to the right of the milk can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white milk can",
+      "description": "A white can with 'Milk' written on it, located in front of the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested 'sprite', which is the green soda can. It is clearly visible and unobstructed."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "label": "black soda can",
+    "confidence": 0.544792652130127,
+    "bbox": [
+      299,
+      138,
+      367,
+      289
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "black soda can"
+  }
+]

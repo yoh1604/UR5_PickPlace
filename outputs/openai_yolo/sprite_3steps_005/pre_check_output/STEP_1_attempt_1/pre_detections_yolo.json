@@ -1,0 +1,15 @@
+[
+  {
+    "label": "red can",
+    "confidence": 0.8435277938842773,
+    "bbox": [
+      204,
+      109,
+      281,
+      306
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "red can"
+  }
+]

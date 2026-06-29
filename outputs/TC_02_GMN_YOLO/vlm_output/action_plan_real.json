@@ -1,0 +1,23 @@
+{
+  "resolved_primary_target": "black soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "black soda can",
+      "description": "A black can of club soda water is standing on a wooden shelf.",
+      "status": "target",
+      "target_role": "primary_target"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "black soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The black soda can is clearly visible and unobstructed on the shelf, ready to be picked."
+    }
+  ]
+}

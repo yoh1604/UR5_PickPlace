@@ -1,0 +1,49 @@
+{
+  "resolved_primary_target": "blue water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "red Coca-Cola can",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "blue water bottle",
+      "description": "blue plastic water bottle",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown box",
+      "description": "brown cardboard box",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "red soup packet",
+      "description": "red instant soup packet",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Clear the red soda can to access the blue water bottle"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the blue water bottle after clearing obstruction"
+    }
+  ]
+}

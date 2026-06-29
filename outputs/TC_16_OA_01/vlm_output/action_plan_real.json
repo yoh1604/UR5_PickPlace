@@ -1,0 +1,20 @@
+{
+  "resolved_primary_target": "not_exist",
+  "target_visibility": "not_exist",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "brown cardboard box",
+      "description": "large brown cardboard box on shelf",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "black weights",
+      "description": "black weights on the floor",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": []
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "label": "yellow lemon",
+    "confidence": 0.66362065076828,
+    "bbox": [
+      203,
+      220,
+      276,
+      281
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "yellow lemon"
+  },
+  {
+    "label": "lemon",
+    "confidence": 0.6232492327690125,
+    "bbox": [
+      203,
+      220,
+      276,
+      281
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "yellow lemon"
+  }
+]

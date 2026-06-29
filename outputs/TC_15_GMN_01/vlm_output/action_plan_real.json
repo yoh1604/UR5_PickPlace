@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "white soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red soda can with white text, located in the front.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white can with 'Milkis' written on it. This is interpreted as the target 'sprite'. It is behind the red soda can.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "black soda can",
+      "description": "A black can labeled 'SODA WATER' to the left of the other cans.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown plastic bottle",
+      "description": "A brown plastic bottle with a green cap, to the right of the white can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "wooden shelf",
+      "description": "The wooden surface on which all the items are placed.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can is in front of and blocking access to the white soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "white soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the primary target now that the obstructing red can has been moved."
+    }
+  ]
+}

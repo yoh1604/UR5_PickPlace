@@ -1,0 +1,49 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "a red soda can in front of the sprite can",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "a green soda can partially obstructed by a red soda can",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red packet",
+      "description": "a red packet beside the soda cans",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown background",
+      "description": "a brown cardboard background",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove the red soda can to access the sprite"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the sprite can"
+    }
+  ]
+}

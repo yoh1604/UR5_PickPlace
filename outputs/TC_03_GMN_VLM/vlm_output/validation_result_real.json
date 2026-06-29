@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The user requested 'coca-cola'. The planner has identified a 'red soda can' with white lettering which corresponds visually to the Coca-Cola product visible on the shelf (lying on its side). The action plan targets this specific object for picking. There are no safety violations, occlusions preventing access that require removal first, or hallucinations detected.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested coca-cola, and the red soda can is directly accessible in the front."
+    }
+  ]
+}

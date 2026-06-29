@@ -1,0 +1,47 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "red soda can",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "black soda can",
+      "description": "black soda can",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "green soda can",
+      "description": "green soda can",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "white soda can",
+      "description": "white soda can",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "brown package",
+      "description": "brown package",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The green soda can is the resolved target and is clear for picking."
+    }
+  ]
+}

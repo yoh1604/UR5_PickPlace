@@ -50,9 +50,6 @@ MODE="${2:-plan}"
 # ============================================================
 
 CAPTURE_SCRIPT="${CAPTURE_SCRIPT:-perception/capture_d455_once.py}"
-
-PLANNER_SCRIPT="${PLANNER_SCRIPT:-run_planner_real.py}"
-VALIDATOR_SCRIPT="${VALIDATOR_SCRIPT:-run_validator_real.py}"
 VISION_SCRIPT="${VISION_SCRIPT:-run_d455_pipeline.py}"
 
 ANYGRASP_SCRIPT="${ANYGRASP_SCRIPT:-models/graspnet-baseline/demo_d455.py}"
@@ -75,25 +72,22 @@ WAYPOINTS_JSON="${WAYPOINTS_JSON:-configs/waypoints_ur5.json}"
 # GRASP PARAMS - STABLE CONFIG
 # ============================================================
 
-# Kalau 1, script MEMAKSA pakai config grasp yang sudah stabil,
-# sehingga export lama seperti DESCEND_Z=0.10 tidak ikut terbawa.
-# Kalau ingin tuning manual, jalankan: export LOCK_STABLE_CONFIG=0
 LOCK_STABLE_CONFIG="${LOCK_STABLE_CONFIG:-1}"
 
-# Harus string satu argumen, jangan ditulis sebagai 3 argumen.
 TOOL0_TO_GRIPPER_TIP="${TOOL0_TO_GRIPPER_TIP:-0 0 0.17}"
 
 if [ "$LOCK_STABLE_CONFIG" = "1" ]; then
-  # Stable grasp config terakhir yang sudah benar saat direct grasp.py.
   PREGRASP_Z="0.13"
+  # PREGRASP_Z="0"
+  # DESCEND_Z="0"
   DESCEND_Z="0.12"
 
-  NUDGE_DX="-0.05"
-  NUDGE_DY="0.038"
+  NUDGE_DX="-0.045"
+  NUDGE_DY="0.04"
   NUDGE_DZ="0.0"
 
   SAFE_LIFT_Z="0.05"
-  SAFE_LIFT_EEF_STEP="0.005"
+  SAFE_LIFT_EEF_STEP="0.005"        
   CARTESIAN_MIN_FRACTION="0.80"
 
   MAX_XYZ_DISTANCE="0.80"
@@ -102,10 +96,12 @@ if [ "$LOCK_STABLE_CONFIG" = "1" ]; then
 else
   # Mode tuning: boleh override dari export environment.
   PREGRASP_Z="${PREGRASP_Z:-0.13}"
+  # PREGRASP_Z="${PREGRASP_Z:-0.5}"
+  # DESCEND_Z="${DESCEND_Z:-0.5}"
   DESCEND_Z="${DESCEND_Z:-0.12}"
 
   NUDGE_DX="${NUDGE_DX:--0.05}"
-  NUDGE_DY="${NUDGE_DY:-0.038}"
+  NUDGE_DY="${NUDGE_DY:-0.04}"
   NUDGE_DZ="${NUDGE_DZ:-0.0}"
 
   SAFE_LIFT_Z="${SAFE_LIFT_Z:-0.05}"
@@ -125,16 +121,9 @@ LIFT_UP="${LIFT_UP:-0.04}"
 VELOCITY="${VELOCITY:-0.08}"
 ACCELERATION="${ACCELERATION:-0.05}"
 
-# Gripper:
-# - grasp.py akan open di pregrasp dan close setelah descend.
-# - PREOPEN_GRIPPER=1 hanya kalau ingin gripper dibuka sebelum robot bergerak.
 DISABLE_GRIPPER="${DISABLE_GRIPPER:-0}"
 PREOPEN_GRIPPER="${PREOPEN_GRIPPER:-0}"
 
-
-# ============================================================
-# SKIP OPTIONS
-# ============================================================
 
 SKIP_CAPTURE="${SKIP_CAPTURE:-0}"
 SKIP_PLANNER="${SKIP_PLANNER:-1}"
@@ -147,7 +136,6 @@ SKIP_NUDGE="${SKIP_NUDGE:-0}"
 SKIP_BASE_LINK_CONVERT="${SKIP_BASE_LINK_CONVERT:-0}"
 SKIP_GRASP="${SKIP_GRASP:-0}"
 
-# Default skip discard untuk safety. Aktifkan dengan:
 #   export SKIP_DISCARD=0
 SKIP_DISCARD="${SKIP_DISCARD:-1}"
 
@@ -458,18 +446,6 @@ if [ "$SKIP_VISION" = "0" ]; then
   activate_conda "$PLANNER_ENV"
 
   export TEST_NAME="$TEST_NAME"
-
-  if [ "$SKIP_PLANNER" = "0" ]; then
-    run_if_exists "$PLANNER_SCRIPT" --test_name "$TEST_NAME"
-  else
-    echo "[SKIP] Planner skipped."
-  fi
-
-  if [ "$SKIP_VALIDATOR" = "0" ]; then
-    run_if_exists "$VALIDATOR_SCRIPT" --test_name "$TEST_NAME"
-  else
-    echo "[SKIP] Validator skipped."
-  fi
 
   need_file "$VISION_SCRIPT" "Vision script"
 

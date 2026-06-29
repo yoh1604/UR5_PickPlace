@@ -1,0 +1,63 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green can with 'Sprite' text, located behind a red can and a yellow lemon.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red Coca-Cola can positioned directly in front of the green soda can, blocking it.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "yellow lemon",
+      "description": "A yellow lemon located to the front and left of the cans.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "water bottle",
+      "description": "A clear plastic water bottle to the right of the cans.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "wood shelf",
+      "description": "The wooden surface on which all objects are placed.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "yellow lemon",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the lemon at the front to clear access to the other objects."
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the red can which is directly blocking the green sprite can."
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the green sprite can now that the path is clear."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "green can with visible 'sprite' label",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red soda can",
+      "description": "red can next to the green can",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown envelope",
+      "description": "brown envelope behind cans",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "red packet",
+      "description": "red packet next to cans",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "bowl with design",
+      "description": "decorative bowl on lower shelf",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The green soda can is the primary target and is clear for picking."
+    }
+  ]
+}

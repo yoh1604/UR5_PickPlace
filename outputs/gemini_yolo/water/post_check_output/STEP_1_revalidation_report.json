@@ -1,0 +1,4 @@
+{
+  "error": "HTTPConnectionPool(host='10.7.101.217', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError(\"HTTPConnection(host='10.7.101.217', port=11434): Failed to establish a new connection: [Errno 111] Connection refused\"))",
+  "validation_status": "FAIL"
+}

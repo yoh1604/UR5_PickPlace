@@ -1,0 +1,29 @@
+{
+  "resolved_primary_target": "black soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "black soda can",
+      "description": "A black soda can with 'SODA WATER' printed on it, sitting on a wooden shelf.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "wooden shelf",
+      "description": "The wooden shelf that the soda can is placed on.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "black soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The black soda can is clearly visible and unobstructed on the shelf."
+    }
+  ]
+}

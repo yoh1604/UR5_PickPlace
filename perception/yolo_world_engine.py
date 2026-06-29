@@ -21,7 +21,7 @@ class YoloWorldEngine:
     def __init__(
         self,
         model_name="yolov8l-world.pt",
-        conf=0.08,
+        conf=0.07,
         output_dir=None
     ):
         self.model_name = model_name

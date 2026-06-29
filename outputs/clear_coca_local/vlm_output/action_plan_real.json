@@ -1,0 +1,47 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red soda can with white lettering, located in the front center of the shelf.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green soda can, located to the left of and slightly behind the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown bottle",
+      "description": "A brown plastic bottle with a blue cap, located to the far left on the shelf.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle with a blue cap, located behind the red and white cans.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white can with purple graphics, located to the right of the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The red soda can is clearly visible and unobstructed, making it directly accessible."
+    }
+  ]
+}

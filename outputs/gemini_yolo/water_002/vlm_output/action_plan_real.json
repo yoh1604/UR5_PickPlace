@@ -1,0 +1,63 @@
+{
+  "resolved_primary_target": "clear water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic bottle with water and a blue cap, located behind the soda cans.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red Coca-Cola soda can located in front of the water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green Sprite soda can located to the left of the red can, also in front of the water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "wood shelf",
+      "description": "The wooden shelf the objects are resting on.",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "brown envelope",
+      "description": "A brown paper envelope standing behind the objects.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can is directly in front of the water bottle, blocking the robot's access to its graspable area."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The green soda can is also in the foreground and must be removed to ensure a clear path for the robot arm."
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The path to the water bottle is now clear of obstructions."
+    }
+  ]
+}

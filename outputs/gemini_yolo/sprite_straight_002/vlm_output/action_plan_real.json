@@ -1,0 +1,29 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green and silver can of Sprite soda is standing on a wooden surface.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "wooden shelf",
+      "description": "The wooden surface on which the soda can is placed.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The green soda can is clearly visible and unobstructed, making it ready to be picked up directly."
+    }
+  ]
+}

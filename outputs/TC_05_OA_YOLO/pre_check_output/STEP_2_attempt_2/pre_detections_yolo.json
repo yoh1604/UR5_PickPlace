@@ -1,0 +1,28 @@
+[
+  {
+    "label": "blue water bottle",
+    "confidence": 0.7119066119194031,
+    "bbox": [
+      182,
+      138,
+      233,
+      284
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "blue water bottle"
+  },
+  {
+    "label": "blue water bottle",
+    "confidence": 0.5421735644340515,
+    "bbox": [
+      382,
+      155,
+      434,
+      285
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "blue water bottle"
+  }
+]

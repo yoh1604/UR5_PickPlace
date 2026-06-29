@@ -1,0 +1,43 @@
+{
+  "resolved_primary_target": "green bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "green bottle",
+      "description": "green plastic bottle with label",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red can",
+      "description": "red soda can",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "brown box",
+      "description": "brown cardboard box",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "red can obstructs access to the green bottle"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the green bottle now that it is clear"
+    }
+  ]
+}

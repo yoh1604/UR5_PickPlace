@@ -1,0 +1,40 @@
+{
+  "test_name": "sprite_3steps_003",
+  "step_index": 1,
+  "target": "blue can",
+  "post_check_status": "STILL_FOUND",
+  "target_found_after_action": true,
+  "best_detection": {
+    "label": "blue can",
+    "confidence": 0.5303740501403809,
+    "bbox": [
+      150,
+      133,
+      216,
+      292
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "blue can"
+  },
+  "all_detections": [
+    {
+      "label": "blue can",
+      "confidence": 0.5303740501403809,
+      "bbox": [
+        150,
+        133,
+        216,
+        292
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "blue can"
+    }
+  ],
+  "post_image_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg",
+  "post_yolo_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/sprite_3steps_003/post_check_output/STEP_1_post_check_yolo_result.jpg",
+  "post_fastsam_mask": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/sprite_3steps_003/post_check_output/STEP_1_post_check_fastsam_mask.png",
+  "post_fastsam_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/sprite_3steps_003/post_check_output/STEP_1_post_check_fastsam_result.jpg",
+  "note": "Target masih terdeteksi setelah aksi robot. Step belum dianggap selesai."
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "label": "white soda can",
+    "confidence": 0.7397297024726868,
+    "bbox": [
+      262,
+      149,
+      314,
+      287
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "white soda can"
+  },
+  {
+    "label": "white soda can",
+    "confidence": 0.620093822479248,
+    "bbox": [
+      311,
+      116,
+      380,
+      298
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "white soda can"
+  }
+]

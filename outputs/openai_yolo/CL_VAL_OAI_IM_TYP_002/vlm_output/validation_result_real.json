@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The planner correctly identified that the primary target ('red soda can' corresponding to 'coca cola') is not visible in the current scene (`target_visibility: not_exist`). The generated action plan logically initiates a search for this missing object rather than attempting an immediate pick, which would fail. This aligns with safety and logical validity requirements.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "search",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_or_search_primary_target",
+      "explanation": "search for the red soda can as it is not visible"
+    }
+  ]
+}

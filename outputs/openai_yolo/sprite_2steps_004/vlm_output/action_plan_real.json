@@ -1,0 +1,29 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "green can with 'Sprite' label",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown envelope",
+      "description": "large brown envelope",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The green soda can is the target and is not obstructed."
+    }
+  ]
+}

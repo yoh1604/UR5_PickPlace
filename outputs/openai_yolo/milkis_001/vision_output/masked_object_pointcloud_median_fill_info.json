@@ -1,0 +1,24 @@
+{
+  "pointcloud_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/milkis_001/vision_output/masked_object_pointcloud_median_fill.ply",
+  "clean_mask_path": null,
+  "method": "median_fill_all_mask_pixels",
+  "use_median_fill": true,
+  "mask_pixels": 11666,
+  "valid_depth_pixels": 8271,
+  "zero_depth_pixels": 3395,
+  "final_points": 11595,
+  "median_depth_m": 0.3160000145435333,
+  "mean_depth_m": 0.32278481125831604,
+  "center_mean_camera_m": [
+    0.015780387941945494,
+    -0.031004833916360622,
+    0.3163241196598869
+  ],
+  "center_median_camera_m": [
+    0.01568061299622059,
+    -0.031061915680766106,
+    0.3160000145435333
+  ],
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Point cloud masih camera frame, belum base frame UR5."
+}

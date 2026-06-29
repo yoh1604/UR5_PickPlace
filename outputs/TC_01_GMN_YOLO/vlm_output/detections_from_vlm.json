@@ -1,0 +1,24 @@
+[
+  {
+    "label": "brown coffee bottle",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A brown bottle with a green cap, with a label that says 'CAFFINO', which is a coffee drink.",
+    "status": "target",
+    "target_role": "primary_target"
+  }
+]

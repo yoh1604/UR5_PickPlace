@@ -1,0 +1,57 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "red cylindrical soda can",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "black soda can",
+      "description": "black cylindrical soda can",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "green cylindrical soda can",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "white milk carton",
+      "description": "white cylindrical milk carton",
+      "status": "clear",
+      "target_role": "clear_background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove red soda can blocking green soda can"
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "black soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove black soda can to reveal green soda can"
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the green soda can to drink"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "resolved_primary_target": "black soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "black soda can",
+      "description": "black can with label",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown envelope",
+      "description": "large brown envelope behind",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "black soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "soda can is the requested item and is clear for picking"
+    }
+  ]
+}

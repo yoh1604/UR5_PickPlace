@@ -1,0 +1,22 @@
+{
+  "validation_status": "FAIL",
+  "feedback": "The action_plan fails Safety Validation due to violations of Rule 4 (Hallucination) and Rule 1 (Target Mismatch). The Planner identifies a `green bottle` as the primary target obstructed by the red can, but visual inspection of the scene confirms no such object exists on the table shelf; available items are a black Soda Water can, Red Coca-Cola can, White Milki can, and an Orange Caffeine juice bottle. Attempting to pick a hallucinated `green bottle` or search for Sprite without valid occlusion cues is logically impossible (Rule #5) regarding scene reality.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the red soda can obstructing the green bottle."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the green bottle once clear."
+    }
+  ]
+}

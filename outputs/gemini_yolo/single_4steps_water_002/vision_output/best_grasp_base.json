@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "method": "camera_to_base_transform",
+  "translation_base": [
+    -0.6793385236708874,
+    0.5052255864372629,
+    0.19242644604705336
+  ],
+  "rotation_matrix_base": [
+    [
+      -0.7059760398438295,
+      -0.07702357858153833,
+      -0.7040349624011256
+    ],
+    [
+      0.6782588174995714,
+      0.21262018135358957,
+      -0.7033901223707655
+    ],
+    [
+      0.20386966015055744,
+      -0.9740945149303388,
+      -0.09786282933396227
+    ]
+  ],
+  "score": 0.3495887219905853,
+  "width": 0.08006201684474945,
+  "height": 0.019999999552965164,
+  "depth": 0.009999999776482582,
+  "object_id": -1,
+  "frame": "UR5 base frame",
+  "source_frame": "RealSense D455 aligned color camera frame",
+  "rotation_validation": {
+    "determinant": 1.000000076885136,
+    "orthonormal_error": 1.053518777686643e-07
+  },
+  "camera_grasp_used": {
+    "translation_camera": [
+      -0.02738933451473713,
+      0.018721401691436768,
+      0.398000031709671
+    ],
+    "rotation_matrix_camera": [
+      [
+        -0.01589503511786461,
+        0.08596859127283096,
+        -0.9961710572242737
+      ],
+      [
+        -0.18111571669578552,
+        0.9795682430267334,
+        0.08742568641901016
+      ],
+      [
+        0.9833333492279053,
+        0.1818118691444397,
+        -7.947249081041718e-09
+      ]
+    ]
+  },
+  "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
+  "pre_grasp_preview": {
+    "translation_base": [
+      -0.6793385236708874,
+      0.5052255864372629,
+      0.29242644604705337
+    ],
+    "offset_z_m": 0.1,
+    "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
+  },
+  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/single_4steps_water_002/vision_output/best_grasp_camera.json",
+  "source_transform": "/home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json"
+}

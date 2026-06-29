@@ -1,0 +1,37 @@
+{
+  "resolved_primary_target": "green bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red can",
+      "description": "red soda can at front",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green bottle",
+      "description": "green capped drink bottle",
+      "status": "target",
+      "target_role": "primary_target"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the red soda can obstructing the green bottle."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the green bottle once clear."
+    }
+  ]
+}

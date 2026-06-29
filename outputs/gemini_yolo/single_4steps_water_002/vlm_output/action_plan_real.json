@@ -1,0 +1,71 @@
+{
+  "resolved_primary_target": "clear water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle with a blue cap, located behind other objects.",
+      "status": "obstructed",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "yellow lemon",
+      "description": "A yellow lemon in the foreground, blocking the cans and bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red Coca-Cola can located in front of the water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green Sprite can located to the left and in front of the water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "wood table",
+      "description": "The wooden table surface on which the objects are placed.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "yellow lemon",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The yellow lemon is the closest object and blocks the path to all other items. It must be removed first."
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can is directly in front of the water bottle and must be removed to clear the grasp path."
+    },
+    {
+      "step": 3,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The green soda can is also blocking access to the water bottle and must be cleared."
+    },
+    {
+      "step": 4,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "All obstructions are now clear, and the robot can safely pick the water bottle to fulfill the request."
+    }
+  ]
+}

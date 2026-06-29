@@ -1,0 +1,28 @@
+[
+  {
+    "label": "blue can",
+    "confidence": 0.759182870388031,
+    "bbox": [
+      372,
+      129,
+      435,
+      288
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "blue can"
+  },
+  {
+    "label": "blue can",
+    "confidence": 0.518390953540802,
+    "bbox": [
+      150,
+      134,
+      216,
+      292
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "blue can"
+  }
+]

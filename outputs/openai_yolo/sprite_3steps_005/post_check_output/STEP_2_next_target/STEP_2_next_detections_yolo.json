@@ -1,0 +1,15 @@
+[
+  {
+    "label": "green can",
+    "confidence": 0.6857597827911377,
+    "bbox": [
+      266,
+      131,
+      317,
+      289
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green can"
+  }
+]

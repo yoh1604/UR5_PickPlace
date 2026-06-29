@@ -1,0 +1,15 @@
+[
+  {
+    "label": "white drink can",
+    "confidence": 0.8108130097389221,
+    "bbox": [
+      158,
+      132,
+      230,
+      302
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "white drink can"
+  }
+]

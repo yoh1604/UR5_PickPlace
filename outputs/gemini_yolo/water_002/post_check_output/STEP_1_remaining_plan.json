@@ -1,0 +1,18 @@
+[
+  {
+    "step": 2,
+    "action": "pick",
+    "target": "green soda can",
+    "target_role": "search_occluder",
+    "step_intent": "clear_occluder_to_reveal_primary_target",
+    "explanation": "The green soda can is also in the foreground and must be removed to ensure a clear path for the robot arm."
+  },
+  {
+    "step": 3,
+    "action": "pick",
+    "target": "clear water bottle",
+    "target_role": "primary_target",
+    "step_intent": "pick_primary_target",
+    "explanation": "The path to the water bottle is now clear of obstructions."
+  }
+]

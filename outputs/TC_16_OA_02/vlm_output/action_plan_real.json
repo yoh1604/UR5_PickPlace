@@ -1,0 +1,26 @@
+{
+  "resolved_primary_target": "not_exist",
+  "target_visibility": "not_exist",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "black shelf",
+      "description": "metallic shelf structure",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "brown box",
+      "description": "large cardboard box",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "gray stools",
+      "description": "metallic bar stools",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": []
+}

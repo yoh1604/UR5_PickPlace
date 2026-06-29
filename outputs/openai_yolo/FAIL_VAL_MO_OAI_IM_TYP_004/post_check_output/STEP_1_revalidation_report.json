@@ -1,0 +1,22 @@
+{
+  "validation_status": "FAIL",
+  "feedback": "The action plan fails Rule 1 regarding semantic matching with the user's primary target. The planner identifies a 'red soda can' which does not exist in the visual scene; instead, there is a red pouch of instant coffee/tea ('Teh Otak'). This hallucination creates two issues: first, it violates the specific request for Coca-Cola by targeting an incorrect object class and brand (Tea/Coffee mix vs Soda); second, identifying a soft standing bag as a rigid 'soda can' leads to incorrect grasp geometry assumptions that are unsafe or prone to failure.",
+  "final_action_plan": [
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick primary target for Coca-Cola"
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick primary target for water"
+    }
+  ]
+}

@@ -99,13 +99,13 @@ class RobotiqSocket:
     def set_var(self, name, value):
         return self.send_cmd(f"SET {name} {value}")
 
-    # def activate(self):
-    #     print("[GRIPPER] Activate")
-    #     self.set_var("ACT", 1)
-    #     self.set_var("GTO", 1)
-    #     self.set_var("SPE", 255)
-    #     self.set_var("FOR", 150)
-    #     time.sleep(0.5)
+    def activate(self):
+        print("[GRIPPER] Activate")
+        self.set_var("ACT", 1)
+        self.set_var("GTO", 1)
+        self.set_var("SPE", 255)
+        self.set_var("FOR", 150)
+        time.sleep(0.5)
 
     def open(self, speed=255, force=150):
         print("[GRIPPER] Open")
@@ -170,7 +170,7 @@ def print_pose(title, pose):
     print("====================================\n")
 
 
-def publish_display_trajectory(robot, trajectory, label="trajectory", wait_time=1.0):
+def publish_display_trajectory(robot, trajectory, label="trajectory", wait_time=0.05):
     pub = rospy.Publisher(
         "/move_group/display_planned_path",
         DisplayTrajectory,
@@ -195,13 +195,13 @@ def execute_trajectory(group, trajectory, label, retry=3):
 
         group.stop()
         group.clear_pose_targets()
-        rospy.sleep(0.4)
+        rospy.sleep(0.2)
 
         ok = group.execute(trajectory, wait=True)
 
         group.stop()
         group.clear_pose_targets()
-        rospy.sleep(0.8)
+        rospy.sleep(0.2)
 
         print(f"[EXECUTE] {label} result:", ok)
 
@@ -369,7 +369,7 @@ def compute_cartesian_single_target(
     label,
     eef_link="tool0",
     eef_step=0.005,
-    min_fraction=0.90,
+    min_fraction=0.00,
 ):
     print(f"\n[CARTESIAN] Planning {label}")
     print("[CARTESIAN] eef_step:", eef_step)
@@ -378,7 +378,7 @@ def compute_cartesian_single_target(
     group.stop()
     group.clear_pose_targets()
     group.set_start_state_to_current_state()
-    rospy.sleep(0.3)
+    rospy.sleep(0.1)
 
     start_joints = [float(v) for v in group.get_current_joint_values()]
     start_pose = group.get_current_pose(end_effector_link=eef_link).pose
@@ -424,8 +424,8 @@ def plan_cartesian_segment(
     label,
     eef_link="tool0",
     eef_step=0.005,
-    min_fraction=0.90,
-    rviz_preview_wait=3.0,
+    min_fraction=0.00,
+    rviz_preview_wait=1.0,
     rviz_confirm=True,
     max_base_delta=1.80,
     max_wrist_delta=1.20,
@@ -603,6 +603,9 @@ def main():
     gripper = None
 
     try:
+        gripper = RobotiqSocket(args.robot_ip)
+        gripper.connect()
+        gripper.activate()
         # ====================================================
         # SEGMENT 1: CURRENT / IDLE -> SAFE LIFT
         # Cartesian vertical lift.
@@ -665,8 +668,8 @@ def main():
         # ====================================================
 
         if not args.disable_gripper:
-            gripper = RobotiqSocket(args.robot_ip)
-            gripper.connect()
+            # gripper = RobotiqSocket(args.robot_ip)
+            # gripper.connect()
             # gripper.activate()
             gripper.open()
 
@@ -722,13 +725,6 @@ def main():
         if gripper is not None:
             gripper.close_socket()
 
-    print("\n========== SELESAI ==========")
-    print("Alur selesai:")
-    print("1. current/IDLE -> safe lift Cartesian")
-    print("2. safe lift -> pregrasp Cartesian")
-    print("3. pregrasp -> descend Cartesian")
-    print("4. close gripper")
-    print("=============================\n")
 
 
 if __name__ == "__main__":

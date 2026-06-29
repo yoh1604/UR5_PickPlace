@@ -1,0 +1,63 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "white drink can",
+      "description": "white can with purple design",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "green can labeled Sprite",
+      "status": "obstructed",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red soda can",
+      "description": "red can labeled Coca-Cola",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "yellow noodles cup",
+      "description": "yellow cup noodles",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "brown box",
+      "description": "brown cardboard box",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "white drink can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove obstructing can to access the green soda can"
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove overlapping can blocking the green soda can"
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the target Sprite can"
+    }
+  ]
+}

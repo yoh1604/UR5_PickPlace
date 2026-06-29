@@ -1,0 +1,30 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The action plan aligns with the primary target 'I want to drink water' (mapped to blue water bottle). The strategy handles a scenario where `target_visibility` is marked as obstructed by correctly sequencing obstacle removal steps before picking. Step 1 and Step 2 address objects identified in visual_analysis as occluders/obstructing elements, which is the logically correct sequence for accessing an item located behind or amidst other clutter on a shelf.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red bowl",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove the red bowl to access the water bottle"
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove the green soda can to fully access the water bottle"
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the blue water bottle"
+    }
+  ]
+}

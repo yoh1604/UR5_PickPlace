@@ -1,0 +1,23 @@
+{
+  "resolved_primary_target": "brown bottle",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "brown bottle",
+      "description": "brown bottle with a blue cap",
+      "status": "target",
+      "target_role": "primary_target"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "brown bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The brown bottle is directly accessible and contains caffeine."
+    }
+  ]
+}

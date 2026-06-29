@@ -1,0 +1,47 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green soda can with 'Sprite' written on it, located on the left.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "black soda can",
+      "description": "A black soda can to the right of the green can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red soda can with 'Coca-Cola' written on it, in the middle.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white and purple soda can with 'Milk's' written on it.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "gold bottle",
+      "description": "A gold-colored plastic bottle with a light blue cap, on the right.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested sprite, and the green soda can is clearly visible and unobstructed."
+    }
+  ]
+}

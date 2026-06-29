@@ -1,0 +1,49 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red Coca-Cola can positioned in front of the green can.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green Sprite can, which is the user's target. It is located behind the red can.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle to the right of the soda cans.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "wooden table",
+      "description": "The wooden surface where the objects are placed.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can is in front of and blocking access to the green soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the green soda can, which is the user's requested item, now that it is accessible."
+    }
+  ]
+}

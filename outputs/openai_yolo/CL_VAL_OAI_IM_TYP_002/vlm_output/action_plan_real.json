@@ -1,0 +1,29 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "not_exist",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red coffee bag",
+      "description": "red bag with coffee label",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "yellow cup noodles",
+      "description": "yellow cup with noodles",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "search",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_or_search_primary_target",
+      "explanation": "search for the red soda can as it is not visible"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "resolved_primary_target": "blue water bottle",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "blue water bottle",
+      "description": "transparent bottle with blue cap",
+      "status": "clear",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red soda can",
+      "description": "red can with white text",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "green can with white text",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "brown bottle",
+      "description": "brown bottle with green cap",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "cardboard box",
+      "description": "brown cardboard box",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Target is clear and accessible."
+    }
+  ]
+}

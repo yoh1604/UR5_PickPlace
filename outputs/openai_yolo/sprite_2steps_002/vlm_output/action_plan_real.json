@@ -1,0 +1,35 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "a green can with 'Sprite' labeled on it",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red container",
+      "description": "a rectangular red container on the lower shelf",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "yellow bowl",
+      "description": "a yellow bowl with something inside on the lower shelf",
+      "status": "clear",
+      "target_role": "clear_background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The green soda can is requested and is unobstructed."
+    }
+  ]
+}

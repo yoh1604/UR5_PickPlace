@@ -1,0 +1,46 @@
+[
+  {
+    "label": "yellow noodle cup",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A yellow and white instant noodle cup on the left side of the shelf.",
+    "status": "clear",
+    "target_role": "background"
+  },
+  {
+    "label": "red tea bag",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A red bag of tea on the right side of the shelf.",
+    "status": "clear",
+    "target_role": "background"
+  }
+]

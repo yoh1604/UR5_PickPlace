@@ -1,0 +1,66 @@
+{
+  "test_name": "milkis",
+  "step_index": 1,
+  "target": "green soda can",
+  "post_check_status": "STILL_FOUND",
+  "target_found_after_action": true,
+  "best_detection": {
+    "label": "green soda can",
+    "confidence": 0.9243001341819763,
+    "bbox": [
+      201,
+      139,
+      259,
+      286
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green soda can"
+  },
+  "all_detections": [
+    {
+      "label": "green soda can",
+      "confidence": 0.9243001341819763,
+      "bbox": [
+        201,
+        139,
+        259,
+        286
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "green soda can"
+    },
+    {
+      "label": "green soda can",
+      "confidence": 0.6936105489730835,
+      "bbox": [
+        311,
+        114,
+        381,
+        300
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "green soda can"
+    },
+    {
+      "label": "green soda can",
+      "confidence": 0.6335382461547852,
+      "bbox": [
+        279,
+        149,
+        315,
+        286
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "green soda can"
+    }
+  ],
+  "post_image_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg",
+  "post_yolo_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/milkis/post_check_output/STEP_1_post_check_yolo_result.jpg",
+  "post_fastsam_mask": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/milkis/post_check_output/STEP_1_post_check_fastsam_mask.png",
+  "post_fastsam_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/milkis/post_check_output/STEP_1_post_check_fastsam_result.jpg",
+  "note": "Target masih terdeteksi setelah aksi robot. Step belum dianggap selesai."
+}

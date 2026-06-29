@@ -1,0 +1,57 @@
+{
+  "resolved_primary_target": "clear water bottle, green soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green Sprite can on the left side of the shelf.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red Coca-Cola can in the center of the shelf, in front of the water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle behind the red soda can.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown paper bag",
+      "description": "A brown paper bag in the background behind the objects.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Picking the Sprite can, which is one of the requested items and is unobstructed."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Removing the red soda can which is blocking access to the water bottle."
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Picking the water bottle, the second requested item, which is now accessible."
+    }
+  ]
+}

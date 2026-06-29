@@ -1,0 +1,35 @@
+{
+  "resolved_primary_target": "brown coffee bottle",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "brown coffee bottle",
+      "description": "A brown plastic bottle with a green cap, labeled CAFFINO, is in the foreground.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "white drink can",
+      "description": "A white and red can is partially visible behind the brown bottle.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown paper package",
+      "description": "A large brown paper package is in the background.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "brown coffee bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested 'coca-cola', which is not present. The brown coffee bottle is the most similar beverage available. It is clearly visible and unobstructed."
+    }
+  ]
+}

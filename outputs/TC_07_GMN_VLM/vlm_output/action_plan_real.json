@@ -1,0 +1,49 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green soda can with 'Sprite' written on it, located in the front.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red soda can with 'Coca-Cola' written on it, located behind the green can.",
+      "status": "obstructed",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown bottle",
+      "description": "A brown plastic bottle with a green cap, to the left of the other cans.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white can with purple and pink graphics, behind the brown bottle.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Pick the green soda can because it is in front of and blocking access to the red soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the red soda can now that it is accessible."
+    }
+  ]
+}

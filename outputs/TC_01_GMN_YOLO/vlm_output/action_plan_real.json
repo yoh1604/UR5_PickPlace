@@ -1,0 +1,23 @@
+{
+  "resolved_primary_target": "brown coffee bottle",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "brown coffee bottle",
+      "description": "A brown bottle with a green cap, with a label that says 'CAFFINO', which is a coffee drink.",
+      "status": "target",
+      "target_role": "primary_target"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "brown coffee bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested a caffeinated drink, and the coffee bottle is the only suitable and clearly accessible item in the scene."
+    }
+  ]
+}

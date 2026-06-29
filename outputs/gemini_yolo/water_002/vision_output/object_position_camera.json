@@ -1,0 +1,39 @@
+{
+  "object": "red soda can",
+  "pixel_center_uv": [
+    319,
+    209
+  ],
+  "pixel_center_uv_mean": [
+    319,
+    209
+  ],
+  "median_depth_m": 0.4050000309944153,
+  "mean_depth_m": 0.406455397605896,
+  "point_camera_m": [
+    -0.007887865416705608,
+    -0.03769773244857788,
+    0.4050000309944153
+  ],
+  "point_camera_mean_m": [
+    -0.007795137818902731,
+    -0.03726852312684059,
+    0.40617433190345764
+  ],
+  "debug": {
+    "mask_pixels": 7483,
+    "valid_depth_pixels": 6006,
+    "valid_depth_ratio": 0.8026192703461179,
+    "used_pixels_after_depth_fill": 7483,
+    "min_depth_m": 0.1,
+    "max_depth_m": 2.0,
+    "depth_scale": 0.0010000000474974513,
+    "fx": 385.8294677734375,
+    "fy": 385.38531494140625,
+    "ppx": 326.5517883300781,
+    "ppy": 244.87197875976562,
+    "method": "all_mask_pixels_with_invalid_depth_filled_by_median_depth"
+  },
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Belum ditransformasikan ke base frame UR5."
+}

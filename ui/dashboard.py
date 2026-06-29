@@ -252,7 +252,7 @@ st.caption("Dashboard read-only untuk melihat output VLM, vision, grasp, post-ch
 
 st.sidebar.header("Configuration")
 
-default_test_name = "soda_valid_09"
+default_test_name = "CL_OAI_IM_TYP_002"
 
 test_name = st.sidebar.text_input(
     "TEST_NAME",
@@ -886,7 +886,7 @@ if not log_path.exists():
     st.warning("Log file belum ada. Jalankan pipeline dengan tee agar log tersimpan.")
     st.code(
         f"""mkdir -p logs
-./scripts/run_multi_pipeline_retry.sh {test_name} execute 2>&1 | tee logs/{test_name}.log""",
+./scripts/run_multi_pipeline.sh {test_name} execute 2>&1 | tee logs/{test_name}.log""",
         language="bash",
     )
 else:

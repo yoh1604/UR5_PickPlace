@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The Planner correctly identifies the 'green soda can' with the Sprite label as the primary target, which semantically matches the user's intent to drink sprite. The visual analysis confirms the object is visible and sits on a support surface (wooden plank) without immediate obstructions blocking a standard pick approach. The brown envelope serves as background/backing and does not require removal before picking the can.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The green soda can is the target and is not obstructed."
+    }
+  ]
+}

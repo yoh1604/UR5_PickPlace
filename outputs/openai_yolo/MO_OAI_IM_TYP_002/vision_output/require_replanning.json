@@ -1,0 +1,4 @@
+{
+  "require_replan": true,
+  "reason": "The Planner's action_plan targets a 'green bottle' which is not present in the scene (only a clear/blue-capped water bottle, red snack packet, and Coca-Cola can are visible). Picking a hallucinated or non-existent object makes the plan logically invalid as it cannot be executed against current state. Additionally, misidentified color could lead to unsafe interactions with structural elements like dark shelf legs."
+}

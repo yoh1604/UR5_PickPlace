@@ -1,0 +1,47 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "green can labeled with sprite logo",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "black soda can",
+      "description": "black can labeled with soda water logo",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "red soda can",
+      "description": "red can labeled with cola logo",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "white milk can",
+      "description": "white can labeled with milk logo",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "orange bottle",
+      "description": "orange bottle labeled with caffino logo",
+      "status": "clear",
+      "target_role": "clear"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Directly picking the clear primary target"
+    }
+  ]
+}

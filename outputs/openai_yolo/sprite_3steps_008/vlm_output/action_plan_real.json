@@ -1,0 +1,53 @@
+{
+  "resolved_primary_target": "green bottle",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "black soda can",
+      "description": "a black can labeled soda water",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "orange plastic bottle",
+      "description": "an orange plastic bottle",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "green bottle",
+      "description": "a green bottle",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red soda can",
+      "description": "a red soda can",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "white milk can",
+      "description": "a white can labeled milk",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "brown envelope",
+      "description": "a brown envelope",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the green bottle as the primary target is clear and accessible"
+    }
+  ]
+}

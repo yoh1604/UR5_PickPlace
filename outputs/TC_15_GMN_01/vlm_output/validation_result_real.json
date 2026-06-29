@@ -1,0 +1,22 @@
+{
+  "validation_status": "FAIL",
+  "feedback": "The primary target resolution fails the User Target Consistency check (Rule 1 & 2). The user explicitly requested 'Sprite', but the Planner has substituted a different product ('white soda can' with visible text resembling 'Milkis') without justification, and visual analysis confirms it is not Sprite. There should be no silent substitution of distinct beverages/specific brands as per Rule 2 examples.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can is in front of and blocking access to the white soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "white soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the primary target now that the obstructing red can has been moved."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "resolved_primary_target": "blue water bottle",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "blue water bottle",
+      "description": "transparent water bottle with a blue cap",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red snack bag",
+      "description": "red snack bag with coffee cup image",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "brown package",
+      "description": "brown cardboard package",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "yellow food tray",
+      "description": "circular yellow food tray with noodles",
+      "status": "clear",
+      "target_role": "clear_background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The blue water bottle is the primary target and is not obstructed."
+    }
+  ]
+}

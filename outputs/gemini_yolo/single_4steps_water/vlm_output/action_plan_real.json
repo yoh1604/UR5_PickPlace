@@ -1,0 +1,77 @@
+{
+  "resolved_primary_target": "clear water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle with a blue cap, located behind other objects.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "yellow lemon",
+      "description": "A yellow lemon sitting in the front-center, blocking the water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green soda can to the left of the lemon, blocking the water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red soda can to the right of the lemon, blocking the water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "brown paper bag",
+      "description": "A brown paper bag behind the bottle and cans.",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "wood table",
+      "description": "The wooden surface the objects are on.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "yellow lemon",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The yellow lemon is the most forward object blocking the robot's access path to the water bottle."
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The green soda can also blocks the graspable area of the water bottle and must be moved."
+    },
+    {
+      "step": 3,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can also blocks the graspable area of the water bottle and must be moved."
+    },
+    {
+      "step": 4,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "All obstructing objects have been removed, and the path to the water bottle is now clear."
+    }
+  ]
+}

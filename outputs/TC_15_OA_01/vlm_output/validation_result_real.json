@@ -1,0 +1,14 @@
+{
+  "validation_status": "FAIL",
+  "feedback": "The plan fails consistency check rule #1 and safety rule 'selected target is clearly different from requested object'. User requested a sprite, but Planner picked red soda can (coke). Sprite != Coke.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The red soda can is the target and is fully accessible."
+    }
+  ]
+}

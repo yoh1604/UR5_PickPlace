@@ -1,0 +1,39 @@
+{
+  "object": "yellow lemon",
+  "pixel_center_uv": [
+    307,
+    257
+  ],
+  "pixel_center_uv_mean": [
+    306,
+    256
+  ],
+  "median_depth_m": 0.3450000286102295,
+  "mean_depth_m": 0.3458045423030853,
+  "point_camera_m": [
+    -0.017897548153996468,
+    0.010668281465768814,
+    0.3450000286102295
+  ],
+  "point_camera_mean_m": [
+    -0.018236635252833366,
+    0.010630331933498383,
+    0.34564009308815
+  ],
+  "debug": {
+    "mask_pixels": 4511,
+    "valid_depth_pixels": 3612,
+    "valid_depth_ratio": 0.8007093770782532,
+    "used_pixels_after_depth_fill": 4511,
+    "min_depth_m": 0.1,
+    "max_depth_m": 2.0,
+    "depth_scale": 0.0010000000474974513,
+    "fx": 385.8294677734375,
+    "fy": 385.38531494140625,
+    "ppx": 326.5517883300781,
+    "ppy": 244.87197875976562,
+    "method": "all_mask_pixels_with_invalid_depth_filled_by_median_depth"
+  },
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Belum ditransformasikan ke base frame UR5."
+}

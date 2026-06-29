@@ -1,0 +1,4 @@
+{
+  "error": "500 Server Error: Internal Server Error for url: http://10.7.101.217:11434/api/chat",
+  "validation_status": "FAIL"
+}

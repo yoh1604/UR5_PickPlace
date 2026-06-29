@@ -1,0 +1,35 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "not_exist",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "blue coffee bottle",
+      "description": "a blue capped coffee bottle",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "white milk can",
+      "description": "a white can with blue text",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "a can with green and red label",
+      "status": "clear",
+      "target_role": "search_occluder"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "search",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_or_search_primary_target",
+      "explanation": "search for coca-cola by checking similar objects first as primary target is not visible"
+    }
+  ]
+}

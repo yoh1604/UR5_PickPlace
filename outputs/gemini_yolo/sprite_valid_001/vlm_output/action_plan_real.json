@@ -1,0 +1,20 @@
+{
+  "resolved_primary_target": "green sprite can",
+  "target_visibility": "not_exist",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "yellow noodle cup",
+      "description": "A yellow and white instant noodle cup on the left side of the shelf.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "red tea bag",
+      "description": "A red bag of tea on the right side of the shelf.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": []
+}

@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The user requested 'coca-cola'. The plan targets the object 'red soda canvas' which corresponds to the visible Coca-Cola can in the image. This passes semantic matching rules (Brand matches description). Object is clearly accessible and no occluders need removal based on visual spacing.",
+  "final_action_plan": [
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the red soda can now that it is accessible."
+    }
+  ]
+}

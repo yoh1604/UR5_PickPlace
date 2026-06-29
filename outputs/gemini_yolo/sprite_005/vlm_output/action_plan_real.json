@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green soda can with 'Sprite' written on it, located in the middle.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "yellow lemon",
+      "description": "A yellow lemon to the left and in front of the green soda can.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red soda can with 'Coca-Cola' written on it, to the right of the green soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "water bottle",
+      "description": "A clear plastic water bottle behind the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "wood table",
+      "description": "The wooden surface on which all objects are placed.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "yellow lemon",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The yellow lemon is in front of the green soda can, blocking a direct grasp. It must be moved first to clear the path."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The primary target, the green soda can, is now accessible and can be picked up."
+    }
+  ]
+}

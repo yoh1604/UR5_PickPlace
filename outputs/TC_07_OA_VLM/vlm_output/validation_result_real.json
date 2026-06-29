@@ -1,0 +1,22 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The user requested a Coca-Cola can. The planner correctly identified the \"red soda can\" as the primary target corresponding to Coca-Cola (visible behind the green Sprite). The plan addresses safety/logic constraints by first removing the obstructing \"green can\", which physically blocks access or visibility of the red can. No invalid objects are targeted, and no background items like the table or envelope are removed.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "removing to access the red soda can"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "picking the requested red soda can"
+    }
+  ]
+}

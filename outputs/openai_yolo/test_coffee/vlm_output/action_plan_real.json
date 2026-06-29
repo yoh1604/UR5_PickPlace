@@ -1,0 +1,41 @@
+{
+  "resolved_primary_target": "brown caffeine bottle",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "white can",
+      "description": "white soda can",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "red can",
+      "description": "red soda can",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown caffeine bottle",
+      "description": "brown plastic bottle with blue cap",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "yellow cup",
+      "description": "yellow cup with noodles",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "brown caffeine bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The caffeine bottle is clear and accessible."
+    }
+  ]
+}

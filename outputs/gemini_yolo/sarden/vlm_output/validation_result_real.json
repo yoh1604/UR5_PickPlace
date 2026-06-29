@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The user's request 'I want to eat fish' semantically matches the identified primary target 'canned fish'. The visual analysis confirms the object is visible and accessible (placed in the center of a wooden surface). The action plan proposes a direct pick operation, which is logically valid given no occluding obstacles are described or clearly blocking access in the scene context. No unnecessary steps or safety violations were detected.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "canned fish",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user wants to eat fish, and the canned fish is directly accessible on the table."
+    }
+  ]
+}

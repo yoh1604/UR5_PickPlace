@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The robot identified the user needs 'soda water'. In the image, there is a black can clearly labeled with text containing 'SODA WATER' standing on the wooden shelf. The planner resolved this as the primary target named 'black soda can', which accurately describes both the physical characteristics and the label visible in the scene. A single action plan was generated to pick up the object directly from the shelf, matching user intent.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "black soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The black soda can is clearly visible and unobstructed on the shelf, ready to be picked."
+    }
+  ]
+}

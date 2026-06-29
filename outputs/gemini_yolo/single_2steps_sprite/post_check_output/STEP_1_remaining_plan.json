@@ -1,0 +1,10 @@
+[
+  {
+    "step": 2,
+    "action": "pick",
+    "target": "green soda can",
+    "target_role": "primary_target",
+    "step_intent": "pick_primary_target",
+    "explanation": "Pick the green soda can, which is the user's requested item, now that it is accessible."
+  }
+]

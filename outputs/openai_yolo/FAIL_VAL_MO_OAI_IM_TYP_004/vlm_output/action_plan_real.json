@@ -1,0 +1,41 @@
+{
+  "resolved_primary_target": "blue water bottle",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red packet",
+      "description": "red packet of instant coffee",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "blue water bottle",
+      "description": "plastic bottle of water",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown envelope",
+      "description": "large brown envelope",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "yellow plate",
+      "description": "small yellow plate",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Target is clear and directly accessible."
+    }
+  ]
+}

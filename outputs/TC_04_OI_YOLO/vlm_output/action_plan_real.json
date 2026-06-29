@@ -1,0 +1,47 @@
+{
+  "resolved_primary_target": "green can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green can",
+      "description": "green can of soda",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "black can",
+      "description": "black can of soda water",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "red can",
+      "description": "red can of cola",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "white can",
+      "description": "white can with blue and red design",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "orange bottle",
+      "description": "orange coffee bottle",
+      "status": "clear",
+      "target_role": "clear"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "User wants to drink from the green can, which is not obstructed."
+    }
+  ]
+}

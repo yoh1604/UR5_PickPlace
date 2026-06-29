@@ -1,0 +1,35 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "red can on shelf",
+      "status": "clear",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown bottle",
+      "description": "brown bottle beside can",
+      "status": "clear",
+      "target_role": "clear"
+    },
+    {
+      "object": "brown envelope",
+      "description": "brown envelope behind items",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "User wants to drink soda from the can, and it is clear of obstacles."
+    }
+  ]
+}

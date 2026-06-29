@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "method": "camera_to_base_transform",
+  "translation_base": [
+    -0.6406667670351672,
+    0.5583195682915685,
+    0.317550075822503
+  ],
+  "rotation_matrix_base": [
+    [
+      -0.7655740172832981,
+      0.010257591439151654,
+      -0.643266018357817
+    ],
+    [
+      0.5379205974605754,
+      0.5586719846289514,
+      -0.6312899458015592
+    ],
+    [
+      0.35289923188368394,
+      -0.8293252079912835,
+      -0.4332225307669602
+    ]
+  ],
+  "score": 0.4212278723716736,
+  "width": 0.07517652213573456,
+  "height": 0.019999999552965164,
+  "depth": 0.029999999329447746,
+  "object_id": -1,
+  "frame": "UR5 base frame",
+  "source_frame": "RealSense D455 aligned color camera frame",
+  "rotation_validation": {
+    "determinant": 0.9999999226925385,
+    "orthonormal_error": 1.2206343894122658e-07
+  },
+  "camera_grasp_used": {
+    "translation_camera": [
+      0.038825999945402145,
+      -0.10544352233409882,
+      0.41100001335144043
+    ],
+    "rotation_matrix_camera": [
+      [
+        -0.1557886302471161,
+        0.39417675137519836,
+        -0.9057342410087585
+      ],
+      [
+        -0.33291125297546387,
+        0.8423328399658203,
+        0.42384597659111023
+      ],
+      [
+        0.9300000071525574,
+        0.3675594925880432,
+        -1.6066536545622512e-08
+      ]
+    ]
+  },
+  "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
+  "pre_grasp_preview": {
+    "translation_base": [
+      -0.6406667670351672,
+      0.5583195682915685,
+      0.41755007582250303
+    ],
+    "offset_z_m": 0.1,
+    "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
+  },
+  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/multi_watersoda_002/vision_output/best_grasp_camera.json",
+  "source_transform": "/home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json"
+}

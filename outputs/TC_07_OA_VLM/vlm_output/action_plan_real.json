@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "brown bottle",
+      "description": "brown bottle on the left",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "white can",
+      "description": "white can in the middle",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green can",
+      "description": "green can in the front",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red soda can",
+      "description": "red soda can at the back",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown envelope",
+      "description": "brown envelope in the background",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "removing to access the red soda can"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "picking the requested red soda can"
+    }
+  ]
+}

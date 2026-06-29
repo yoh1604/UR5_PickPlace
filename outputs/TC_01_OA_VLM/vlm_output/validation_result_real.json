@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The proposed plan successfully identifies and targets a caffeinated beverage ('brown bottle' containing 'CAFFING GOLD') in response to the user's request for something with caffeine. The target matches the semantic requirement of the query, is accessible without occlusion removal, and constitutes a single valid grasp action.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "brown bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The brown bottle is directly accessible and contains caffeine."
+    }
+  ]
+}

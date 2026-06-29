@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The planner correctly identified a bottle (likely containing caffeine given the label 'CAFFING') which matches the user's intent for something to keep them awake ('awak'). The action plan directly targets this accessible object without unnecessary removal steps, as there are no occluding objects blocking immediate access based on visual analysis. While described as 'brown' while appearing orange/yellow in color, Rule #2 permits semantic flexibility and loose matching.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "brown bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The brown bottle is the target and is clearly accessible."
+    }
+  ]
+}

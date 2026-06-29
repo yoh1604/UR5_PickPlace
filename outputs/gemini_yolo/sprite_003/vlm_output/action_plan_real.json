@@ -1,0 +1,69 @@
+{
+  "resolved_primary_target": "green sprite can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "green sprite can",
+      "description": "A green soda can with 'Sprite' branding, located between a yellow lemon and a red can.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "yellow lemon",
+      "description": "A yellow lemon to the left of the green sprite can. Its bottom edge is lower, indicating it is in front.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red coca-cola can",
+      "description": "A red Coca-Cola can to the right of the green sprite can, partially blocking it.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "clear water bottle",
+      "description": "A transparent plastic water bottle behind the red coca-cola can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown paper bag",
+      "description": "A brown paper bag in the background, behind the other objects.",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "wood shelf",
+      "description": "The wooden shelf that the objects are resting on.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "yellow lemon",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The yellow lemon is in front and to the left of the target green sprite can, blocking clear access."
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "red coca-cola can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red coca-cola can is next to the green sprite can and obstructs the grasp path from the right."
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "green sprite can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "All obstacles have been cleared, and the green sprite can is now accessible."
+    }
+  ]
+}

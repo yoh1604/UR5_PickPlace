@@ -1,0 +1,38 @@
+{
+  "test_name": "coca-cola",
+  "step_index": 2,
+  "current_rgb": {
+    "exists": true,
+    "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
+    "size_bytes": 87456,
+    "mtime_unix": 1782380094.3420815,
+    "mtime_readable": "2026-06-25 16:34:54",
+    "sha256": "40b5d67e261f0ff66056b9ff8e34728735dadff18055466094c1d75792bbab7d"
+  },
+  "post_rgb": {
+    "exists": true,
+    "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg",
+    "size_bytes": 87456,
+    "mtime_unix": 1782380099.9142113,
+    "mtime_readable": "2026-06-25 16:34:59",
+    "sha256": "40b5d67e261f0ff66056b9ff8e34728735dadff18055466094c1d75792bbab7d"
+  },
+  "depth_raw": {
+    "exists": true,
+    "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
+    "size_bytes": 614528,
+    "mtime_unix": 1782380094.3420815,
+    "mtime_readable": "2026-06-25 16:34:54",
+    "sha256": "d814ec9ed60af1a05c69e5701ccff010acd2f1ad3c081c26ded49b1fd35dad72"
+  },
+  "intrinsics": {
+    "exists": true,
+    "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
+    "size_bytes": 186,
+    "mtime_unix": 1782380094.3460815,
+    "mtime_readable": "2026-06-25 16:34:54",
+    "sha256": "9fe29a35bd36b1e5265edce8add16fae5f666dbd2d396cc5c1ebefb6266f92cc"
+  },
+  "post_rgb_is_exact_copy_of_current_rgb": true,
+  "note": "post_scene_rgb.jpg dibuat dengan copyfile dari current_scene_rgb.jpg terbaru sebelum post-check."
+}

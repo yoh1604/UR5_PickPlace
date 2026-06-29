@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "red can with white text behind green can",
+      "status": "obstructed",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "green can with white text",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red bowl",
+      "description": "red bowl next to cans",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "yellow pizza box",
+      "description": "box lying flat on lower shelf",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "brown paper bag",
+      "description": "brown paper at the back",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove the green can blocking the red can"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the red soda can after clearing obstructions"
+    }
+  ]
+}

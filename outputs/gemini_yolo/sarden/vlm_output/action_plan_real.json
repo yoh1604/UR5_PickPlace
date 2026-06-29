@@ -1,0 +1,29 @@
+{
+  "resolved_primary_target": "canned fish",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "canned fish",
+      "description": "A silver can of sardines with a red label, placed in the center of a wooden surface.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "wooden table",
+      "description": "The wooden surface on which the can is placed.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "canned fish",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user wants to eat fish, and the canned fish is directly accessible on the table."
+    }
+  ]
+}

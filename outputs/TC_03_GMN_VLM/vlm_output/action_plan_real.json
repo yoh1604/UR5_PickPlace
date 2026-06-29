@@ -1,0 +1,53 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red soda can with white lettering, located in the center-left of the shelf.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "gold coffee bottle",
+      "description": "A gold-colored bottle with a green cap, to the left of the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white milk can",
+      "description": "A white can with cartoon graphics, to the right of the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle with a blue cap, located behind the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "black soda can",
+      "description": "A black soda can partially visible behind the gold coffee bottle.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "green can",
+      "description": "A green can partially visible between the gold bottle and the red can.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested coca-cola, and the red soda can is directly accessible in the front."
+    }
+  ]
+}

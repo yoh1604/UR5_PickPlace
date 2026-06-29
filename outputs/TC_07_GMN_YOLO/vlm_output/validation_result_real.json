@@ -1,0 +1,14 @@
+{
+  "validation_status": "FAIL",
+  "feedback": "The user requested 'coca-cola', but the planner selected a brown coffee bottle labeled CAFFINO as the target. These are different brands and products, violating Rule 1 regarding User Target Consistency.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "brown coffee bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested 'coca-cola', which is not present. The brown coffee bottle is the most similar beverage available. It is clearly visible and unobstructed."
+    }
+  ]
+}

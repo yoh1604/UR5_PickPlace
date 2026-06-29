@@ -1,0 +1,53 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "red can with coca-cola label",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "black soda can",
+      "description": "black can with label",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "orange bottle",
+      "description": "orange bottle with black cap",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "green soda can",
+      "description": "green can with sprite label",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "blue water bottle",
+      "description": "blue plastic water bottle",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "white container",
+      "description": "white container with purple and pink designs",
+      "status": "clear",
+      "target_role": "clear_background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "target is clear and accessible for pick-up"
+    }
+  ]
+}

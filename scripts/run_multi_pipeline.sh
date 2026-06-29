@@ -23,7 +23,7 @@ set -euo pipefail
 # USER CONFIG
 # ============================================================
 
-PROJECT_DIR="${PROJECT_DIR:-$HOME/Documents/pick_place_occlusion_noetic}"
+PROJECT_DIR="${PROJECT_DIR:-$HOME/Documents/pick_place_occlusion_noetic/}"
 PLANNER_ENV="${PLANNER_ENV:-ur5_pickplace}"
 
 TEST_NAME="${1:-water}"
@@ -31,7 +31,7 @@ MODE="${2:-plan}"
 
 MAX_STEPS="${MAX_STEPS:-5}"
 START_STEP="${START_STEP:-1}"
-MAX_RETRIES_PER_STEP="${MAX_RETRIES_PER_STEP:-2}"
+MAX_RETRIES_PER_STEP="${MAX_RETRIES_PER_STEP:-3}"
 
 # Kalau 1: langsung post-check START_STEP, cocok kalau action sudah dilakukan manual.
 RESUME_AFTER_ACTION="${RESUME_AFTER_ACTION:-0}"
@@ -47,7 +47,7 @@ POST_CAPTURE_DELAY_SEC="${POST_CAPTURE_DELAY_SEC:-2}"
 # Core scripts
 RUN_FIRST_SCRIPT="${RUN_FIRST_SCRIPT:-scripts/run_first_pipeline.sh}"
 CAPTURE_SCRIPT="${CAPTURE_SCRIPT:-perception/capture_d455_once.py}"
-POST_SCRIPT_FIXED="${POST_SCRIPT_FIXED:-run_post_complete_fixed.py}"
+POST_SCRIPT_FIXED="${POST_SCRIPT_FIXED:-run_post_complete.py}"
 POST_SCRIPT_FALLBACK="${POST_SCRIPT_FALLBACK:-run_post_complete.py}"
 CAPTURE_CONFIG="${CAPTURE_CONFIG:-capture_config.py}"
 
@@ -63,10 +63,12 @@ CATKIN_SETUP="${CATKIN_SETUP:-$HOME/ur5_noetic_ws/devel/setup.bash}"
 LOCK_STABLE_CONFIG="${LOCK_STABLE_CONFIG:-0}"
 
 PREGRASP_Z="${PREGRASP_Z:-0.13}"
+# PREGRASP_Z="${PREGRASP_Z:-0.5}"
 DESCEND_Z="${DESCEND_Z:-0.12}"
+# DESCEND_Z="${DESCEND_Z:-0.5}"
 
 NUDGE_DX="${NUDGE_DX:--0.05}"
-NUDGE_DY="${NUDGE_DY:-0.038}"
+NUDGE_DY="${NUDGE_DY:-0.04}"
 NUDGE_DZ="${NUDGE_DZ:-0.0}"
 
 SAFE_LIFT_Z="${SAFE_LIFT_Z:-0.0}"
@@ -81,9 +83,9 @@ VELOCITY="${VELOCITY:-0.08}"
 ACCELERATION="${ACCELERATION:-0.05}"
 
 # Discard stable config.
-DISCARD_LIFT_UP="${DISCARD_LIFT_UP:-0.04}"
-DISCARD_VELOCITY="${DISCARD_VELOCITY:-0.03}"
-DISCARD_ACCELERATION="${DISCARD_ACCELERATION:-0.03}"
+DISCARD_LIFT_UP="${DISCARD_LIFT_UP:-0.05}"
+DISCARD_VELOCITY="${DISCARD_VELOCITY:-0.08}"
+DISCARD_ACCELERATION="${DISCARD_ACCELERATION:-0.04}"
 
 # 1 = skip Cartesian lift di discard. Ini menghindari error fraction lift rendah.
 DISCARD_SKIP_LIFT="${DISCARD_SKIP_LIFT:-1}"
@@ -94,6 +96,27 @@ DISABLE_GRIPPER="${DISABLE_GRIPPER:-0}"
 # ============================================================
 # HELPERS
 # ============================================================
+
+get_validation_status() {
+  local step_index="$1"
+  local p
+  # Adjust this path if your validator saves its output elsewhere
+  p="outputs/$TEST_NAME/post_check_output/STEP_${step_index}_post_check_result.json"
+
+  python3 - <<PY
+import json
+from pathlib import Path
+
+p = Path(r"$p")
+if not p.exists():
+    print("UNKNOWN")
+    raise SystemExit(0)
+
+d = json.load(open(p))
+# Assuming your Python script saves the validator output inside the post-check json
+print(d.get("validation_status", "UNKNOWN"))
+PY
+}
 
 log_section() {
   echo ""
@@ -149,6 +172,11 @@ update_capture_config() {
 
   need_file "$CAPTURE_CONFIG" "capture_config.py"
 
+  # 1. Export so Python's os.getenv picks it up instantly
+  export TEST_NAME="$test_name"
+  export STEP_INDEX="$step_index"
+
+  # 2. Update the file safely for manual script executions (FIXED PYTHON SUBSTITUTION)
   python3 - <<PY
 from pathlib import Path
 import re
@@ -156,21 +184,17 @@ import re
 p = Path(r"$CAPTURE_CONFIG")
 s = p.read_text()
 
-if re.search(r'^TEST_NAME\s*=', s, flags=re.M):
-    s = re.sub(r'^TEST_NAME\s*=.*$', 'TEST_NAME = "$test_name"', s, flags=re.M)
-else:
-    raise RuntimeError("TEST_NAME tidak ditemukan di capture_config.py")
+# Update TEST_NAME
+s = re.sub(r'^TEST_NAME\s*=.*$', 'TEST_NAME = "$test_name"', s, flags=re.M)
 
-if re.search(r'^STEP_INDEX\s*=', s, flags=re.M):
-    s = re.sub(r'^STEP_INDEX\s*=\s*\d+', 'STEP_INDEX = $step_index', s, flags=re.M)
-else:
-    raise RuntimeError("STEP_INDEX tidak ditemukan di capture_config.py")
+# Update STEP_INDEX safely by replacing the entire line
+if 'STEP_INDEX =' in s:
+    s = re.sub(r'^STEP_INDEX\s*=.*$', 'STEP_INDEX = int(os.getenv("STEP_INDEX", "$step_index"))', s, flags=re.M)
 
 p.write_text(s)
-print("[OK] capture_config.py updated: TEST_NAME=$test_name, STEP_INDEX=$step_index")
 PY
 
-  grep -n "TEST_NAME\|STEP_INDEX" "$CAPTURE_CONFIG" || true
+  echo "[OK] capture_config.py updated and exported: TEST_NAME=$test_name, STEP_INDEX=$step_index"
 }
 
 get_post_result_path() {
@@ -524,7 +548,14 @@ run_post_check_for_step() {
   need_file "$post_script" "Post-check script"
 
   echo "[RUN] conda run -n $PLANNER_ENV python $post_script"
-  conda_run "$PLANNER_ENV" python "$post_script"
+  
+  conda_run "$PLANNER_ENV" python "$post_script" 2>&1 | tee /tmp/post_check_output.log
+  
+  if grep -q "FAIL" /tmp/post_check_output.log; then
+      export POST_VALIDATION_FAILED=1
+  else
+      export POST_VALIDATION_FAILED=0
+  fi
 
   POST_STATUS="$(get_post_status "$step_index")"
   echo "[CHECK] STEP $step_index post_check_status: $POST_STATUS"
@@ -689,6 +720,17 @@ while true; do
 
     if [ "$POST_STATUS" = "REMOVED_SUCCESS" ]; then
       echo "[OK] STEP $STEP_INDEX berhasil pada attempt $ATTEMPT."
+
+      # NEW: Check if Validator rejected the remaining plan
+      if [ "${POST_VALIDATION_FAILED:-0}" = "1" ]; then
+        echo "[FAIL] Validator rejected the remaining plan!"
+        echo "       Retrying execution for STEP $STEP_INDEX without generating a new plan..."
+        
+        # continue 2 breaks out of the attempt loop AND restarts the outer "while true" loop
+        # This skips the STEP_INDEX increment at the bottom, retrying the exact same index.
+        continue 2 
+      fi
+
       break
     fi
 

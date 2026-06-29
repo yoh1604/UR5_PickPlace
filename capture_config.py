@@ -10,11 +10,11 @@ load_dotenv(ENV_PATH)
 # TEST CONFIG
 # ============================================================
 
-TEST_NAME = "try_tea"
+TEST_NAME = "TC_14_YOLO_02"
 
 USER_QUERY = os.getenv(
     "USER_QUERY",
-    "I want to drink tea, please pick up the tea bag.",
+    "I want to drink coke",
 )
 
 STEP_INDEX = int(os.getenv("STEP_INDEX", "1"))
@@ -44,7 +44,7 @@ POST_IMAGE_PATH = BASE_DIR / "post_scene_rgb.jpg"
 MODELS_DIR = Path(PROJECT_DIR) / "models"
 
 YOLO_WORLD_MODEL_PATH = MODELS_DIR / "yolov8l-worldv2.pt"
-FASTSAM_MODEL_PATH = MODELS_DIR / "FastSAM-s.pt"
+FASTSAM_MODEL_PATH = MODELS_DIR / "FastSAM-x.pt"
 
 
 # ============================================================

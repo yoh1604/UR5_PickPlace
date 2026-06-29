@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "green can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "brown plastic bottle",
+      "description": "A brown plastic bottle with a green cap, labeled 'Caffino'. It is in front of a green can.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green can",
+      "description": "A green beverage can, partially hidden behind the brown plastic bottle.",
+      "status": "obstructing",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white beverage can with 'Milkis' printed on it, to the right of the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red Coca-Cola can, located between the brown bottle and the white can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown cardboard box",
+      "description": "A brown cardboard box is behind all the drinks.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "brown plastic bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Pick and remove the brown plastic bottle because it is blocking access to the green can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the green can, which is the user's intended target 'sprite'."
+    }
+  ]
+}

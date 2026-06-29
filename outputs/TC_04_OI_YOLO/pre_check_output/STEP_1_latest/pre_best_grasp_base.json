@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "method": "camera_to_base_transform",
+  "translation_base": [
+    -0.7368479561039101,
+    0.45247461469589534,
+    0.17071976117618598
+  ],
+  "rotation_matrix_base": [
+    [
+      -0.7655740172832981,
+      0.6432660300086668,
+      0.010257612477777496
+    ],
+    [
+      0.5379205974605754,
+      0.6312899337514123,
+      0.5586720057347944
+    ],
+    [
+      0.35289923188368394,
+      0.4332225601840246,
+      -0.8293252076781781
+    ]
+  ],
+  "score": 0.4239542484283447,
+  "width": 0.08345392346382141,
+  "height": 0.019999999552965164,
+  "depth": 0.029999999329447746,
+  "object_id": -1,
+  "frame": "UR5 base frame",
+  "source_frame": "RealSense D455 aligned color camera frame",
+  "rotation_validation": {
+    "determinant": 0.9999999470715164,
+    "orthonormal_error": 8.896706470780291e-08
+  },
+  "camera_grasp_used": {
+    "translation_camera": [
+      -0.10557349771261215,
+      0.03968366980552673,
+      0.4010000228881836
+    ],
+    "rotation_matrix_camera": [
+      [
+        -0.1557886302471161,
+        0.9057342410087585,
+        0.39417678117752075
+      ],
+      [
+        -0.33291125297546387,
+        -0.4238460063934326,
+        0.8423328399658203
+      ],
+      [
+        0.9300000071525574,
+        0.0,
+        0.3675594925880432
+      ]
+    ]
+  },
+  "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
+  "pre_grasp_preview": {
+    "translation_base": [
+      -0.7368479561039101,
+      0.45247461469589534,
+      0.270719761176186
+    ],
+    "offset_z_m": 0.1,
+    "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
+  },
+  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_04_OI_YOLO/vision_output/best_grasp_camera.json",
+  "source_transform": "/home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json"
+}

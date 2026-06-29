@@ -1,0 +1,15 @@
+[
+  {
+    "label": "purple soda can",
+    "confidence": 0.7098506689071655,
+    "bbox": [
+      260,
+      149,
+      317,
+      289
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "purple soda can"
+  }
+]

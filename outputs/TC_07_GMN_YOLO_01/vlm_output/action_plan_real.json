@@ -1,0 +1,65 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "Green soda can with 'Sprite' branding, located in the front and directly obstructing the primary target.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "brown coffee bottle",
+      "description": "Brown coffee bottle located in the front-left, obstructing the white can.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "white soda can",
+      "description": "White soda can with 'Milkis' branding, located behind the brown bottle and also obstructing the primary target.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red soda can",
+      "description": "Red soda can, presumed to be Coca-Cola, partially visible behind the green and white cans.",
+      "status": "target",
+      "target_role": "primary_target"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Removing the green soda can as it is the most direct obstacle in front of the target red soda can."
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "brown coffee bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Removing the front-most brown bottle to clear access to the white can behind it."
+    },
+    {
+      "step": 3,
+      "action": "remove",
+      "target": "white soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Removing the white can which is the final obstacle blocking the red soda can."
+    },
+    {
+      "step": 4,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Picking the user-requested red soda can (coca-cola) now that all obstructions have been cleared."
+    }
+  ]
+}

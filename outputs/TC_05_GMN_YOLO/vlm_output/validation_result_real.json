@@ -1,0 +1,22 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The action plan satisfies all validation rules. Step 2 targets 'clear water bottle' which correctly corresponds to the user's request for 'mineral water'. The object exists in the scene as visualized (Rule 1). Semantic matching between mineral water and clear plastic water bottle is valid (Rule 2). Moving the adjacent red soda can first ('search_occluder') ensures sufficient clearance and safe approach geometry given close proximity of objects on a crowded table, which justifies Step 1 as not being an unnecessary move but rather prudent space clearing. No unsafe grasps are described in terms of object identity.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can is blocking the front of the clear water bottle and must be moved first to provide access."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The water bottle is now clear and can be picked up."
+    }
+  ]
+}

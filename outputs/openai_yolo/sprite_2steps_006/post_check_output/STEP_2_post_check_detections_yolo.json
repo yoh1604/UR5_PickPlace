@@ -1,0 +1,15 @@
+[
+  {
+    "label": "green bottle",
+    "confidence": 0.7113670110702515,
+    "bbox": [
+      289,
+      80,
+      366,
+      317
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green bottle"
+  }
+]

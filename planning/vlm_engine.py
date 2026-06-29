@@ -1,260 +1,30 @@
-import base64
+import os
 import json
-import re
-import traceback
+import base64
+import requests
+from langfuse.decorators import observe, langfuse_context
 
-import ollama
-from openai import OpenAI
+# Standard SDKs (Ensure these are installed in your environment)
+try:
+    from openai import OpenAI
+except ImportError:
+    pass
 
 try:
-    from google import genai
-    from google.genai import types
+    import google.generativeai as genai
 except ImportError:
-    genai = None
-    types = None
+    pass
 
+from .base_vlm import BaseVLMClient 
 
-class VLMEngine:
-    """
-    VLM Planner untuk membuat action_plan robot.
+class VLMEngine(BaseVLMClient):
+    def __init__(self, api_key=None, provider="openai", model_name=None):
+        super().__init__(api_key, provider, model_name)
 
-    Provider yang didukung:
-    - Gemini: provider="gemini"
-    - OpenAI: provider="openai"
-    - Auto: provider="auto"
-    - Local Ollama: pakai model_name, tanpa api_key
-
-    Catatan penting:
-    - Planner membuat action_plan.
-    - Validator hanya memverifikasi PASS/FAIL dan tidak boleh mengubah action_plan.
-    - Nama target harus YOLO-World friendly: pendek, visual, dan konsisten.
-    """
-
-    BACKGROUND_TARGET_KEYWORDS = [
-        "table",
-        "counter",
-        "countertop",
-        "surface",
-        "floor",
-        "wall",
-        "background",
-        "kitchen island",
-        "shelf",
-        "cabinet",
-    ]
-
-    def __init__(self, api_key=None, model_name=None, provider=None):
-        self.api_key = api_key
-        self.model_name = model_name
-        self.cloud_provider = None
-        self.provider = (provider or "auto").lower()
-        self.client = None
-
-        if self.model_name:
-            self.mode = "LOCAL"
-            print(f"VLM Planner berjalan di mode LOKAL dengan model: {self.model_name}")
-        elif self.api_key:
-            self.mode = "CLOUD"
-            print("VLM Planner berjalan di mode CLOUD")
-        else:
-            raise ValueError("Harus memasukkan api_key atau model_name")
-
-        if self.api_key is not None:
-            if self.provider in ["gemini", "google", "gcp", "auto"] and genai is not None:
-                try:
-                    self.client = genai.Client(api_key=self.api_key)
-                    self.cloud_model = "gemini-2.5-pro"
-                    self.cloud_provider = "gemini"
-                    print("☁️ VLM Planner diinisialisasi untuk mode CLOUD (Gemini).")
-                except Exception as e:
-                    if self.provider in ["gemini", "google", "gcp"]:
-                        raise RuntimeError(
-                            "Gemini initialization failed. Make sure google-genai is installed "
-                            "and the Gemini API key is valid."
-                        ) from e
-
-            if self.cloud_provider is None:
-                self.client = OpenAI(api_key=self.api_key)
-                self.cloud_model = "gpt-4o"
-                self.cloud_provider = "openai"
-                print("☁️ VLM Planner diinisialisasi untuk mode CLOUD (OpenAI).")
-        else:
-            print(f"🔌 VLM Planner diinisialisasi untuk mode LOKAL (Model: {self.model_name}).")
-
-    # -------------------------------------------------------------------------
-    # Basic utilities
-    # -------------------------------------------------------------------------
-
-    def encode_image(self, image_path):
-        with open(image_path, "rb") as image_file:
-            return base64.b64encode(image_file.read()).decode("utf-8")
-
-    def _safe_json_loads(self, raw_text):
-        if isinstance(raw_text, dict):
-            return raw_text
-
-        if raw_text is None:
-            raise ValueError("Empty VLM response")
-
-        text = str(raw_text).strip()
-        text = text.replace("```json", "").replace("```", "").strip()
-
-        try:
-            return json.loads(text)
-        except json.JSONDecodeError:
-            json_match = re.search(r"\{.*\}", text, re.DOTALL)
-            if not json_match:
-                raise
-            return json.loads(json_match.group(0))
-
-    def _is_background_target(self, target_name):
-        target_lower = str(target_name or "").lower()
-        return any(keyword in target_lower for keyword in self.BACKGROUND_TARGET_KEYWORDS)
-
-    def _normalize_object_name(self, name):
-        """
-        Normalisasi ringan agar nama target lebih stabil untuk YOLO-World.
-        Tidak mengubah semantik besar; hanya membersihkan casing/spasi.
-        """
-        if name is None:
-            return ""
-
-        cleaned = str(name).strip().lower()
-        cleaned = re.sub(r"[^a-z0-9\s\-]", "", cleaned)
-        cleaned = re.sub(r"\s+", " ", cleaned).strip()
-        return cleaned
-
-    def _normalize_search_plan(self, planner_json):
-        """
-        Normalisasi hasil Planner:
-        - Hapus action step yang menargetkan background/support surface.
-        - Pastikan target/action_plan memakai nama bersih.
-        - Pastikan metadata role/intent minimal ada.
-        """
-        if not isinstance(planner_json, dict):
-            return planner_json
-
-        if "resolved_primary_target" in planner_json:
-            planner_json["resolved_primary_target"] = self._normalize_object_name(
-                planner_json.get("resolved_primary_target")
-            )
-
-        visual_analysis = planner_json.get("visual_analysis", [])
-        if isinstance(visual_analysis, list):
-            for item in visual_analysis:
-                if not isinstance(item, dict):
-                    continue
-
-                if "object" in item:
-                    item["object"] = self._normalize_object_name(item.get("object"))
-
-                if self._is_background_target(item.get("object", "")):
-                    item["status"] = "clear_background"
-                    item["target_role"] = "background"
-
-                bbox = item.get("bbox")
-                if not (
-                    isinstance(bbox, list)
-                    and len(bbox) == 4
-                    and all(isinstance(v, (int, float)) for v in bbox)
-                ):
-                    item["bbox"] = [0, 0, 0, 0]
-                else:
-                    item["bbox"] = [
-                        max(0, min(1000, int(round(v))))
-                        for v in bbox
-                    ]
-
-        action_plan = planner_json.get("action_plan")
-        if not isinstance(action_plan, list):
-            planner_json["action_plan"] = []
-            return planner_json
-
-        filtered_plan = []
-        for step in action_plan:
-            if not isinstance(step, dict):
-                continue
-
-            action = self._normalize_object_name(step.get("action", ""))
-            target = self._normalize_object_name(step.get("target", ""))
-
-            step["action"] = action
-            step["target"] = target
-
-            if action in ["pick", "remove", "clear"] and self._is_background_target(target):
-                print(
-                    f"⚠️ Menghapus langkah tidak valid: robot tidak boleh memindahkan "
-                    f"background/support surface '{target}'."
-                )
-                continue
-
-            grasp = step.get("grasp_pixel_2d")
-            if not (
-                isinstance(grasp, list)
-                and len(grasp) == 2
-                and all(isinstance(v, (int, float)) for v in grasp)
-            ):
-                step["grasp_pixel_2d"] = [500, 500]
-            else:
-                step["grasp_pixel_2d"] = [
-                    max(0, min(1000, int(round(v))))
-                    for v in grasp
-                ]
-
-            filtered_plan.append(step)
-
-        planner_json["action_plan"] = filtered_plan
-        action_plan = filtered_plan
-
-        has_clearing_step = any(
-            isinstance(step, dict)
-            and str(step.get("action", "")).lower() in ["remove", "clear"]
-            for step in action_plan
-        )
-
-        if not has_clearing_step:
-            planner_json["plan_intent"] = "pick_target"
-            for step in action_plan:
-                if isinstance(step, dict):
-                    step.setdefault("target_role", "primary_target")
-                    step.setdefault("step_intent", "pick_primary_target")
-            return planner_json
-
-        planner_json["plan_intent"] = "search_for_hidden_or_blocked_target"
-
-        final_primary_pick_index = None
-        for index in range(len(action_plan) - 1, -1, -1):
-            step = action_plan[index]
-            if isinstance(step, dict) and str(step.get("action", "")).lower() in ["pick", "search", "find"]:
-                final_primary_pick_index = index
-                break
-
-        for index, step in enumerate(action_plan):
-            if not isinstance(step, dict):
-                continue
-
-            action = str(step.get("action", "")).lower()
-            if index == final_primary_pick_index:
-                step.setdefault("target_role", "primary_target")
-                step.setdefault("step_intent", "pick_or_search_primary_target")
-            elif action in ["pick", "remove", "clear"]:
-                step.setdefault("target_role", "search_occluder")
-                step.setdefault("step_intent", "clear_occluder_to_reveal_primary_target")
-
-        return planner_json
-
-    # -------------------------------------------------------------------------
-    # Prompt builder
-    # -------------------------------------------------------------------------
-
-    def _build_planner_prompt(self, user_query, local=False):
-        """
-        Prompt ini dibuat agar output target lebih reliable untuk YOLO-World:
-        - nama objek pendek
-        - warna + kategori
-        - hindari frasa panjang/relatif
-        - action_plan target harus sama persis dengan visual_analysis.object
-        """
+    @observe(as_type="generation")
+    def get_strategy(self, img_path, user_query):
+        
+        local = self.provider in ["local", "ollama"]
         ollama_rules = ""
         if local:
             ollama_rules = """
@@ -265,13 +35,19 @@ LOCAL MODEL STRICTNESS:
 - Start exactly with "{" and end exactly with "}".
 """
 
-        prompt = f"""
+        prompt_text = f"""
 You are an expert robotic vision planner for a UR5e robot.
 Your job is to inspect the image and create a safe JSON action_plan.
-Look at the lowest point of the objects in the image. Objects whose bottom edges are lower down are physically closer to the camera and must be cleared first if they overlap target behind them."
+Look at the lowest point of the objects in the image. Objects whose bottom edges are lower down are physically closer to the camera and must be cleared first if they overlap target behind them.
 
 Primary user request:
 "{user_query}"
+
+MULTI-TARGET HANDLING INSTRUCTIONS:
+- The user request may ask to pick up multiple different items (e.g., "pick up A and B").
+- If multiple items are requested, your action_plan MUST include sequential steps to pick up ALL requested items.
+- Order the picking sequence logically (e.g., pick the object that is in the front or unobstructed first).
+- If any requested item is blocked by an obstacle, you must include a step to remove the obstacle first before picking the target.
 
 {ollama_rules}
 
@@ -288,7 +64,7 @@ YOLO-WORLD NAMING RULES FOR RELIABLE DETECTION:
 2. Use short visual noun phrases: color + generic object category.
 3. Prefer 2 to 4 words only.
 4. Use lowercase names.
-5. Avoid brand names unless the brand text is clearly visible and useful.
+5. DO NOT USE brand names.
 6. Avoid vague names such as "object", "item", "thing", "stuff", "container" alone.
 7. Avoid relative phrases such as "left object", "front object", "thing near lemon".
 8. Avoid overly specific descriptions that YOLO-World may not understand.
@@ -319,7 +95,7 @@ SCENE ANALYSIS RULES:
    "target_role": "background"
 3. Table, countertop, counter, floor, wall, cabinet, shelf, surface, and background are never executable targets.
 4. Do not put background/support objects in action_plan.
-5. Look at the lowest point of the objects in the image. Objects whose bottom edges are lower down are physically closer to the camera and must be cleared first ONLY IF they overlap the target (user_query) behind them."
+5. Look at the lowest point of the objects in the image. Objects whose bottom edges are lower down are physically closer to the camera and must be cleared first ONLY IF they overlap the target (user_query) behind them.
 
 TARGET IDENTIFICATION RULES:
 1. Resolve the user's request into one concrete object name from the scene when possible.
@@ -329,11 +105,12 @@ TARGET IDENTIFICATION RULES:
    Example: "I am thirsty" -> "red soda can", "water bottle", or "white milk carton".
 4. resolved_primary_target must be the YOLO-friendly object name.
 5. The final primary target step must use the same string as resolved_primary_target whenever the target is visible.
+6. The final object picked by the action_plan must correspond to the user's requested object. Do not substitute another object.
 
 OBSTRUCTION RULES:
 1. If the primary target is clear, action_plan MUST contain exactly one step:
    pick the primary target.
-2. Do not add obstacle-removal steps unless an object physically blocks robot access to the primary target.
+2. Do not add obstacle-removal steps unless an object physically blocks even if it is only half robot access to the primary target.
 3. Treat the primary target as obstructed if another object covers or overlaps the lower part, side part, or front surface area of the primary target.
 4. An obstacle must physically overlap, cover, or block the reachable grasp area/path to the primary target.
 5. If the target is obstructed, use a sequence:
@@ -364,9 +141,8 @@ MULTI-OCCLUDER / ACCESS PATH RULES:
    * pick/remove yellow lemon
    * pick/remove red soda can
    * pick blue water bottle
-
    
-   FORWARD-LOOKING CAMERA REASONING:
+FORWARD-LOOKING CAMERA REASONING:
 1. The camera observes the scene from the front, not from top-down.
 2. In a forward-looking view, an object located lower in the image may be physically in front of another object.
 3. If a lower/front object overlaps the bottom part of the requested target, it likely blocks the robot's frontal approach or grasp access.
@@ -397,7 +173,7 @@ STRICT JSON SCHEMA:
       "target": "must_exactly_match_visual_analysis_object_unless_hidden",
       "target_role": "primary_target / search_occluder",
       "step_intent": "pick_primary_target / clear_occluder_to_reveal_primary_target / pick_or_search_primary_target",
-      "explanation": "brief reason",
+      "explanation": "brief reason"
     }}
   ]
 }}
@@ -410,113 +186,133 @@ FINAL SELF-CHECK BEFORE OUTPUT:
 - Did you avoid using table/counter/background as an executable target?
 - Is the JSON valid?
 """
-        return prompt
 
-    # -------------------------------------------------------------------------
-    # Model callers
-    # -------------------------------------------------------------------------
-
-    def _call_gemini_vision_json(self, image_path, prompt):
-        if types is None:
-            raise RuntimeError(
-                "google.genai.types tidak tersedia. Install ulang dengan: pip install -U google-genai"
-            )
-
-        with open(image_path, "rb") as image_file:
-            image_bytes = image_file.read()
-
-        response = self.client.models.generate_content(
-            model=self.cloud_model,
-            contents=[
-                types.Part.from_text(text=prompt),
-                types.Part.from_bytes(
-                    data=image_bytes,
-                    mime_type="image/jpeg",
-                ),
-            ],
-            config=types.GenerateContentConfig(
-                temperature=0.1,
-                response_mime_type="application/json",
-            ),
+        # Log to Langfuse
+        langfuse_context.update_current_observation(
+            name="vlm_scene_understanding",
+            model=self.model_name,
+            input=prompt_text,
+            metadata={
+                "provider": self.provider,
+                "image_file": str(img_path)
+            }
         )
+        
 
-        return self._safe_json_loads(response.text)
+        try:
+            if self.provider == "openai":
+                response_data, input_tokens, output_tokens = self._call_openai(img_path, prompt_text)
+            elif self.provider == "gemini":
+                response_data, input_tokens, output_tokens = self._call_gemini(img_path, prompt_text)
+            elif self.provider == "local" or self.provider == "ollama":
+                response_data, input_tokens, output_tokens = self._call_local_vlm(img_path, prompt_text)
+            else:
+                raise ValueError(f"Unknown provider: {self.provider}")
 
-    def _call_openai_vision_json(self, image_path, prompt):
-        base64_image = self.encode_image(image_path)
+            langfuse_context.update_current_observation(
+                usage={
+                    "input": input_tokens,
+                    "output": output_tokens
+                },
+                output=response_data
+            )
+            
+            return response_data
 
-        response = self.client.chat.completions.create(
-            model=self.cloud_model,
+        except Exception as e:
+            langfuse_context.update_current_observation(level="ERROR", status_message=str(e))
+            return {"error": str(e)}
+
+    def _call_openai(self, img_path, prompt_text):
+        base64_image = self._encode_image(img_path)
+        
+        response = self.openai_client.chat.completions.create(
+            model=self.model_name,
+            response_format={ "type": "json_object" },
             messages=[
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": prompt},
+                        {"type": "text", "text": prompt_text},
+                        {
+                            "type": "image_url",
+                            "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}
+                        }
+                    ]
+                }
+            ]
+        )
+        
+        raw_content = response.choices[0].message.content
+        parsed_json = json.loads(raw_content)
+        
+        return parsed_json, response.usage.prompt_tokens, response.usage.completion_tokens
+
+    def _call_gemini(self, img_path, prompt_text):
+        import PIL.Image
+        img = PIL.Image.open(img_path)
+        
+        response = self.gemini_model.generate_content(
+            [prompt_text, img],
+            generation_config=genai.types.GenerationConfig(response_mime_type="application/json")
+        )
+        
+        parsed_json = json.loads(response.text)
+        
+        input_tokens = response.usage_metadata.prompt_token_count
+        output_tokens = response.usage_metadata.candidates_token_count
+        
+        return parsed_json, input_tokens, output_tokens
+
+    def _call_local_vlm(self, img_path, prompt_text):
+        # 1. Persiapan data
+        base64_image = self._encode_image(img_path)
+        url = f"{self.ollama_host}/v1/chat/completions"
+        headers = {
+            "Content-Type": "application/json",
+            # "Accept": "application/json"
+        }
+        
+        # 2. Payload (Ingat: Hapus response_format jika Ollama masih Error 500)
+        # Payload yang disesuaikan dengan standar OpenAI-compatible yang didukung Ollama
+        payload = {
+            "model": self.model_name,
+            "stream": False,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt_text},
                         {
                             "type": "image_url",
                             "image_url": {
                                 "url": f"data:image/jpeg;base64,{base64_image}"
-                            },
-                        },
-                    ],
+                            }
+                        }
+                    ]
                 }
-            ],
-            response_format={"type": "json_object"},
-            temperature=0.1,
-        )
-
-        return self._safe_json_loads(response.choices[0].message.content)
-
-    def _call_ollama_vision_json(self, image_path, prompt):
-        response = ollama.chat(
-            model=self.model_name,
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt,
-                    "images": [image_path],
-                }
-            ],
-            format="json",
-        )
-
-        return self._safe_json_loads(response["message"]["content"])
-
-    # -------------------------------------------------------------------------
-    # Public APIs
-    # -------------------------------------------------------------------------
-
-    def get_strategy_local(self, img_path, user_query):
-        print("🧠 Menghubungi Ollama VLM Lokal...")
-
-        prompt = self._build_planner_prompt(user_query, local=True)
-
+            ]
+        }
+        
+        response = requests.post(url, json=payload, headers=headers, timeout=180)
+        
+        # Debugging: Jika status 500, cetak pesan dari server
+        if response.status_code != 200:
+            print(f"Error {response.status_code} dari Ollama: {response.text}")
+            
+        response.raise_for_status()
+        data = response.json()
+        
+        # 4. Parsing response
+        choice = data.get("choices", [{}])[0]
+        message = choice.get("message", {})
+        raw_content = message.get("content", "")
+        
         try:
-            parsed_data = self._call_ollama_vision_json(img_path, prompt)
-            return self._normalize_search_plan(parsed_data)
-
-        except Exception as e:
-            print(f"❌ Error saat memanggil Ollama: {type(e).__name__}: {e}")
-            traceback.print_exc()
-            return None
-
-    def get_strategy(self, img_path, user_query):
-        print("🧠 Menghubungi VLM Planner CLOUD...")
-
-        prompt = self._build_planner_prompt(user_query, local=False)
-
-        try:
-            if self.cloud_provider == "gemini":
-                parsed_data = self._call_gemini_vision_json(img_path, prompt)
-            elif self.cloud_provider == "openai":
-                parsed_data = self._call_openai_vision_json(img_path, prompt)
-            else:
-                return {"error": f"Unknown cloud provider: {self.cloud_provider}"}
-
-            print(f"[DEBUG] Raw Parsed Response: {json.dumps(parsed_data, indent=2)}")
-            return self._normalize_search_plan(parsed_data)
-
-        except Exception as e:
-            print(f"❌ Error saat memanggil VLM Cloud: {type(e).__name__}: {e}")
-            traceback.print_exc()
-            return {"error": f"{type(e).__name__}: {str(e)}"}
+            parsed_json = json.loads(raw_content)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Gagal memparsing JSON. Output mentah: {raw_content}") from e
+        
+        usage = data.get("usage", {})
+        return parsed_json, usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0)
+    
