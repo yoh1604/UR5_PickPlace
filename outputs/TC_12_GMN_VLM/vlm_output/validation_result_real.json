@@ -1,0 +1,4 @@
+{
+  "error": "HTTPConnectionPool(host='10.7.101.217', port=11434): Read timed out. (read timeout=300)",
+  "validation_status": "FAIL"
+}

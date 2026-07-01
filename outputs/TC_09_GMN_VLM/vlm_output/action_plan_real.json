@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "clear water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "clear water bottle",
+      "description": "A transparent plastic water bottle with a blue cap, located at the back right.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green soda can located in front of the clear water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "black soda can",
+      "description": "A black soda can located to the left of the green soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white soda can with purple text, located on the far left.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "wooden shelf",
+      "description": "The wooden surface on which all the objects are placed.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The green soda can is directly in front of the clear water bottle and must be moved to allow access for grasping."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The clear water bottle is now accessible after removing the occluding green soda can."
+    }
+  ]
+}

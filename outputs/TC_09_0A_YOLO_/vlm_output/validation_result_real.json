@@ -1,0 +1,22 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The action plan correctly identifies a 'blue water bottle' (mineral water with blue cap) as requested by the user ('I want to drink mineral water'). Step 1 removes an adjacent object ('red soda can') acting as an occluder/obstacle to safely access or clearly present the target. All target objects exist in the provided image. The sequence is logically ordered (clear obstruction, then pick).",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove obstructing can to access the water bottle"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the water bottle for the user"
+    }
+  ]
+}

@@ -323,7 +323,8 @@ def revalidate_remaining_plan(remaining_plan):
 
     print("\n🔍 MELAKUKAN REASONING ULANG TERHADAP SISA PLAN...")
     openai_key, gemini_key = get_provider_keys()
-    validator = create_validator(openai_key, gemini_key)
+    # validator = create_validator(openai_key, gemini_key)
+    validator = LogicValidator(provider="local", model_name="qwen3.5:27b")
 
     temp_planner_json = {
         "action_plan": remaining_plan
@@ -394,7 +395,7 @@ def get_target_step_from_validation(validation_result, step_index):
 
 def run_post_check(target):
 
-    mode=os.getenv("POSTCHECK_MODE","yolo")
+    mode=os.getenv("POSTCHECK_MODE","vlm")
 
     if not os.path.exists(POST_IMAGE_PATH):
         raise FileNotFoundError(POST_IMAGE_PATH)

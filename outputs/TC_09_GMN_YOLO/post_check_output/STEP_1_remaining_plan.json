@@ -1,0 +1,18 @@
+[
+  {
+    "step": 2,
+    "action": "remove",
+    "target": "green soda can",
+    "target_role": "search_occluder",
+    "step_intent": "clear_occluder_to_reveal_primary_target",
+    "explanation": "The green soda can is also in front of the water bottle and blocks access from the right."
+  },
+  {
+    "step": 3,
+    "action": "pick",
+    "target": "clear water bottle",
+    "target_role": "primary_target",
+    "step_intent": "pick_primary_target",
+    "explanation": "Pick the mineral water bottle now that the path is clear."
+  }
+]

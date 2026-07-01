@@ -1,0 +1,4 @@
+{
+  "require_replan": true,
+  "reason": "The plan fails because the primary target ('clear water bottle') is hallucinated or does not exist in the scene. The image shows only three distinct objects: a MilKis can, a black/red soda-type can (labeled 'Soda Air'?), and a green Sprite-like can/boxy object labeled 'Giant'. None of these are clear plastic mineral water bottles; they appear to be canned beverages or non-consumable items. Even if the plan removes an occluder ('green soda'), there is no visible evidence that drinking-grade mineral water (transparent PET bottle) exists behind it in this specific configuration."
+}

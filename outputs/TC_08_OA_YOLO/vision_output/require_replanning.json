@@ -1,0 +1,4 @@
+{
+  "require_replan": true,
+  "reason": "The User Request explicitly asks to pick **two** objects ('Coke' and 'Sprite', stated as 'pick both'). The provided Action Plan only contains a single step (Step 2) executing a `pick` action for the Sprite (`green soda can`). It fails to provide any actions corresponding to picking or searching for 'Coke'. Furthermore, no Coca-Cola product is visible in the scene images; therefore, attempting to pick it without a search strategy or acknowledgment of absence creates a mismatch between User Intent and Plan Scope. The plan covers only partial user intent."
+}

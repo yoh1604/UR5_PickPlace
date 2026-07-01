@@ -69,6 +69,38 @@ Planner action_plan
 
 {json.dumps(original_plan, indent=2)}
 
+IMPORTANT CONTEXT
+
+The robot has already executed all previous steps successfully.
+
+The action_plan below is NOT the original plan.
+
+It is ONLY the remaining steps that have not been executed yet.
+
+DO NOT require previously completed targets to appear again.
+
+Your task is ONLY to judge whether the remaining steps are still logically valid based on the CURRENT scene.
+
+Never fail simply because previous targets are missing from the remaining plan.
+
+Completed steps must be considered already successful.
+
+IMPORTANT FOR MULTI-TARGET REQUESTS
+
+The Planner may decompose a multi-target request into multiple sequential action plans.
+
+The planner may already have completed one or more targets in previous execution steps.
+
+The validator MUST treat the provided action_plan as the CURRENT REMAINING PLAN ONLY.
+
+Do NOT compare the remaining plan against the original user request.
+
+Do NOT require that all original requested targets appear in the remaining plan.
+
+If the remaining plan contains only the unfinished targets, this is correct.
+
+Never fail simply because previously completed targets are absent from the remaining plan.
+
 # Validation Rules
 
 1. User target consistency
@@ -134,6 +166,16 @@ are temporary objects.
 They are not the user's desired object.
 
 Removing occluders is acceptable if those objects physically block access to the primary target. or if it is unsafe to directly pick the target since the robot's gripper crash with other.
+
+IF the user request two objects, and one of the target's status is remove then PASS the plan, just check are the request targets are in the action plan 
+
+If the original user request contains multiple targets (e.g. "pick coke and sprite"), assume the planner is allowed to execute them sequentially.
+
+The validator must evaluate ONLY the remaining action_plan that is provided.
+
+Previously completed targets must be considered already finished and must not be required to appear again.
+
+A remaining plan containing only one unfinished target is valid and should PASS if it is safe and logically executable.
 
 4. Safety
 

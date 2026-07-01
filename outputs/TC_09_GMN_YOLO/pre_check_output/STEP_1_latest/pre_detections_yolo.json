@@ -1,0 +1,15 @@
+[
+  {
+    "label": "green soda can",
+    "confidence": 0.7393164038658142,
+    "bbox": [
+      258,
+      137,
+      314,
+      287
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green soda can"
+  }
+]

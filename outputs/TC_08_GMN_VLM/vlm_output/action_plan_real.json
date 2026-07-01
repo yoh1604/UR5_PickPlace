@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red soda can, which is the Coca-Cola can requested by the user.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green soda can, which is the Sprite can requested by the user.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white soda can to the left of the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle located behind the soda cans.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown paper bag",
+      "description": "A brown paper bag behind all the drinks.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Picking the first requested item, the coke can. It is unobstructed."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Picking the second requested item, the sprite can. It is also unobstructed."
+    }
+  ]
+}

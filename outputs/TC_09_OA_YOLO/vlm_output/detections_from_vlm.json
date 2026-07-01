@@ -1,0 +1,134 @@
+[
+  {
+    "label": "white soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "a white can on the left",
+    "status": "clear",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "black soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "a black can to the left of center",
+    "status": "clear",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "green soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "a green can in the center",
+    "status": "obstructing",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "red soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "a red can on the right",
+    "status": "clear",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "blue water bottle",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "a blue bottle behind cans",
+    "status": "obstructed",
+    "target_role": "primary_target"
+  },
+  {
+    "label": "brown box",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "a brown box in the background",
+    "status": "clear_background",
+    "target_role": "background"
+  }
+]

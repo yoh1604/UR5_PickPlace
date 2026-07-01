@@ -1,0 +1,49 @@
+{
+  "resolved_primary_target": "black soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "black soda can",
+      "description": "a black can partially visible on the left",
+      "status": "obstructing",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "beige envelope",
+      "description": "a large beige envelope behind cans",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "brown bottle",
+      "description": "a bottle with a brown base and blue cap in the center",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "white soda can",
+      "description": "a white can on the right",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "brown bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove the bottle to access the soda can behind"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "black soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the soda can once it is accessible"
+    }
+  ]
+}

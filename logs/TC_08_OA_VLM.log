@@ -1,0 +1,2865 @@
+[OK] run_first_pipeline.sh: scripts/run_first_pipeline.sh
+[OK] capture_config.py: capture_config.py
+[OK] Discard script: robot_executor/execute_from_current_pregrasp_to_discard.py
+
+============================================================
+MULTI PIPELINE RETRY CONFIG
+============================================================
+PROJECT_DIR              : /home/b401/Documents/pick_place_occlusion_noetic/
+TEST_NAME                : TC_08_OA_VLM
+MODE                     : execute
+PLANNER_ENV              : ur5_pickplace
+MAX_STEPS                : 5
+START_STEP               : 1
+MAX_RETRIES_PER_STEP     : 3
+RESUME_AFTER_ACTION      : 0
+RUN_PLANNER              : 0
+RUN_VALIDATOR            : 0
+LOCK_STABLE_CONFIG       : 0
+PREGRASP_Z               : 0.13
+DESCEND_Z                : 0.12
+NUDGE_DX/DY/DZ           : -0.05 / 0.04 / 0.0
+MAX_WRIST_DELTA          : 1.50
+CAPTURE_BEFORE_POST      : 1
+DISCARD_SKIP_LIFT        : 1
+POST_SCRIPT_FIXED        : run_post_complete.py
+POST_SCRIPT_FALLBACK     : run_post_complete.py
+
+============================================================
+STEP 1 / ATTEMPT 1
+============================================================
+
+============================================================
+ACTION STEP 1: FULL PIPELINE UNTIL GRASP ONLY
+============================================================
+
+============================================================
+FULL PIPELINE CONFIG
+============================================================
+PROJECT_DIR              : /home/b401/Documents/pick_place_occlusion_noetic
+TEST_NAME                : TC_08_OA_VLM
+MODE                     : execute
+PLANNER_ENV              : ur5_pickplace
+ANYGRASP_ENV             : anygrasp_py310
+ROBOT_IP                 : 192.168.200.1
+VISION_OUTPUT_DIR        : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+BEST_GRASP_CAMERA_JSON   : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+BEST_GRASP_BASE_JSON     : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json
+TOOL0_PREGRASP_TARGET    : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+TOOL0_PREGRASP_TARGET_BL : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+TOOL0_TO_GRIPPER_TIP     : 0 0 0.17
+PREGRASP_Z               : 0.13
+SAFE_LIFT_Z              : 0.0
+SAFE_LIFT_EEF_STEP       : 0.005
+CARTESIAN_MIN_FRACTION   : 0.80
+MAX_XYZ_DISTANCE         : 0.80
+MAX_BASE_DELTA           : 1.80
+MAX_WRIST_DELTA          : 1.50
+DESCEND_Z                : 0.12
+NUDGE_DX/DY/DZ           : -0.05 / 0.04 / 0.0
+DISABLE_GRIPPER          : 0
+PREOPEN_GRIPPER          : 0
+LOCK_STABLE_CONFIG       : 0
+SKIP_DISCARD             : 1
+
+============================================================
+STEP 1: CAPTURE D455
+============================================================
+[INFO] Active conda env : ur5_pickplace
+[INFO] Python           : /home/b401/miniconda3/envs/ur5_pickplace/bin/python
+Python 3.10.20
+[OK] Capture script:
+  perception/capture_d455_once.py
+[RUN] python perception/capture_d455_once.py
+[OK] Saved:
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_depth.png
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+[OK] RGB image:
+  /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+[OK] Depth npy:
+  /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+[OK] Camera intrinsics:
+  /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+
+============================================================
+STEP 2: ur5_pickplace - PLANNER / VALIDATOR / VISION
+============================================================
+[INFO] Active conda env : ur5_pickplace
+[INFO] Python           : /home/b401/miniconda3/envs/ur5_pickplace/bin/python
+Python 3.10.20
+[OK] Vision script:
+  run_d455_pipeline.py
+[RUN] python run_d455_pipeline.py --test_name TC_08_OA_VLM
+/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/google/api_core/_python_version_support.py:255: FutureWarning: You are using a Python version (3.10.20) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
+  warnings.warn(message, FutureWarning)
+/home/b401/Documents/pick_place_occlusion_noetic/planning/vlm_engine.py:14: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+
+========== D455 TEST CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+ENV_PATH: /home/b401/Documents/pick_place_occlusion_noetic/.env
+TEST_NAME: TC_08_OA_VLM
+USER_QUERY: I want to drink coke and sprite, pick both
+STEP_INDEX: 1
+
+========== INPUT PATHS ==========
+BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture
+IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+DEPTH_VIS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_depth.png
+POST_IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg
+
+========== OUTPUT PATHS ==========
+OUTPUT_BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs
+TEST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM
+VLM_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output
+VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+POST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output
+
+========== MAIN OUTPUT FILES ==========
+ACTION_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/action_plan_real.json
+VLM_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/detections_from_vlm.json
+VALIDATION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/validation_result_real.json
+YOLO_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/detections_yolo.json
+YOLO_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/yolo_world_result.jpg
+FASTSAM_MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+FASTSAM_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_result.jpg
+OBJECT_POSITION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/object_position_camera.json
+
+========== POST-CHECK OUTPUT FILES ==========
+POST_CHECK_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_remaining_plan.json
+
+========== SNAPSHOT OUTPUTS ==========
+SNAPSHOT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots
+SNAPSHOT_CURRENT_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/current_scene_rgb.jpg
+SNAPSHOT_CURRENT_DEPTH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/current_scene_depth.png
+SNAPSHOT_POST_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/post_scene_rgb.jpg
+=====================================
+
+Saved RGB snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/current_scene_rgb.jpg
+Saved depth snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/current_scene_depth.png
+ENV path: /home/b401/Documents/pick_place_occlusion_noetic/.env
+OPENAI_API_KEY detected: True
+GEMINI_API_KEY detected: False
+Menggunakan OpenAI Cloud VLM Planner...
+
+Action plan berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/action_plan_real.json
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "red soda can",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "green soda can",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "blue water bottle",
+      "description": "blue water bottle",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown paper bag",
+      "description": "brown paper bag",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick green soda can as the user wants sprite"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick red soda can as the user wants coke"
+    }
+  ]
+}
+
+VLM detections berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/detections_from_vlm.json
+[
+  {
+    "label": "red soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "red soda can",
+    "status": "target",
+    "target_role": "primary_target"
+  },
+  {
+    "label": "green soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "green soda can",
+    "status": "target",
+    "target_role": "primary_target"
+  },
+  {
+    "label": "blue water bottle",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "blue water bottle",
+    "status": "clear",
+    "target_role": "background"
+  },
+  {
+    "label": "brown paper bag",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "brown paper bag",
+    "status": "clear",
+    "target_role": "background"
+  }
+]
+Menggunakan Local/Ollama LogicValidator...
+
+Validation berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/validation_result_real.json
+{
+  "validation_status": "PASS",
+  "feedback": "The proposed action_plan successfully identifies the correct targets for both requested objects ('Coke' mapped to 'red soda can', and 'Sprite' mapped to 'green soda can'). The target identification is consistent with visual analysis in the JSON, where red/green cans are marked as primary_target. Since the request involves multiple targets ('pick coke AND sprite'), the planner's inclusion of both picks sequentially (step 1: Sprite/Green Can, step 2: Coke/Red Can) aligns with rule 'User target consistency' and is allowed under multi-target execution rules where planners can decompose requests into sequential actions or batches. The background objects (water bottle, bag) are correctly excluded from interaction steps in the plan's targets list while noted as context. No hallucinations of non-existent items detected; both cans clearly visible on shelf.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick green soda can as the user wants sprite"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick red soda can as the user wants coke"
+    }
+  ]
+}
+
+Target pertama untuk YOLO-World: green soda can
+Loading YOLO-World model: /home/b401/Documents/pick_place_occlusion_noetic/models/yolov8l-worldv2.pt
+
+[YOLO-World] Target dari action plan: green soda can
+[YOLO-World] Dynamic classes: ['green soda can', 'can']
+
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg: 480x640 1 green soda can, 35.2ms
+Speed: 0.7ms preprocess, 35.2ms inference, 0.9ms postprocess per image at shape (1, 3, 480, 640)
+[YOLO-World] Detections saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/detections_yolo.json
+[YOLO-World] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/yolo_world_result.jpg
+[
+  {
+    "label": "green soda can",
+    "confidence": 0.7577371597290039,
+    "bbox": [
+      313,
+      136,
+      370,
+      287
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green soda can"
+  }
+]
+[YOLO-World] Best detection:
+{
+  "label": "green soda can",
+  "confidence": 0.7577371597290039,
+  "bbox": [
+    313,
+    136,
+    370,
+    287
+  ],
+  "bbox_format": "xyxy_pixel",
+  "source": "yolo_world",
+  "target_query": "green soda can"
+}
+Loading FastSAM model: /home/b401/Documents/pick_place_occlusion_noetic/models/FastSAM-x.pt
+
+[FastSAM] Segmenting bbox: [313, 136, 370, 287]
+
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg: 480x640 1 object, 607.4ms
+Speed: 0.9ms preprocess, 607.4ms inference, 24.8ms postprocess per image at shape (1, 3, 480, 640)
+[FastSAM] Mask saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+[FastSAM] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_result.jpg
+[DepthEngine] Mask asli shape: (480, 640)
+[DepthEngine] Depth shape: (480, 640)
+[DepthEngine] Mask asli unique values: [  0 255]
+[DepthEngine] Pixel mask setelah binary: 8041
+
+[DepthEngine] Jumlah pixel mask: 8041
+[DepthEngine] Jumlah depth valid pada mask: 6032
+[DepthEngine] Median depth valid: 0.38100001215934753
+[DepthEngine] Mean depth valid: 0.3828184902667999
+[DepthEngine] Object position saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/object_position_camera.json
+{
+  "object": "green soda can",
+  "pixel_center_uv": [
+    342,
+    211
+  ],
+  "pixel_center_uv_mean": [
+    341,
+    211
+  ],
+  "median_depth_m": 0.38100001215934753,
+  "mean_depth_m": 0.3828184902667999,
+  "point_camera_m": [
+    0.015098802745342255,
+    -0.03318934142589569,
+    0.38100001215934753
+  ],
+  "point_camera_mean_m": [
+    0.015157253481447697,
+    -0.03306294232606888,
+    0.38236963748931885
+  ],
+  "debug": {
+    "mask_pixels": 8041,
+    "valid_depth_pixels": 6032,
+    "valid_depth_ratio": 0.7501554533018281,
+    "used_pixels_after_depth_fill": 8041,
+    "min_depth_m": 0.1,
+    "max_depth_m": 2.0,
+    "depth_scale": 0.0010000000474974513,
+    "fx": 385.724365234375,
+    "fy": 385.28033447265625,
+    "ppx": 326.5517883300781,
+    "ppy": 244.87197875976562,
+    "method": "all_mask_pixels_with_invalid_depth_filled_by_median_depth"
+  },
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Belum ditransformasikan ke base frame UR5."
+}
+
+========== POINT CLOUD RAW DATA INFO ==========
+RGB shape: (480, 640, 3)
+Depth shape: (480, 640)
+Mask shape: (480, 640)
+Depth raw dtype: float32
+Depth raw min: 0.0
+Depth raw max: 65535.0
+Depth meter min: 0.0
+Depth meter max: 65.53500366210938
+[PointCloud] Clean mask saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask_clean_debug.png
+
+========== POINT CLOUD MASK INFO ==========
+Mask pixels: 8041
+Depth values in mask: 8041
+Valid depth in mask: 6032
+Zero depth in mask: 2009
+Depth in mask min: 0.37400001287460327
+Depth in mask max: 0.6190000176429749
+Depth in mask median: 0.38100001215934753
+Depth in mask mean: 0.3828184902667999
+
+========== POINT CLOUD FILTER ==========
+Method: valid_depth_only_near_median
+Median object depth: 0.38100001215934753
+Depth tolerance: 0.25
+Final valid points: 6032
+
+========== POINT CLOUD OBJECT CENTER CAMERA FRAME ==========
+Mean center  X Y Z: [   0.012233   -0.028558     0.38234]
+Median center X Y Z: [   0.012134   -0.028503       0.381]
+
+[PointCloud] Point cloud saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/masked_object_pointcloud_valid_only.ply
+[PointCloud] Total points after filtering: 6019
+[PointCloud] Info saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/masked_object_pointcloud_valid_only_info.json
+
+========== POINT CLOUD RAW DATA INFO ==========
+RGB shape: (480, 640, 3)
+Depth shape: (480, 640)
+Mask shape: (480, 640)
+Depth raw dtype: float32
+Depth raw min: 0.0
+Depth raw max: 65535.0
+Depth meter min: 0.0
+Depth meter max: 65.53500366210938
+
+========== POINT CLOUD MASK INFO ==========
+Mask pixels: 8041
+Depth values in mask: 8041
+Valid depth in mask: 6032
+Zero depth in mask: 2009
+Depth in mask min: 0.37400001287460327
+Depth in mask max: 0.6190000176429749
+Depth in mask median: 0.38100001215934753
+Depth in mask mean: 0.3828184902667999
+
+========== POINT CLOUD FILTER ==========
+Method: median_fill_all_mask_pixels
+Median object depth: 0.38100001215934753
+Depth tolerance: 0.25
+Final valid points: 8041
+
+========== POINT CLOUD OBJECT CENTER CAMERA FRAME ==========
+Mean center  X Y Z: [   0.015123   -0.032843       0.382]
+Median center X Y Z: [   0.015099   -0.033144       0.381]
+
+[PointCloud] Point cloud saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/masked_object_pointcloud_median_fill.ply
+[PointCloud] Total points after filtering: 8028
+[PointCloud] Info saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/masked_object_pointcloud_median_fill_info.json
+
+========== GRASPNET CUDA CHECK ==========
+SUBPROCESS torch: 2.12.0+cu126
+SUBPROCESS cuda: True
+SUBPROCESS device: NVIDIA GeForce RTX 2080 SUPER
+
+
+=========================================
+
+
+========== RUN GRASPNET SUBPROCESS ==========
+Command:
+/home/b401/miniconda3/envs/anygrasp_py310/bin/python /home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/demo_d455.py --checkpoint_path /home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/logs/log_rs/checkpoint.tar --rgb_path /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg --depth_path /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy --intrinsics_path /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json --mask_path /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png --output_dir /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output --best_output /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json --candidates_output /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/grasp_candidates_camera.json --num_point 10000 --num_view 300 --collision_thresh -1 --voxel_size 0.01 --max_center_dist 0.1 --mask_dilate_iter 1 --no_vis
+Working dir: /home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline
+Output best: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+============================================
+
+
+========== GRASPNET STDOUT ==========
+[INFO] capture_config.py imported successfully.
+
+========== ACTIVE D455 GRASPNET CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+TEST_NAME: TC_08_OA_VLM
+RGB_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+================================================
+
+[CHECK] CHECKPOINT_PATH: /home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/logs/log_rs/checkpoint.tar
+-> loaded checkpoint /home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/logs/log_rs/checkpoint.tar (epoch: 18)
+[CHECK] DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+[CHECK] RGB_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+[CHECK] MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+[CHECK] INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+
+========== D455 DATA INFO ==========
+RGB shape: (480, 640, 3)
+Depth raw shape: (480, 640)
+Depth raw min/max: 0.0 65535.0
+Depth scale: 0.0010000000474974513
+Depth meter min/max: 0.0 65.53500366210938
+Mask pixels: 8877
+Workspace valid pixels: 6337
+fx fy cx cy: 385.724365234375 385.28033447265625 326.5517883300781 244.87197875976562
+factor_depth: 999.999952502551
+===================================
+
+[INFO] Workspace mask debug saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/graspnet_workspace_mask_debug.png
+[INFO] cloud_masked: (6337, 3)
+[INFO] object_center_camera median: [ 0.01124864 -0.02840135  0.38100001]
+[INFO] Raw grasp candidates: 1024
+[INFO] Grasp after target filtering: 725
+[INFO] Candidates saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/grasp_candidates_camera.json
+[INFO] Best grasp saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+
+========== BEST GRASP ==========
+{
+  "success": true,
+  "method": "graspnet_baseline_d455",
+  "best_grasp": {
+    "score": 0.5442749857902527,
+    "translation_camera": [
+      0.0033702198415994644,
+      -0.06934882700443268,
+      0.37700003385543823
+    ],
+    "rotation_matrix_camera": [
+      [
+        0.05689249932765961,
+        -0.11523131281137466,
+        -0.9917080998420715
+      ],
+      [
+        -0.43903547525405884,
+        0.8892316222190857,
+        -0.1285107433795929
+      ],
+      [
+        0.8966667056083679,
+        0.44270631670951843,
+        -1.9351308111481558e-08
+      ]
+    ],
+    "width": 0.07498864829540253,
+    "height": 0.019999999552965164,
+    "depth": 0.029999999329447746,
+    "object_id": -1,
+    "frame": "RealSense D455 aligned color camera frame",
+    "rank": 0,
+    "distance_to_object_center": 0.04188991825391222
+  },
+  "object_center_camera": [
+    0.01124863516010751,
+    -0.028401348486741255,
+    0.38100001215934753
+  ],
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
+  "meta": {
+    "object_center_camera": [
+      0.01124863516010751,
+      -0.028401348486741255,
+      0.38100001215934753
+    ],
+    "num_mask_points": 8877,
+    "num_workspace_points": 6337,
+    "num_cloud_masked": 6337,
+    "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
+    "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
+    "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
+    "mask_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png",
+    "intrinsics": {
+      "width": 640,
+      "height": 480,
+      "fx": 385.724365234375,
+      "fy": 385.28033447265625,
+      "ppx": 326.5517883300781,
+      "ppy": 244.87197875976562,
+      "depth_scale": 0.0010000000474974513
+    },
+    "depth_scale": 0.0010000000474974513,
+    "factor_depth": 999.999952502551,
+    "frame": "RealSense D455 aligned color camera frame"
+  }
+}
+================================
+
+
+
+========== GRASPNET STDERR ==========
+WARNING:root:Failed to import ros dependencies in rigid_transforms.py
+WARNING:root:autolab_core not installed as catkin package, RigidTransform ros methods will be unavailable
+/home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/utils/loss_utils.py:89: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at /pytorch/aten/src/ATen/native/Cross.cpp:63.)
+  axis_z = torch.cross(axis_x, axis_y)
+
+
+========== GRASPNET RESULT ==========
+{
+  "success": true,
+  "method": "graspnet_baseline_d455",
+  "best_grasp": {
+    "score": 0.5442749857902527,
+    "translation_camera": [
+      0.0033702198415994644,
+      -0.06934882700443268,
+      0.37700003385543823
+    ],
+    "rotation_matrix_camera": [
+      [
+        0.05689249932765961,
+        -0.11523131281137466,
+        -0.9917080998420715
+      ],
+      [
+        -0.43903547525405884,
+        0.8892316222190857,
+        -0.1285107433795929
+      ],
+      [
+        0.8966667056083679,
+        0.44270631670951843,
+        -1.9351308111481558e-08
+      ]
+    ],
+    "width": 0.07498864829540253,
+    "height": 0.019999999552965164,
+    "depth": 0.029999999329447746,
+    "object_id": -1,
+    "frame": "RealSense D455 aligned color camera frame",
+    "rank": 0,
+    "distance_to_object_center": 0.04188991825391222
+  },
+  "object_center_camera": [
+    0.01124863516010751,
+    -0.028401348486741255,
+    0.38100001215934753
+  ],
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
+  "meta": {
+    "object_center_camera": [
+      0.01124863516010751,
+      -0.028401348486741255,
+      0.38100001215934753
+    ],
+    "num_mask_points": 8877,
+    "num_workspace_points": 6337,
+    "num_cloud_masked": 6337,
+    "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
+    "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
+    "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
+    "mask_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png",
+    "intrinsics": {
+      "width": 640,
+      "height": 480,
+      "fx": 385.724365234375,
+      "fy": 385.28033447265625,
+      "ppx": 326.5517883300781,
+      "ppy": 244.87197875976562,
+      "depth_scale": 0.0010000000474974513
+    },
+    "depth_scale": 0.0010000000474974513,
+    "factor_depth": 999.999952502551,
+    "frame": "RealSense D455 aligned color camera frame"
+  }
+}
+====================================
+
+
+========== BEST GRASP CAMERA ==========
+{
+  "score": 0.5442749857902527,
+  "translation_camera": [
+    0.0033702198415994644,
+    -0.06934882700443268,
+    0.37700003385543823
+  ],
+  "rotation_matrix_camera": [
+    [
+      0.05689249932765961,
+      -0.11523131281137466,
+      -0.9917080998420715
+    ],
+    [
+      -0.43903547525405884,
+      0.8892316222190857,
+      -0.1285107433795929
+    ],
+    [
+      0.8966667056083679,
+      0.44270631670951843,
+      -1.9351308111481558e-08
+    ]
+  ],
+  "width": 0.07498864829540253,
+  "height": 0.019999999552965164,
+  "depth": 0.029999999329447746,
+  "object_id": -1,
+  "frame": "RealSense D455 aligned color camera frame",
+  "rank": 0,
+  "distance_to_object_center": 0.04188991825391222
+}
+======================================
+
+[CHECK] T_BASE_CAMERA_JSON: /home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json
+[CHECK] BEST_GRASP_CAMERA_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+
+========== GRASP CAMERA TO BASE ==========
+Input grasp camera: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+Transform: /home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json
+Output grasp base: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json
+-----------------------------------------
+translation_base: [-0.6419469491172753, 0.5100832496911138, 0.28030015392793667]
+pre_grasp_translation_base: [-0.6419469491172753, 0.5100832496911138, 0.3803001539279367]
+score: 0.5442749857902527
+width: 0.07498864829540253
+=========================================
+
+
+FULL D455 PIPELINE SELESAI.
+{
+  "test_name": "TC_08_OA_VLM",
+  "user_query": "I want to drink coke and sprite, pick both",
+  "spatial_result": {
+    "target": "green soda can",
+    "first_step": {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick green soda can as the user wants sprite"
+    },
+    "final_plan": [
+      {
+        "step": 1,
+        "action": "pick",
+        "target": "green soda can",
+        "target_role": "primary_target",
+        "step_intent": "pick_primary_target",
+        "explanation": "pick green soda can as the user wants sprite"
+      },
+      {
+        "step": 2,
+        "action": "pick",
+        "target": "red soda can",
+        "target_role": "primary_target",
+        "step_intent": "pick_primary_target",
+        "explanation": "pick red soda can as the user wants coke"
+      }
+    ],
+    "best_detection": {
+      "label": "green soda can",
+      "confidence": 0.7577371597290039,
+      "bbox": [
+        313,
+        136,
+        370,
+        287
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "green soda can"
+    },
+    "all_detections": [
+      {
+        "label": "green soda can",
+        "confidence": 0.7577371597290039,
+        "bbox": [
+          313,
+          136,
+          370,
+          287
+        ],
+        "bbox_format": "xyxy_pixel",
+        "source": "yolo_world",
+        "target_query": "green soda can"
+      }
+    ],
+    "fastsam_result": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_result.jpg",
+    "object_position": {
+      "object": "green soda can",
+      "pixel_center_uv": [
+        342,
+        211
+      ],
+      "pixel_center_uv_mean": [
+        341,
+        211
+      ],
+      "median_depth_m": 0.38100001215934753,
+      "mean_depth_m": 0.3828184902667999,
+      "point_camera_m": [
+        0.015098802745342255,
+        -0.03318934142589569,
+        0.38100001215934753
+      ],
+      "point_camera_mean_m": [
+        0.015157253481447697,
+        -0.03306294232606888,
+        0.38236963748931885
+      ],
+      "debug": {
+        "mask_pixels": 8041,
+        "valid_depth_pixels": 6032,
+        "valid_depth_ratio": 0.7501554533018281,
+        "used_pixels_after_depth_fill": 8041,
+        "min_depth_m": 0.1,
+        "max_depth_m": 2.0,
+        "depth_scale": 0.0010000000474974513,
+        "fx": 385.724365234375,
+        "fy": 385.28033447265625,
+        "ppx": 326.5517883300781,
+        "ppy": 244.87197875976562,
+        "method": "all_mask_pixels_with_invalid_depth_filled_by_median_depth"
+      },
+      "frame": "RealSense D455 aligned color camera frame",
+      "note": "Belum ditransformasikan ke base frame UR5."
+    },
+    "pointcloud_valid_only": {
+      "pointcloud_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/masked_object_pointcloud_valid_only.ply",
+      "clean_mask_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask_clean_debug.png",
+      "method": "valid_depth_only_near_median",
+      "use_median_fill": false,
+      "mask_pixels": 8041,
+      "valid_depth_pixels": 6032,
+      "zero_depth_pixels": 2009,
+      "final_points": 6019,
+      "median_depth_m": 0.38100001215934753,
+      "mean_depth_m": 0.3828184902667999,
+      "center_mean_camera_m": [
+        0.012233116032784043,
+        -0.02855752769506581,
+        0.3823382788162767
+      ],
+      "center_median_camera_m": [
+        0.012134384363889694,
+        -0.028502780944108963,
+        0.38100001215934753
+      ],
+      "frame": "RealSense D455 aligned color camera frame",
+      "note": "Point cloud masih camera frame, belum base frame UR5."
+    },
+    "pointcloud_median_fill": {
+      "pointcloud_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/masked_object_pointcloud_median_fill.ply",
+      "clean_mask_path": null,
+      "method": "median_fill_all_mask_pixels",
+      "use_median_fill": true,
+      "mask_pixels": 8041,
+      "valid_depth_pixels": 6032,
+      "zero_depth_pixels": 2009,
+      "final_points": 8028,
+      "median_depth_m": 0.38100001215934753,
+      "mean_depth_m": 0.3828184902667999,
+      "center_mean_camera_m": [
+        0.015122842277599963,
+        -0.03284298892563738,
+        0.38200337875227935
+      ],
+      "center_median_camera_m": [
+        0.015098802745342255,
+        -0.033144012093544006,
+        0.38100001215934753
+      ],
+      "frame": "RealSense D455 aligned color camera frame",
+      "note": "Point cloud masih camera frame, belum base frame UR5."
+    }
+  },
+  "grasp_camera_result": {
+    "success": true,
+    "method": "graspnet_baseline_d455",
+    "best_grasp": {
+      "score": 0.5442749857902527,
+      "translation_camera": [
+        0.0033702198415994644,
+        -0.06934882700443268,
+        0.37700003385543823
+      ],
+      "rotation_matrix_camera": [
+        [
+          0.05689249932765961,
+          -0.11523131281137466,
+          -0.9917080998420715
+        ],
+        [
+          -0.43903547525405884,
+          0.8892316222190857,
+          -0.1285107433795929
+        ],
+        [
+          0.8966667056083679,
+          0.44270631670951843,
+          -1.9351308111481558e-08
+        ]
+      ],
+      "width": 0.07498864829540253,
+      "height": 0.019999999552965164,
+      "depth": 0.029999999329447746,
+      "object_id": -1,
+      "frame": "RealSense D455 aligned color camera frame",
+      "rank": 0,
+      "distance_to_object_center": 0.04188991825391222
+    },
+    "object_center_camera": [
+      0.01124863516010751,
+      -0.028401348486741255,
+      0.38100001215934753
+    ],
+    "frame": "RealSense D455 aligned color camera frame",
+    "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
+    "meta": {
+      "object_center_camera": [
+        0.01124863516010751,
+        -0.028401348486741255,
+        0.38100001215934753
+      ],
+      "num_mask_points": 8877,
+      "num_workspace_points": 6337,
+      "num_cloud_masked": 6337,
+      "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
+      "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
+      "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
+      "mask_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png",
+      "intrinsics": {
+        "width": 640,
+        "height": 480,
+        "fx": 385.724365234375,
+        "fy": 385.28033447265625,
+        "ppx": 326.5517883300781,
+        "ppy": 244.87197875976562,
+        "depth_scale": 0.0010000000474974513
+      },
+      "depth_scale": 0.0010000000474974513,
+      "factor_depth": 999.999952502551,
+      "frame": "RealSense D455 aligned color camera frame"
+    }
+  },
+  "grasp_base_result": {
+    "success": true,
+    "method": "camera_to_base_transform",
+    "translation_base": [
+      -0.6419469491172753,
+      0.5100832496911138,
+      0.28030015392793667
+    ],
+    "rotation_matrix_base": [
+      [
+        -0.5908573060081469,
+        -0.4030020238413873,
+        -0.6989113169523333
+      ],
+      [
+        0.6624794322936512,
+        0.2520590874201856,
+        -0.7053986328550518
+      ],
+      [
+        0.4604440592325484,
+        -0.8798042972671694,
+        0.11804959236917206
+      ]
+    ],
+    "score": 0.5442749857902527,
+    "width": 0.07498864829540253,
+    "height": 0.019999999552965164,
+    "depth": 0.029999999329447746,
+    "object_id": -1,
+    "frame": "UR5 base frame",
+    "source_frame": "RealSense D455 aligned color camera frame",
+    "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json",
+    "source_transform": "/home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json",
+    "rotation_validation": {
+      "determinant": 1.0000000343376718,
+      "orthonormal_error": 9.52387993723273e-08
+    },
+    "camera_grasp_used": {
+      "translation_camera": [
+        0.0033702198415994644,
+        -0.06934882700443268,
+        0.37700003385543823
+      ],
+      "rotation_matrix_camera": [
+        [
+          0.05689249932765961,
+          -0.11523131281137466,
+          -0.9917080998420715
+        ],
+        [
+          -0.43903547525405884,
+          0.8892316222190857,
+          -0.1285107433795929
+        ],
+        [
+          0.8966667056083679,
+          0.44270631670951843,
+          -1.9351308111481558e-08
+        ]
+      ]
+    },
+    "pre_grasp_preview": {
+      "translation_base": [
+        -0.6419469491172753,
+        0.5100832496911138,
+        0.3803001539279367
+      ],
+      "offset_z_m": 0.1,
+      "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
+    },
+    "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre_grasp_preview dan jangan langsung descend."
+  },
+  "outputs": {
+    "best_grasp_camera_json": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json",
+    "best_grasp_base_json": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json",
+    "grasp_candidates_camera_json": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/grasp_candidates_camera.json",
+    "object_position_camera_json": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/object_position_camera.json",
+    "fastsam_mask": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png"
+  }
+}
+[OK] Vision script selesai dengan --test_name.
+[OK] FastSAM mask:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+
+============================================================
+STEP 3: anygrasp_py310 - GRASPNET
+============================================================
+[INFO] Active conda env : anygrasp_py310
+[INFO] Python           : /home/b401/miniconda3/envs/anygrasp_py310/bin/python
+Python 3.10.20
+[OK] GraspNet checkpoint:
+  models/graspnet-baseline/logs/log_rs/checkpoint.tar
+[OK] FastSAM mask:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+[RUN] python models/graspnet-baseline/demo_d455.py --checkpoint_path models/graspnet-baseline/logs/log_rs/checkpoint.tar --test_name TC_08_OA_VLM ...
+WARNING:root:Failed to import ros dependencies in rigid_transforms.py
+WARNING:root:autolab_core not installed as catkin package, RigidTransform ros methods will be unavailable
+/home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/utils/loss_utils.py:89: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at /pytorch/aten/src/ATen/native/Cross.cpp:63.)
+  axis_z = torch.cross(axis_x, axis_y)
+[INFO] capture_config.py imported successfully.
+
+========== ACTIVE D455 GRASPNET CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+TEST_NAME: TC_08_OA_VLM
+RGB_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+================================================
+
+[CHECK] CHECKPOINT_PATH: /home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/logs/log_rs/checkpoint.tar
+-> loaded checkpoint /home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/logs/log_rs/checkpoint.tar (epoch: 18)
+[CHECK] DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+[CHECK] RGB_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+[CHECK] MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+[CHECK] INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+
+========== D455 DATA INFO ==========
+RGB shape: (480, 640, 3)
+Depth raw shape: (480, 640)
+Depth raw min/max: 0.0 65535.0
+Depth scale: 0.0010000000474974513
+Depth meter min/max: 0.0 65.53500366210938
+Mask pixels: 9745
+Workspace valid pixels: 6630
+fx fy cx cy: 385.724365234375 385.28033447265625 326.5517883300781 244.87197875976562
+factor_depth: 999.999952502551
+===================================
+
+[INFO] Workspace mask debug saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/graspnet_workspace_mask_debug.png
+[INFO] cloud_masked: (6630, 3)
+[INFO] object_center_camera median: [ 0.0111596  -0.02832641  0.38100001]
+[INFO] Raw grasp candidates: 1024
+[INFO] Grasp after collision filtering: 416
+[INFO] Grasp after target filtering: 139
+[INFO] Candidates saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/grasp_candidates_camera.json
+[INFO] Best grasp saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+
+========== BEST GRASP ==========
+{
+  "success": true,
+  "method": "graspnet_baseline_d455",
+  "best_grasp": {
+    "score": 0.38872095942497253,
+    "translation_camera": [
+      -0.006522499490529299,
+      -0.07362649589776993,
+      0.3840000331401825
+    ],
+    "rotation_matrix_camera": [
+      [
+        0.4980229139328003,
+        -0.6140506863594055,
+        -0.6123030185699463
+      ],
+      [
+        -0.3856969475746155,
+        0.47555533051490784,
+        -0.790623128414154
+      ],
+      [
+        0.7766667008399963,
+        0.6299118399620056,
+        -2.7534321489497415e-08
+      ]
+    ],
+    "width": 0.07874701917171478,
+    "height": 0.019999999552965164,
+    "depth": 0.029999999329447746,
+    "object_id": -1,
+    "frame": "RealSense D455 aligned color camera frame",
+    "rank": 0,
+    "distance_to_object_center": 0.048721190615176074
+  },
+  "object_center_camera": [
+    0.011159595217862906,
+    -0.02832640963076245,
+    0.38100001215934753
+  ],
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
+  "meta": {
+    "object_center_camera": [
+      0.011159595217862906,
+      -0.02832640963076245,
+      0.38100001215934753
+    ],
+    "num_mask_points": 9745,
+    "num_workspace_points": 6630,
+    "num_cloud_masked": 6630,
+    "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
+    "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
+    "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
+    "mask_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png",
+    "intrinsics": {
+      "width": 640,
+      "height": 480,
+      "fx": 385.724365234375,
+      "fy": 385.28033447265625,
+      "ppx": 326.5517883300781,
+      "ppy": 244.87197875976562,
+      "depth_scale": 0.0010000000474974513
+    },
+    "depth_scale": 0.0010000000474974513,
+    "factor_depth": 999.999952502551,
+    "frame": "RealSense D455 aligned color camera frame"
+  }
+}
+================================
+
+[OK] best_grasp_camera.json:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+
+============================================================
+STEP 4: ur5_pickplace - TRANSFORM + CONVERT + NUDGE + BASE_LINK
+============================================================
+[INFO] Active conda env : ur5_pickplace
+[INFO] Python           : /home/b401/miniconda3/envs/ur5_pickplace/bin/python
+Python 3.10.20
+[OK] Transform script:
+  perception/transform_grasp_to_base.py
+[RUN] python perception/transform_grasp_to_base.py
+[INFO] Menggunakan capture_config.py
+[INFO] TEST_NAME: TC_08_OA_VLM
+[INFO] VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+[CHECK] T_BASE_CAMERA_JSON: /home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json
+[CHECK] BEST_GRASP_CAMERA_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+
+========== GRASP CAMERA TO BASE ==========
+Input grasp camera: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+Transform: /home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json
+Output grasp base: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json
+-----------------------------------------
+translation_base: [-0.6538490152340175, 0.5079141586417397, 0.2846360740268248]
+pre_grasp_translation_base: [-0.6538490152340175, 0.5079141586417397, 0.38463607402682476]
+score: 0.38872095942497253
+width: 0.07874701917171478
+=========================================
+
+{
+  "success": true,
+  "method": "camera_to_base_transform",
+  "translation_base": [
+    -0.6538490152340175,
+    0.5079141586417397,
+    0.2846360740268248
+  ],
+  "rotation_matrix_base": [
+    [
+      -0.19494781682798,
+      -0.8839397769006305,
+      -0.4250245404921223
+    ],
+    [
+      0.8914890621751734,
+      0.02098956507752453,
+      -0.452555844388423
+    ],
+    [
+      0.40895320404688484,
+      -0.46712948193690396,
+      0.7839306509013377
+    ]
+  ],
+  "score": 0.38872095942497253,
+  "width": 0.07874701917171478,
+  "height": 0.019999999552965164,
+  "depth": 0.029999999329447746,
+  "object_id": -1,
+  "frame": "UR5 base frame",
+  "source_frame": "RealSense D455 aligned color camera frame",
+  "rotation_validation": {
+    "determinant": 1.0000000420106705,
+    "orthonormal_error": 1.637036499870611e-07
+  },
+  "camera_grasp_used": {
+    "translation_camera": [
+      -0.006522499490529299,
+      -0.07362649589776993,
+      0.3840000331401825
+    ],
+    "rotation_matrix_camera": [
+      [
+        0.4980229139328003,
+        -0.6140506863594055,
+        -0.6123030185699463
+      ],
+      [
+        -0.3856969475746155,
+        0.47555533051490784,
+        -0.790623128414154
+      ],
+      [
+        0.7766667008399963,
+        0.6299118399620056,
+        -2.7534321489497415e-08
+      ]
+    ]
+  },
+  "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
+  "pre_grasp_preview": {
+    "translation_base": [
+      -0.6538490152340175,
+      0.5079141586417397,
+      0.38463607402682476
+    ],
+    "offset_z_m": 0.1,
+    "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
+  },
+  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json",
+  "source_transform": "/home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json"
+}
+[OK] best_grasp_base.json:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json
+[OK] Convert gripper_tip -> tool0 script:
+  perception/convert_gripper_tip_to_tool0_target.py
+[RUN] python perception/convert_gripper_tip_to_tool0_target.py ...
+[INFO] capture_config.py imported successfully.
+
+========== CONVERT GRIPPER TIP TO TOOL0 ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+capture_config imported: True
+capture_config TEST_NAME: TC_08_OA_VLM
+capture_config VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+ACTIVE_TEST_NAME: TC_08_OA_VLM
+Input best_grasp_base: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json
+Output tool0 target: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+tool0_to_gripper_tip: 0 0 0.17
+pregrasp_z: 0.13
+=================================================
+
+[OK] Saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+
+========== RESULT ==========
+{
+  "success": true,
+  "frame": "base",
+  "target_link": "tool0",
+  "source_target": "gripper_tip",
+  "active_test_name": "TC_08_OA_VLM",
+  "translation_tool0_pregrasp": [
+    -0.5343778112685601,
+    0.3872511146287612,
+    0.42282516631877554
+  ],
+  "quaternion_tool0_xyzw": [
+    -0.28340175782789895,
+    0.6661598976406625,
+    0.6411123643592581,
+    -0.25473392137899675
+  ],
+  "rpy_tool0_rad": [
+    1.619,
+    0.024,
+    -2.36
+  ],
+  "orientation_source": "fixed_rpy",
+  "gripper_tip_grasp_base": [
+    -0.6538490152340175,
+    0.5079141586417397,
+    0.2846360740268248
+  ],
+  "gripper_tip_pregrasp_base": [
+    -0.6538490152340175,
+    0.5079141586417397,
+    0.4146360740268248
+  ],
+  "tool0_to_gripper_tip_offset_tool_frame": [
+    0.0,
+    0.0,
+    0.17
+  ],
+  "pregrasp_z_m": 0.13,
+  "score": 0.38872095942497253,
+  "width": 0.07874701917171478,
+  "depth": 0.029999999329447746,
+  "height": 0.019999999552965164,
+  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json",
+  "note": "Kirim translation_tool0_pregrasp + quaternion_tool0_xyzw ke MoveIt sebagai target tool0. Jangan kirim gripper_tip_grasp_base langsung ke MoveIt."
+}
+============================
+
+[OK] tool0_pregrasp_target.json sebelum nudge:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+[OK] Nudge script:
+  robot_executor/nudge_tool0_target.py
+[RUN] python3 robot_executor/nudge_tool0_target.py --dx -0.05 --dy 0.04 --dz 0.0
+
+========== NUDGE TOOL0 TARGET ==========
+Input : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+Output: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+Old translation_tool0_pregrasp: [-0.5343778112685601, 0.3872511146287612, 0.42282516631877554]
+Nudge dx dy dz: -0.05 0.04 0.0
+New translation_tool0_pregrasp: [-0.5843778112685601, 0.4272511146287612, 0.42282516631877554]
+=======================================
+
+[OK] Saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+[OK] tool0_pregrasp_target.json setelah nudge:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+[CHECK BASE] success: True
+[CHECK BASE] frame: base
+[CHECK BASE] translation_tool0_pregrasp: [-0.5843778112685601, 0.4272511146287612, 0.42282516631877554]
+[CHECK BASE] quaternion_tool0_xyzw: [-0.28340175782789895, 0.6661598976406625, 0.6411123643592581, -0.25473392137899675]
+[CHECK BASE] manual_nudge_base_m: {'dx': -0.05, 'dy': 0.04, 'dz': 0.0}
+[OK] Base to base_link conversion script:
+  perception/convert_tool0_target_base_to_base_link.py
+[RUN] python perception/convert_tool0_target_base_to_base_link.py --input /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json --output /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+
+========== BASE -> BASE_LINK TARGET CONVERSION ==========
+Input : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+Output: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+Input frame : base
+Output frame: base_link
+translation_tool0_pregrasp original base:
+  [-0.5843778112685601, 0.4272511146287612, 0.42282516631877554]
+translation_tool0_pregrasp new base_link:
+  [0.5843778112685601, -0.4272511146287612, 0.42282516631877554]
+========================================================
+
+[OK] tool0_pregrasp_target_base_link.json:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+[CHECK BASE_LINK] success: True
+[CHECK BASE_LINK] frame: base_link
+[CHECK BASE_LINK] translation_tool0_pregrasp: [0.5843778112685601, -0.4272511146287612, 0.42282516631877554]
+[CHECK BASE_LINK] original base: [-0.5843778112685601, 0.4272511146287612, 0.42282516631877554]
+[CHECK BASE_LINK] manual_nudge_base_m: {'dx': -0.05, 'dy': 0.04, 'dz': 0.0}
+
+============================================================
+STEP 5: ROS NOETIC SYSTEM PYTHON
+============================================================
+[CHECK] Clean ROS Python import...
+[DEBUG] python executable check via system python
+[DEBUG] LD_LIBRARY_PATH: /home/b401/ur5_noetic_ws/devel/lib:/opt/ros/noetic/lib:/opt/ros/noetic/lib/x86_64-linux-gnu
+[OK] ctypes import OK
+[OK] moveit_commander import OK
+[INFO] Python ROS: /usr/bin/python3
+Python 3.8.10
+[CHECK] rosnode /move_group...
+[OK] /move_group aktif.
+[CHECK] TF base_link -> tool0...
+[WARN] TF base_link -> tool0 belum terbaca dari tf_echo.
+Kalau MoveIt tetap bisa membaca current pose, ini tidak selalu fatal.
+
+============================================================
+STEP 6: OPTIONAL PRE-OPEN GRIPPER
+============================================================
+[SKIP] PREOPEN_GRIPPER=0
+[INFO] grasp.py akan open gripper di pregrasp.
+
+============================================================
+STEP 7: MOVE TO PREGRASP + DESCEND + CLOSE
+============================================================
+[RUN] python3 robot_executor/grasp.py --target_json /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+[CMD] python3 robot_executor/grasp.py --target_json /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json --robot_ip 192.168.200.1 --reference_frame base_link --orientation_mode current --skip_observation --safe_lift_z 0.0 --safe_lift_eef_step 0.005 --cartesian_min_fraction 0.80 --max_base_delta 1.80 --max_wrist_delta 1.50 --max_xyz_distance 0.80 --descend_z 0.12 --pregrasp_wait 5.0 --rviz_preview_wait 3.0 --velocity 0.08 --acceleration 0.05 --execute
+[33m[ WARN] [1782895445.480401711]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
+
+========== GRASP CARTESIAN SAFE LIFT VERSION ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+target_json: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+reference_frame: base_link
+orientation_mode: current
+safe_lift_z: 0.0
+safe_lift_eef_step: 0.005
+descend_z: 0.12
+max_wrist_delta: 1.5
+execute: True
+=======================================================
+
+[INFO] Planning frame: base_link
+[INFO] Reference frame: base_link
+[INFO] EEF link: tool0
+
+========== CURRENT TOOL0 POSE ==========
+position:
+  x: 0.3646757902118428
+  y: -0.2121247336229142
+  z: 0.13381385563638026
+orientation xyzw:
+  x: 0.663801383857208
+  y: 0.2905905237078731
+  z: 0.25519755403254596
+  w: 0.6401555113691088
+====================================
+
+
+========== TARGET JSON ==========
+path: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+success: True
+frame: base_link
+translation_tool0_pregrasp: [0.5843778112685601, -0.4272511146287612, 0.42282516631877554]
+quaternion_tool0_xyzw: [-0.28340175782789895, 0.6661598976406625, 0.6411123643592581, -0.25473392137899675]
+manual_nudge_base_m: {'dx': -0.05, 'dy': 0.04, 'dz': 0.0}
+=================================
+
+[ORIENTATION] Pakai orientasi current robot
+
+========== FINAL PREGRASP POSE ==========
+position:
+  x: 0.5843778112685601
+  y: -0.4272511146287612
+  z: 0.42282516631877554
+orientation xyzw:
+  x: 0.6637848580341411
+  y: 0.2905975470911702
+  z: 0.25516736060667883
+  w: 0.6401814945390185
+====================================
+
+
+========== TARGET DISTANCE CHECK ==========
+current: [0.364661810526396, -0.21214668462447034, 0.13382305861343477]
+target : [0.5843778112685601, -0.4272511146287612, 0.42282516631877554]
+delta  : [0.21971600074216413, -0.21510443000429086, 0.28900210770534074]
+dist_xy : 0.307481766596983
+dist_xyz: 0.4219801595427573
+max_xyz_distance: 0.8
+==========================================
+
+
+========== SAFE LIFT POSE ==========
+position:
+  x: 0.3646757902118428
+  y: -0.2121247336229142
+  z: 0.13381385563638026
+orientation xyzw:
+  x: 0.663801383857208
+  y: 0.2905905237078731
+  z: 0.25519755403254596
+  w: 0.6401555113691088
+====================================
+
+
+========== DESCEND / GRASP POSE ==========
+position:
+  x: 0.5843778112685601
+  y: -0.4272511146287612
+  z: 0.30282516631877554
+orientation xyzw:
+  x: 0.6637848580341411
+  y: 0.2905975470911702
+  z: 0.25516736060667883
+  w: 0.6401814945390185
+====================================
+
+[GRIPPER] Connecting to 192.168.200.1:63352
+[GRIPPER] Connected
+[GRIPPER] Activate
+[GRIPPER] >> SET ACT 1
+[GRIPPER] << ack
+[GRIPPER] >> SET GTO 1
+[GRIPPER] << ack
+[GRIPPER] >> SET SPE 255
+[GRIPPER] << ack
+[GRIPPER] >> SET FOR 150
+[GRIPPER] << ack
+[SAFE LIFT] safe_lift_z=0, skip safe lift.
+
+[CARTESIAN] Planning SAFE_TO_PREGRASP_CARTESIAN
+[CARTESIAN] eef_step: 0.005
+[CARTESIAN] min_fraction: 0.8
+
+========== SAFE_TO_PREGRASP_CARTESIAN START POSE ==========
+position:
+  x: 0.3646769744318602
+  y: -0.21213587247318488
+  z: 0.13382527094932403
+orientation xyzw:
+  x: 0.6637927310368319
+  y: 0.2906003224681118
+  z: 0.25519540734156876
+  w: 0.6401608913982986
+====================================
+
+
+========== SAFE_TO_PREGRASP_CARTESIAN TARGET POSE ==========
+position:
+  x: 0.5843778112685601
+  y: -0.4272511146287612
+  z: 0.42282516631877554
+orientation xyzw:
+  x: 0.6637848580341411
+  y: 0.2905975470911702
+  z: 0.25516736060667883
+  w: 0.6401814945390185
+====================================
+
+[CARTESIAN] SAFE_TO_PREGRASP_CARTESIAN fraction: 1.0
+
+========== JOINT SUMMARY: SAFE_TO_PREGRASP_CARTESIAN ==========
+start: [-0.7913029829608362, -1.444482151662008, 2.2297110557556152, -0.7369087378131312, 1.5702481269836426, -0.024413410817281544]
+final: [-0.782537789397782, -0.921107183941301, 0.6762145701484334, 0.2932010836694502, 1.5634036267677087, -0.023598798406344865]
+final nearest: [-0.782537789397782, -0.921107183941301, 0.6762145701484334, 0.2932010836694503, 1.5634036267677087, -0.023598798406344865]
+shoulder_pan_joint: delta=0.0088 rad
+shoulder_lift_joint: delta=0.5234 rad
+elbow_joint: delta=1.5535 rad
+wrist_1_joint: delta=1.0301 rad
+wrist_2_joint: delta=0.0068 rad
+wrist_3_joint: delta=0.0008 rad
+===========================================
+
+[RVIZ] Published trajectory: SAFE_TO_PREGRASP_CARTESIAN
+[EXECUTE] SAFE_TO_PREGRASP_CARTESIAN attempt 1/3
+[EXECUTE] SAFE_TO_PREGRASP_CARTESIAN result: True
+[GRIPPER] Open
+[GRIPPER] >> SET SPE 255
+[GRIPPER] << ack
+[GRIPPER] >> SET FOR 150
+[GRIPPER] << ack
+[GRIPPER] >> SET POS 0
+[GRIPPER] << ack
+[GRIPPER] >> SET GTO 1
+[GRIPPER] << ack
+[WAIT] pregrasp wait 5.0 s
+
+[CARTESIAN] Planning PREGRASP_TO_DESCEND_CARTESIAN
+[CARTESIAN] eef_step: 0.005
+[CARTESIAN] min_fraction: 0.8
+
+========== PREGRASP_TO_DESCEND_CARTESIAN START POSE ==========
+position:
+  x: 0.5843685104743671
+  y: -0.4272789310839098
+  z: 0.42284634325831055
+orientation xyzw:
+  x: 0.6637545842963395
+  y: 0.29059877024203545
+  z: 0.2551924147390895
+  w: 0.6402023414663857
+====================================
+
+
+========== PREGRASP_TO_DESCEND_CARTESIAN TARGET POSE ==========
+position:
+  x: 0.5843778112685601
+  y: -0.4272511146287612
+  z: 0.30282516631877554
+orientation xyzw:
+  x: 0.6637848580341411
+  y: 0.2905975470911702
+  z: 0.25516736060667883
+  w: 0.6401814945390185
+====================================
+
+[CARTESIAN] PREGRASP_TO_DESCEND_CARTESIAN fraction: 1.0
+
+========== JOINT SUMMARY: PREGRASP_TO_DESCEND_CARTESIAN ==========
+start: [-0.7826088110553187, -0.9210932890521448, 0.6761875152587891, 0.2932180166244507, 1.5633642673492432, -0.023574654256002248]
+final: [-0.7829836393239775, -0.9499725385880643, 1.0318733528143342, -0.03357138868806113, 1.5679600189396186, -0.022340557127347813]
+final nearest: [-0.7829836393239775, -0.9499725385880643, 1.0318733528143342, -0.0335713886880612, 1.5679600189396186, -0.022340557127347813]
+shoulder_pan_joint: delta=0.0004 rad
+shoulder_lift_joint: delta=0.0289 rad
+elbow_joint: delta=0.3557 rad
+wrist_1_joint: delta=0.3268 rad
+wrist_2_joint: delta=0.0046 rad
+wrist_3_joint: delta=0.0012 rad
+===========================================
+
+[RVIZ] Published trajectory: PREGRASP_TO_DESCEND_CARTESIAN
+[EXECUTE] PREGRASP_TO_DESCEND_CARTESIAN attempt 1/3
+[EXECUTE] PREGRASP_TO_DESCEND_CARTESIAN result: True
+[GRIPPER] Close
+[GRIPPER] >> SET SPE 150
+[GRIPPER] << ack
+[GRIPPER] >> SET FOR 80
+[GRIPPER] << ack
+[GRIPPER] >> SET POS 180
+[GRIPPER] << ack
+[GRIPPER] >> SET GTO 1
+[GRIPPER] << ack
+[GRIPPER] Socket closed
+[0m[ INFO] [1782895445.400994848]: Loading robot model 'ur5_robot'...[0m
+[0m[ INFO] [1782895445.482057784]: IK Using joint shoulder_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895445.482070197]: IK Using joint upper_arm_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895445.482076654]: IK Using joint forearm_link -3.14159 3.14159[0m
+[0m[ INFO] [1782895445.482082642]: IK Using joint wrist_1_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895445.482088597]: IK Using joint wrist_2_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895445.482094119]: IK Using joint wrist_3_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895445.482102527]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
+[0m[ INFO] [1782895445.482813390]: Looking in common namespaces for param name: manipulator/solve_type[0m
+[0m[ INFO] [1782895445.483909261]: Using solve type Distance[0m
+[0m[ INFO] [1782895446.529660115]: Ready to take commands for planning group manipulator.[0m
+[OK] Grasp script selesai.
+
+============================================================
+STEP 8: SKIP DISCARD
+============================================================
+
+============================================================
+DONE
+============================================================
+[DONE] GRASP EXECUTED.
+[DONE] Single-target pick pipeline selesai untuk TEST_NAME=TC_08_OA_VLM.
+[PRE-CHECK COPY] data/d455_capture/current_scene_rgb.jpg -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_scene_rgb.jpg
+[PRE-CHECK COPY] data/d455_capture/current_scene_depth.png -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_scene_depth.png
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/detections_yolo.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_detections_yolo.json
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/yolo_world_result.jpg -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_yolo_result.jpg
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/fastsam_result.jpg -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_fastsam_result.jpg
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_fastsam_mask.png
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/object_position_camera.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_object_position_camera.json
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_best_grasp_camera.json
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_best_grasp_base.json
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_tool0_pregrasp_target.json
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1/pre_tool0_pregrasp_target_base_link.json
+[OK] PRE-check archive saved:
+  outputs/TC_08_OA_VLM/pre_check_output/STEP_1_attempt_1
+  outputs/TC_08_OA_VLM/pre_check_output/STEP_1_latest
+
+============================================================
+DISCARD AFTER GRASP
+============================================================
+[OK] Discard script: robot_executor/execute_from_current_pregrasp_to_discard.py
+[OK] Waypoints JSON: configs/waypoints_ur5.json
+[CMD] python3 robot_executor/execute_from_current_pregrasp_to_discard.py --robot_ip 192.168.200.1 --waypoints_json configs/waypoints_ur5.json --lift_up 0.05 --velocity 0.08 --acceleration 0.04 --skip_lift --execute
+[33m[ WARN] [1782895468.816440185]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
+[OK] Loaded waypoints: /home/b401/Documents/pick_place_occlusion_noetic/configs/waypoints_ur5.json
+[SKIP] Lift skipped.
+
+[JOINT GO] Moving to DISCARD_STEP_1
+[JOINT GO] target: [-0.6725381056415003, -1.7394445578204554, 1.5304059982299805, 0.14724528789520264, 1.5740376710891724, -0.024556938801900685]
+[JOINT GO] current: [-0.7830045858966272, -0.9499581495868128, 1.0319442749023438, -0.033585373555318654, 1.567981243133545, -0.022401158009664357]
+[JOINT GO] DISCARD_STEP_1 result: True
+
+[JOINT GO] Moving to DISCARD_STEP_2
+[JOINT GO] target: [0.6762447357177734, -1.7384021917926233, 1.5304059982299805, 0.23954260349273682, 1.5335625410079956, -0.0244372526751917]
+[JOINT GO] current: [-0.6727779547320765, -1.7394683996783655, 1.530442237854004, 0.14711344242095947, 1.5741575956344604, -0.024652783070699513]
+[JOINT GO] DISCARD_STEP_2 result: True
+
+[JOINT GO] Moving to UP_DISCARD
+[JOINT GO] target: [0.6737411618232727, -1.0290349165545862, 1.5311832427978516, -0.5130503813373011, 1.533394694328308, -0.02290374437441045]
+[JOINT GO] current: [0.6761488914489746, -1.7383659521686, 1.5303821563720703, 0.23943471908569336, 1.5335146188735962, -0.02452117601503545]
+[JOINT GO] UP_DISCARD result: True
+[GRIPPER] Connecting to 192.168.200.1:63352
+[GRIPPER] Connected
+[GRIPPER] Open
+
+[JOINT GO] Moving to DISCARD_STEP_2
+[JOINT GO] target: [0.6762447357177734, -1.7384021917926233, 1.5304059982299805, 0.23954260349273682, 1.5335625410079956, -0.0244372526751917]
+[JOINT GO] current: [0.6736692786216736, -1.029250446950094, 1.5311832427978516, -0.5130265394793909, 1.5333467721939087, -0.022916142140523732]
+[JOINT GO] DISCARD_STEP_2 result: True
+
+[JOINT GO] Moving to DISCARD_TO_IDLE
+[JOINT GO] target: [-0.025298420582906544, -1.2021411100970667, 1.8867301940917969, -0.8184078375445765, 1.5361050367355347, -0.02444917360414678]
+[JOINT GO] current: [0.6761608719825745, -1.7385099569903772, 1.5303220748901367, 0.23948264122009277, 1.5334306955337524, -0.024413410817281544]
+[JOINT GO] DISCARD_TO_IDLE result: True
+
+[JOINT GO] Moving to IDLE
+[JOINT GO] target: [-0.7912667433368128, -1.4445660750018519, 2.2297110557556152, -0.7369807402240198, 1.5702720880508423, -0.024377171193258107]
+[JOINT GO] current: [-0.025358502064840138, -1.2022011915790003, 1.886765956878662, -0.8185394446002405, 1.536044716835022, -0.02458078065981084]
+[JOINT GO] IDLE result: True
+[GRIPPER] Socket closed
+[0m[ INFO] [1782895468.741884717]: Loading robot model 'ur5_robot'...[0m
+[0m[ INFO] [1782895468.818130939]: IK Using joint shoulder_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895468.818143618]: IK Using joint upper_arm_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895468.818149991]: IK Using joint forearm_link -3.14159 3.14159[0m
+[0m[ INFO] [1782895468.818155281]: IK Using joint wrist_1_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895468.818160389]: IK Using joint wrist_2_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895468.818165447]: IK Using joint wrist_3_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895468.818173309]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
+[0m[ INFO] [1782895468.818818877]: Looking in common namespaces for param name: manipulator/solve_type[0m
+[0m[ INFO] [1782895468.819753268]: Using solve type Distance[0m
+[0m[ INFO] [1782895469.999182823]: Ready to take commands for planning group manipulator.[0m
+
+============================================================
+POST-CHECK STEP 1
+============================================================
+[OK] capture_config.py: capture_config.py
+[OK] capture_config.py updated and exported: TEST_NAME=TC_08_OA_VLM, STEP_INDEX=1
+
+============================================================
+CAPTURE POST-SCENE
+============================================================
+[INFO] Waiting 2 second(s) after discard before capture...
+[OK] Capture script: perception/capture_d455_once.py
+[RUN] conda run -n ur5_pickplace python perception/capture_d455_once.py
+[OK] Saved:
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_depth.png
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+
+[OK] current_scene_rgb.jpg: data/d455_capture/current_scene_rgb.jpg
+[OK] depth_raw.npy: data/d455_capture/depth_raw.npy
+[OK] camera_intrinsics.json: data/d455_capture/camera_intrinsics.json
+[OK] Post-check script: run_post_complete.py
+[RUN] conda run -n ur5_pickplace python run_post_complete.py
+
+========== D455 TEST CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+ENV_PATH: /home/b401/Documents/pick_place_occlusion_noetic/.env
+TEST_NAME: TC_08_OA_VLM
+USER_QUERY: I want to drink coke and sprite, pick both
+STEP_INDEX: 1
+
+========== INPUT PATHS ==========
+BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture
+IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+DEPTH_VIS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_depth.png
+POST_IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg
+
+========== OUTPUT PATHS ==========
+OUTPUT_BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs
+TEST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM
+VLM_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output
+VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+POST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output
+
+========== MAIN OUTPUT FILES ==========
+ACTION_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/action_plan_real.json
+VLM_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/detections_from_vlm.json
+VALIDATION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/validation_result_real.json
+YOLO_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/detections_yolo.json
+YOLO_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/yolo_world_result.jpg
+FASTSAM_MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+FASTSAM_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_result.jpg
+OBJECT_POSITION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/object_position_camera.json
+
+========== POST-CHECK OUTPUT FILES ==========
+POST_CHECK_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_remaining_plan.json
+
+========== SNAPSHOT OUTPUTS ==========
+SNAPSHOT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots
+SNAPSHOT_CURRENT_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/current_scene_rgb.jpg
+SNAPSHOT_CURRENT_DEPTH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/current_scene_depth.png
+SNAPSHOT_POST_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/post_scene_rgb.jpg
+=====================================
+
+
+===== SYNC CHECK CURRENT/POST/DEPTH =====
+current RGB: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+post RGB   : /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg
+depth raw  : /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+post == current: True
+sync report: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_sync_report.json
+Saved post RGB snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/post_scene_rgb.jpg
+
+STEP_INDEX dari config: 1
+Target untuk post-check: green soda can
+validasi by vlm
+
+Remaining plan saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_1_remaining_plan.json
+[{"step": 2, "action": "pick", "target": "red soda can", "target_role": "primary_target", "step_intent": "pick_primary_target", "explanation": "pick red soda can as the user wants coke"}]
+
+✅ Step yang diverifikasi berhasil menurut post-check.
+➡️ Masih ada step berikutnya.
+
+🔍 MELAKUKAN REASONING ULANG TERHADAP SISA PLAN...
+Status Re-validasi: PASS
+Feedback VLM: The user requested 'coke and sprite'. According to Rule #3 (Multiple-Target Requests), the planner is allowed to decompose requests into sequential plans. The provided action_plan handles one of the targets ('red soda can' which clearly matches Coke in the image). It is valid for only one target to be present if it represents a partial execution or remaining tasks, as long as the selected object correctly corresponds to the requested item (Red Soda Can = Coca-Cola) and no safety violations exist. The presence of a water bottle does not conflict.
+
+✅ VLM menyatakan sisa plan masih valid dan aman. Melanjutkan proses...
+Target berikutnya: red soda can
+
+🔍 Memproses YOLO/FastSAM/depth untuk target berikutnya...
+
+===== PROCESS NEXT TARGET AFTER POST-CHECK SUCCESS =====
+Next step:
+{
+  "step": 2,
+  "action": "pick",
+  "target": "red soda can",
+  "target_role": "primary_target",
+  "step_intent": "pick_primary_target",
+  "explanation": "pick red soda can as the user wants coke"
+}
+Next target untuk YOLO/FastSAM: red soda can
+Loading YOLO-World model: /home/b401/Documents/pick_place_occlusion_noetic/models/yolov8l-worldv2.pt
+
+[YOLO-World] Trying aliases for next target:
+ - red soda can
+ - soda can
+ - can
+ - drink can
+ - beverage can
+
+[YOLO-World] Trying query='red soda can' conf=0.5
+
+[YOLO-World] Target dari action plan: red soda can
+[YOLO-World] Dynamic classes: ['red soda can', 'can']
+
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg: 480x640 1 red soda can, 35.0ms
+Speed: 0.8ms preprocess, 35.0ms inference, 0.9ms postprocess per image at shape (1, 3, 480, 640)
+[YOLO-World] Detections saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_yolo_red_soda_can_conf_0_5.json
+[YOLO-World] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_yolo_red_soda_can_conf_0_5.jpg
+[
+  {
+    "label": "red soda can",
+    "confidence": 0.7843403816223145,
+    "bbox": [
+      209,
+      133,
+      270,
+      288
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "red soda can"
+  }
+]
+[YOLO-World] Best detection:
+{
+  "label": "red soda can",
+  "confidence": 0.7843403816223145,
+  "bbox": [
+    209,
+    133,
+    270,
+    288
+  ],
+  "bbox_format": "xyxy_pixel",
+  "source": "yolo_world",
+  "target_query": "red soda can"
+}
+[COPY] /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_yolo_red_soda_can_conf_0_5.json -> /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_detections_yolo.json
+[COPY] /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_yolo_red_soda_can_conf_0_5.jpg -> /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_yolo_result.jpg
+[YOLO-World] SUCCESS
+Used query: red soda can
+Used conf: 0.5
+{
+  "label": "red soda can",
+  "confidence": 0.7843403816223145,
+  "bbox": [
+    209,
+    133,
+    270,
+    288
+  ],
+  "bbox_format": "xyxy_pixel",
+  "source": "yolo_world",
+  "target_query": "red soda can",
+  "target_query_original": "red soda can",
+  "target_query_used": "red soda can",
+  "confidence_threshold_used": 0.5
+}
+Loading FastSAM model: /home/b401/Documents/pick_place_occlusion_noetic/models/FastSAM-x.pt
+
+[FastSAM] Segmenting bbox: [209, 133, 270, 288]
+
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg: 480x640 1 object, 556.4ms
+Speed: 1.8ms preprocess, 556.4ms inference, 22.2ms postprocess per image at shape (1, 3, 480, 640)
+[FastSAM] Mask saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_fastsam_mask.png
+[FastSAM] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_fastsam_result.jpg
+[DepthEngine] Mask asli shape: (480, 640)
+[DepthEngine] Depth shape: (480, 640)
+[DepthEngine] Mask asli unique values: [  0 255]
+[DepthEngine] Pixel mask setelah binary: 8462
+
+[DepthEngine] Jumlah pixel mask: 8462
+[DepthEngine] Jumlah depth valid pada mask: 6816
+[DepthEngine] Median depth valid: 0.37800002098083496
+[DepthEngine] Mean depth valid: 0.3791735768318176
+[DepthEngine] Object position saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_object_position_camera.json
+{
+  "object": "red soda can",
+  "pixel_center_uv": [
+    239,
+    211
+  ],
+  "pixel_center_uv_mean": [
+    239,
+    210
+  ],
+  "median_depth_m": 0.37800002098083496,
+  "mean_depth_m": 0.3791735768318176,
+  "point_camera_m": [
+    -0.0852673202753067,
+    -0.03323192894458771,
+    0.37800002098083496
+  ],
+  "point_camera_mean_m": [
+    -0.08582240343093872,
+    -0.03346389904618263,
+    0.37894207239151
+  ],
+  "debug": {
+    "mask_pixels": 8462,
+    "valid_depth_pixels": 6816,
+    "valid_depth_ratio": 0.8054833372725124,
+    "used_pixels_after_depth_fill": 8462,
+    "min_depth_m": 0.1,
+    "max_depth_m": 2.0,
+    "depth_scale": 0.0010000000474974513,
+    "fx": 385.724365234375,
+    "fy": 385.28033447265625,
+    "ppx": 326.5517883300781,
+    "ppy": 244.87197875976562,
+    "method": "all_mask_pixels_with_invalid_depth_filled_by_median_depth"
+  },
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Belum ditransformasikan ke base frame UR5."
+}
+[OK] object_position camera sanity check masuk akal: [-0.0852673202753067, -0.03323192894458771, 0.37800002098083496]
+
+✅ Next target pipeline selesai.
+[COPY] /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_detections_yolo.json -> /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/detections_yolo.json
+[COPY] /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_yolo_result.jpg -> /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/yolo_world_result.jpg
+[COPY] /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_fastsam_mask.png -> /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+[COPY] /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_fastsam_result.jpg -> /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_result.jpg
+[COPY] /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_next_target/STEP_2_next_object_position_camera.json -> /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/object_position_camera.json
+/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/google/api_core/_python_version_support.py:255: FutureWarning: You are using a Python version (3.10.20) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
+  warnings.warn(message, FutureWarning)
+/home/b401/Documents/pick_place_occlusion_noetic/planning/validator_engine.py:15: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+
+
+[CHECK] STEP 1 post_check_status: REMOVED_SUCCESS
+[CHECK] STEP 1 remaining_count: 1
+[NEXT_READY] ready: True
+[NEXT_READY] next_step_number: 2
+[NEXT_READY] next_target: red soda can
+[NEXT_READY] target_query_used: None
+[NEXT_READY] conf_used: None
+[OK] STEP 1 berhasil pada attempt 1.
+
+[INFO] Masih ada 1 step berikutnya.
+[INFO] Lanjut ke STEP 2.
+
+============================================================
+STEP 2 / ATTEMPT 1
+============================================================
+
+============================================================
+ACTION STEP 2: NEXT TARGET UNTIL GRASP ONLY
+============================================================
+[NEXT_READY] ready: True
+[NEXT_READY] next_step_number: 2
+[NEXT_READY] next_target: red soda can
+[NEXT_READY] target_query_used: None
+[NEXT_READY] conf_used: None
+[OK] FastSAM mask: outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+[OK] Object position: outputs/TC_08_OA_VLM/vision_output/object_position_camera.json
+
+============================================================
+FULL PIPELINE CONFIG
+============================================================
+PROJECT_DIR              : /home/b401/Documents/pick_place_occlusion_noetic
+TEST_NAME                : TC_08_OA_VLM
+MODE                     : execute
+PLANNER_ENV              : ur5_pickplace
+ANYGRASP_ENV             : anygrasp_py310
+ROBOT_IP                 : 192.168.200.1
+VISION_OUTPUT_DIR        : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+BEST_GRASP_CAMERA_JSON   : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+BEST_GRASP_BASE_JSON     : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json
+TOOL0_PREGRASP_TARGET    : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+TOOL0_PREGRASP_TARGET_BL : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+TOOL0_TO_GRIPPER_TIP     : 0 0 0.17
+PREGRASP_Z               : 0.13
+SAFE_LIFT_Z              : 0.0
+SAFE_LIFT_EEF_STEP       : 0.005
+CARTESIAN_MIN_FRACTION   : 0.80
+MAX_XYZ_DISTANCE         : 0.80
+MAX_BASE_DELTA           : 1.80
+MAX_WRIST_DELTA          : 1.50
+DESCEND_Z                : 0.12
+NUDGE_DX/DY/DZ           : -0.05 / 0.04 / 0.0
+DISABLE_GRIPPER          : 0
+PREOPEN_GRIPPER          : 0
+LOCK_STABLE_CONFIG       : 0
+SKIP_DISCARD             : 1
+
+============================================================
+STEP 1: SKIP CAPTURE
+============================================================
+[OK] RGB image:
+  /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+[OK] Depth npy:
+  /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+[OK] Camera intrinsics:
+  /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+
+============================================================
+STEP 2: SKIP VISION
+============================================================
+[OK] FastSAM mask:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+
+============================================================
+STEP 3: anygrasp_py310 - GRASPNET
+============================================================
+[INFO] Active conda env : anygrasp_py310
+[INFO] Python           : /home/b401/miniconda3/envs/anygrasp_py310/bin/python
+Python 3.10.20
+[OK] GraspNet checkpoint:
+  models/graspnet-baseline/logs/log_rs/checkpoint.tar
+[OK] FastSAM mask:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+[RUN] python models/graspnet-baseline/demo_d455.py --checkpoint_path models/graspnet-baseline/logs/log_rs/checkpoint.tar --test_name TC_08_OA_VLM ...
+WARNING:root:Failed to import ros dependencies in rigid_transforms.py
+WARNING:root:autolab_core not installed as catkin package, RigidTransform ros methods will be unavailable
+/home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/utils/loss_utils.py:89: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at /pytorch/aten/src/ATen/native/Cross.cpp:63.)
+  axis_z = torch.cross(axis_x, axis_y)
+[INFO] capture_config.py imported successfully.
+
+========== ACTIVE D455 GRASPNET CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+TEST_NAME: TC_08_OA_VLM
+RGB_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+================================================
+
+[CHECK] CHECKPOINT_PATH: /home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/logs/log_rs/checkpoint.tar
+-> loaded checkpoint /home/b401/Documents/pick_place_occlusion_noetic/models/graspnet-baseline/logs/log_rs/checkpoint.tar (epoch: 18)
+[CHECK] DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+[CHECK] RGB_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+[CHECK] MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+[CHECK] INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+
+========== D455 DATA INFO ==========
+RGB shape: (480, 640, 3)
+Depth raw shape: (480, 640)
+Depth raw min/max: 0.0 65535.0
+Depth scale: 0.0010000000474974513
+Depth meter min/max: 0.0 65.53500366210938
+Mask pixels: 10214
+Workspace valid pixels: 7109
+fx fy cx cy: 385.724365234375 385.28033447265625 326.5517883300781 244.87197875976562
+factor_depth: 999.999952502551
+===================================
+
+[INFO] Workspace mask debug saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/graspnet_workspace_mask_debug.png
+[INFO] cloud_masked: (7109, 3)
+[INFO] object_center_camera median: [-0.08850368 -0.03225083  0.37800002]
+[INFO] Raw grasp candidates: 1024
+[INFO] Grasp after collision filtering: 488
+[INFO] Grasp after target filtering: 276
+[INFO] Candidates saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/grasp_candidates_camera.json
+[INFO] Best grasp saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+
+========== BEST GRASP ==========
+{
+  "success": true,
+  "method": "graspnet_baseline_d455",
+  "best_grasp": {
+    "score": 0.3719263970851898,
+    "translation_camera": [
+      -0.1131487563252449,
+      -0.07404018193483353,
+      0.38100001215934753
+    ],
+    "rotation_matrix_camera": [
+      [
+        0.14391817152500153,
+        -0.43786168098449707,
+        -0.8874484300613403
+      ],
+      [
+        -0.2771056890487671,
+        0.8430759906768799,
+        -0.4609070420265198
+      ],
+      [
+        0.949999988079071,
+        0.31224989891052246,
+        -1.3648876695526724e-08
+      ]
+    ],
+    "width": 0.07025101780891418,
+    "height": 0.019999999552965164,
+    "depth": 0.019999999552965164,
+    "object_id": -1,
+    "frame": "RealSense D455 aligned color camera frame",
+    "rank": 0,
+    "distance_to_object_center": 0.04860792008033602
+  },
+  "object_center_camera": [
+    -0.08850368382968724,
+    -0.03225082504633993,
+    0.37800002098083496
+  ],
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
+  "meta": {
+    "object_center_camera": [
+      -0.08850368382968724,
+      -0.03225082504633993,
+      0.37800002098083496
+    ],
+    "num_mask_points": 10214,
+    "num_workspace_points": 7109,
+    "num_cloud_masked": 7109,
+    "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
+    "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
+    "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
+    "mask_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png",
+    "intrinsics": {
+      "width": 640,
+      "height": 480,
+      "fx": 385.724365234375,
+      "fy": 385.28033447265625,
+      "ppx": 326.5517883300781,
+      "ppy": 244.87197875976562,
+      "depth_scale": 0.0010000000474974513
+    },
+    "depth_scale": 0.0010000000474974513,
+    "factor_depth": 999.999952502551,
+    "frame": "RealSense D455 aligned color camera frame"
+  }
+}
+================================
+
+[OK] best_grasp_camera.json:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+
+============================================================
+STEP 4: ur5_pickplace - TRANSFORM + CONVERT + NUDGE + BASE_LINK
+============================================================
+[INFO] Active conda env : ur5_pickplace
+[INFO] Python           : /home/b401/miniconda3/envs/ur5_pickplace/bin/python
+Python 3.10.20
+[OK] Transform script:
+  perception/transform_grasp_to_base.py
+[RUN] python perception/transform_grasp_to_base.py
+[INFO] Menggunakan capture_config.py
+[INFO] TEST_NAME: TC_08_OA_VLM
+[INFO] VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+[CHECK] T_BASE_CAMERA_JSON: /home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json
+[CHECK] BEST_GRASP_CAMERA_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+
+========== GRASP CAMERA TO BASE ==========
+Input grasp camera: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json
+Transform: /home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json
+Output grasp base: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json
+-----------------------------------------
+translation_base: [-0.7269922278001626, 0.4302752703711695, 0.2838592907757925]
+pre_grasp_translation_base: [-0.7269922278001626, 0.4302752703711695, 0.3838592907757925]
+score: 0.3719263970851898
+width: 0.07025101780891418
+=========================================
+
+{
+  "success": true,
+  "method": "camera_to_base_transform",
+  "translation_base": [
+    -0.7269922278001626,
+    0.4302752703711695,
+    0.2838592907757925
+  ],
+  "rotation_matrix_base": [
+    [
+      -0.5686734213825937,
+      -0.5379466901448595,
+      -0.6222731575604906
+    ],
+    [
+      0.7656194305846536,
+      -0.06958240612192587,
+      -0.6395194889729278
+    ],
+    [
+      0.3007281291678153,
+      -0.840102151181913,
+      0.45143211894090635
+    ]
+  ],
+  "score": 0.3719263970851898,
+  "width": 0.07025101780891418,
+  "height": 0.019999999552965164,
+  "depth": 0.019999999552965164,
+  "object_id": -1,
+  "frame": "UR5 base frame",
+  "source_frame": "RealSense D455 aligned color camera frame",
+  "rotation_validation": {
+    "determinant": 0.9999999874282531,
+    "orthonormal_error": 3.680723174342888e-08
+  },
+  "camera_grasp_used": {
+    "translation_camera": [
+      -0.1131487563252449,
+      -0.07404018193483353,
+      0.38100001215934753
+    ],
+    "rotation_matrix_camera": [
+      [
+        0.14391817152500153,
+        -0.43786168098449707,
+        -0.8874484300613403
+      ],
+      [
+        -0.2771056890487671,
+        0.8430759906768799,
+        -0.4609070420265198
+      ],
+      [
+        0.949999988079071,
+        0.31224989891052246,
+        -1.3648876695526724e-08
+      ]
+    ]
+  },
+  "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
+  "pre_grasp_preview": {
+    "translation_base": [
+      -0.7269922278001626,
+      0.4302752703711695,
+      0.3838592907757925
+    ],
+    "offset_z_m": 0.1,
+    "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
+  },
+  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json",
+  "source_transform": "/home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json"
+}
+[OK] best_grasp_base.json:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json
+[OK] Convert gripper_tip -> tool0 script:
+  perception/convert_gripper_tip_to_tool0_target.py
+[RUN] python perception/convert_gripper_tip_to_tool0_target.py ...
+[INFO] capture_config.py imported successfully.
+
+========== CONVERT GRIPPER TIP TO TOOL0 ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+capture_config imported: True
+capture_config TEST_NAME: TC_08_OA_VLM
+capture_config VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+ACTIVE_TEST_NAME: TC_08_OA_VLM
+Input best_grasp_base: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json
+Output tool0 target: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+tool0_to_gripper_tip: 0 0 0.17
+pregrasp_z: 0.13
+=================================================
+
+[OK] Saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+
+========== RESULT ==========
+{
+  "success": true,
+  "frame": "base",
+  "target_link": "tool0",
+  "source_target": "gripper_tip",
+  "active_test_name": "TC_08_OA_VLM",
+  "translation_tool0_pregrasp": [
+    -0.6075210238347052,
+    0.309612226358191,
+    0.4220483830677433
+  ],
+  "quaternion_tool0_xyzw": [
+    -0.28340175782789895,
+    0.6661598976406625,
+    0.6411123643592581,
+    -0.25473392137899675
+  ],
+  "rpy_tool0_rad": [
+    1.619,
+    0.024,
+    -2.36
+  ],
+  "orientation_source": "fixed_rpy",
+  "gripper_tip_grasp_base": [
+    -0.7269922278001626,
+    0.4302752703711695,
+    0.2838592907757925
+  ],
+  "gripper_tip_pregrasp_base": [
+    -0.7269922278001626,
+    0.4302752703711695,
+    0.41385929077579253
+  ],
+  "tool0_to_gripper_tip_offset_tool_frame": [
+    0.0,
+    0.0,
+    0.17
+  ],
+  "pregrasp_z_m": 0.13,
+  "score": 0.3719263970851898,
+  "width": 0.07025101780891418,
+  "depth": 0.019999999552965164,
+  "height": 0.019999999552965164,
+  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json",
+  "note": "Kirim translation_tool0_pregrasp + quaternion_tool0_xyzw ke MoveIt sebagai target tool0. Jangan kirim gripper_tip_grasp_base langsung ke MoveIt."
+}
+============================
+
+[OK] tool0_pregrasp_target.json sebelum nudge:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+[OK] Nudge script:
+  robot_executor/nudge_tool0_target.py
+[RUN] python3 robot_executor/nudge_tool0_target.py --dx -0.05 --dy 0.04 --dz 0.0
+
+========== NUDGE TOOL0 TARGET ==========
+Input : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+Output: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+Old translation_tool0_pregrasp: [-0.6075210238347052, 0.309612226358191, 0.4220483830677433]
+Nudge dx dy dz: -0.05 0.04 0.0
+New translation_tool0_pregrasp: [-0.6575210238347052, 0.349612226358191, 0.4220483830677433]
+=======================================
+
+[OK] Saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+[OK] tool0_pregrasp_target.json setelah nudge:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+[CHECK BASE] success: True
+[CHECK BASE] frame: base
+[CHECK BASE] translation_tool0_pregrasp: [-0.6575210238347052, 0.349612226358191, 0.4220483830677433]
+[CHECK BASE] quaternion_tool0_xyzw: [-0.28340175782789895, 0.6661598976406625, 0.6411123643592581, -0.25473392137899675]
+[CHECK BASE] manual_nudge_base_m: {'dx': -0.05, 'dy': 0.04, 'dz': 0.0}
+[OK] Base to base_link conversion script:
+  perception/convert_tool0_target_base_to_base_link.py
+[RUN] python perception/convert_tool0_target_base_to_base_link.py --input /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json --output /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+
+========== BASE -> BASE_LINK TARGET CONVERSION ==========
+Input : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json
+Output: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+Input frame : base
+Output frame: base_link
+translation_tool0_pregrasp original base:
+  [-0.6575210238347052, 0.349612226358191, 0.4220483830677433]
+translation_tool0_pregrasp new base_link:
+  [0.6575210238347052, -0.349612226358191, 0.4220483830677433]
+========================================================
+
+[OK] tool0_pregrasp_target_base_link.json:
+  /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+[CHECK BASE_LINK] success: True
+[CHECK BASE_LINK] frame: base_link
+[CHECK BASE_LINK] translation_tool0_pregrasp: [0.6575210238347052, -0.349612226358191, 0.4220483830677433]
+[CHECK BASE_LINK] original base: [-0.6575210238347052, 0.349612226358191, 0.4220483830677433]
+[CHECK BASE_LINK] manual_nudge_base_m: {'dx': -0.05, 'dy': 0.04, 'dz': 0.0}
+
+============================================================
+STEP 5: ROS NOETIC SYSTEM PYTHON
+============================================================
+[CHECK] Clean ROS Python import...
+[DEBUG] python executable check via system python
+[DEBUG] LD_LIBRARY_PATH: /home/b401/ur5_noetic_ws/devel/lib:/opt/ros/noetic/lib:/opt/ros/noetic/lib/x86_64-linux-gnu
+[OK] ctypes import OK
+[OK] moveit_commander import OK
+[INFO] Python ROS: /usr/bin/python3
+Python 3.8.10
+[CHECK] rosnode /move_group...
+[OK] /move_group aktif.
+[CHECK] TF base_link -> tool0...
+[WARN] TF base_link -> tool0 belum terbaca dari tf_echo.
+Kalau MoveIt tetap bisa membaca current pose, ini tidak selalu fatal.
+
+============================================================
+STEP 6: OPTIONAL PRE-OPEN GRIPPER
+============================================================
+[SKIP] PREOPEN_GRIPPER=0
+[INFO] grasp.py akan open gripper di pregrasp.
+
+============================================================
+STEP 7: MOVE TO PREGRASP + DESCEND + CLOSE
+============================================================
+[RUN] python3 robot_executor/grasp.py --target_json /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+[CMD] python3 robot_executor/grasp.py --target_json /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json --robot_ip 192.168.200.1 --reference_frame base_link --orientation_mode current --skip_observation --safe_lift_z 0.0 --safe_lift_eef_step 0.005 --cartesian_min_fraction 0.80 --max_base_delta 1.80 --max_wrist_delta 1.50 --max_xyz_distance 0.80 --descend_z 0.12 --pregrasp_wait 5.0 --rviz_preview_wait 3.0 --velocity 0.08 --acceleration 0.05 --execute
+[33m[ WARN] [1782895559.775915441]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
+
+========== GRASP CARTESIAN SAFE LIFT VERSION ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+target_json: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+reference_frame: base_link
+orientation_mode: current
+safe_lift_z: 0.0
+safe_lift_eef_step: 0.005
+descend_z: 0.12
+max_wrist_delta: 1.5
+execute: True
+=======================================================
+
+[INFO] Planning frame: base_link
+[INFO] Reference frame: base_link
+[INFO] EEF link: tool0
+
+========== CURRENT TOOL0 POSE ==========
+position:
+  x: 0.3646481863411676
+  y: -0.2121261568240201
+  z: 0.13388847997669914
+orientation xyzw:
+  x: 0.6637208081690237
+  y: 0.29051627040969435
+  z: 0.25517015588528824
+  w: 0.640283669146869
+====================================
+
+
+========== TARGET JSON ==========
+path: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json
+success: True
+frame: base_link
+translation_tool0_pregrasp: [0.6575210238347052, -0.349612226358191, 0.4220483830677433]
+quaternion_tool0_xyzw: [-0.28340175782789895, 0.6661598976406625, 0.6411123643592581, -0.25473392137899675]
+manual_nudge_base_m: {'dx': -0.05, 'dy': 0.04, 'dz': 0.0}
+=================================
+
+[ORIENTATION] Pakai orientasi current robot
+
+========== FINAL PREGRASP POSE ==========
+position:
+  x: 0.6575210238347052
+  y: -0.349612226358191
+  z: 0.4220483830677433
+orientation xyzw:
+  x: 0.6636986833538219
+  y: 0.2905354845595454
+  z: 0.25516723787690804
+  w: 0.640299047820956
+====================================
+
+
+========== TARGET DISTANCE CHECK ==========
+current: [0.36465172783806654, -0.21212002615726033, 0.13389331673597366]
+target : [0.6575210238347052, -0.349612226358191, 0.4220483830677433]
+delta  : [0.2928692959966387, -0.13749220020093067, 0.2881550663317696]
+dist_xy : 0.32353752433629634
+dist_xyz: 0.43325497331978324
+max_xyz_distance: 0.8
+==========================================
+
+
+========== SAFE LIFT POSE ==========
+position:
+  x: 0.3646481863411676
+  y: -0.2121261568240201
+  z: 0.13388847997669914
+orientation xyzw:
+  x: 0.6637208081690237
+  y: 0.29051627040969435
+  z: 0.25517015588528824
+  w: 0.640283669146869
+====================================
+
+
+========== DESCEND / GRASP POSE ==========
+position:
+  x: 0.6575210238347052
+  y: -0.349612226358191
+  z: 0.3020483830677433
+orientation xyzw:
+  x: 0.6636986833538219
+  y: 0.2905354845595454
+  z: 0.25516723787690804
+  w: 0.640299047820956
+====================================
+
+[GRIPPER] Connecting to 192.168.200.1:63352
+[GRIPPER] Connected
+[GRIPPER] Activate
+[GRIPPER] >> SET ACT 1
+[GRIPPER] << ack
+[GRIPPER] >> SET GTO 1
+[GRIPPER] << ack
+[GRIPPER] >> SET SPE 255
+[GRIPPER] << ack
+[GRIPPER] >> SET FOR 150
+[GRIPPER] << ack
+[SAFE LIFT] safe_lift_z=0, skip safe lift.
+
+[CARTESIAN] Planning SAFE_TO_PREGRASP_CARTESIAN
+[CARTESIAN] eef_step: 0.005
+[CARTESIAN] min_fraction: 0.8
+
+========== SAFE_TO_PREGRASP_CARTESIAN START POSE ==========
+position:
+  x: 0.3646359986668786
+  y: -0.2121261637873783
+  z: 0.1338883605416107
+orientation xyzw:
+  x: 0.66370625296992
+  y: 0.29052871586901896
+  z: 0.25515087887966026
+  w: 0.6403007918401041
+====================================
+
+
+========== SAFE_TO_PREGRASP_CARTESIAN TARGET POSE ==========
+position:
+  x: 0.6575210238347052
+  y: -0.349612226358191
+  z: 0.4220483830677433
+orientation xyzw:
+  x: 0.6636986833538219
+  y: 0.2905354845595454
+  z: 0.25516723787690804
+  w: 0.640299047820956
+====================================
+
+[CARTESIAN] SAFE_TO_PREGRASP_CARTESIAN fraction: 1.0
+
+========== JOINT SUMMARY: SAFE_TO_PREGRASP_CARTESIAN ==========
+start: [-0.7912910620318812, -1.4446376005755823, 2.2297825813293457, -0.7370284239398401, 1.570404291152954, -0.02449685731996709]
+final: [-0.6172334904519212, -0.8251008011138823, 0.5130183094053713, 0.36226363329860994, 1.727514894793396, -0.0161758194794007]
+final nearest: [-0.6172334904519212, -0.8251008011138823, 0.5130183094053713, 0.36226363329861, 1.727514894793396, -0.0161758194794007]
+shoulder_pan_joint: delta=0.1741 rad
+shoulder_lift_joint: delta=0.6195 rad
+elbow_joint: delta=1.7168 rad
+wrist_1_joint: delta=1.0993 rad
+wrist_2_joint: delta=0.1571 rad
+wrist_3_joint: delta=0.0083 rad
+===========================================
+
+[RVIZ] Published trajectory: SAFE_TO_PREGRASP_CARTESIAN
+[EXECUTE] SAFE_TO_PREGRASP_CARTESIAN attempt 1/3
+[EXECUTE] SAFE_TO_PREGRASP_CARTESIAN result: True
+[GRIPPER] Open
+[GRIPPER] >> SET SPE 255
+[GRIPPER] << ack
+[GRIPPER] >> SET FOR 150
+[GRIPPER] << ack
+[GRIPPER] >> SET POS 0
+[GRIPPER] << ack
+[GRIPPER] >> SET GTO 1
+[GRIPPER] << ack
+[WAIT] pregrasp wait 5.0 s
+
+[CARTESIAN] Planning PREGRASP_TO_DESCEND_CARTESIAN
+[CARTESIAN] eef_step: 0.005
+[CARTESIAN] min_fraction: 0.8
+
+========== PREGRASP_TO_DESCEND_CARTESIAN START POSE ==========
+position:
+  x: 0.6575219988176112
+  y: -0.3496094163363649
+  z: 0.4220364908537102
+orientation xyzw:
+  x: 0.6637107102149603
+  y: 0.2905400824400455
+  z: 0.25513588925659453
+  w: 0.6402969870731325
+====================================
+
+
+========== PREGRASP_TO_DESCEND_CARTESIAN TARGET POSE ==========
+position:
+  x: 0.6575210238347052
+  y: -0.349612226358191
+  z: 0.3020483830677433
+orientation xyzw:
+  x: 0.6636986833538219
+  y: 0.2905354845595454
+  z: 0.25516723787690804
+  w: 0.640299047820956
+====================================
+
+[CARTESIAN] PREGRASP_TO_DESCEND_CARTESIAN fraction: 1.0
+
+========== JOINT SUMMARY: PREGRASP_TO_DESCEND_CARTESIAN ==========
+start: [-0.6172240416156214, -0.8251035849200647, 0.5129780769348145, 0.36230969429016113, 1.7275657653808594, -0.016231362019674123]
+final: [-0.6177071034947745, -0.8815485940524248, 0.920319251476528, 0.011714811288662301, 1.7323598391654795, -0.014446936369009218]
+final nearest: [-0.6177071034947745, -0.8815485940524248, 0.920319251476528, 0.011714811288662363, 1.7323598391654795, -0.014446936369009218]
+shoulder_pan_joint: delta=0.0005 rad
+shoulder_lift_joint: delta=0.0564 rad
+elbow_joint: delta=0.4073 rad
+wrist_1_joint: delta=0.3506 rad
+wrist_2_joint: delta=0.0048 rad
+wrist_3_joint: delta=0.0018 rad
+===========================================
+
+[RVIZ] Published trajectory: PREGRASP_TO_DESCEND_CARTESIAN
+[EXECUTE] PREGRASP_TO_DESCEND_CARTESIAN attempt 1/3
+[EXECUTE] PREGRASP_TO_DESCEND_CARTESIAN result: True
+[GRIPPER] Close
+[GRIPPER] >> SET SPE 150
+[GRIPPER] << ack
+[GRIPPER] >> SET FOR 80
+[GRIPPER] << ack
+[GRIPPER] >> SET POS 180
+[GRIPPER] << ack
+[GRIPPER] >> SET GTO 1
+[GRIPPER] << ack
+[GRIPPER] Socket closed
+[0m[ INFO] [1782895559.715302679]: Loading robot model 'ur5_robot'...[0m
+[0m[ INFO] [1782895559.777473837]: IK Using joint shoulder_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895559.777485737]: IK Using joint upper_arm_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895559.777491519]: IK Using joint forearm_link -3.14159 3.14159[0m
+[0m[ INFO] [1782895559.777496498]: IK Using joint wrist_1_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895559.777501415]: IK Using joint wrist_2_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895559.777506333]: IK Using joint wrist_3_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895559.777514233]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
+[0m[ INFO] [1782895559.778289529]: Looking in common namespaces for param name: manipulator/solve_type[0m
+[0m[ INFO] [1782895559.779263929]: Using solve type Distance[0m
+[0m[ INFO] [1782895560.962343786]: Ready to take commands for planning group manipulator.[0m
+[OK] Grasp script selesai.
+
+============================================================
+STEP 8: SKIP DISCARD
+============================================================
+
+============================================================
+DONE
+============================================================
+[DONE] GRASP EXECUTED.
+[DONE] Single-target pick pipeline selesai untuk TEST_NAME=TC_08_OA_VLM.
+[PRE-CHECK COPY] data/d455_capture/current_scene_rgb.jpg -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_scene_rgb.jpg
+[PRE-CHECK COPY] data/d455_capture/current_scene_depth.png -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_scene_depth.png
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/detections_yolo.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_detections_yolo.json
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/yolo_world_result.jpg -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_yolo_result.jpg
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/fastsam_result.jpg -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_fastsam_result.jpg
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_fastsam_mask.png
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/object_position_camera.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_object_position_camera.json
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/best_grasp_camera.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_best_grasp_camera.json
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/best_grasp_base.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_best_grasp_base.json
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_tool0_pregrasp_target.json
+[PRE-CHECK COPY] outputs/TC_08_OA_VLM/vision_output/tool0_pregrasp_target_base_link.json -> outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1/pre_tool0_pregrasp_target_base_link.json
+[OK] PRE-check archive saved:
+  outputs/TC_08_OA_VLM/pre_check_output/STEP_2_attempt_1
+  outputs/TC_08_OA_VLM/pre_check_output/STEP_2_latest
+
+============================================================
+DISCARD AFTER GRASP
+============================================================
+[OK] Discard script: robot_executor/execute_from_current_pregrasp_to_discard.py
+[OK] Waypoints JSON: configs/waypoints_ur5.json
+[CMD] python3 robot_executor/execute_from_current_pregrasp_to_discard.py --robot_ip 192.168.200.1 --waypoints_json configs/waypoints_ur5.json --lift_up 0.05 --velocity 0.08 --acceleration 0.04 --skip_lift --execute
+[33m[ WARN] [1782895583.566082576]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
+[OK] Loaded waypoints: /home/b401/Documents/pick_place_occlusion_noetic/configs/waypoints_ur5.json
+[SKIP] Lift skipped.
+
+[JOINT GO] Moving to DISCARD_STEP_1
+[JOINT GO] target: [-0.6725381056415003, -1.7394445578204554, 1.5304059982299805, 0.14724528789520264, 1.5740376710891724, -0.024556938801900685]
+[JOINT GO] current: [-0.6177757422076624, -0.8815262953387659, 0.9203548431396484, 0.011643052101135254, 1.732291340827942, -0.01439839998354131]
+[JOINT GO] DISCARD_STEP_1 result: True
+
+[JOINT GO] Moving to DISCARD_STEP_2
+[JOINT GO] target: [0.6762447357177734, -1.7384021917926233, 1.5304059982299805, 0.23954260349273682, 1.5335625410079956, -0.0244372526751917]
+[JOINT GO] current: [-0.6723101774798792, -1.7394798437701624, 1.5305614471435547, 0.14700567722320557, 1.574109673500061, -0.024461094533101857]
+[JOINT GO] DISCARD_STEP_2 result: True
+
+[JOINT GO] Moving to UP_DISCARD
+[JOINT GO] target: [0.6737411618232727, -1.0290349165545862, 1.5311832427978516, -0.5130503813373011, 1.533394694328308, -0.02290374437441045]
+[JOINT GO] current: [0.676196813583374, -1.7384980360614222, 1.5305256843566895, 0.2393268346786499, 1.53362238407135, -0.024545017872945607]
+[JOINT GO] UP_DISCARD result: True
+[GRIPPER] Connecting to 192.168.200.1:63352
+[GRIPPER] Connected
+[GRIPPER] Open
+
+[JOINT GO] Moving to DISCARD_STEP_2
+[JOINT GO] target: [0.6762447357177734, -1.7384021917926233, 1.5304059982299805, 0.23954260349273682, 1.5335625410079956, -0.0244372526751917]
+[JOINT GO] current: [0.6737531423568726, -1.0291064421283167, 1.5312910079956055, -0.5132063070880335, 1.5333707332611084, -0.022867981587545216]
+[JOINT GO] DISCARD_STEP_2 result: True
+
+[JOINT GO] Moving to DISCARD_TO_IDLE
+[JOINT GO] target: [-0.025298420582906544, -1.2021411100970667, 1.8867301940917969, -0.8184078375445765, 1.5361050367355347, -0.02444917360414678]
+[JOINT GO] current: [0.6762087941169739, -1.7383421103106897, 1.5305018424987793, 0.2395186424255371, 1.5336344242095947, -0.024473015462056935]
+[JOINT GO] DISCARD_TO_IDLE result: True
+
+[JOINT GO] Moving to IDLE
+[JOINT GO] target: [-0.7912667433368128, -1.4445660750018519, 2.2297110557556152, -0.7369807402240198, 1.5702720880508423, -0.024377171193258107]
+[JOINT GO] current: [-0.025190655385152638, -1.2022488752948206, 1.8867182731628418, -0.8185036818133753, 1.536044716835022, -0.02453309694399053]
+[JOINT GO] IDLE result: True
+[GRIPPER] Socket closed
+[0m[ INFO] [1782895583.494508738]: Loading robot model 'ur5_robot'...[0m
+[0m[ INFO] [1782895583.567786382]: IK Using joint shoulder_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895583.567799317]: IK Using joint upper_arm_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895583.567805035]: IK Using joint forearm_link -3.14159 3.14159[0m
+[0m[ INFO] [1782895583.567810272]: IK Using joint wrist_1_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895583.567815381]: IK Using joint wrist_2_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895583.567820376]: IK Using joint wrist_3_link -6.28319 6.28319[0m
+[0m[ INFO] [1782895583.567828213]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
+[0m[ INFO] [1782895583.568516122]: Looking in common namespaces for param name: manipulator/solve_type[0m
+[0m[ INFO] [1782895583.569427589]: Using solve type Distance[0m
+[0m[ INFO] [1782895584.627635817]: Ready to take commands for planning group manipulator.[0m
+
+============================================================
+POST-CHECK STEP 2
+============================================================
+[OK] capture_config.py: capture_config.py
+[OK] capture_config.py updated and exported: TEST_NAME=TC_08_OA_VLM, STEP_INDEX=2
+
+============================================================
+CAPTURE POST-SCENE
+============================================================
+[INFO] Waiting 2 second(s) after discard before capture...
+[OK] Capture script: perception/capture_d455_once.py
+[RUN] conda run -n ur5_pickplace python perception/capture_d455_once.py
+[OK] Saved:
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_depth.png
+/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+
+[OK] current_scene_rgb.jpg: data/d455_capture/current_scene_rgb.jpg
+[OK] depth_raw.npy: data/d455_capture/depth_raw.npy
+[OK] camera_intrinsics.json: data/d455_capture/camera_intrinsics.json
+[OK] Post-check script: run_post_complete.py
+[RUN] conda run -n ur5_pickplace python run_post_complete.py
+/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/google/api_core/_python_version_support.py:255: FutureWarning: You are using a Python version (3.10.20) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
+  warnings.warn(message, FutureWarning)
+/home/b401/Documents/pick_place_occlusion_noetic/planning/validator_engine.py:15: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+
+
+========== D455 TEST CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+ENV_PATH: /home/b401/Documents/pick_place_occlusion_noetic/.env
+TEST_NAME: TC_08_OA_VLM
+USER_QUERY: I want to drink coke and sprite, pick both
+STEP_INDEX: 2
+
+========== INPUT PATHS ==========
+BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture
+IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+DEPTH_VIS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_depth.png
+POST_IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg
+
+========== OUTPUT PATHS ==========
+OUTPUT_BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs
+TEST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM
+VLM_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output
+VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output
+POST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output
+
+========== MAIN OUTPUT FILES ==========
+ACTION_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/action_plan_real.json
+VLM_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/detections_from_vlm.json
+VALIDATION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vlm_output/validation_result_real.json
+YOLO_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/detections_yolo.json
+YOLO_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/yolo_world_result.jpg
+FASTSAM_MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_mask.png
+FASTSAM_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/fastsam_result.jpg
+OBJECT_POSITION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/vision_output/object_position_camera.json
+
+========== POST-CHECK OUTPUT FILES ==========
+POST_CHECK_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_remaining_plan.json
+
+========== SNAPSHOT OUTPUTS ==========
+SNAPSHOT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots
+SNAPSHOT_CURRENT_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/current_scene_rgb.jpg
+SNAPSHOT_CURRENT_DEPTH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/current_scene_depth.png
+SNAPSHOT_POST_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/post_scene_rgb.jpg
+=====================================
+
+
+===== SYNC CHECK CURRENT/POST/DEPTH =====
+current RGB: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+post RGB   : /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg
+depth raw  : /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+post == current: True
+sync report: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_sync_report.json
+Saved post RGB snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/snapshots/post_scene_rgb.jpg
+
+STEP_INDEX dari config: 2
+Target untuk post-check: red soda can
+validasi by vlm
+
+Remaining plan saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_08_OA_VLM/post_check_output/STEP_2_remaining_plan.json
+[]
+
+✅ Step yang diverifikasi berhasil menurut post-check.
+✅ Semua step dalam action_plan sudah selesai.
+
+[CHECK] STEP 2 post_check_status: REMOVED_SUCCESS
+[CHECK] STEP 2 remaining_count: 0
+[OK] STEP 2 berhasil pada attempt 1.
+
+============================================================
+DONE
+============================================================
+✅ Semua step dalam action_plan sudah selesai.
+TEST_NAME: TC_08_OA_VLM
+Last completed STEP_INDEX: 2

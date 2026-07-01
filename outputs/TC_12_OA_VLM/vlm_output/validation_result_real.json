@@ -1,0 +1,22 @@
+{
+  "validation_status": "FAIL",
+  "feedback": "The user's request is \"I want to drink coca cola\" (a specific brand). The proposed action plan in Step 2 explicitly targets and picks a \"black soda can\". This object does not correspond to the requested Coca-Cola product, which would typically be identified as a red/white can or similar visual marker. Semantic matching rules do not allow substituting 'Black Soda' for 'Coca Cola'.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "brown bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove the bottle to access the soda can behind"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "black soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the soda can once it is accessible"
+    }
+  ]
+}

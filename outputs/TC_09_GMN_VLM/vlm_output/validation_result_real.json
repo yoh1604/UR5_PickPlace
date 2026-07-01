@@ -1,0 +1,22 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The action plan successfully addresses the user request to 'drink mineral water' by identifying and targeting a clear water bottle with a blue cap as the primary target. The planner correctly identifies that the green soda can (Sprite) is obstructing or crowded against the primary target on the shelf, requiring an intermediate removal step to safely access/grasp the water bottle without collision risks with adjacent objects like the black soda can. All identified objects (Miikis can, Black/Space can, Sprite can, Water bottle, Shelf) correspond validly to the provided visual scene.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occulder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The green soda can is directly in front of the clear water bottle and must be moved to allow access for grasping."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The clear water bottle is now accessible after removing the occluding green soda can."
+    }
+  ]
+}

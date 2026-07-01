@@ -1,0 +1,4 @@
+{
+  "require_replan": true,
+  "reason": "The user explicitly requested 'coke and sprite' and asked to 'pick both', indicating two distinct targets are required. However, the generated action_plan only includes a single step to pick one object ('green soda can'). It fails to identify or attempt picking any red Coca-Cola product (which is not visible in the scene anyway) but strictly speaking ignores half of the user's compound request and quantity constraints."
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "label": "red soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "red can labeled coca-cola",
+    "status": "obstructing",
+    "target_role": "primary_target"
+  },
+  {
+    "label": "green soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "green can labeled sprite",
+    "status": "target",
+    "target_role": "primary_target"
+  },
+  {
+    "label": "blue water bottle",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "bottled water with a blue cap",
+    "status": "clear",
+    "target_role": "background"
+  },
+  {
+    "label": "white soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "white soda can with blue text",
+    "status": "clear",
+    "target_role": "background"
+  },
+  {
+    "label": "brown box",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "light brown box at the back",
+    "status": "clear_background",
+    "target_role": "background"
+  }
+]

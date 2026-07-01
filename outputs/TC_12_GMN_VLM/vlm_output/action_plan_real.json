@@ -1,0 +1,43 @@
+{
+  "resolved_primary_target": "clear water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle with a blue cap, located behind a red soda can.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red aluminum soda can positioned directly in front of the water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "white milk can",
+      "description": "A white can with purple text to the right of the other objects.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can is physically in front of the clear water bottle, blocking access."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The clear water bottle is now accessible after removing the obstacle."
+    }
+  ]
+}

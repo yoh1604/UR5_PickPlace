@@ -114,7 +114,6 @@ OBSTRUCTION RULES:
 3. Treat the primary target as obstructed if another object covers or overlaps the lower part, side part, or front surface area of the primary target.
 4. An obstacle must physically overlap, cover, or block the reachable grasp area/path to the primary target.
 5. If the target is obstructed, use a sequence:
-   - pick the occluding object
    - remove the occluding object
    - pick or search/pick the primary target
 6. If the target is hidden, plan a search/removal sequence using the most likely visible occluder, then include a final step to find/pick the original primary target.
@@ -138,8 +137,8 @@ MULTI-OCCLUDER / ACCESS PATH RULES:
    * remove the next object that still blocks the primary target
    * pick the primary target only after its graspable region is reachable
 8. If the primary target is a water bottle and the scene contains a yellow lemon in front, a red soda can behind/near it, and the red soda can blocks the bottle body, the action_plan should be:
-   * pick/remove yellow lemon
-   * pick/remove red soda can
+   * remove yellow lemon
+   * remove red soda can
    * pick blue water bottle
    
 FORWARD-LOOKING CAMERA REASONING:
@@ -152,6 +151,7 @@ FORWARD-LOOKING CAMERA REASONING:
 5. If the target is behind another object and the front object blocks the target's lower or central grasp region, remove the front object first.
 6. Look at the lowest point of the objects in the image. Objects whose bottom edges are lower down are physically closer to the camera and must be cleared first if they overlap target behind them.
 7. The robotic arm approaches from the front. Never plan a grasp on an object if another object stands taller or overlap 3/4 part and directly in front of it, even if the top of the rear object is visible.
+8. The sequence MUST make an action plan order by front to back not left to right sequence
 
 STRICT JSON SCHEMA:
 {{

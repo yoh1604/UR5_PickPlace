@@ -10,11 +10,11 @@ load_dotenv(ENV_PATH)
 # TEST CONFIG
 # ============================================================
 
-TEST_NAME = "TC_14_YOLO_02"
+TEST_NAME = "TC_12_GMN_VLM"
 
 USER_QUERY = os.getenv(
     "USER_QUERY",
-    "I want to drink coke",
+    "I want to drink mineral water",
 )
 
 STEP_INDEX = int(os.getenv("STEP_INDEX", "1"))

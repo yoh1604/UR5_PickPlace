@@ -1,0 +1,68 @@
+[
+  {
+    "label": "clear water bottle",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A clear plastic water bottle with a blue cap, located behind a red soda can.",
+    "status": "target",
+    "target_role": "primary_target"
+  },
+  {
+    "label": "red soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A red aluminum soda can positioned directly in front of the water bottle.",
+    "status": "obstructing",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "white milk can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A white can with purple text to the right of the other objects.",
+    "status": "clear",
+    "target_role": "background"
+  }
+]
