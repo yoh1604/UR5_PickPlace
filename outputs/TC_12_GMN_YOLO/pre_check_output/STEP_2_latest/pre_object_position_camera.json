@@ -1,0 +1,39 @@
+{
+  "object": "clear water bottle",
+  "pixel_center_uv": [
+    301,
+    185
+  ],
+  "pixel_center_uv_mean": [
+    300,
+    185
+  ],
+  "median_depth_m": 0.4580000340938568,
+  "mean_depth_m": 0.4600038230419159,
+  "point_camera_m": [
+    -0.030830204486846924,
+    -0.07126316428184509,
+    0.4580000340938568
+  ],
+  "point_camera_mean_m": [
+    -0.03109149821102619,
+    -0.07078858464956284,
+    0.45872122049331665
+  ],
+  "debug": {
+    "mask_pixels": 9506,
+    "valid_depth_pixels": 3393,
+    "valid_depth_ratio": 0.35693246370713233,
+    "used_pixels_after_depth_fill": 9506,
+    "min_depth_m": 0.1,
+    "max_depth_m": 2.0,
+    "depth_scale": 0.0010000000474974513,
+    "fx": 385.8294677734375,
+    "fy": 385.38531494140625,
+    "ppx": 326.5517883300781,
+    "ppy": 244.87197875976562,
+    "method": "all_mask_pixels_with_invalid_depth_filled_by_median_depth"
+  },
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Belum ditransformasikan ke base frame UR5."
+}

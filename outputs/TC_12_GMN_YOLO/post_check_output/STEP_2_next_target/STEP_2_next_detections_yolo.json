@@ -1,0 +1,15 @@
+[
+  {
+    "label": "bottle",
+    "confidence": 0.8735114932060242,
+    "bbox": [
+      271,
+      80,
+      329,
+      279
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "clear water bottle"
+  }
+]

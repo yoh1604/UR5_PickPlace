@@ -1,0 +1,24 @@
+{
+  "pointcloud_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_OA_YOLO/vision_output/masked_object_pointcloud_median_fill.ply",
+  "clean_mask_path": null,
+  "method": "median_fill_all_mask_pixels",
+  "use_median_fill": true,
+  "mask_pixels": 8722,
+  "valid_depth_pixels": 6453,
+  "zero_depth_pixels": 2269,
+  "final_points": 8419,
+  "median_depth_m": 0.3700000047683716,
+  "mean_depth_m": 0.372733473777771,
+  "center_mean_camera_m": [
+    -0.09001785120669602,
+    -0.03608027895947678,
+    0.3710475249625481
+  ],
+  "center_median_camera_m": [
+    -0.08971363306045532,
+    -0.03635673597455025,
+    0.3700000047683716
+  ],
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Point cloud masih camera frame, belum base frame UR5."
+}

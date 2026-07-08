@@ -1793,4 +1793,57 @@ Saved post RGB snapshot: /home/b401/Documents/pick_place_occlusion_noetic/output
 
 STEP_INDEX dari config: 1
 Target untuk post-check: red soda can
+validasi by vlm
 
+VLM says object still exists
+Switching to YOLO localization
+Loading YOLO-World model: /home/b401/Documents/pick_place_occlusion_noetic/models/yolov8l-worldv2.pt
+
+[YOLO-World] Target dari action plan: red soda can
+[YOLO-World] Dynamic classes: ['red soda can']
+
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg: 480x640 1 red soda can, 34.8ms
+Speed: 0.7ms preprocess, 34.8ms inference, 0.9ms postprocess per image at shape (1, 3, 480, 640)
+[YOLO-World] Detections saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_11_VLM_02/post_check_output/STEP_1_post_check_detections_yolo.json
+[YOLO-World] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_11_VLM_02/post_check_output/STEP_1_post_check_yolo_result.jpg
+[
+  {
+    "label": "red soda can",
+    "confidence": 0.7280262112617493,
+    "bbox": [
+      393,
+      135,
+      452,
+      289
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "red soda can"
+  }
+]
+[YOLO-World] Best detection:
+{
+  "label": "red soda can",
+  "confidence": 0.7280262112617493,
+  "bbox": [
+    393,
+    135,
+    452,
+    289
+  ],
+  "bbox_format": "xyxy_pixel",
+  "source": "yolo_world",
+  "target_query": "red soda can"
+}
+Loading FastSAM model: /home/b401/Documents/pick_place_occlusion_noetic/models/FastSAM-x.pt
+
+[FastSAM] Segmenting bbox: [393, 135, 452, 289]
+
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg: 480x640 1 object, 495.7ms
+Speed: 0.7ms preprocess, 495.7ms inference, 24.6ms postprocess per image at shape (1, 3, 480, 640)
+[FastSAM] Mask saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_11_VLM_02/post_check_output/STEP_1_post_check_fastsam_mask.png
+[FastSAM] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_11_VLM_02/post_check_output/STEP_1_post_check_fastsam_result.jpg
+
+Step belum sukses. remaining_plan tidak diubah.
+
+⚠️ Step yang diverifikasi belum berhasil.

@@ -3,21 +3,21 @@
   "clean_mask_path": null,
   "method": "median_fill_all_mask_pixels",
   "use_median_fill": true,
-  "mask_pixels": 6711,
-  "valid_depth_pixels": 5111,
-  "zero_depth_pixels": 1600,
-  "final_points": 6705,
-  "median_depth_m": 0.38200002908706665,
-  "mean_depth_m": 0.38322678208351135,
+  "mask_pixels": 8014,
+  "valid_depth_pixels": 6065,
+  "zero_depth_pixels": 1949,
+  "final_points": 7952,
+  "median_depth_m": 0.3850000202655792,
+  "mean_depth_m": 0.38650867342948914,
   "center_mean_camera_m": [
-    -0.02694798366313885,
-    -0.029768764358524324,
-    0.3827214215336941
+    -0.02795025707402722,
+    -0.032974572919505285,
+    0.3860669193126006
   ],
   "center_median_camera_m": [
-    -0.02692861668765545,
-    -0.027634674683213234,
-    0.38200002908706665
+    -0.02760719135403633,
+    -0.03367150202393532,
+    0.3850000202655792
   ],
   "frame": "RealSense D455 aligned color camera frame",
   "note": "Point cloud masih camera frame, belum base frame UR5."

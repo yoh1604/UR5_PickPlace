@@ -1,14 +1,22 @@
 {
   "validation_status": "FAIL",
-  "feedback": "The user requested 'coca-cola', but the planner selected a brown coffee bottle labeled CAFFINO as the target. These are different brands and products, violating Rule 1 regarding User Target Consistency.",
+  "feedback": "The validation fails because the action plan attempts to pick a 'white soda can' as the target for a user request of 'Coca-Cola'. Under Validation Rule #1 (User target consistency) and Rule #2 (Semantic matching), picking an object that does not visually confirm the specific brand requested is considered incorrect unless clear visual evidence matches. The provided image shows the white/silver can with cartoon/anime graphics which lacks standard Coca-Cola branding features, suggesting a substitution of another soda product instead of the requested target.",
   "final_action_plan": [
     {
       "step": 1,
-      "action": "pick",
+      "action": "remove",
       "target": "brown coffee bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The brown coffee bottle is in front of and blocking access to the white soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "white soda can",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "The user requested 'coca-cola', which is not present. The brown coffee bottle is the most similar beverage available. It is clearly visible and unobstructed."
+      "explanation": "Pick the white soda can, which is the resolved target for the user's request for 'coca-cola', now that it is accessible."
     }
   ]
 }

@@ -1,0 +1,35 @@
+{
+  "resolved_primary_target": "clear water bottle",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle with a blue cap, located on the left side of the shelf.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white soda can with text, located to the right of the water bottle.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown paper bag",
+      "description": "A brown paper bag standing behind the bottle and can.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The clear water bottle is unobstructed and can be picked up directly to fulfill the user's request."
+    }
+  ]
+}

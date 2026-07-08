@@ -1,0 +1,44 @@
+{
+  "target_original": "green soda can",
+  "aliases": [
+    "green soda can",
+    "soda can",
+    "red soda can",
+    "can",
+    "drink can",
+    "beverage can"
+  ],
+  "conf_list": [
+    0.5,
+    0.4,
+    0.3,
+    0.2
+  ],
+  "used_query": "green soda can",
+  "used_conf": 0.5,
+  "debug_results": [
+    {
+      "query": "green soda can",
+      "conf": 0.5,
+      "status": "FOUND",
+      "best_detection": {
+        "label": "green soda can",
+        "confidence": 0.8616287112236023,
+        "bbox": [
+          286,
+          137,
+          345,
+          288
+        ],
+        "bbox_format": "xyxy_pixel",
+        "source": "yolo_world",
+        "target_query": "green soda can",
+        "target_query_original": "green soda can",
+        "target_query_used": "green soda can",
+        "confidence_threshold_used": 0.5
+      },
+      "output_json": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_GMN_YOLO/post_check_output/STEP_2_next_target/STEP_2_next_yolo_green_soda_can_conf_0_5.json",
+      "output_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_GMN_YOLO/post_check_output/STEP_2_next_target/STEP_2_next_yolo_green_soda_can_conf_0_5.jpg"
+    }
+  ]
+}

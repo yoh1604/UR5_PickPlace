@@ -18,7 +18,7 @@ RUN_VALIDATOR            : 0
 LOCK_STABLE_CONFIG       : 0
 PREGRASP_Z               : 0.13
 DESCEND_Z                : 0.12
-NUDGE_DX/DY/DZ           : -0.04 / 0.04 / 0.0
+NUDGE_DX/DY/DZ           : -0.05 / 0.035 / 0.0
 MAX_WRIST_DELTA          : 1.50
 CAPTURE_BEFORE_POST      : 1
 DISCARD_SKIP_LIFT        : 1
@@ -51,12 +51,12 @@ TOOL0_TO_GRIPPER_TIP     : 0 0 0.17
 PREGRASP_Z               : 0.13
 SAFE_LIFT_Z              : 0.0
 SAFE_LIFT_EEF_STEP       : 0.005
-CARTESIAN_MIN_FRACTION   : 0.80
+CARTESIAN_MIN_FRACTION   : 0.0
 MAX_XYZ_DISTANCE         : 0.80
 MAX_BASE_DELTA           : 1.80
 MAX_WRIST_DELTA          : 1.50
 DESCEND_Z                : 0.12
-NUDGE_DX/DY/DZ           : -0.04 / 0.04 / 0.0
+NUDGE_DX/DY/DZ           : -0.05 / 0.035 / 0.0
 DISABLE_GRIPPER          : 0
 PREOPEN_GRIPPER          : 0
 LOCK_STABLE_CONFIG       : 0
@@ -109,7 +109,7 @@ PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
 ENV_PATH: /home/b401/Documents/pick_place_occlusion_noetic/.env
 TEST_NAME: TC_07_GMN_YOLO
 USER_QUERY: I want coca-cola
-STEP_INDEX: 1
+STEP_INDEX: 2
 
 ========== INPUT PATHS ==========
 BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture
@@ -137,12 +137,12 @@ FASTSAM_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/T
 OBJECT_POSITION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/object_position_camera.json
 
 ========== POST-CHECK OUTPUT FILES ==========
-POST_CHECK_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_result.json
-POST_YOLO_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_detections_yolo.json
-POST_YOLO_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_yolo_result.jpg
-POST_FASTSAM_MASK: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_fastsam_mask.png
-POST_FASTSAM_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_fastsam_result.jpg
-REMAINING_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_remaining_plan.json
+POST_CHECK_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_remaining_plan.json
 
 ========== SNAPSHOT OUTPUTS ==========
 SNAPSHOT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/snapshots
@@ -167,25 +167,25 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
   "visual_analysis": [
     {
       "object": "red soda can",
-      "description": "A red soda can with white lettering, partially obscured by a green can.",
-      "status": "target",
+      "description": "A red soda can with white 'Coca-Cola' lettering, located behind a green can.",
+      "status": "obstructed",
       "target_role": "primary_target"
     },
     {
       "object": "green soda can",
-      "description": "A tall green soda can with 'Sprite' written on it, positioned in front of the red soda can.",
+      "description": "A green soda can with white 'Sprite' lettering, positioned in front of the red soda can.",
       "status": "obstructing",
       "target_role": "search_occluder"
     },
     {
       "object": "brown bottle",
-      "description": "A brown plastic bottle with a blue cap and a label that says 'CAFFING'.",
+      "description": "A brown plastic bottle with a green cap, located to the far left.",
       "status": "clear",
       "target_role": "background"
     },
     {
-      "object": "white can",
-      "description": "A white can with pink and blue graphics, located behind the brown bottle.",
+      "object": "white soda can",
+      "description": "A white soda can with purple and pink graphics, located behind the brown bottle.",
       "status": "clear",
       "target_role": "background"
     }
@@ -197,7 +197,7 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       "target": "green soda can",
       "target_role": "search_occluder",
       "step_intent": "clear_occluder_to_reveal_primary_target",
-      "explanation": "The green soda can is in front of and blocking access to the red soda can."
+      "explanation": "The green soda can is directly in front of the red soda can, blocking the robot's access path. It must be moved first."
     },
     {
       "step": 2,
@@ -205,7 +205,7 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       "target": "red soda can",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "Pick the requested red soda can now that the path is clear."
+      "explanation": "Pick the red soda can now that the path is clear."
     }
   ]
 }
@@ -231,8 +231,8 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A red soda can with white lettering, partially obscured by a green can.",
-    "status": "target",
+    "description": "A red soda can with white 'Coca-Cola' lettering, located behind a green can.",
+    "status": "obstructed",
     "target_role": "primary_target"
   },
   {
@@ -253,7 +253,7 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A tall green soda can with 'Sprite' written on it, positioned in front of the red soda can.",
+    "description": "A green soda can with white 'Sprite' lettering, positioned in front of the red soda can.",
     "status": "obstructing",
     "target_role": "search_occluder"
   },
@@ -275,12 +275,12 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A brown plastic bottle with a blue cap and a label that says 'CAFFING'.",
+    "description": "A brown plastic bottle with a green cap, located to the far left.",
     "status": "clear",
     "target_role": "background"
   },
   {
-    "label": "white can",
+    "label": "white soda can",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -297,7 +297,7 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A white can with pink and blue graphics, located behind the brown bottle.",
+    "description": "A white soda can with purple and pink graphics, located behind the brown bottle.",
     "status": "clear",
     "target_role": "background"
   }
@@ -308,23 +308,252 @@ Validation berhasil dibuat.
 Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/validation_result_real.json
 {
   "validation_status": "PASS",
-  "feedback": "The final pick target 'red soda' corresponds to the user's requested CocaCola based on semantic matching (color and context). The plan correctly identifies an occluder ('green sprite can') blocking or being too close for safe access and proposes a removal strategy before picking the main object.",
-  "final_action_plan": [
+  "feedback": "The plan correctly identifies 'red soda can' (Coca-Cola) as the primary target, which matches the user's request ('I want coca-cola'). The intermediate step of removing the 'green soda can' is logical given its position in front or adjacent to the target; it serves as a temporary obstacle removal action that clears an occluding object from robot gripper access collision. Step 2 correctly targets the primary Coke Cola item for final retrieval."
+}
+Traceback (most recent call last):
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 892, in <module>
+    main()
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 852, in main
+    spatial_result = run_spatial_pipeline(validation_result)
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 723, in run_spatial_pipeline
+    target, first_step, final_plan = get_first_target_from_validation(
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 239, in get_first_target_from_validation
+    raise RuntimeError("final_action_plan kosong.")
+RuntimeError: final_action_plan kosong.
+[WARN] Vision script gagal dengan --test_name. Mencoba tanpa argumen.
+/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/google/api_core/_python_version_support.py:255: FutureWarning: You are using a Python version (3.10.20) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
+  warnings.warn(message, FutureWarning)
+/home/b401/Documents/pick_place_occlusion_noetic/planning/vlm_engine.py:14: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+
+========== D455 TEST CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+ENV_PATH: /home/b401/Documents/pick_place_occlusion_noetic/.env
+TEST_NAME: TC_07_GMN_YOLO
+USER_QUERY: I want coca-cola
+STEP_INDEX: 2
+
+========== INPUT PATHS ==========
+BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture
+IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+DEPTH_VIS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_depth.png
+POST_IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg
+
+========== OUTPUT PATHS ==========
+OUTPUT_BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs
+TEST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO
+VLM_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output
+VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output
+POST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output
+
+========== MAIN OUTPUT FILES ==========
+ACTION_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/action_plan_real.json
+VLM_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/detections_from_vlm.json
+VALIDATION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/validation_result_real.json
+YOLO_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/detections_yolo.json
+YOLO_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/yolo_world_result.jpg
+FASTSAM_MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/fastsam_mask.png
+FASTSAM_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/fastsam_result.jpg
+OBJECT_POSITION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/object_position_camera.json
+
+========== POST-CHECK OUTPUT FILES ==========
+POST_CHECK_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_2_remaining_plan.json
+
+========== SNAPSHOT OUTPUTS ==========
+SNAPSHOT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/snapshots
+SNAPSHOT_CURRENT_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/snapshots/current_scene_rgb.jpg
+SNAPSHOT_CURRENT_DEPTH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/snapshots/current_scene_depth.png
+SNAPSHOT_POST_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/snapshots/post_scene_rgb.jpg
+=====================================
+
+Saved RGB snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/snapshots/current_scene_rgb.jpg
+Saved depth snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/snapshots/current_scene_depth.png
+ENV path: /home/b401/Documents/pick_place_occlusion_noetic/.env
+OPENAI_API_KEY detected: False
+GEMINI_API_KEY detected: True
+Menggunakan Gemini Cloud VLM Planner...
+
+Action plan berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/action_plan_real.json
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red soda can with 'Coca-Cola' branding, located behind a green can.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green soda can with 'Sprite' branding, positioned in front of the red soda can.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white soda can with purple and pink graphics, located to the left of the red can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown bottle",
+      "description": "A brown plastic bottle with a teal cap, located on the far left.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
     {
       "step": 1,
       "action": "remove",
       "target": "green soda can",
       "target_role": "search_occluder",
-      "explanation": "The green sprite is blocking access to the red coke.",
-      "step_intent": "clear_obj_to_reveal_target"
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The green soda can is in front of and blocking access to the red soda can."
     },
     {
       "step": 2,
       "action": "pick",
       "target": "red soda can",
       "target_role": "primary_target",
-      "explanation": "Target is now accessible.",
-      "step_intent": "pickup_obj_as_requested"
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the red soda can now that it is accessible."
+    }
+  ]
+}
+
+VLM detections berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/detections_from_vlm.json
+[
+  {
+    "label": "red soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A red soda can with 'Coca-Cola' branding, located behind a green can.",
+    "status": "target",
+    "target_role": "primary_target"
+  },
+  {
+    "label": "green soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A green soda can with 'Sprite' branding, positioned in front of the red soda can.",
+    "status": "obstructing",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "white soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A white soda can with purple and pink graphics, located to the left of the red can.",
+    "status": "clear",
+    "target_role": "background"
+  },
+  {
+    "label": "brown bottle",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A brown plastic bottle with a teal cap, located on the far left.",
+    "status": "clear",
+    "target_role": "background"
+  }
+]
+Menggunakan Local/Ollama LogicValidator...
+
+Validation berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/validation_result_real.json
+{
+  "validation_status": "PASS",
+  "feedback": "The action_plan correctly identifies the 'red soda can' as the target corresponding to the user's request for Coca-Cola, supported by visual analysis confirming the red object matches the brand (Coca-Cola branding visible). The inclusion of Step 1 ('remove green soda can') is a valid and necessary obstacle removal step because the 'green soda can' (Sprite) physically obstructs access or lies in close proximity to the target such that removing it first ensures safe execution. The background objects identified are correctly marked as non-remachable targets not relevant to fulfilling the primary request.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The green soda can is in front of and blocking access to the red soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the red soda can now that it is accessible."
     }
   ]
 }
@@ -335,32 +564,19 @@ Loading YOLO-World model: /home/b401/Documents/pick_place_occlusion_noetic/model
 [YOLO-World] Target dari action plan: green soda can
 [YOLO-World] Dynamic classes: ['green soda can', 'can']
 
-image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg: 480x640 2 green soda cans, 36.1ms
-Speed: 0.7ms preprocess, 36.1ms inference, 1.0ms postprocess per image at shape (1, 3, 480, 640)
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg: 480x640 1 green soda can, 35.5ms
+Speed: 0.8ms preprocess, 35.5ms inference, 0.9ms postprocess per image at shape (1, 3, 480, 640)
 [YOLO-World] Detections saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/detections_yolo.json
 [YOLO-World] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/yolo_world_result.jpg
 [
   {
     "label": "green soda can",
-    "confidence": 0.9180293679237366,
+    "confidence": 0.7442415952682495,
     "bbox": [
-      325,
-      136,
-      385,
-      289
-    ],
-    "bbox_format": "xyxy_pixel",
-    "source": "yolo_world",
-    "target_query": "green soda can"
-  },
-  {
-    "label": "green soda can",
-    "confidence": 0.5046125650405884,
-    "bbox": [
-      379,
-      149,
-      412,
-      282
+      366,
+      141,
+      424,
+      287
     ],
     "bbox_format": "xyxy_pixel",
     "source": "yolo_world",
@@ -370,12 +586,12 @@ Speed: 0.7ms preprocess, 36.1ms inference, 1.0ms postprocess per image at shape 
 [YOLO-World] Best detection:
 {
   "label": "green soda can",
-  "confidence": 0.9180293679237366,
+  "confidence": 0.7442415952682495,
   "bbox": [
-    325,
-    136,
-    385,
-    289
+    366,
+    141,
+    424,
+    287
   ],
   "bbox_format": "xyxy_pixel",
   "source": "yolo_world",
@@ -383,49 +599,49 @@ Speed: 0.7ms preprocess, 36.1ms inference, 1.0ms postprocess per image at shape 
 }
 Loading FastSAM model: /home/b401/Documents/pick_place_occlusion_noetic/models/FastSAM-x.pt
 
-[FastSAM] Segmenting bbox: [325, 136, 385, 289]
+[FastSAM] Segmenting bbox: [366, 141, 424, 287]
 
-image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg: 480x640 1 object, 581.5ms
-Speed: 0.8ms preprocess, 581.5ms inference, 29.6ms postprocess per image at shape (1, 3, 480, 640)
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg: 480x640 1 object, 523.2ms
+Speed: 0.8ms preprocess, 523.2ms inference, 22.4ms postprocess per image at shape (1, 3, 480, 640)
 [FastSAM] Mask saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/fastsam_mask.png
 [FastSAM] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/fastsam_result.jpg
 [DepthEngine] Mask asli shape: (480, 640)
 [DepthEngine] Depth shape: (480, 640)
 [DepthEngine] Mask asli unique values: [  0 255]
-[DepthEngine] Pixel mask setelah binary: 8383
+[DepthEngine] Pixel mask setelah binary: 7715
 
-[DepthEngine] Jumlah pixel mask: 8383
-[DepthEngine] Jumlah depth valid pada mask: 6333
-[DepthEngine] Median depth valid: 0.3760000169277191
-[DepthEngine] Mean depth valid: 0.3769427239894867
+[DepthEngine] Jumlah pixel mask: 7715
+[DepthEngine] Jumlah depth valid pada mask: 5940
+[DepthEngine] Median depth valid: 0.39400002360343933
+[DepthEngine] Mean depth valid: 0.39555105566978455
 [DepthEngine] Object position saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/object_position_camera.json
 {
   "object": "green soda can",
   "pixel_center_uv": [
-    355,
+    394,
     213
   ],
   "pixel_center_uv_mean": [
-    355,
-    212
+    394,
+    213
   ],
-  "median_depth_m": 0.3760000169277191,
-  "mean_depth_m": 0.3769427239894867,
+  "median_depth_m": 0.39400002360343933,
+  "mean_depth_m": 0.39555105566978455,
   "point_camera_m": [
-    0.027575993910431862,
-    -0.03117850050330162,
-    0.3760000169277191
+    0.06865587830543518,
+    -0.032584428787231445,
+    0.39400002360343933
   ],
   "point_camera_mean_m": [
-    0.027761857956647873,
-    -0.03125903010368347,
-    0.3767036497592926
+    0.06915004551410675,
+    -0.03184977173805237,
+    0.39520248770713806
   ],
   "debug": {
-    "mask_pixels": 8383,
-    "valid_depth_pixels": 6333,
-    "valid_depth_ratio": 0.7554574734581891,
-    "used_pixels_after_depth_fill": 8383,
+    "mask_pixels": 7715,
+    "valid_depth_pixels": 5940,
+    "valid_depth_ratio": 0.7699287103046014,
+    "used_pixels_after_depth_fill": 7715,
     "min_depth_m": 0.1,
     "max_depth_m": 2.0,
     "depth_scale": 0.0010000000474974513,
@@ -445,33 +661,33 @@ Depth shape: (480, 640)
 Mask shape: (480, 640)
 Depth raw dtype: float32
 Depth raw min: 0.0
-Depth raw max: 65535.0
+Depth raw max: 13216.0
 Depth meter min: 0.0
-Depth meter max: 65.53500366210938
+Depth meter max: 13.2160005569458
 [PointCloud] Clean mask saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/fastsam_mask_clean_debug.png
 
 ========== POINT CLOUD MASK INFO ==========
-Mask pixels: 8383
-Depth values in mask: 8383
-Valid depth in mask: 6333
-Zero depth in mask: 2050
-Depth in mask min: 0.367000013589859
-Depth in mask max: 0.6240000128746033
-Depth in mask median: 0.3760000169277191
-Depth in mask mean: 0.3769427239894867
+Mask pixels: 7715
+Depth values in mask: 7715
+Valid depth in mask: 5940
+Zero depth in mask: 1775
+Depth in mask min: 0.38600000739097595
+Depth in mask max: 0.6350000500679016
+Depth in mask median: 0.39400002360343933
+Depth in mask mean: 0.39555105566978455
 
 ========== POINT CLOUD FILTER ==========
 Method: valid_depth_only_near_median
-Median object depth: 0.3760000169277191
+Median object depth: 0.39400002360343933
 Depth tolerance: 0.25
-Final valid points: 6333
+Final valid points: 5940
 
 ========== POINT CLOUD OBJECT CENTER CAMERA FRAME ==========
-Mean center  X Y Z: [   0.024635   -0.028557     0.37686]
-Median center X Y Z: [   0.023825   -0.029067       0.376]
+Mean center  X Y Z: [   0.066773     -0.0297     0.39535]
+Median center X Y Z: [   0.065813   -0.031482       0.394]
 
 [PointCloud] Point cloud saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/masked_object_pointcloud_valid_only.ply
-[PointCloud] Total points after filtering: 6331
+[PointCloud] Total points after filtering: 5935
 [PointCloud] Info saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/masked_object_pointcloud_valid_only_info.json
 
 ========== POINT CLOUD RAW DATA INFO ==========
@@ -480,32 +696,32 @@ Depth shape: (480, 640)
 Mask shape: (480, 640)
 Depth raw dtype: float32
 Depth raw min: 0.0
-Depth raw max: 65535.0
+Depth raw max: 13216.0
 Depth meter min: 0.0
-Depth meter max: 65.53500366210938
+Depth meter max: 13.2160005569458
 
 ========== POINT CLOUD MASK INFO ==========
-Mask pixels: 8383
-Depth values in mask: 8383
-Valid depth in mask: 6333
-Zero depth in mask: 2050
-Depth in mask min: 0.367000013589859
-Depth in mask max: 0.6240000128746033
-Depth in mask median: 0.3760000169277191
-Depth in mask mean: 0.3769427239894867
+Mask pixels: 7715
+Depth values in mask: 7715
+Valid depth in mask: 5940
+Zero depth in mask: 1775
+Depth in mask min: 0.38600000739097595
+Depth in mask max: 0.6350000500679016
+Depth in mask median: 0.39400002360343933
+Depth in mask mean: 0.39555105566978455
 
 ========== POINT CLOUD FILTER ==========
 Method: median_fill_all_mask_pixels
-Median object depth: 0.3760000169277191
+Median object depth: 0.39400002360343933
 Depth tolerance: 0.25
-Final valid points: 8383
+Final valid points: 7715
 
 ========== POINT CLOUD OBJECT CENTER CAMERA FRAME ==========
-Mean center  X Y Z: [   0.027757   -0.031225     0.37665]
-Median center X Y Z: [   0.027576   -0.031179       0.376]
+Mean center  X Y Z: [   0.069119   -0.031761     0.39504]
+Median center X Y Z: [   0.068656   -0.032584       0.394]
 
 [PointCloud] Point cloud saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/masked_object_pointcloud_median_fill.ply
-[PointCloud] Total points after filtering: 8381
+[PointCloud] Total points after filtering: 7710
 [PointCloud] Info saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/masked_object_pointcloud_median_fill_info.json
 
 ========== GRASPNET CUDA CHECK ==========
@@ -548,20 +764,20 @@ OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_Y
 ========== D455 DATA INFO ==========
 RGB shape: (480, 640, 3)
 Depth raw shape: (480, 640)
-Depth raw min/max: 0.0 65535.0
+Depth raw min/max: 0.0 13216.0
 Depth scale: 0.0010000000474974513
-Depth meter min/max: 0.0 65.53500366210938
-Mask pixels: 9243
-Workspace valid pixels: 6490
+Depth meter min/max: 0.0 13.2160005569458
+Mask pixels: 8535
+Workspace valid pixels: 6103
 fx fy cx cy: 385.8294677734375 385.38531494140625 326.5517883300781 244.87197875976562
 factor_depth: 999.999952502551
 ===================================
 
 [INFO] Workspace mask debug saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/graspnet_workspace_mask_debug.png
-[INFO] cloud_masked: (6490, 3)
-[INFO] object_center_camera median: [ 0.02369863 -0.02835037  0.37600002]
+[INFO] cloud_masked: (6103, 3)
+[INFO] object_center_camera median: [ 0.0658164  -0.03086588  0.39400002]
 [INFO] Raw grasp candidates: 1024
-[INFO] Grasp after target filtering: 842
+[INFO] Grasp after target filtering: 848
 [INFO] Candidates saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/grasp_candidates_camera.json
 [INFO] Best grasp saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/best_grasp_camera.json
 
@@ -570,53 +786,53 @@ factor_depth: 999.999952502551
   "success": true,
   "method": "graspnet_baseline_d455",
   "best_grasp": {
-    "score": 0.45299816131591797,
+    "score": 0.4350379705429077,
     "translation_camera": [
-      0.044290367513895035,
-      -0.051584385335445404,
-      0.3760000169277191
+      0.05647870525717735,
+      -0.07431183755397797,
+      0.3930000364780426
     ],
     "rotation_matrix_camera": [
       [
-        0.4980229139328003,
-        -0.6140506863594055,
-        -0.6123030185699463
+        0.05689249932765961,
+        -0.11523131281137466,
+        -0.9917080998420715
       ],
       [
-        -0.3856969475746155,
-        0.47555533051490784,
-        -0.790623128414154
+        -0.43903547525405884,
+        0.8892316222190857,
+        -0.1285107433795929
       ],
       [
-        0.7766667008399963,
-        0.6299118399620056,
-        -2.7534321489497415e-08
+        0.8966667056083679,
+        0.44270631670951843,
+        -1.9351308111481558e-08
       ]
     ],
-    "width": 0.06811612099409103,
+    "width": 0.07439441233873367,
     "height": 0.019999999552965164,
     "depth": 0.029999999329447746,
     "object_id": -1,
     "frame": "RealSense D455 aligned color camera frame",
     "rank": 0,
-    "distance_to_object_center": 0.03104575574059504
+    "distance_to_object_center": 0.04444934117706734
   },
   "object_center_camera": [
-    0.02369863435283546,
-    -0.02835036986397751,
-    0.3760000169277191
+    0.06581640076241288,
+    -0.03086587802405298,
+    0.39400002360343933
   ],
   "frame": "RealSense D455 aligned color camera frame",
   "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
   "meta": {
     "object_center_camera": [
-      0.02369863435283546,
-      -0.02835036986397751,
-      0.3760000169277191
+      0.06581640076241288,
+      -0.03086587802405298,
+      0.39400002360343933
     ],
-    "num_mask_points": 9243,
-    "num_workspace_points": 6490,
-    "num_cloud_masked": 6490,
+    "num_mask_points": 8535,
+    "num_workspace_points": 6103,
+    "num_cloud_masked": 6103,
     "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
     "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
     "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
@@ -653,53 +869,53 @@ The default value of dim will change to agree with that of linalg.cross in a fut
   "success": true,
   "method": "graspnet_baseline_d455",
   "best_grasp": {
-    "score": 0.45299816131591797,
+    "score": 0.4350379705429077,
     "translation_camera": [
-      0.044290367513895035,
-      -0.051584385335445404,
-      0.3760000169277191
+      0.05647870525717735,
+      -0.07431183755397797,
+      0.3930000364780426
     ],
     "rotation_matrix_camera": [
       [
-        0.4980229139328003,
-        -0.6140506863594055,
-        -0.6123030185699463
+        0.05689249932765961,
+        -0.11523131281137466,
+        -0.9917080998420715
       ],
       [
-        -0.3856969475746155,
-        0.47555533051490784,
-        -0.790623128414154
+        -0.43903547525405884,
+        0.8892316222190857,
+        -0.1285107433795929
       ],
       [
-        0.7766667008399963,
-        0.6299118399620056,
-        -2.7534321489497415e-08
+        0.8966667056083679,
+        0.44270631670951843,
+        -1.9351308111481558e-08
       ]
     ],
-    "width": 0.06811612099409103,
+    "width": 0.07439441233873367,
     "height": 0.019999999552965164,
     "depth": 0.029999999329447746,
     "object_id": -1,
     "frame": "RealSense D455 aligned color camera frame",
     "rank": 0,
-    "distance_to_object_center": 0.03104575574059504
+    "distance_to_object_center": 0.04444934117706734
   },
   "object_center_camera": [
-    0.02369863435283546,
-    -0.02835036986397751,
-    0.3760000169277191
+    0.06581640076241288,
+    -0.03086587802405298,
+    0.39400002360343933
   ],
   "frame": "RealSense D455 aligned color camera frame",
   "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
   "meta": {
     "object_center_camera": [
-      0.02369863435283546,
-      -0.02835036986397751,
-      0.3760000169277191
+      0.06581640076241288,
+      -0.03086587802405298,
+      0.39400002360343933
     ],
-    "num_mask_points": 9243,
-    "num_workspace_points": 6490,
-    "num_cloud_masked": 6490,
+    "num_mask_points": 8535,
+    "num_workspace_points": 6103,
+    "num_cloud_masked": 6103,
     "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
     "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
     "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
@@ -723,36 +939,36 @@ The default value of dim will change to agree with that of linalg.cross in a fut
 
 ========== BEST GRASP CAMERA ==========
 {
-  "score": 0.45299816131591797,
+  "score": 0.4350379705429077,
   "translation_camera": [
-    0.044290367513895035,
-    -0.051584385335445404,
-    0.3760000169277191
+    0.05647870525717735,
+    -0.07431183755397797,
+    0.3930000364780426
   ],
   "rotation_matrix_camera": [
     [
-      0.4980229139328003,
-      -0.6140506863594055,
-      -0.6123030185699463
+      0.05689249932765961,
+      -0.11523131281137466,
+      -0.9917080998420715
     ],
     [
-      -0.3856969475746155,
-      0.47555533051490784,
-      -0.790623128414154
+      -0.43903547525405884,
+      0.8892316222190857,
+      -0.1285107433795929
     ],
     [
-      0.7766667008399963,
-      0.6299118399620056,
-      -2.7534321489497415e-08
+      0.8966667056083679,
+      0.44270631670951843,
+      -1.9351308111481558e-08
     ]
   ],
-  "width": 0.06811612099409103,
+  "width": 0.07439441233873367,
   "height": 0.019999999552965164,
   "depth": 0.029999999329447746,
   "object_id": -1,
   "frame": "RealSense D455 aligned color camera frame",
   "rank": 0,
-  "distance_to_object_center": 0.03104575574059504
+  "distance_to_object_center": 0.04444934117706734
 }
 ======================================
 
@@ -764,10 +980,10 @@ Input grasp camera: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_
 Transform: /home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json
 Output grasp base: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/best_grasp_base.json
 -----------------------------------------
-translation_base: [-0.6125139075302528, 0.5387823028904432, 0.26294808443788076]
-pre_grasp_translation_base: [-0.6125139075302528, 0.5387823028904432, 0.36294808443788074]
-score: 0.45299816131591797
-width: 0.06811612099409103
+translation_base: [-0.6157416611905492, 0.5588653687297847, 0.2861934151260533]
+pre_grasp_translation_base: [-0.6157416611905492, 0.5588653687297847, 0.3861934151260533]
+score: 0.4350379705429077
+width: 0.07439441233873367
 =========================================
 
 
@@ -782,8 +998,8 @@ FULL D455 PIPELINE SELESAI.
       "action": "remove",
       "target": "green soda can",
       "target_role": "search_occluder",
-      "explanation": "The green sprite is blocking access to the red coke.",
-      "step_intent": "clear_obj_to_reveal_target"
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The green soda can is in front of and blocking access to the red soda can."
     },
     "final_plan": [
       {
@@ -791,26 +1007,26 @@ FULL D455 PIPELINE SELESAI.
         "action": "remove",
         "target": "green soda can",
         "target_role": "search_occluder",
-        "explanation": "The green sprite is blocking access to the red coke.",
-        "step_intent": "clear_obj_to_reveal_target"
+        "step_intent": "clear_occluder_to_reveal_primary_target",
+        "explanation": "The green soda can is in front of and blocking access to the red soda can."
       },
       {
         "step": 2,
         "action": "pick",
         "target": "red soda can",
         "target_role": "primary_target",
-        "explanation": "Target is now accessible.",
-        "step_intent": "pickup_obj_as_requested"
+        "step_intent": "pick_primary_target",
+        "explanation": "Pick the red soda can now that it is accessible."
       }
     ],
     "best_detection": {
       "label": "green soda can",
-      "confidence": 0.9180293679237366,
+      "confidence": 0.7442415952682495,
       "bbox": [
-        325,
-        136,
-        385,
-        289
+        366,
+        141,
+        424,
+        287
       ],
       "bbox_format": "xyxy_pixel",
       "source": "yolo_world",
@@ -819,25 +1035,12 @@ FULL D455 PIPELINE SELESAI.
     "all_detections": [
       {
         "label": "green soda can",
-        "confidence": 0.9180293679237366,
+        "confidence": 0.7442415952682495,
         "bbox": [
-          325,
-          136,
-          385,
-          289
-        ],
-        "bbox_format": "xyxy_pixel",
-        "source": "yolo_world",
-        "target_query": "green soda can"
-      },
-      {
-        "label": "green soda can",
-        "confidence": 0.5046125650405884,
-        "bbox": [
-          379,
-          149,
-          412,
-          282
+          366,
+          141,
+          424,
+          287
         ],
         "bbox_format": "xyxy_pixel",
         "source": "yolo_world",
@@ -848,30 +1051,30 @@ FULL D455 PIPELINE SELESAI.
     "object_position": {
       "object": "green soda can",
       "pixel_center_uv": [
-        355,
+        394,
         213
       ],
       "pixel_center_uv_mean": [
-        355,
-        212
+        394,
+        213
       ],
-      "median_depth_m": 0.3760000169277191,
-      "mean_depth_m": 0.3769427239894867,
+      "median_depth_m": 0.39400002360343933,
+      "mean_depth_m": 0.39555105566978455,
       "point_camera_m": [
-        0.027575993910431862,
-        -0.03117850050330162,
-        0.3760000169277191
+        0.06865587830543518,
+        -0.032584428787231445,
+        0.39400002360343933
       ],
       "point_camera_mean_m": [
-        0.027761857956647873,
-        -0.03125903010368347,
-        0.3767036497592926
+        0.06915004551410675,
+        -0.03184977173805237,
+        0.39520248770713806
       ],
       "debug": {
-        "mask_pixels": 8383,
-        "valid_depth_pixels": 6333,
-        "valid_depth_ratio": 0.7554574734581891,
-        "used_pixels_after_depth_fill": 8383,
+        "mask_pixels": 7715,
+        "valid_depth_pixels": 5940,
+        "valid_depth_ratio": 0.7699287103046014,
+        "used_pixels_after_depth_fill": 7715,
         "min_depth_m": 0.1,
         "max_depth_m": 2.0,
         "depth_scale": 0.0010000000474974513,
@@ -889,21 +1092,21 @@ FULL D455 PIPELINE SELESAI.
       "clean_mask_path": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/fastsam_mask_clean_debug.png",
       "method": "valid_depth_only_near_median",
       "use_median_fill": false,
-      "mask_pixels": 8383,
-      "valid_depth_pixels": 6333,
-      "zero_depth_pixels": 2050,
-      "final_points": 6331,
-      "median_depth_m": 0.3760000169277191,
-      "mean_depth_m": 0.3769427239894867,
+      "mask_pixels": 7715,
+      "valid_depth_pixels": 5940,
+      "zero_depth_pixels": 1775,
+      "final_points": 5935,
+      "median_depth_m": 0.39400002360343933,
+      "mean_depth_m": 0.39555105566978455,
       "center_mean_camera_m": [
-        0.024634998490787107,
-        -0.028556873444594386,
-        0.3768648090539169
+        0.06677267927905543,
+        -0.02970006187048132,
+        0.39534963893107034
       ],
       "center_median_camera_m": [
-        0.02382536418735981,
-        -0.029066994786262512,
-        0.3760000169277191
+        0.06581300497055054,
+        -0.031481966376304626,
+        0.39400002360343933
       ],
       "frame": "RealSense D455 aligned color camera frame",
       "note": "Point cloud masih camera frame, belum base frame UR5."
@@ -913,21 +1116,21 @@ FULL D455 PIPELINE SELESAI.
       "clean_mask_path": null,
       "method": "median_fill_all_mask_pixels",
       "use_median_fill": true,
-      "mask_pixels": 8383,
-      "valid_depth_pixels": 6333,
-      "zero_depth_pixels": 2050,
-      "final_points": 8381,
-      "median_depth_m": 0.3760000169277191,
-      "mean_depth_m": 0.3769427239894867,
+      "mask_pixels": 7715,
+      "valid_depth_pixels": 5940,
+      "zero_depth_pixels": 1775,
+      "final_points": 7710,
+      "median_depth_m": 0.39400002360343933,
+      "mean_depth_m": 0.39555105566978455,
       "center_mean_camera_m": [
-        0.02775727271335741,
-        -0.031224997875496964,
-        0.37665328013628113
+        0.06911912117535116,
+        -0.03176105345856456,
+        0.3950389298251631
       ],
       "center_median_camera_m": [
-        0.027575993910431862,
-        -0.03117850050330162,
-        0.3760000169277191
+        0.06865587830543518,
+        -0.032584428787231445,
+        0.39400002360343933
       ],
       "frame": "RealSense D455 aligned color camera frame",
       "note": "Point cloud masih camera frame, belum base frame UR5."
@@ -937,53 +1140,53 @@ FULL D455 PIPELINE SELESAI.
     "success": true,
     "method": "graspnet_baseline_d455",
     "best_grasp": {
-      "score": 0.45299816131591797,
+      "score": 0.4350379705429077,
       "translation_camera": [
-        0.044290367513895035,
-        -0.051584385335445404,
-        0.3760000169277191
+        0.05647870525717735,
+        -0.07431183755397797,
+        0.3930000364780426
       ],
       "rotation_matrix_camera": [
         [
-          0.4980229139328003,
-          -0.6140506863594055,
-          -0.6123030185699463
+          0.05689249932765961,
+          -0.11523131281137466,
+          -0.9917080998420715
         ],
         [
-          -0.3856969475746155,
-          0.47555533051490784,
-          -0.790623128414154
+          -0.43903547525405884,
+          0.8892316222190857,
+          -0.1285107433795929
         ],
         [
-          0.7766667008399963,
-          0.6299118399620056,
-          -2.7534321489497415e-08
+          0.8966667056083679,
+          0.44270631670951843,
+          -1.9351308111481558e-08
         ]
       ],
-      "width": 0.06811612099409103,
+      "width": 0.07439441233873367,
       "height": 0.019999999552965164,
       "depth": 0.029999999329447746,
       "object_id": -1,
       "frame": "RealSense D455 aligned color camera frame",
       "rank": 0,
-      "distance_to_object_center": 0.03104575574059504
+      "distance_to_object_center": 0.04444934117706734
     },
     "object_center_camera": [
-      0.02369863435283546,
-      -0.02835036986397751,
-      0.3760000169277191
+      0.06581640076241288,
+      -0.03086587802405298,
+      0.39400002360343933
     ],
     "frame": "RealSense D455 aligned color camera frame",
     "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
     "meta": {
       "object_center_camera": [
-        0.02369863435283546,
-        -0.02835036986397751,
-        0.3760000169277191
+        0.06581640076241288,
+        -0.03086587802405298,
+        0.39400002360343933
       ],
-      "num_mask_points": 9243,
-      "num_workspace_points": 6490,
-      "num_cloud_masked": 6490,
+      "num_mask_points": 8535,
+      "num_workspace_points": 6103,
+      "num_cloud_masked": 6103,
       "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
       "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
       "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
@@ -1006,29 +1209,29 @@ FULL D455 PIPELINE SELESAI.
     "success": true,
     "method": "camera_to_base_transform",
     "translation_base": [
-      -0.6125139075302528,
-      0.5387823028904432,
-      0.26294808443788076
+      -0.6157416611905492,
+      0.5588653687297847,
+      0.2861934151260533
     ],
     "rotation_matrix_base": [
       [
-        -0.19494781682798,
-        -0.8839397769006305,
-        -0.4250245404921223
+        -0.5908573060081469,
+        -0.4030020238413873,
+        -0.6989113169523333
       ],
       [
-        0.8914890621751734,
-        0.02098956507752453,
-        -0.452555844388423
+        0.6624794322936512,
+        0.2520590874201856,
+        -0.7053986328550518
       ],
       [
-        0.40895320404688484,
-        -0.46712948193690396,
-        0.7839306509013377
+        0.4604440592325484,
+        -0.8798042972671694,
+        0.11804959236917206
       ]
     ],
-    "score": 0.45299816131591797,
-    "width": 0.06811612099409103,
+    "score": 0.4350379705429077,
+    "width": 0.07439441233873367,
     "height": 0.019999999552965164,
     "depth": 0.029999999329447746,
     "object_id": -1,
@@ -1037,38 +1240,38 @@ FULL D455 PIPELINE SELESAI.
     "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/best_grasp_camera.json",
     "source_transform": "/home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json",
     "rotation_validation": {
-      "determinant": 1.0000000420106705,
-      "orthonormal_error": 1.637036499870611e-07
+      "determinant": 1.0000000343376718,
+      "orthonormal_error": 9.52387993723273e-08
     },
     "camera_grasp_used": {
       "translation_camera": [
-        0.044290367513895035,
-        -0.051584385335445404,
-        0.3760000169277191
+        0.05647870525717735,
+        -0.07431183755397797,
+        0.3930000364780426
       ],
       "rotation_matrix_camera": [
         [
-          0.4980229139328003,
-          -0.6140506863594055,
-          -0.6123030185699463
+          0.05689249932765961,
+          -0.11523131281137466,
+          -0.9917080998420715
         ],
         [
-          -0.3856969475746155,
-          0.47555533051490784,
-          -0.790623128414154
+          -0.43903547525405884,
+          0.8892316222190857,
+          -0.1285107433795929
         ],
         [
-          0.7766667008399963,
-          0.6299118399620056,
-          -2.7534321489497415e-08
+          0.8966667056083679,
+          0.44270631670951843,
+          -1.9351308111481558e-08
         ]
       ]
     },
     "pre_grasp_preview": {
       "translation_base": [
-        -0.6125139075302528,
-        0.5387823028904432,
-        0.36294808443788074
+        -0.6157416611905492,
+        0.5588653687297847,
+        0.3861934151260533
       ],
       "offset_z_m": 0.1,
       "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
@@ -1083,7 +1286,6 @@ FULL D455 PIPELINE SELESAI.
     "fastsam_mask": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/fastsam_mask.png"
   }
 }
-[OK] Vision script selesai dengan --test_name.
 [OK] FastSAM mask:
   /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/fastsam_mask.png
 
@@ -1126,21 +1328,21 @@ OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_Y
 ========== D455 DATA INFO ==========
 RGB shape: (480, 640, 3)
 Depth raw shape: (480, 640)
-Depth raw min/max: 0.0 65535.0
+Depth raw min/max: 0.0 13216.0
 Depth scale: 0.0010000000474974513
-Depth meter min/max: 0.0 65.53500366210938
-Mask pixels: 10135
-Workspace valid pixels: 6813
+Depth meter min/max: 0.0 13.2160005569458
+Mask pixels: 9387
+Workspace valid pixels: 6334
 fx fy cx cy: 385.8294677734375 385.38531494140625 326.5517883300781 244.87197875976562
 factor_depth: 999.999952502551
 ===================================
 
 [INFO] Workspace mask debug saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/graspnet_workspace_mask_debug.png
-[INFO] cloud_masked: (6813, 3)
-[INFO] object_center_camera median: [ 0.02460202 -0.02733321  0.37600002]
-[INFO] Raw grasp candidates: 1020
-[INFO] Grasp after collision filtering: 350
-[INFO] Grasp after target filtering: 234
+[INFO] cloud_masked: (6334, 3)
+[INFO] object_center_camera median: [ 0.06614708 -0.03135705  0.39400002]
+[INFO] Raw grasp candidates: 1024
+[INFO] Grasp after collision filtering: 353
+[INFO] Grasp after target filtering: 214
 [INFO] Candidates saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/grasp_candidates_camera.json
 [INFO] Best grasp saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/best_grasp_camera.json
 
@@ -1149,11 +1351,11 @@ factor_depth: 999.999952502551
   "success": true,
   "method": "graspnet_baseline_d455",
   "best_grasp": {
-    "score": 0.41815024614334106,
+    "score": 0.43024516105651855,
     "translation_camera": [
-      0.02584296278655529,
-      0.03338545933365822,
-      0.37700003385543823
+      0.04642628878355026,
+      -0.08247695863246918,
+      0.40300002694129944
     ],
     "rotation_matrix_camera": [
       [
@@ -1172,30 +1374,30 @@ factor_depth: 999.999952502551
         -2.7534321489497415e-08
       ]
     ],
-    "width": 0.06655711680650711,
+    "width": 0.07575973123311996,
     "height": 0.019999999552965164,
-    "depth": 0.019999999552965164,
+    "depth": 0.029999999329447746,
     "object_id": -1,
     "frame": "RealSense D455 aligned color camera frame",
     "rank": 0,
-    "distance_to_object_center": 0.06073957767384879
+    "distance_to_object_center": 0.05552615879797632
   },
   "object_center_camera": [
-    0.02460201825156085,
-    -0.027333205990958835,
-    0.3760000169277191
+    0.0661470824169683,
+    -0.03135705498188775,
+    0.39400002360343933
   ],
   "frame": "RealSense D455 aligned color camera frame",
   "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
   "meta": {
     "object_center_camera": [
-      0.02460201825156085,
-      -0.027333205990958835,
-      0.3760000169277191
+      0.0661470824169683,
+      -0.03135705498188775,
+      0.39400002360343933
     ],
-    "num_mask_points": 10135,
-    "num_workspace_points": 6813,
-    "num_cloud_masked": 6813,
+    "num_mask_points": 9387,
+    "num_workspace_points": 6334,
+    "num_cloud_masked": 6334,
     "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
     "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
     "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
@@ -1239,19 +1441,19 @@ Input grasp camera: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_
 Transform: /home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json
 Output grasp base: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/best_grasp_base.json
 -----------------------------------------
-translation_base: [-0.6270212672147683, 0.5284576054051546, 0.17783569747251018]
-pre_grasp_translation_base: [-0.6270212672147683, 0.5284576054051546, 0.2778356974725102]
-score: 0.41815024614334106
-width: 0.06655711680650711
+translation_base: [-0.6298455776430869, 0.5586069500367268, 0.29448394278898377]
+pre_grasp_translation_base: [-0.6298455776430869, 0.5586069500367268, 0.3944839427889838]
+score: 0.43024516105651855
+width: 0.07575973123311996
 =========================================
 
 {
   "success": true,
   "method": "camera_to_base_transform",
   "translation_base": [
-    -0.6270212672147683,
-    0.5284576054051546,
-    0.17783569747251018
+    -0.6298455776430869,
+    0.5586069500367268,
+    0.29448394278898377
   ],
   "rotation_matrix_base": [
     [
@@ -1270,10 +1472,10 @@ width: 0.06655711680650711
       0.7839306509013377
     ]
   ],
-  "score": 0.41815024614334106,
-  "width": 0.06655711680650711,
+  "score": 0.43024516105651855,
+  "width": 0.07575973123311996,
   "height": 0.019999999552965164,
-  "depth": 0.019999999552965164,
+  "depth": 0.029999999329447746,
   "object_id": -1,
   "frame": "UR5 base frame",
   "source_frame": "RealSense D455 aligned color camera frame",
@@ -1283,9 +1485,9 @@ width: 0.06655711680650711
   },
   "camera_grasp_used": {
     "translation_camera": [
-      0.02584296278655529,
-      0.03338545933365822,
-      0.37700003385543823
+      0.04642628878355026,
+      -0.08247695863246918,
+      0.40300002694129944
     ],
     "rotation_matrix_camera": [
       [
@@ -1308,9 +1510,9 @@ width: 0.06655711680650711
   "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
   "pre_grasp_preview": {
     "translation_base": [
-      -0.6270212672147683,
-      0.5284576054051546,
-      0.2778356974725102
+      -0.6298455776430869,
+      0.5586069500367268,
+      0.3944839427889838
     ],
     "offset_z_m": 0.1,
     "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
@@ -1347,9 +1549,9 @@ pregrasp_z: 0.13
   "source_target": "gripper_tip",
   "active_test_name": "TC_07_GMN_YOLO",
   "translation_tool0_pregrasp": [
-    -0.5075500632493108,
-    0.4077945613921761,
-    0.3160247897644609
+    -0.5103743736776295,
+    0.4379439060237483,
+    0.4326730350809345
   ],
   "quaternion_tool0_xyzw": [
     -0.28340175782789895,
@@ -1364,14 +1566,14 @@ pregrasp_z: 0.13
   ],
   "orientation_source": "fixed_rpy",
   "gripper_tip_grasp_base": [
-    -0.6270212672147683,
-    0.5284576054051546,
-    0.17783569747251018
+    -0.6298455776430869,
+    0.5586069500367268,
+    0.29448394278898377
   ],
   "gripper_tip_pregrasp_base": [
-    -0.6270212672147683,
-    0.5284576054051546,
-    0.30783569747251016
+    -0.6298455776430869,
+    0.5586069500367268,
+    0.42448394278898377
   ],
   "tool0_to_gripper_tip_offset_tool_frame": [
     0.0,
@@ -1379,9 +1581,9 @@ pregrasp_z: 0.13
     0.17
   ],
   "pregrasp_z_m": 0.13,
-  "score": 0.41815024614334106,
-  "width": 0.06655711680650711,
-  "depth": 0.019999999552965164,
+  "score": 0.43024516105651855,
+  "width": 0.07575973123311996,
+  "depth": 0.029999999329447746,
   "height": 0.019999999552965164,
   "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/best_grasp_base.json",
   "note": "Kirim translation_tool0_pregrasp + quaternion_tool0_xyzw ke MoveIt sebagai target tool0. Jangan kirim gripper_tip_grasp_base langsung ke MoveIt."
@@ -1392,14 +1594,14 @@ pregrasp_z: 0.13
   /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json
 [OK] Nudge script:
   robot_executor/nudge_tool0_target.py
-[RUN] python3 robot_executor/nudge_tool0_target.py --dx -0.04 --dy 0.04 --dz 0.0
+[RUN] python3 robot_executor/nudge_tool0_target.py --dx -0.05 --dy 0.035 --dz 0.0
 
 ========== NUDGE TOOL0 TARGET ==========
 Input : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json
 Output: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json
-Old translation_tool0_pregrasp: [-0.5075500632493108, 0.4077945613921761, 0.3160247897644609]
-Nudge dx dy dz: -0.04 0.04 0.0
-New translation_tool0_pregrasp: [-0.5475500632493109, 0.4477945613921761, 0.3160247897644609]
+Old translation_tool0_pregrasp: [-0.5103743736776295, 0.4379439060237483, 0.4326730350809345]
+Nudge dx dy dz: -0.05 0.035 0.0
+New translation_tool0_pregrasp: [-0.5603743736776295, 0.47294390602374825, 0.4326730350809345]
 =======================================
 
 [OK] Saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json
@@ -1407,9 +1609,9 @@ New translation_tool0_pregrasp: [-0.5475500632493109, 0.4477945613921761, 0.3160
   /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json
 [CHECK BASE] success: True
 [CHECK BASE] frame: base
-[CHECK BASE] translation_tool0_pregrasp: [-0.5475500632493109, 0.4477945613921761, 0.3160247897644609]
+[CHECK BASE] translation_tool0_pregrasp: [-0.5603743736776295, 0.47294390602374825, 0.4326730350809345]
 [CHECK BASE] quaternion_tool0_xyzw: [-0.28340175782789895, 0.6661598976406625, 0.6411123643592581, -0.25473392137899675]
-[CHECK BASE] manual_nudge_base_m: {'dx': -0.04, 'dy': 0.04, 'dz': 0.0}
+[CHECK BASE] manual_nudge_base_m: {'dx': -0.05, 'dy': 0.035, 'dz': 0.0}
 [OK] Base to base_link conversion script:
   perception/convert_tool0_target_base_to_base_link.py
 [RUN] python perception/convert_tool0_target_base_to_base_link.py --input /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json --output /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json
@@ -1420,18 +1622,18 @@ Output: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/
 Input frame : base
 Output frame: base_link
 translation_tool0_pregrasp original base:
-  [-0.5475500632493109, 0.4477945613921761, 0.3160247897644609]
+  [-0.5603743736776295, 0.47294390602374825, 0.4326730350809345]
 translation_tool0_pregrasp new base_link:
-  [0.5475500632493109, -0.4477945613921761, 0.3160247897644609]
+  [0.5603743736776295, -0.47294390602374825, 0.4326730350809345]
 ========================================================
 
 [OK] tool0_pregrasp_target_base_link.json:
   /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json
 [CHECK BASE_LINK] success: True
 [CHECK BASE_LINK] frame: base_link
-[CHECK BASE_LINK] translation_tool0_pregrasp: [0.5475500632493109, -0.4477945613921761, 0.3160247897644609]
-[CHECK BASE_LINK] original base: [-0.5475500632493109, 0.4477945613921761, 0.3160247897644609]
-[CHECK BASE_LINK] manual_nudge_base_m: {'dx': -0.04, 'dy': 0.04, 'dz': 0.0}
+[CHECK BASE_LINK] translation_tool0_pregrasp: [0.5603743736776295, -0.47294390602374825, 0.4326730350809345]
+[CHECK BASE_LINK] original base: [-0.5603743736776295, 0.47294390602374825, 0.4326730350809345]
+[CHECK BASE_LINK] manual_nudge_base_m: {'dx': -0.05, 'dy': 0.035, 'dz': 0.0}
 
 ============================================================
 STEP 5: ROS NOETIC SYSTEM PYTHON
@@ -1459,8 +1661,8 @@ STEP 6: OPTIONAL PRE-OPEN GRIPPER
 STEP 7: MOVE TO PREGRASP + DESCEND + CLOSE
 ============================================================
 [RUN] python3 robot_executor/grasp.py --target_json /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json
-[CMD] python3 robot_executor/grasp.py --target_json /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json --robot_ip 192.168.200.1 --reference_frame base_link --orientation_mode current --skip_observation --safe_lift_z 0.0 --safe_lift_eef_step 0.005 --cartesian_min_fraction 0.80 --max_base_delta 1.80 --max_wrist_delta 1.50 --max_xyz_distance 0.80 --descend_z 0.12 --pregrasp_wait 5.0 --rviz_preview_wait 3.0 --velocity 0.08 --acceleration 0.05 --execute
-[33m[ WARN] [1782741427.333056459]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
+[CMD] python3 robot_executor/grasp.py --target_json /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json --robot_ip 192.168.200.1 --reference_frame base_link --orientation_mode current --skip_observation --safe_lift_z 0.0 --safe_lift_eef_step 0.005 --cartesian_min_fraction 0.0 --max_base_delta 1.80 --max_wrist_delta 1.50 --max_xyz_distance 0.80 --descend_z 0.12 --pregrasp_wait 5.0 --rviz_preview_wait 3.0 --velocity 0.08 --acceleration 0.05 --execute
+[33m[ WARN] [1783328430.388697994]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
 
 ========== GRASP CARTESIAN SAFE LIFT VERSION ==========
 PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
@@ -1480,14 +1682,14 @@ execute: True
 
 ========== CURRENT TOOL0 POSE ==========
 position:
-  x: 0.36452948558103004
-  y: -0.21215652980006355
-  z: 0.13387939274979385
+  x: 0.364636588291034
+  y: -0.21223891829614294
+  z: 0.13395014151473394
 orientation xyzw:
-  x: 0.6638091494311321
-  y: 0.29055509929545503
-  z: 0.25519217953214457
-  w: 0.6401656808284546
+  x: 0.6636879910475415
+  y: 0.29037620925939267
+  z: 0.2552600375344998
+  w: 0.6403453918576362
 ====================================
 
 
@@ -1495,59 +1697,59 @@ orientation xyzw:
 path: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json
 success: True
 frame: base_link
-translation_tool0_pregrasp: [0.5475500632493109, -0.4477945613921761, 0.3160247897644609]
+translation_tool0_pregrasp: [0.5603743736776295, -0.47294390602374825, 0.4326730350809345]
 quaternion_tool0_xyzw: [-0.28340175782789895, 0.6661598976406625, 0.6411123643592581, -0.25473392137899675]
-manual_nudge_base_m: {'dx': -0.04, 'dy': 0.04, 'dz': 0.0}
+manual_nudge_base_m: {'dx': -0.05, 'dy': 0.035, 'dz': 0.0}
 =================================
 
 [ORIENTATION] Pakai orientasi current robot
 
 ========== FINAL PREGRASP POSE ==========
 position:
-  x: 0.5475500632493109
-  y: -0.4477945613921761
-  z: 0.3160247897644609
+  x: 0.5603743736776295
+  y: -0.47294390602374825
+  z: 0.4326730350809345
 orientation xyzw:
-  x: 0.6638034976591757
-  y: 0.29054739282179104
-  z: 0.25521505917918286
-  w: 0.640165918015065
+  x: 0.6636567186165737
+  y: 0.29040631586440824
+  z: 0.2552312638883662
+  w: 0.6403756190511086
 ====================================
 
 
 ========== TARGET DISTANCE CHECK ==========
-current: [0.36452456506896325, -0.2121487087159625, 0.13387093495811755]
-target : [0.5475500632493109, -0.4477945613921761, 0.3160247897644609]
-delta  : [0.18302549818034763, -0.2356458526762136, 0.18215385480634336]
-dist_xy : 0.29837443065327196
-dist_xyz: 0.34958164666995123
+current: [0.3646213875839951, -0.21222928164612523, 0.13393955064595572]
+target : [0.5603743736776295, -0.47294390602374825, 0.4326730350809345]
+delta  : [0.19575298609363445, -0.26071462437762305, 0.2987334844349788]
+dist_xy : 0.32602353738486384
+dist_xyz: 0.44219118224089843
 max_xyz_distance: 0.8
 ==========================================
 
 
 ========== SAFE LIFT POSE ==========
 position:
-  x: 0.36452948558103004
-  y: -0.21215652980006355
-  z: 0.13387939274979385
+  x: 0.364636588291034
+  y: -0.21223891829614294
+  z: 0.13395014151473394
 orientation xyzw:
-  x: 0.6638091494311321
-  y: 0.29055509929545503
-  z: 0.25519217953214457
-  w: 0.6401656808284546
+  x: 0.6636879910475415
+  y: 0.29037620925939267
+  z: 0.2552600375344998
+  w: 0.6403453918576362
 ====================================
 
 
 ========== DESCEND / GRASP POSE ==========
 position:
-  x: 0.5475500632493109
-  y: -0.4477945613921761
-  z: 0.19602478976446092
+  x: 0.5603743736776295
+  y: -0.47294390602374825
+  z: 0.3126730350809345
 orientation xyzw:
-  x: 0.6638034976591757
-  y: 0.29054739282179104
-  z: 0.25521505917918286
-  w: 0.640165918015065
+  x: 0.6636567186165737
+  y: 0.29040631586440824
+  z: 0.2552312638883662
+  w: 0.6403756190511086
 ====================================
 
 [GRIPPER] Connecting to 192.168.200.1:63352
@@ -1565,45 +1767,45 @@ orientation xyzw:
 
 [CARTESIAN] Planning SAFE_TO_PREGRASP_CARTESIAN
 [CARTESIAN] eef_step: 0.005
-[CARTESIAN] min_fraction: 0.8
+[CARTESIAN] min_fraction: 0.0
 
 ========== SAFE_TO_PREGRASP_CARTESIAN START POSE ==========
 position:
-  x: 0.3645293287958673
-  y: -0.21215346591751166
-  z: 0.1338663749127002
+  x: 0.36462765615194764
+  y: -0.21224391556859232
+  z: 0.13395222261003292
 orientation xyzw:
-  x: 0.6638186027988553
-  y: 0.29055417411005746
-  z: 0.255208772235795
-  w: 0.6401496833235928
+  x: 0.6636985617516331
+  y: 0.2903725006881141
+  z: 0.25521733256050566
+  w: 0.6403531393954784
 ====================================
 
 
 ========== SAFE_TO_PREGRASP_CARTESIAN TARGET POSE ==========
 position:
-  x: 0.5475500632493109
-  y: -0.4477945613921761
-  z: 0.3160247897644609
+  x: 0.5603743736776295
+  y: -0.47294390602374825
+  z: 0.4326730350809345
 orientation xyzw:
-  x: 0.6638034976591757
-  y: 0.29054739282179104
-  z: 0.25521505917918286
-  w: 0.640165918015065
+  x: 0.6636567186165737
+  y: 0.29040631586440824
+  z: 0.2552312638883662
+  w: 0.6403756190511086
 ====================================
 
 [CARTESIAN] SAFE_TO_PREGRASP_CARTESIAN fraction: 1.0
 
 ========== JOINT SUMMARY: SAFE_TO_PREGRASP_CARTESIAN ==========
-start: [-0.7916505972491663, -1.444817845021383, 2.2299623489379883, -0.7367523352252405, 1.5699244737625122, -0.024317089711324513]
-final: [-0.8484389975551414, -0.9999596621454759, 1.0785565677612738, -0.030902285543390178, 1.5025849964857108, -0.02521842459064468]
-final nearest: [-0.8484389975551414, -0.9999596621454759, 1.0785565677612738, -0.03090228554339014, 1.5025849964857108, -0.02521842459064468]
-shoulder_pan_joint: delta=0.0568 rad
-shoulder_lift_joint: delta=0.4449 rad
-elbow_joint: delta=1.1514 rad
-wrist_1_joint: delta=0.7059 rad
-wrist_2_joint: delta=0.0673 rad
-wrist_3_joint: delta=0.0009 rad
+start: [-0.7915785948382776, -1.4447458426104944, 2.22969913482666, -0.737124268208639, 1.5702002048492432, -0.024245564137594044]
+final: [-0.8588419580759032, -0.877382536634376, 0.5760201804963951, 0.34853435889261275, 1.486537111211742, -0.0275222134920388]
+final nearest: [-0.8588419580759032, -0.8773825366343762, 0.5760201804963951, 0.34853435889261286, 1.486537111211742, -0.0275222134920388]
+shoulder_pan_joint: delta=0.0673 rad
+shoulder_lift_joint: delta=0.5674 rad
+elbow_joint: delta=1.6537 rad
+wrist_1_joint: delta=1.0857 rad
+wrist_2_joint: delta=0.0837 rad
+wrist_3_joint: delta=0.0033 rad
 ===========================================
 
 [RVIZ] Published trajectory: SAFE_TO_PREGRASP_CARTESIAN
@@ -1622,45 +1824,45 @@ wrist_3_joint: delta=0.0009 rad
 
 [CARTESIAN] Planning PREGRASP_TO_DESCEND_CARTESIAN
 [CARTESIAN] eef_step: 0.005
-[CARTESIAN] min_fraction: 0.8
+[CARTESIAN] min_fraction: 0.0
 
 ========== PREGRASP_TO_DESCEND_CARTESIAN START POSE ==========
 position:
-  x: 0.5475211463487355
-  y: -0.44785495296203187
-  z: 0.31596490888248224
+  x: 0.5603881264204804
+  y: -0.472957436299841
+  z: 0.4326192659869059
 orientation xyzw:
-  x: 0.6638452498338853
-  y: 0.29053017983364976
-  z: 0.25518810421842547
-  w: 0.6401411800097064
+  x: 0.6636850406708142
+  y: 0.2904203213809387
+  z: 0.25523776181910923
+  w: 0.6403373241193612
 ====================================
 
 
 ========== PREGRASP_TO_DESCEND_CARTESIAN TARGET POSE ==========
 position:
-  x: 0.5475500632493109
-  y: -0.4477945613921761
-  z: 0.19602478976446092
+  x: 0.5603743736776295
+  y: -0.47294390602374825
+  z: 0.3126730350809345
 orientation xyzw:
-  x: 0.6638034976591757
-  y: 0.29054739282179104
-  z: 0.25521505917918286
-  w: 0.640165918015065
+  x: 0.6636567186165737
+  y: 0.29040631586440824
+  z: 0.2552312638883662
+  w: 0.6403756190511086
 ====================================
 
 [CARTESIAN] PREGRASP_TO_DESCEND_CARTESIAN fraction: 1.0
 
 ========== JOINT SUMMARY: PREGRASP_TO_DESCEND_CARTESIAN ==========
-start: [-0.8485062758075159, -0.9998820463763636, 1.0785927772521973, -0.030876938496724904, 1.5025503635406494, -0.025251690541402638]
-final: [-0.8489335217664276, -0.9338299802970623, 1.2849818590131077, -0.30340826354007105, 1.5063001649555667, -0.02564836176588647]
-final nearest: [-0.8489335217664276, -0.9338299802970623, 1.2849818590131077, -0.30340826354007105, 1.5063001649555667, -0.02564836176588647]
-shoulder_pan_joint: delta=0.0004 rad
-shoulder_lift_joint: delta=0.0661 rad
-elbow_joint: delta=0.2064 rad
-wrist_1_joint: delta=0.2725 rad
-wrist_2_joint: delta=0.0037 rad
-wrist_3_joint: delta=0.0004 rad
+start: [-0.8588317076312464, -0.87732440630068, 0.5760321617126465, 0.34855592250823975, 1.486432671546936, -0.027515713368551076]
+final: [-0.859300835864921, -0.927726311342943, 0.9703213161184022, 0.004474215500449002, 1.4912990018152286, -0.025904018424654267]
+final nearest: [-0.859300835864921, -0.927726311342943, 0.9703213161184022, 0.004474215500448964, 1.4912990018152286, -0.025904018424654267]
+shoulder_pan_joint: delta=0.0005 rad
+shoulder_lift_joint: delta=0.0504 rad
+elbow_joint: delta=0.3943 rad
+wrist_1_joint: delta=0.3441 rad
+wrist_2_joint: delta=0.0049 rad
+wrist_3_joint: delta=0.0016 rad
 ===========================================
 
 [RVIZ] Published trajectory: PREGRASP_TO_DESCEND_CARTESIAN
@@ -1676,17 +1878,17 @@ wrist_3_joint: delta=0.0004 rad
 [GRIPPER] >> SET GTO 1
 [GRIPPER] << ack
 [GRIPPER] Socket closed
-[0m[ INFO] [1782741427.293994314]: Loading robot model 'ur5_robot'...[0m
-[0m[ INFO] [1782741427.334885186]: IK Using joint shoulder_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741427.334898904]: IK Using joint upper_arm_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741427.334905173]: IK Using joint forearm_link -3.14159 3.14159[0m
-[0m[ INFO] [1782741427.334910392]: IK Using joint wrist_1_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741427.334915550]: IK Using joint wrist_2_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741427.334920527]: IK Using joint wrist_3_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741427.334928336]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
-[0m[ INFO] [1782741427.335751797]: Looking in common namespaces for param name: manipulator/solve_type[0m
-[0m[ INFO] [1782741427.336771713]: Using solve type Distance[0m
-[0m[ INFO] [1782741428.408758341]: Ready to take commands for planning group manipulator.[0m
+[0m[ INFO] [1783328430.314870799]: Loading robot model 'ur5_robot'...[0m
+[0m[ INFO] [1783328430.390261843]: IK Using joint shoulder_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328430.390274096]: IK Using joint upper_arm_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328430.390280147]: IK Using joint forearm_link -3.14159 3.14159[0m
+[0m[ INFO] [1783328430.390285435]: IK Using joint wrist_1_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328430.390290665]: IK Using joint wrist_2_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328430.390295504]: IK Using joint wrist_3_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328430.390302915]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
+[0m[ INFO] [1783328430.391161296]: Looking in common namespaces for param name: manipulator/solve_type[0m
+[0m[ INFO] [1783328430.392138731]: Using solve type Distance[0m
+[0m[ INFO] [1783328431.391009460]: Ready to take commands for planning group manipulator.[0m
 [OK] Grasp script selesai.
 
 ============================================================
@@ -1719,23 +1921,23 @@ DISCARD AFTER GRASP
 [OK] Discard script: robot_executor/execute_from_current_pregrasp_to_discard.py
 [OK] Waypoints JSON: configs/waypoints_ur5.json
 [CMD] python3 robot_executor/execute_from_current_pregrasp_to_discard.py --robot_ip 192.168.200.1 --waypoints_json configs/waypoints_ur5.json --lift_up 0.05 --velocity 0.08 --acceleration 0.04 --skip_lift --execute
-[33m[ WARN] [1782741450.093693603]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
+[33m[ WARN] [1783328453.978020177]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
 [OK] Loaded waypoints: /home/b401/Documents/pick_place_occlusion_noetic/configs/waypoints_ur5.json
 [SKIP] Lift skipped.
 
 [JOINT GO] Moving to DISCARD_STEP_1
 [JOINT GO] target: [-0.6725381056415003, -1.7394445578204554, 1.5304059982299805, 0.14724528789520264, 1.5740376710891724, -0.024556938801900685]
-[JOINT GO] current: [-0.8489854971515101, -0.933807675038473, 1.28501558303833, -0.30343944231142217, 1.5062800645828247, -0.025682751332418263]
+[JOINT GO] current: [-0.8592751661883753, -0.9277260939227503, 0.9703044891357422, 0.004512429237365723, 1.4912896156311035, -0.025934521351949513]
 [JOINT GO] DISCARD_STEP_1 result: True
 
 [JOINT GO] Moving to DISCARD_STEP_2
 [JOINT GO] target: [0.6762447357177734, -1.7384021917926233, 1.5304059982299805, 0.23954260349273682, 1.5335625410079956, -0.0244372526751917]
-[JOINT GO] current: [-0.6726697126971644, -1.7393606344806116, 1.530466079711914, 0.1471494436264038, 1.5739657878875732, -0.0246050993548792]
+[JOINT GO] current: [-0.6727779547320765, -1.7395876089679163, 1.5305256843566895, 0.14717340469360352, 1.573881983757019, -0.024628941212789357]
 [JOINT GO] DISCARD_STEP_2 result: True
 
 [JOINT GO] Moving to UP_DISCARD
 [JOINT GO] target: [0.6737411618232727, -1.0290349165545862, 1.5311832427978516, -0.5130503813373011, 1.533394694328308, -0.02290374437441045]
-[JOINT GO] current: [0.6760889291763306, -1.7384141127215784, 1.5304059982299805, 0.23941075801849365, 1.5335744619369507, -0.024425331746236623]
+[JOINT GO] current: [0.6762567162513733, -1.7383659521686, 1.5305137634277344, 0.23954260349273682, 1.5334665775299072, -0.024401013051168263]
 [JOINT GO] UP_DISCARD result: True
 [GRIPPER] Connecting to 192.168.200.1:63352
 [GRIPPER] Connected
@@ -1743,30 +1945,30 @@ DISCARD AFTER GRASP
 
 [JOINT GO] Moving to DISCARD_STEP_2
 [JOINT GO] target: [0.6762447357177734, -1.7384021917926233, 1.5304059982299805, 0.23954260349273682, 1.5335625410079956, -0.0244372526751917]
-[JOINT GO] current: [0.6735613942146301, -1.0291064421283167, 1.5310640335083008, -0.5130503813373011, 1.533394694328308, -0.022891823445455373]
+[JOINT GO] current: [0.6736812591552734, -1.029046360646383, 1.531087875366211, -0.5131343046771448, 1.5334067344665527, -0.022916142140523732]
 [JOINT GO] DISCARD_STEP_2 result: True
 
 [JOINT GO] Moving to DISCARD_TO_IDLE
 [JOINT GO] target: [-0.025298420582906544, -1.2021411100970667, 1.8867301940917969, -0.8184078375445765, 1.5361050367355347, -0.02444917360414678]
-[JOINT GO] current: [0.6762686967849731, -1.738377873097555, 1.530466079711914, 0.23965036869049072, 1.5334546566009521, -0.024556938801900685]
+[JOINT GO] current: [0.676304280757904, -1.7383902708636683, 1.5304303169250488, 0.23961448669433594, 1.5335146188735962, -0.02444917360414678]
 [JOINT GO] DISCARD_TO_IDLE result: True
 
 [JOINT GO] Moving to IDLE
 [JOINT GO] target: [-0.7912667433368128, -1.4445660750018519, 2.2297110557556152, -0.7369807402240198, 1.5702720880508423, -0.024377171193258107]
-[JOINT GO] current: [-0.025214497243062794, -1.2022131125079554, 1.8866820335388184, -0.8185995260821741, 1.5361050367355347, -0.024568859730855763]
+[JOINT GO] current: [-0.025370422993795216, -1.202273193989889, 1.886634349822998, -0.8183839956866663, 1.5360571146011353, -0.024545017872945607]
 [JOINT GO] IDLE result: True
 [GRIPPER] Socket closed
-[0m[ INFO] [1782741450.021601627]: Loading robot model 'ur5_robot'...[0m
-[0m[ INFO] [1782741450.095339190]: IK Using joint shoulder_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741450.095351912]: IK Using joint upper_arm_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741450.095357812]: IK Using joint forearm_link -3.14159 3.14159[0m
-[0m[ INFO] [1782741450.095363043]: IK Using joint wrist_1_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741450.095368231]: IK Using joint wrist_2_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741450.095373181]: IK Using joint wrist_3_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741450.095381919]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
-[0m[ INFO] [1782741450.096120806]: Looking in common namespaces for param name: manipulator/solve_type[0m
-[0m[ INFO] [1782741450.097183205]: Using solve type Distance[0m
-[0m[ INFO] [1782741451.238441009]: Ready to take commands for planning group manipulator.[0m
+[0m[ INFO] [1783328453.901960847]: Loading robot model 'ur5_robot'...[0m
+[0m[ INFO] [1783328453.979757878]: IK Using joint shoulder_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328453.979770799]: IK Using joint upper_arm_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328453.979776685]: IK Using joint forearm_link -3.14159 3.14159[0m
+[0m[ INFO] [1783328453.979782088]: IK Using joint wrist_1_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328453.979787212]: IK Using joint wrist_2_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328453.979792177]: IK Using joint wrist_3_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328453.979799808]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
+[0m[ INFO] [1783328453.980638142]: Looking in common namespaces for param name: manipulator/solve_type[0m
+[0m[ INFO] [1783328453.981581263]: Using solve type Distance[0m
+[0m[ INFO] [1783328454.959643020]: Ready to take commands for planning group manipulator.[0m
 
 ============================================================
 POST-CHECK STEP 1
@@ -1868,31 +2070,18 @@ Loading YOLO-World model: /home/b401/Documents/pick_place_occlusion_noetic/model
 [YOLO-World] Target dari action plan: green soda can
 [YOLO-World] Dynamic classes: ['green soda can']
 
-image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg: 480x640 2 green soda cans, 35.2ms
-Speed: 0.7ms preprocess, 35.2ms inference, 1.0ms postprocess per image at shape (1, 3, 480, 640)
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg: 480x640 1 green soda can, 35.5ms
+Speed: 0.7ms preprocess, 35.5ms inference, 1.0ms postprocess per image at shape (1, 3, 480, 640)
 [YOLO-World] Detections saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_detections_yolo.json
 [YOLO-World] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_yolo_result.jpg
 [
   {
     "label": "green soda can",
-    "confidence": 0.8380380868911743,
+    "confidence": 0.8436082005500793,
     "bbox": [
-      357,
-      149,
-      412,
-      283
-    ],
-    "bbox_format": "xyxy_pixel",
-    "source": "yolo_world",
-    "target_query": "green soda can"
-  },
-  {
-    "label": "green soda can",
-    "confidence": 0.5042792558670044,
-    "bbox": [
-      258,
-      158,
-      294,
+      334,
+      150,
+      385,
       278
     ],
     "bbox_format": "xyxy_pixel",
@@ -1903,12 +2092,12 @@ Speed: 0.7ms preprocess, 35.2ms inference, 1.0ms postprocess per image at shape 
 [YOLO-World] Best detection:
 {
   "label": "green soda can",
-  "confidence": 0.8380380868911743,
+  "confidence": 0.8436082005500793,
   "bbox": [
-    357,
-    149,
-    412,
-    283
+    334,
+    150,
+    385,
+    278
   ],
   "bbox_format": "xyxy_pixel",
   "source": "yolo_world",
@@ -1916,10 +2105,10 @@ Speed: 0.7ms preprocess, 35.2ms inference, 1.0ms postprocess per image at shape 
 }
 Loading FastSAM model: /home/b401/Documents/pick_place_occlusion_noetic/models/FastSAM-x.pt
 
-[FastSAM] Segmenting bbox: [357, 149, 412, 283]
+[FastSAM] Segmenting bbox: [334, 150, 385, 278]
 
-image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg: 480x640 1 object, 555.8ms
-Speed: 1.0ms preprocess, 555.8ms inference, 25.4ms postprocess per image at shape (1, 3, 480, 640)
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg: 480x640 1 object, 523.8ms
+Speed: 0.8ms preprocess, 523.8ms inference, 27.4ms postprocess per image at shape (1, 3, 480, 640)
 [FastSAM] Mask saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_fastsam_mask.png
 [FastSAM] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_fastsam_result.jpg
 
@@ -1970,12 +2159,12 @@ TOOL0_TO_GRIPPER_TIP     : 0 0 0.17
 PREGRASP_Z               : 0.13
 SAFE_LIFT_Z              : 0.0
 SAFE_LIFT_EEF_STEP       : 0.005
-CARTESIAN_MIN_FRACTION   : 0.80
+CARTESIAN_MIN_FRACTION   : 0.0
 MAX_XYZ_DISTANCE         : 0.80
 MAX_BASE_DELTA           : 1.80
 MAX_WRIST_DELTA          : 1.50
 DESCEND_Z                : 0.12
-NUDGE_DX/DY/DZ           : -0.04 / 0.04 / 0.0
+NUDGE_DX/DY/DZ           : -0.05 / 0.035 / 0.0
 DISABLE_GRIPPER          : 0
 PREOPEN_GRIPPER          : 0
 LOCK_STABLE_CONFIG       : 0
@@ -2036,21 +2225,21 @@ OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_Y
 ========== D455 DATA INFO ==========
 RGB shape: (480, 640, 3)
 Depth raw shape: (480, 640)
-Depth raw min/max: 0.0 65535.0
+Depth raw min/max: 0.0 14331.0
 Depth scale: 0.0010000000474974513
-Depth meter min/max: 0.0 65.53500366210938
-Mask pixels: 7936
-Workspace valid pixels: 5519
-fx fy cx cy: 385.724365234375 385.28033447265625 326.5517883300781 244.87197875976562
+Depth meter min/max: 0.0 14.331000328063965
+Mask pixels: 7237
+Workspace valid pixels: 4875
+fx fy cx cy: 385.8294677734375 385.38531494140625 326.5517883300781 244.87197875976562
 factor_depth: 999.999952502551
 ===================================
 
 [INFO] Workspace mask debug saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/graspnet_workspace_mask_debug.png
-[INFO] cloud_masked: (5519, 3)
-[INFO] object_center_camera median: [ 0.06083925 -0.03364937  0.43500003]
+[INFO] cloud_masked: (4875, 3)
+[INFO] object_center_camera median: [ 0.03677497 -0.03435313  0.46700004]
 [INFO] Raw grasp candidates: 1024
-[INFO] Grasp after collision filtering: 408
-[INFO] Grasp after target filtering: 110
+[INFO] Grasp after collision filtering: 501
+[INFO] Grasp after target filtering: 212
 [INFO] Candidates saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/grasp_candidates_camera.json
 [INFO] Best grasp saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/best_grasp_camera.json
 
@@ -2059,53 +2248,53 @@ factor_depth: 999.999952502551
   "success": true,
   "method": "graspnet_baseline_d455",
   "best_grasp": {
-    "score": 0.4214537441730499,
+    "score": 0.627811074256897,
     "translation_camera": [
-      0.06576334685087204,
-      -0.06631649285554886,
-      0.43400001525878906
+      0.02223370596766472,
+      -0.07344719767570496,
+      0.4650000333786011
     ],
     "rotation_matrix_camera": [
       [
-        0.6540746092796326,
-        -0.6235225796699524,
-        -0.42825937271118164
+        0.6660667061805725,
+        -0.7401613593101501,
+        -0.09228425472974777
       ],
       [
-        -0.309978187084198,
-        0.2954989969730377,
-        -0.9036558270454407
+        -0.06173091381788254,
+        0.0685979425907135,
+        -0.9957327246665955
       ],
       [
-        0.690000057220459,
-        0.7238094210624695,
-        -3.1638712982839934e-08
+        0.7433333396911621,
+        0.6689212322235107,
+        -2.9239474841347146e-08
       ]
     ],
-    "width": 0.07163193821907043,
+    "width": 0.0721016600728035,
     "height": 0.019999999552965164,
     "depth": 0.019999999552965164,
     "object_id": -1,
     "frame": "RealSense D455 aligned color camera frame",
     "rank": 0,
-    "distance_to_object_center": 0.033051292140656316
+    "distance_to_object_center": 0.041758768764626954
   },
   "object_center_camera": [
-    0.06083924858261189,
-    -0.0336493666495937,
-    0.4350000321865082
+    0.036774970414715676,
+    -0.03435312675943895,
+    0.4670000374317169
   ],
   "frame": "RealSense D455 aligned color camera frame",
   "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
   "meta": {
     "object_center_camera": [
-      0.06083924858261189,
-      -0.0336493666495937,
-      0.4350000321865082
+      0.036774970414715676,
+      -0.03435312675943895,
+      0.4670000374317169
     ],
-    "num_mask_points": 7936,
-    "num_workspace_points": 5519,
-    "num_cloud_masked": 5519,
+    "num_mask_points": 7237,
+    "num_workspace_points": 4875,
+    "num_cloud_masked": 4875,
     "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
     "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
     "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
@@ -2113,8 +2302,8 @@ factor_depth: 999.999952502551
     "intrinsics": {
       "width": 640,
       "height": 480,
-      "fx": 385.724365234375,
-      "fy": 385.28033447265625,
+      "fx": 385.8294677734375,
+      "fy": 385.38531494140625,
       "ppx": 326.5517883300781,
       "ppy": 244.87197875976562,
       "depth_scale": 0.0010000000474974513
@@ -2149,78 +2338,78 @@ Input grasp camera: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_
 Transform: /home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json
 Output grasp base: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/best_grasp_base.json
 -----------------------------------------
-translation_base: [-0.638297065395944, 0.594562147454796, 0.27925640595923124]
-pre_grasp_translation_base: [-0.638297065395944, 0.594562147454796, 0.37925640595923127]
-score: 0.4214537441730499
-width: 0.07163193821907043
+translation_base: [-0.6909158208303241, 0.5854379605456375, 0.28665191134192836]
+pre_grasp_translation_base: [-0.6909158208303241, 0.5854379605456375, 0.38665191134192833]
+score: 0.627811074256897
+width: 0.0721016600728035
 =========================================
 
 {
   "success": true,
   "method": "camera_to_base_transform",
   "translation_base": [
-    -0.638297065395944,
-    0.594562147454796,
-    0.27925640595923124
+    -0.6909158208303241,
+    0.5854379605456375,
+    0.28665191134192836
   ],
   "rotation_matrix_base": [
     [
-      -0.024098185136625882,
-      -0.9554806806435027,
-      -0.29406811862826143
+      -0.055672140951931855,
+      -0.9968747536009757,
+      -0.056048806615606996
     ],
     [
-      0.9426636329109814,
-      0.07622658532517852,
-      -0.3249229433952095
+      0.9947315517274296,
+      -0.05053771434169322,
+      -0.08919134816173382
     ],
     [
-      0.3328734032582648,
-      -0.28503739964401803,
-      0.8988598147264032
+      0.08608001753725535,
+      -0.060718988175531494,
+      0.994436261071089
     ]
   ],
-  "score": 0.4214537441730499,
-  "width": 0.07163193821907043,
+  "score": 0.627811074256897,
+  "width": 0.0721016600728035,
   "height": 0.019999999552965164,
   "depth": 0.019999999552965164,
   "object_id": -1,
   "frame": "UR5 base frame",
   "source_frame": "RealSense D455 aligned color camera frame",
   "rotation_validation": {
-    "determinant": 1.0000001182969125,
-    "orthonormal_error": 2.1802866005632725e-07
+    "determinant": 1.000000094902691,
+    "orthonormal_error": 1.3837160051048102e-07
   },
   "camera_grasp_used": {
     "translation_camera": [
-      0.06576334685087204,
-      -0.06631649285554886,
-      0.43400001525878906
+      0.02223370596766472,
+      -0.07344719767570496,
+      0.4650000333786011
     ],
     "rotation_matrix_camera": [
       [
-        0.6540746092796326,
-        -0.6235225796699524,
-        -0.42825937271118164
+        0.6660667061805725,
+        -0.7401613593101501,
+        -0.09228425472974777
       ],
       [
-        -0.309978187084198,
-        0.2954989969730377,
-        -0.9036558270454407
+        -0.06173091381788254,
+        0.0685979425907135,
+        -0.9957327246665955
       ],
       [
-        0.690000057220459,
-        0.7238094210624695,
-        -3.1638712982839934e-08
+        0.7433333396911621,
+        0.6689212322235107,
+        -2.9239474841347146e-08
       ]
     ]
   },
   "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
   "pre_grasp_preview": {
     "translation_base": [
-      -0.638297065395944,
-      0.594562147454796,
-      0.37925640595923127
+      -0.6909158208303241,
+      0.5854379605456375,
+      0.38665191134192833
     ],
     "offset_z_m": 0.1,
     "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
@@ -2257,9 +2446,9 @@ pregrasp_z: 0.13
   "source_target": "gripper_tip",
   "active_test_name": "TC_07_GMN_YOLO",
   "translation_tool0_pregrasp": [
-    -0.5188258614304866,
-    0.47389910344181746,
-    0.417445498251182
+    -0.5714446168648667,
+    0.46477491653265895,
+    0.4248410036338791
   ],
   "quaternion_tool0_xyzw": [
     -0.28340175782789895,
@@ -2274,14 +2463,14 @@ pregrasp_z: 0.13
   ],
   "orientation_source": "fixed_rpy",
   "gripper_tip_grasp_base": [
-    -0.638297065395944,
-    0.594562147454796,
-    0.27925640595923124
+    -0.6909158208303241,
+    0.5854379605456375,
+    0.28665191134192836
   ],
   "gripper_tip_pregrasp_base": [
-    -0.638297065395944,
-    0.594562147454796,
-    0.40925640595923124
+    -0.6909158208303241,
+    0.5854379605456375,
+    0.41665191134192836
   ],
   "tool0_to_gripper_tip_offset_tool_frame": [
     0.0,
@@ -2289,8 +2478,8 @@ pregrasp_z: 0.13
     0.17
   ],
   "pregrasp_z_m": 0.13,
-  "score": 0.4214537441730499,
-  "width": 0.07163193821907043,
+  "score": 0.627811074256897,
+  "width": 0.0721016600728035,
   "depth": 0.019999999552965164,
   "height": 0.019999999552965164,
   "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/best_grasp_base.json",
@@ -2302,14 +2491,14 @@ pregrasp_z: 0.13
   /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json
 [OK] Nudge script:
   robot_executor/nudge_tool0_target.py
-[RUN] python3 robot_executor/nudge_tool0_target.py --dx -0.04 --dy 0.04 --dz 0.0
+[RUN] python3 robot_executor/nudge_tool0_target.py --dx -0.05 --dy 0.035 --dz 0.0
 
 ========== NUDGE TOOL0 TARGET ==========
 Input : /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json
 Output: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json
-Old translation_tool0_pregrasp: [-0.5188258614304866, 0.47389910344181746, 0.417445498251182]
-Nudge dx dy dz: -0.04 0.04 0.0
-New translation_tool0_pregrasp: [-0.5588258614304866, 0.5138991034418174, 0.417445498251182]
+Old translation_tool0_pregrasp: [-0.5714446168648667, 0.46477491653265895, 0.4248410036338791]
+Nudge dx dy dz: -0.05 0.035 0.0
+New translation_tool0_pregrasp: [-0.6214446168648667, 0.49977491653265893, 0.4248410036338791]
 =======================================
 
 [OK] Saved: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json
@@ -2317,9 +2506,9 @@ New translation_tool0_pregrasp: [-0.5588258614304866, 0.5138991034418174, 0.4174
   /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json
 [CHECK BASE] success: True
 [CHECK BASE] frame: base
-[CHECK BASE] translation_tool0_pregrasp: [-0.5588258614304866, 0.5138991034418174, 0.417445498251182]
+[CHECK BASE] translation_tool0_pregrasp: [-0.6214446168648667, 0.49977491653265893, 0.4248410036338791]
 [CHECK BASE] quaternion_tool0_xyzw: [-0.28340175782789895, 0.6661598976406625, 0.6411123643592581, -0.25473392137899675]
-[CHECK BASE] manual_nudge_base_m: {'dx': -0.04, 'dy': 0.04, 'dz': 0.0}
+[CHECK BASE] manual_nudge_base_m: {'dx': -0.05, 'dy': 0.035, 'dz': 0.0}
 [OK] Base to base_link conversion script:
   perception/convert_tool0_target_base_to_base_link.py
 [RUN] python perception/convert_tool0_target_base_to_base_link.py --input /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target.json --output /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json
@@ -2330,18 +2519,18 @@ Output: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/
 Input frame : base
 Output frame: base_link
 translation_tool0_pregrasp original base:
-  [-0.5588258614304866, 0.5138991034418174, 0.417445498251182]
+  [-0.6214446168648667, 0.49977491653265893, 0.4248410036338791]
 translation_tool0_pregrasp new base_link:
-  [0.5588258614304866, -0.5138991034418174, 0.417445498251182]
+  [0.6214446168648667, -0.49977491653265893, 0.4248410036338791]
 ========================================================
 
 [OK] tool0_pregrasp_target_base_link.json:
   /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json
 [CHECK BASE_LINK] success: True
 [CHECK BASE_LINK] frame: base_link
-[CHECK BASE_LINK] translation_tool0_pregrasp: [0.5588258614304866, -0.5138991034418174, 0.417445498251182]
-[CHECK BASE_LINK] original base: [-0.5588258614304866, 0.5138991034418174, 0.417445498251182]
-[CHECK BASE_LINK] manual_nudge_base_m: {'dx': -0.04, 'dy': 0.04, 'dz': 0.0}
+[CHECK BASE_LINK] translation_tool0_pregrasp: [0.6214446168648667, -0.49977491653265893, 0.4248410036338791]
+[CHECK BASE_LINK] original base: [-0.6214446168648667, 0.49977491653265893, 0.4248410036338791]
+[CHECK BASE_LINK] manual_nudge_base_m: {'dx': -0.05, 'dy': 0.035, 'dz': 0.0}
 
 ============================================================
 STEP 5: ROS NOETIC SYSTEM PYTHON
@@ -2369,8 +2558,8 @@ STEP 6: OPTIONAL PRE-OPEN GRIPPER
 STEP 7: MOVE TO PREGRASP + DESCEND + CLOSE
 ============================================================
 [RUN] python3 robot_executor/grasp.py --target_json /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json
-[CMD] python3 robot_executor/grasp.py --target_json /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json --robot_ip 192.168.200.1 --reference_frame base_link --orientation_mode current --skip_observation --safe_lift_z 0.0 --safe_lift_eef_step 0.005 --cartesian_min_fraction 0.80 --max_base_delta 1.80 --max_wrist_delta 1.50 --max_xyz_distance 0.80 --descend_z 0.12 --pregrasp_wait 5.0 --rviz_preview_wait 3.0 --velocity 0.08 --acceleration 0.05 --execute
-[33m[ WARN] [1782741505.179758967]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
+[CMD] python3 robot_executor/grasp.py --target_json /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json --robot_ip 192.168.200.1 --reference_frame base_link --orientation_mode current --skip_observation --safe_lift_z 0.0 --safe_lift_eef_step 0.005 --cartesian_min_fraction 0.0 --max_base_delta 1.80 --max_wrist_delta 1.50 --max_xyz_distance 0.80 --descend_z 0.12 --pregrasp_wait 5.0 --rviz_preview_wait 3.0 --velocity 0.08 --acceleration 0.05 --execute
+[33m[ WARN] [1783328508.863072634]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
 
 ========== GRASP CARTESIAN SAFE LIFT VERSION ==========
 PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
@@ -2390,14 +2579,14 @@ execute: True
 
 ========== CURRENT TOOL0 POSE ==========
 position:
-  x: 0.36465688665032925
-  y: -0.2121734825103749
-  z: 0.1338563531985502
+  x: 0.3646813175265549
+  y: -0.21216913175352173
+  z: 0.13382392625372386
 orientation xyzw:
-  x: 0.6637430318174982
-  y: 0.2905596654685305
-  z: 0.25518959137613
-  w: 0.6402331926492212
+  x: 0.6638046565580092
+  y: 0.29052171986061975
+  z: 0.2552028076944474
+  w: 0.6401812518076437
 ====================================
 
 
@@ -2405,59 +2594,59 @@ orientation xyzw:
 path: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/tool0_pregrasp_target_base_link.json
 success: True
 frame: base_link
-translation_tool0_pregrasp: [0.5588258614304866, -0.5138991034418174, 0.417445498251182]
+translation_tool0_pregrasp: [0.6214446168648667, -0.49977491653265893, 0.4248410036338791]
 quaternion_tool0_xyzw: [-0.28340175782789895, 0.6661598976406625, 0.6411123643592581, -0.25473392137899675]
-manual_nudge_base_m: {'dx': -0.04, 'dy': 0.04, 'dz': 0.0}
+manual_nudge_base_m: {'dx': -0.05, 'dy': 0.035, 'dz': 0.0}
 =================================
 
 [ORIENTATION] Pakai orientasi current robot
 
 ========== FINAL PREGRASP POSE ==========
 position:
-  x: 0.5588258614304866
-  y: -0.5138991034418174
-  z: 0.417445498251182
+  x: 0.6214446168648667
+  y: -0.49977491653265893
+  z: 0.4248410036338791
 orientation xyzw:
-  x: 0.6637466362637149
-  y: 0.2905618092513315
-  z: 0.2551647340022011
-  w: 0.6402383902694234
+  x: 0.6637886169322765
+  y: 0.2905060479226146
+  z: 0.25521028034411686
+  w: 0.6402020157404976
 ====================================
 
 
 ========== TARGET DISTANCE CHECK ==========
-current: [0.3646717605654886, -0.2122009932299636, 0.13385648263414104]
-target : [0.5588258614304866, -0.5138991034418174, 0.417445498251182]
-delta  : [0.194154100864998, -0.30169811021185383, 0.283589015617041]
-dist_xy : 0.3587723018686082
-dist_xyz: 0.4573185917571491
+current: [0.36467336154086116, -0.21215580604143647, 0.13381276083166058]
+target : [0.6214446168648667, -0.49977491653265893, 0.4248410036338791]
+delta  : [0.2567712553240056, -0.28761911049122246, 0.2910282428022185]
+dist_xy : 0.38555963258674747
+dist_xyz: 0.4830669398633845
 max_xyz_distance: 0.8
 ==========================================
 
 
 ========== SAFE LIFT POSE ==========
 position:
-  x: 0.36465688665032925
-  y: -0.2121734825103749
-  z: 0.1338563531985502
+  x: 0.3646813175265549
+  y: -0.21216913175352173
+  z: 0.13382392625372386
 orientation xyzw:
-  x: 0.6637430318174982
-  y: 0.2905596654685305
-  z: 0.25518959137613
-  w: 0.6402331926492212
+  x: 0.6638046565580092
+  y: 0.29052171986061975
+  z: 0.2552028076944474
+  w: 0.6401812518076437
 ====================================
 
 
 ========== DESCEND / GRASP POSE ==========
 position:
-  x: 0.5588258614304866
-  y: -0.5138991034418174
-  z: 0.297445498251182
+  x: 0.6214446168648667
+  y: -0.49977491653265893
+  z: 0.3048410036338791
 orientation xyzw:
-  x: 0.6637466362637149
-  y: 0.2905618092513315
-  z: 0.2551647340022011
-  w: 0.6402383902694234
+  x: 0.6637886169322765
+  y: 0.2905060479226146
+  z: 0.25521028034411686
+  w: 0.6402020157404976
 ====================================
 
 [GRIPPER] Connecting to 192.168.200.1:63352
@@ -2475,45 +2664,45 @@ orientation xyzw:
 
 [CARTESIAN] Planning SAFE_TO_PREGRASP_CARTESIAN
 [CARTESIAN] eef_step: 0.005
-[CARTESIAN] min_fraction: 0.8
+[CARTESIAN] min_fraction: 0.0
 
 ========== SAFE_TO_PREGRASP_CARTESIAN START POSE ==========
 position:
-  x: 0.3646663360576845
-  y: -0.2121870440112748
-  z: 0.13383342074045956
+  x: 0.36468505464156786
+  y: -0.21216341610195288
+  z: 0.1338255623847044
 orientation xyzw:
-  x: 0.6637556147377648
-  y: 0.2905515415107902
-  z: 0.2551747488653867
-  w: 0.6402297503016259
+  x: 0.6638117599917369
+  y: 0.290525293406612
+  z: 0.2551912688681191
+  w: 0.6401768642189077
 ====================================
 
 
 ========== SAFE_TO_PREGRASP_CARTESIAN TARGET POSE ==========
 position:
-  x: 0.5588258614304866
-  y: -0.5138991034418174
-  z: 0.417445498251182
+  x: 0.6214446168648667
+  y: -0.49977491653265893
+  z: 0.4248410036338791
 orientation xyzw:
-  x: 0.6637466362637149
-  y: 0.2905618092513315
-  z: 0.2551647340022011
-  w: 0.6402383902694234
+  x: 0.6637886169322765
+  y: 0.2905060479226146
+  z: 0.25521028034411686
+  w: 0.6402020157404976
 ====================================
 
-[CARTESIAN] SAFE_TO_PREGRASP_CARTESIAN fraction: 1.0
+[CARTESIAN] SAFE_TO_PREGRASP_CARTESIAN fraction: 0.1134020618556701
 
 ========== JOINT SUMMARY: SAFE_TO_PREGRASP_CARTESIAN ==========
-start: [-0.7914226690875452, -1.4445422331439417, 2.22967529296875, -0.7369688192950647, 1.570236086845398, -0.0244372526751917]
-final: [-0.9004846163910694, -0.7814813966591936, 0.4471648608717096, 0.3817656704547809, 1.444233768314985, -0.03016624141224625]
-final nearest: [-0.9004846163910694, -0.7814813966591936, 0.4471648608717096, 0.38176567045478094, 1.444233768314985, -0.03016624141224625]
-shoulder_pan_joint: delta=0.1091 rad
-shoulder_lift_joint: delta=0.6631 rad
-elbow_joint: delta=1.7825 rad
-wrist_1_joint: delta=1.1187 rad
-wrist_2_joint: delta=0.1260 rad
-wrist_3_joint: delta=0.0057 rad
+start: [-0.7913149038897913, -1.4444339911090296, 2.2296390533447266, -0.7369206587420862, 1.5702720880508423, -0.024329487477437794]
+final: [-0.7972010990976212, -1.4160014796331881, 2.082478542175876, -0.6182704152414831, 1.562830299282839, -0.023676079195014774]
+final nearest: [-0.7972010990976212, -1.4160014796331881, 2.082478542175876, -0.6182704152414831, 1.562830299282839, -0.023676079195014774]
+shoulder_pan_joint: delta=0.0059 rad
+shoulder_lift_joint: delta=0.0284 rad
+elbow_joint: delta=0.1472 rad
+wrist_1_joint: delta=0.1187 rad
+wrist_2_joint: delta=0.0074 rad
+wrist_3_joint: delta=0.0007 rad
 ===========================================
 
 [RVIZ] Published trajectory: SAFE_TO_PREGRASP_CARTESIAN
@@ -2532,45 +2721,45 @@ wrist_3_joint: delta=0.0057 rad
 
 [CARTESIAN] Planning PREGRASP_TO_DESCEND_CARTESIAN
 [CARTESIAN] eef_step: 0.005
-[CARTESIAN] min_fraction: 0.8
+[CARTESIAN] min_fraction: 0.0
 
 ========== PREGRASP_TO_DESCEND_CARTESIAN START POSE ==========
 position:
-  x: 0.5588510864035988
-  y: -0.5139009482285646
-  z: 0.41736324404408487
+  x: 0.3937919672149909
+  y: -0.2447782381819065
+  z: 0.16683009689389675
 orientation xyzw:
-  x: 0.66378624540366
-  y: 0.2906078713815484
-  z: 0.2551916819296933
-  w: 0.6401656746326624
+  x: 0.6638167158273779
+  y: 0.29050785984741295
+  z: 0.2552301875107345
+  w: 0.6401641215643573
 ====================================
 
 
 ========== PREGRASP_TO_DESCEND_CARTESIAN TARGET POSE ==========
 position:
-  x: 0.5588258614304866
-  y: -0.5138991034418174
-  z: 0.297445498251182
+  x: 0.6214446168648667
+  y: -0.49977491653265893
+  z: 0.3048410036338791
 orientation xyzw:
-  x: 0.6637466362637149
-  y: 0.2905618092513315
-  z: 0.2551647340022011
-  w: 0.6402383902694234
+  x: 0.6637886169322765
+  y: 0.2905060479226146
+  z: 0.25521028034411686
+  w: 0.6402020157404976
 ====================================
 
 [CARTESIAN] PREGRASP_TO_DESCEND_CARTESIAN fraction: 1.0
 
 ========== JOINT SUMMARY: PREGRASP_TO_DESCEND_CARTESIAN ==========
-start: [-0.9005182425128382, -0.7814791838275355, 0.44721555709838867, 0.3818005323410034, 1.4441972970962524, -0.030163113270894826]
-final: [-0.9009769490609553, -0.8494156780962376, 0.8772951170769929, 0.01937003402084663, 1.4492253775131752, -0.028296965557493992]
-final nearest: [-0.9009769490609553, -0.8494156780962376, 0.8772951170769929, 0.019370034020846583, 1.4492253775131752, -0.028296965557493992]
-shoulder_pan_joint: delta=0.0005 rad
-shoulder_lift_joint: delta=0.0679 rad
-elbow_joint: delta=0.4301 rad
-wrist_1_joint: delta=0.3624 rad
-wrist_2_joint: delta=0.0050 rad
-wrist_3_joint: delta=0.0019 rad
+start: [-0.7972267309771937, -1.4160283247577112, 2.0824780464172363, -0.6182540098773401, 1.5628126859664917, -0.023670498524801076]
+final: [-0.8184139762045896, -0.7135298400906467, 0.6180867512937588, 0.1433335984399233, 1.5296084988121168, -0.024855137768783824]
+final nearest: [-0.8184139762045896, -0.7135298400906467, 0.6180867512937587, 0.14333359843992333, 1.5296084988121168, -0.024855137768783824]
+shoulder_pan_joint: delta=0.0212 rad
+shoulder_lift_joint: delta=0.7025 rad
+elbow_joint: delta=1.4644 rad
+wrist_1_joint: delta=0.7616 rad
+wrist_2_joint: delta=0.0332 rad
+wrist_3_joint: delta=0.0012 rad
 ===========================================
 
 [RVIZ] Published trajectory: PREGRASP_TO_DESCEND_CARTESIAN
@@ -2586,17 +2775,17 @@ wrist_3_joint: delta=0.0019 rad
 [GRIPPER] >> SET GTO 1
 [GRIPPER] << ack
 [GRIPPER] Socket closed
-[0m[ INFO] [1782741505.140800143]: Loading robot model 'ur5_robot'...[0m
-[0m[ INFO] [1782741505.181380464]: IK Using joint shoulder_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741505.181393265]: IK Using joint upper_arm_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741505.181400041]: IK Using joint forearm_link -3.14159 3.14159[0m
-[0m[ INFO] [1782741505.181406131]: IK Using joint wrist_1_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741505.181412095]: IK Using joint wrist_2_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741505.181417929]: IK Using joint wrist_3_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741505.181426547]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
-[0m[ INFO] [1782741505.182253092]: Looking in common namespaces for param name: manipulator/solve_type[0m
-[0m[ INFO] [1782741505.183416394]: Using solve type Distance[0m
-[0m[ INFO] [1782741506.361074628]: Ready to take commands for planning group manipulator.[0m
+[0m[ INFO] [1783328508.794933597]: Loading robot model 'ur5_robot'...[0m
+[0m[ INFO] [1783328508.864887530]: IK Using joint shoulder_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328508.864904056]: IK Using joint upper_arm_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328508.864910781]: IK Using joint forearm_link -3.14159 3.14159[0m
+[0m[ INFO] [1783328508.864916687]: IK Using joint wrist_1_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328508.864921937]: IK Using joint wrist_2_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328508.864927743]: IK Using joint wrist_3_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328508.864936633]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
+[0m[ INFO] [1783328508.865675786]: Looking in common namespaces for param name: manipulator/solve_type[0m
+[0m[ INFO] [1783328508.866911432]: Using solve type Distance[0m
+[0m[ INFO] [1783328510.046499323]: Ready to take commands for planning group manipulator.[0m
 [OK] Grasp script selesai.
 
 ============================================================
@@ -2629,23 +2818,23 @@ DISCARD AFTER GRASP
 [OK] Discard script: robot_executor/execute_from_current_pregrasp_to_discard.py
 [OK] Waypoints JSON: configs/waypoints_ur5.json
 [CMD] python3 robot_executor/execute_from_current_pregrasp_to_discard.py --robot_ip 192.168.200.1 --waypoints_json configs/waypoints_ur5.json --lift_up 0.05 --velocity 0.08 --acceleration 0.04 --skip_lift --execute
-[33m[ WARN] [1782741529.086795250]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
+[33m[ WARN] [1783328531.514603377]: IK plugin for group 'manipulator' relies on deprecated API. Please implement initialize(RobotModel, ...).[0m
 [OK] Loaded waypoints: /home/b401/Documents/pick_place_occlusion_noetic/configs/waypoints_ur5.json
 [SKIP] Lift skipped.
 
 [JOINT GO] Moving to DISCARD_STEP_1
 [JOINT GO] target: [-0.6725381056415003, -1.7394445578204554, 1.5304059982299805, 0.14724528789520264, 1.5740376710891724, -0.024556938801900685]
-[JOINT GO] current: [-0.9010103384601038, -0.8493822256671351, 0.8773503303527832, 0.01937282085418701, 1.4492576122283936, -0.028330151234762013]
+[JOINT GO] current: [-0.8184292952166956, -0.71344501176943, 0.6181168556213379, 0.14343512058258057, 1.5295567512512207, -0.024856392537252248]
 [JOINT GO] DISCARD_STEP_1 result: True
 
 [JOINT GO] Moving to DISCARD_STEP_2
 [JOINT GO] target: [0.6762447357177734, -1.7384021917926233, 1.5304059982299805, 0.23954260349273682, 1.5335625410079956, -0.0244372526751917]
-[JOINT GO] current: [-0.6726577917682093, -1.7395160833941858, 1.5305614471435547, 0.14713740348815918, 1.5739778280258179, -0.024556938801900685]
+[JOINT GO] current: [-0.6727541128741663, -1.739539925252096, 1.5306334495544434, 0.1471613645553589, 1.5740137100219727, -0.02458078065981084]
 [JOINT GO] DISCARD_STEP_2 result: True
 
 [JOINT GO] Moving to UP_DISCARD
 [JOINT GO] target: [0.6737411618232727, -1.0290349165545862, 1.5311832427978516, -0.5130503813373011, 1.533394694328308, -0.02290374437441045]
-[JOINT GO] current: [0.6761128902435303, -1.7383540312396448, 1.530454158782959, 0.23942267894744873, 1.533550500869751, -0.02452117601503545]
+[JOINT GO] current: [0.6762087941169739, -1.7384260336505335, 1.5304303169250488, 0.23948264122009277, 1.5335025787353516, -0.024401013051168263]
 [JOINT GO] UP_DISCARD result: True
 [GRIPPER] Connecting to 192.168.200.1:63352
 [GRIPPER] Connected
@@ -2653,30 +2842,30 @@ DISCARD AFTER GRASP
 
 [JOINT GO] Moving to DISCARD_STEP_2
 [JOINT GO] target: [0.6762447357177734, -1.7384021917926233, 1.5304059982299805, 0.23954260349273682, 1.5335625410079956, -0.0244372526751917]
-[JOINT GO] current: [0.6737291812896729, -1.0291784445392054, 1.531087875366211, -0.5129664579974573, 1.533382773399353, -0.022975746785299123]
+[JOINT GO] current: [0.6737771034240723, -1.0291302839862269, 1.531087875366211, -0.5131104628192347, 1.533394694328308, -0.022951904927388966]
 [JOINT GO] DISCARD_STEP_2 result: True
 
 [JOINT GO] Moving to DISCARD_TO_IDLE
 [JOINT GO] target: [-0.025298420582906544, -1.2021411100970667, 1.8867301940917969, -0.8184078375445765, 1.5361050367355347, -0.02444917360414678]
-[JOINT GO] current: [0.6761728525161743, -1.7384021917926233, 1.5305614471435547, 0.23962640762329102, 1.5334786176681519, -0.024545017872945607]
+[JOINT GO] current: [0.6761728525161743, -1.7384980360614222, 1.5303821563720703, 0.23967444896697998, 1.533610463142395, -0.02444917360414678]
 [JOINT GO] DISCARD_TO_IDLE result: True
 
 [JOINT GO] Moving to IDLE
 [JOINT GO] target: [-0.7912667433368128, -1.4445660750018519, 2.2297110557556152, -0.7369807402240198, 1.5702720880508423, -0.024377171193258107]
-[JOINT GO] current: [-0.025214497243062794, -1.2022488752948206, 1.8865981101989746, -0.8184679190265101, 1.5361289978027344, -0.02449685731996709]
+[JOINT GO] current: [-0.025238815938131154, -1.2021053473102015, 1.8865861892700195, -0.8185156027423304, 1.5360690355300903, -0.024545017872945607]
 [JOINT GO] IDLE result: True
 [GRIPPER] Socket closed
-[0m[ INFO] [1782741529.043004761]: Loading robot model 'ur5_robot'...[0m
-[0m[ INFO] [1782741529.088561039]: IK Using joint shoulder_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741529.088574111]: IK Using joint upper_arm_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741529.088580034]: IK Using joint forearm_link -3.14159 3.14159[0m
-[0m[ INFO] [1782741529.088585353]: IK Using joint wrist_1_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741529.088590380]: IK Using joint wrist_2_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741529.088595236]: IK Using joint wrist_3_link -6.28319 6.28319[0m
-[0m[ INFO] [1782741529.088602750]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
-[0m[ INFO] [1782741529.089406104]: Looking in common namespaces for param name: manipulator/solve_type[0m
-[0m[ INFO] [1782741529.090846300]: Using solve type Distance[0m
-[0m[ INFO] [1782741530.225407313]: Ready to take commands for planning group manipulator.[0m
+[0m[ INFO] [1783328531.444516413]: Loading robot model 'ur5_robot'...[0m
+[0m[ INFO] [1783328531.516344911]: IK Using joint shoulder_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328531.516357978]: IK Using joint upper_arm_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328531.516363947]: IK Using joint forearm_link -3.14159 3.14159[0m
+[0m[ INFO] [1783328531.516369176]: IK Using joint wrist_1_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328531.516374497]: IK Using joint wrist_2_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328531.516379487]: IK Using joint wrist_3_link -6.28319 6.28319[0m
+[0m[ INFO] [1783328531.516387080]: Looking in common namespaces for param name: manipulator/position_only_ik[0m
+[0m[ INFO] [1783328531.517127702]: Looking in common namespaces for param name: manipulator/solve_type[0m
+[0m[ INFO] [1783328531.518072065]: Using solve type Distance[0m
+[0m[ INFO] [1783328532.706044703]: Ready to take commands for planning group manipulator.[0m
 
 ============================================================
 POST-CHECK STEP 1
@@ -2778,19 +2967,23 @@ Loading YOLO-World model: /home/b401/Documents/pick_place_occlusion_noetic/model
 [YOLO-World] Target dari action plan: green soda can
 [YOLO-World] Dynamic classes: ['green soda can']
 
-image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg: 480x640 (no detections), 38.1ms
-Speed: 0.8ms preprocess, 38.1ms inference, 0.5ms postprocess per image at shape (1, 3, 480, 640)
+image 1/1 /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg: 480x640 (no detections), 34.3ms
+Speed: 0.7ms preprocess, 34.3ms inference, 0.5ms postprocess per image at shape (1, 3, 480, 640)
 [YOLO-World] Detections saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_detections_yolo.json
 [YOLO-World] Result image saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_post_check_yolo_result.jpg
 []
 
 Remaining plan saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/post_check_output/STEP_1_remaining_plan.json
-[{"step": 2, "action": "pick", "target": "red soda can", "target_role": "primary_target", "explanation": "Target is now accessible.", "step_intent": "pickup_obj_as_requested"}]
+[{"step": 2, "action": "pick", "target": "red soda can", "target_role": "primary_target", "step_intent": "pick_primary_target", "explanation": "Pick the red soda can now that it is accessible."}]
 
 ✅ Step yang diverifikasi berhasil menurut post-check.
 ➡️ Masih ada step berikutnya.
 
 🔍 MELAKUKAN REASONING ULANG TERHADAP SISA PLAN...
+{
+  "error": "Gagal memparsing JSON dari VLM lokal.\nOutput mentah:\n",
+  "validation_status": "FAIL"
+}
 Status Re-validasi: FAIL
 Feedback VLM: No feedback provided.
 
@@ -2832,12 +3025,12 @@ TOOL0_TO_GRIPPER_TIP     : 0 0 0.17
 PREGRASP_Z               : 0.13
 SAFE_LIFT_Z              : 0.0
 SAFE_LIFT_EEF_STEP       : 0.005
-CARTESIAN_MIN_FRACTION   : 0.80
+CARTESIAN_MIN_FRACTION   : 0.0
 MAX_XYZ_DISTANCE         : 0.80
 MAX_BASE_DELTA           : 1.80
 MAX_WRIST_DELTA          : 1.50
 DESCEND_Z                : 0.12
-NUDGE_DX/DY/DZ           : -0.04 / 0.04 / 0.0
+NUDGE_DX/DY/DZ           : -0.05 / 0.035 / 0.0
 DISABLE_GRIPPER          : 0
 PREOPEN_GRIPPER          : 0
 LOCK_STABLE_CONFIG       : 0
@@ -2942,37 +3135,54 @@ Menggunakan Gemini Cloud VLM Planner...
 Action plan berhasil dibuat.
 Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/action_plan_real.json
 {
-  "resolved_primary_target": "red soda can",
-  "target_visibility": "not_exist",
-  "plan_intent": "pick_target",
+  "resolved_primary_target": "white soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
   "visual_analysis": [
     {
-      "object": "brown bottle",
-      "description": "A brown coffee drink bottle with a green cap is in the foreground.",
-      "status": "clear",
-      "target_role": "background"
+      "object": "white soda can",
+      "description": "A white soda can with purple and blue graphics, located behind a brown bottle.",
+      "status": "target",
+      "target_role": "primary_target"
     },
     {
-      "object": "white can",
-      "description": "A white can is partially visible behind the brown bottle.",
-      "status": "clear",
-      "target_role": "background"
+      "object": "brown coffee bottle",
+      "description": "A brown plastic bottle with a green cap, labeled 'CAFFINO', positioned in front of the white can.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
     },
     {
-      "object": "brown envelope",
-      "description": "A brown paper envelope is in the background, behind the drinks.",
+      "object": "wooden shelf",
+      "description": "The wooden surface on which the bottle and can are placed.",
       "status": "clear_background",
       "target_role": "background"
     }
   ],
-  "action_plan": []
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "brown coffee bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the brown coffee bottle that is blocking frontal access to the white soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "white soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the white soda can, which is the closest object to the user's request for 'coca-cola' and is now accessible."
+    }
+  ]
 }
 
 VLM detections berhasil dibuat.
 Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/detections_from_vlm.json
 [
   {
-    "label": "brown bottle",
+    "label": "white soda can",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -2989,12 +3199,12 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A brown coffee drink bottle with a green cap is in the foreground.",
-    "status": "clear",
-    "target_role": "background"
+    "description": "A white soda can with purple and blue graphics, located behind a brown bottle.",
+    "status": "target",
+    "target_role": "primary_target"
   },
   {
-    "label": "white can",
+    "label": "brown coffee bottle",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -3011,12 +3221,12 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A white can is partially visible behind the brown bottle.",
-    "status": "clear",
-    "target_role": "background"
+    "description": "A brown plastic bottle with a green cap, labeled 'CAFFINO', positioned in front of the white can.",
+    "status": "obstructing",
+    "target_role": "search_occluder"
   },
   {
-    "label": "brown envelope",
+    "label": "wooden shelf",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -3033,7 +3243,7 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A brown paper envelope is in the background, behind the drinks.",
+    "description": "The wooden surface on which the bottle and can are placed.",
     "status": "clear_background",
     "target_role": "background"
   }
@@ -3043,9 +3253,26 @@ Menggunakan Local/Ollama LogicValidator...
 Validation berhasil dibuat.
 Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/validation_result_real.json
 {
-  "validation_status": "PASS",
-  "feedback": "The user requested 'coca-cola', which semantically matches a 'red soda can' as noted in resolved_primary_target. The Planner's visual_analysis correctly identifies visible objects on the table (brown coffee bottle, white can) without detecting any red soda cans ('target_visibility': 'not_exist'). Since the primary target is not found and does not exist in the current view, generating an empty action_plan prevents hallucinations or unsafe attempts to grasp non-existent objects. The plan logically handles a negative search result safely.",
-  "final_action_plan": []
+  "validation_status": "FAIL",
+  "feedback": "The user requested 'coca-cola'. The planner's resolved target is a 'white soda can' with purple and blue graphics, which visual analysis confirms exists behind an occluding bottle. Picking this object represents incorrect semantic matching (substitution) as the brand/product does not match Coca-Cola (violating Rule 1: User Target Consistency). Additionally, based on visual appearance of white cans with such graphics in these datasets (typically Milkis), it is clearly not CocaCola or a similar cola-product.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "brown coffee bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the brown coffee bottle that is blocking frontal access to the white soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "white soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the white soda can, which is the closest object to the user's request for 'coca-cola' and is now accessible."
+    }
+  ]
 }
 Traceback (most recent call last):
   File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 892, in <module>
@@ -3054,9 +3281,9 @@ Traceback (most recent call last):
     spatial_result = run_spatial_pipeline(validation_result)
   File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 723, in run_spatial_pipeline
     target, first_step, final_plan = get_first_target_from_validation(
-  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 239, in get_first_target_from_validation
-    raise RuntimeError("final_action_plan kosong.")
-RuntimeError: final_action_plan kosong.
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 234, in get_first_target_from_validation
+    raise RuntimeError("Plan belum PASS. Tidak boleh lanjut ke YOLO/FastSAM.")
+RuntimeError: Plan belum PASS. Tidak boleh lanjut ke YOLO/FastSAM.
 [WARN] Vision script gagal dengan --test_name. Mencoba tanpa argumen.
 /home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/google/api_core/_python_version_support.py:255: FutureWarning: You are using a Python version (3.10.20) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
   warnings.warn(message, FutureWarning)
@@ -3127,25 +3354,25 @@ Menggunakan Gemini Cloud VLM Planner...
 Action plan berhasil dibuat.
 Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/action_plan_real.json
 {
-  "resolved_primary_target": "brown coffee bottle",
-  "target_visibility": "clear",
-  "plan_intent": "pick_target",
+  "resolved_primary_target": "white soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
   "visual_analysis": [
     {
       "object": "brown coffee bottle",
-      "description": "A brown plastic bottle with a green cap, labeled CAFFINO, is in the foreground.",
+      "description": "A brown bottle with a green cap, positioned in front.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white and purple soda can, partially hidden behind the brown bottle.",
       "status": "target",
       "target_role": "primary_target"
     },
     {
-      "object": "white drink can",
-      "description": "A white and red can is partially visible behind the brown bottle.",
-      "status": "clear",
-      "target_role": "background"
-    },
-    {
-      "object": "brown paper package",
-      "description": "A large brown paper package is in the background.",
+      "object": "wooden shelf",
+      "description": "A wooden shelf holding the objects.",
       "status": "clear_background",
       "target_role": "background"
     }
@@ -3153,11 +3380,19 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
   "action_plan": [
     {
       "step": 1,
-      "action": "pick",
+      "action": "remove",
       "target": "brown coffee bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The brown coffee bottle is in front of and blocking access to the white soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "white soda can",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "The user requested 'coca-cola', which is not present. The brown coffee bottle is the most similar beverage available. It is clearly visible and unobstructed."
+      "explanation": "Pick the white soda can, which is the resolved target for the user's request for 'coca-cola', now that it is accessible."
     }
   ]
 }
@@ -3183,12 +3418,34 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A brown plastic bottle with a green cap, labeled CAFFINO, is in the foreground.",
+    "description": "A brown bottle with a green cap, positioned in front.",
+    "status": "obstructing",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "white soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A white and purple soda can, partially hidden behind the brown bottle.",
     "status": "target",
     "target_role": "primary_target"
   },
   {
-    "label": "white drink can",
+    "label": "wooden shelf",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -3205,29 +3462,7 @@ Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOL
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A white and red can is partially visible behind the brown bottle.",
-    "status": "clear",
-    "target_role": "background"
-  },
-  {
-    "label": "brown paper package",
-    "confidence": null,
-    "bbox_format": "normalized_0_1000_xyxy",
-    "bbox": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "bbox_original_format": "normalized_0_1000_yxyx",
-    "bbox_original_yxyx": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "source": "vlm_visual_analysis",
-    "description": "A large brown paper package is in the background.",
+    "description": "A wooden shelf holding the objects.",
     "status": "clear_background",
     "target_role": "background"
   }
@@ -3238,15 +3473,23 @@ Validation berhasil dibuat.
 Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vlm_output/validation_result_real.json
 {
   "validation_status": "FAIL",
-  "feedback": "The user requested 'coca-cola', but the planner selected a brown coffee bottle labeled CAFFINO as the target. These are different brands and products, violating Rule 1 regarding User Target Consistency.",
+  "feedback": "The validation fails because the action plan attempts to pick a 'white soda can' as the target for a user request of 'Coca-Cola'. Under Validation Rule #1 (User target consistency) and Rule #2 (Semantic matching), picking an object that does not visually confirm the specific brand requested is considered incorrect unless clear visual evidence matches. The provided image shows the white/silver can with cartoon/anime graphics which lacks standard Coca-Cola branding features, suggesting a substitution of another soda product instead of the requested target.",
   "final_action_plan": [
     {
       "step": 1,
-      "action": "pick",
+      "action": "remove",
       "target": "brown coffee bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The brown coffee bottle is in front of and blocking access to the white soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "white soda can",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "The user requested 'coca-cola', which is not present. The brown coffee bottle is the most similar beverage available. It is clearly visible and unobstructed."
+      "explanation": "Pick the white soda can, which is the resolved target for the user's request for 'coca-cola', now that it is accessible."
     }
   ]
 }

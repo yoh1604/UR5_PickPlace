@@ -1,0 +1,118 @@
+{
+  "test_name": "TC_10_GMN_VLM",
+  "current_step_index_completed": 1,
+  "next_step": {
+    "step": 2,
+    "action": "remove",
+    "target": "green soda can",
+    "target_role": "search_occluder",
+    "step_intent": "clear_occluder_to_reveal_primary_target",
+    "explanation": "Remove the green soda can which is in front of and blocking access to the clear water bottle."
+  },
+  "next_target": "green soda can",
+  "target_query_used": "green soda can",
+  "confidence_threshold_used": 0.5,
+  "best_detection": {
+    "label": "green soda can",
+    "confidence": 0.5803102254867554,
+    "bbox": [
+      293,
+      143,
+      348,
+      286
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green soda can",
+    "target_query_original": "green soda can",
+    "target_query_used": "green soda can",
+    "confidence_threshold_used": 0.5
+  },
+  "all_detections": [
+    {
+      "label": "green soda can",
+      "confidence": 0.5803102254867554,
+      "bbox": [
+        293,
+        143,
+        348,
+        286
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "green soda can",
+      "target_query_original": "green soda can",
+      "target_query_used": "green soda can",
+      "confidence_threshold_used": 0.5
+    },
+    {
+      "label": "green soda can",
+      "confidence": 0.5246993899345398,
+      "bbox": [
+        405,
+        158,
+        460,
+        289
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "green soda can"
+    }
+  ],
+  "next_rgb_image_used": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
+  "next_depth_used": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
+  "next_yolo_json": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_GMN_VLM/post_check_output/STEP_2_next_target/STEP_2_next_detections_yolo.json",
+  "next_yolo_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_GMN_VLM/post_check_output/STEP_2_next_target/STEP_2_next_yolo_result.jpg",
+  "next_fastsam_mask": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_GMN_VLM/post_check_output/STEP_2_next_target/STEP_2_next_fastsam_mask.png",
+  "next_fastsam_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_GMN_VLM/post_check_output/STEP_2_next_target/STEP_2_next_fastsam_result.jpg",
+  "next_object_position_json": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_GMN_VLM/post_check_output/STEP_2_next_target/STEP_2_next_object_position_camera.json",
+  "object_position": {
+    "object": "green soda can",
+    "pixel_center_uv": [
+      321,
+      215
+    ],
+    "pixel_center_uv_mean": [
+      320,
+      215
+    ],
+    "median_depth_m": 0.4050000309944153,
+    "mean_depth_m": 0.40626171231269836,
+    "point_camera_m": [
+      -0.005813248455524445,
+      -0.03168996796011925,
+      0.4050000309944153
+    ],
+    "point_camera_mean_m": [
+      -0.006135766394436359,
+      -0.03126547858119011,
+      0.4060269594192505
+    ],
+    "debug": {
+      "mask_pixels": 7233,
+      "valid_depth_pixels": 5832,
+      "valid_depth_ratio": 0.8063044379925343,
+      "used_pixels_after_depth_fill": 7233,
+      "min_depth_m": 0.1,
+      "max_depth_m": 2.0,
+      "depth_scale": 0.0010000000474974513,
+      "fx": 385.8294677734375,
+      "fy": 385.38531494140625,
+      "ppx": 326.5517883300781,
+      "ppy": 244.87197875976562,
+      "method": "all_mask_pixels_with_invalid_depth_filled_by_median_depth"
+    },
+    "frame": "RealSense D455 aligned color camera frame",
+    "note": "Belum ditransformasikan ke base frame UR5."
+  },
+  "sanity_check_object_position": {
+    "ok": true,
+    "point_camera_m": [
+      -0.005813248455524445,
+      -0.03168996796011925,
+      0.4050000309944153
+    ],
+    "warnings": []
+  },
+  "note": "Next target has been detected, segmented, and localized."
+}

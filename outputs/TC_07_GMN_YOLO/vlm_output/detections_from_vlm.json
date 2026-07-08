@@ -17,12 +17,34 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A brown plastic bottle with a green cap, labeled CAFFINO, is in the foreground.",
+    "description": "A brown bottle with a green cap, positioned in front.",
+    "status": "obstructing",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "white soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "A white and purple soda can, partially hidden behind the brown bottle.",
     "status": "target",
     "target_role": "primary_target"
   },
   {
-    "label": "white drink can",
+    "label": "wooden shelf",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -39,29 +61,7 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A white and red can is partially visible behind the brown bottle.",
-    "status": "clear",
-    "target_role": "background"
-  },
-  {
-    "label": "brown paper package",
-    "confidence": null,
-    "bbox_format": "normalized_0_1000_xyxy",
-    "bbox": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "bbox_original_format": "normalized_0_1000_yxyx",
-    "bbox_original_yxyx": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "source": "vlm_visual_analysis",
-    "description": "A large brown paper package is in the background.",
+    "description": "A wooden shelf holding the objects.",
     "status": "clear_background",
     "target_role": "background"
   }

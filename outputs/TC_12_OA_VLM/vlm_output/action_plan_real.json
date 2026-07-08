@@ -1,49 +1,49 @@
 {
-  "resolved_primary_target": "black soda can",
+  "resolved_primary_target": "blue water bottle",
   "target_visibility": "obstructed",
   "plan_intent": "search_for_hidden_or_blocked_target",
   "visual_analysis": [
     {
-      "object": "black soda can",
-      "description": "a black can partially visible on the left",
-      "status": "obstructing",
-      "target_role": "primary_target"
-    },
-    {
-      "object": "beige envelope",
-      "description": "a large beige envelope behind cans",
-      "status": "clear_background",
-      "target_role": "background"
-    },
-    {
-      "object": "brown bottle",
-      "description": "a bottle with a brown base and blue cap in the center",
+      "object": "red soda can",
+      "description": "red soda can with logo",
       "status": "obstructing",
       "target_role": "search_occluder"
     },
     {
       "object": "white soda can",
-      "description": "a white can on the right",
-      "status": "clear_background",
-      "target_role": "background"
+      "description": "white soda can with cartoon",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "green soda can",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "blue water bottle",
+      "description": "blue water bottle",
+      "status": "target",
+      "target_role": "primary_target"
     }
   ],
   "action_plan": [
     {
       "step": 1,
       "action": "remove",
-      "target": "brown bottle",
+      "target": "red soda can",
       "target_role": "search_occluder",
       "step_intent": "clear_occluder_to_reveal_primary_target",
-      "explanation": "remove the bottle to access the soda can behind"
+      "explanation": "remove the red soda can blocking access to the blue water bottle"
     },
     {
       "step": 2,
       "action": "pick",
-      "target": "black soda can",
+      "target": "blue water bottle",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "pick the soda can once it is accessible"
+      "explanation": "pick the blue water bottle"
     }
   ]
 }

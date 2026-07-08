@@ -5,9 +5,9 @@
   "source_target": "gripper_tip",
   "active_test_name": "TC_07_GMN_YOLO",
   "translation_tool0_pregrasp": [
-    -0.5588258614304866,
-    0.5138991034418174,
-    0.417445498251182
+    -0.6214446168648667,
+    0.49977491653265893,
+    0.4248410036338791
   ],
   "quaternion_tool0_xyzw": [
     -0.28340175782789895,
@@ -22,14 +22,14 @@
   ],
   "orientation_source": "fixed_rpy",
   "gripper_tip_grasp_base": [
-    -0.638297065395944,
-    0.594562147454796,
-    0.27925640595923124
+    -0.6909158208303241,
+    0.5854379605456375,
+    0.28665191134192836
   ],
   "gripper_tip_pregrasp_base": [
-    -0.638297065395944,
-    0.594562147454796,
-    0.40925640595923124
+    -0.6909158208303241,
+    0.5854379605456375,
+    0.41665191134192836
   ],
   "tool0_to_gripper_tip_offset_tool_frame": [
     0.0,
@@ -37,31 +37,31 @@
     0.17
   ],
   "pregrasp_z_m": 0.13,
-  "score": 0.4214537441730499,
-  "width": 0.07163193821907043,
+  "score": 0.627811074256897,
+  "width": 0.0721016600728035,
   "depth": 0.019999999552965164,
   "height": 0.019999999552965164,
   "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_GMN_YOLO/vision_output/best_grasp_base.json",
   "note": "Kirim translation_tool0_pregrasp + quaternion_tool0_xyzw ke MoveIt sebagai target tool0. Jangan kirim gripper_tip_grasp_base langsung ke MoveIt.",
   "manual_nudge_base_m": {
-    "dx": -0.04,
-    "dy": 0.04,
+    "dx": -0.05,
+    "dy": 0.035,
     "dz": 0.0
   },
   "manual_nudge_history": [
     {
       "from": [
-        -0.5188258614304866,
-        0.47389910344181746,
-        0.417445498251182
+        -0.5714446168648667,
+        0.46477491653265895,
+        0.4248410036338791
       ],
       "to": [
-        -0.5588258614304866,
-        0.5138991034418174,
-        0.417445498251182
+        -0.6214446168648667,
+        0.49977491653265893,
+        0.4248410036338791
       ],
-      "dx": -0.04,
-      "dy": 0.04,
+      "dx": -0.05,
+      "dy": 0.035,
       "dz": 0.0,
       "frame": "base"
     }

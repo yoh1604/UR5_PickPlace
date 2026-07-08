@@ -1,10 +1,18 @@
 [
   {
     "step": 2,
+    "action": "remove",
+    "target": "green soda can",
+    "target_role": "search_occluder",
+    "step_intent": "clear_occluder_to_reveal_primary_target",
+    "explanation": "The green soda can is also in front of the clear water bottle, blocking access. It must be removed to clear the path."
+  },
+  {
+    "step": 3,
     "action": "pick",
     "target": "clear water bottle",
     "target_role": "primary_target",
     "step_intent": "pick_primary_target",
-    "explanation": "The clear water bottle is now accessible after removing the occluding green soda can."
+    "explanation": "Now that the obstructing cans have been removed, the clear water bottle is accessible and can be picked up."
   }
 ]

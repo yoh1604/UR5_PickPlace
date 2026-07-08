@@ -1,7 +1,7 @@
 {
   "test_name": "TC_09_GMN_VLM",
   "step_index": 2,
-  "target": "clear water bottle",
+  "target": "green soda can",
   "post_check_status": "REMOVED_SUCCESS",
   "target_found_after_action": false,
   "best_detection": null,

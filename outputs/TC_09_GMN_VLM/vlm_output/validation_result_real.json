@@ -1,22 +1,30 @@
 {
   "validation_status": "PASS",
-  "feedback": "The action plan successfully addresses the user request to 'drink mineral water' by identifying and targeting a clear water bottle with a blue cap as the primary target. The planner correctly identifies that the green soda can (Sprite) is obstructing or crowded against the primary target on the shelf, requiring an intermediate removal step to safely access/grasp the water bottle without collision risks with adjacent objects like the black soda can. All identified objects (Miikis can, Black/Space can, Sprite can, Water bottle, Shelf) correspond validly to the provided visual scene.",
+  "feedback": "The action_plan is logically valid and consistent with the user's request to drink mineral water. 1) Target Consistency: The planner correctly identifies the 'clear plastic bottle' (Crystal brand visible in image, associated with mineral water conceptually matching user intent of 'drink minerals') as primary target. It does NOT substitute soda cans/milk requested incorrectly which fails rule #5 or semantic match rules #2/#3 since Coke/Sprite Milk are non-minerals not what was asked for drinking pure liquid request here). 2) Occlusion Logic Rule#4: Planner identifies Red Soda Can (Coca-Cola visible far right edge image) blocking access/grabbing path to water bottle standing behind it/touching cluster plus Green Sprite can obstructs too. Removing these occluders first ensures safe grasp of target avoiding collision with neighbors touching objects in tight row making Step 1 AND Step2 reasonable safety measures before picking Step3 which corresponds exactly to user request goal not grabbing cola/milk soda instead!. Plan sequence executable: Remove Red Can -> Clear path/obstruction -> remove Green Sprite can then finally pick exposed clear water bottle. No hallucinated items detected (all mentioned objects exist on shelf visually). 4) Background Check OK: Planner ignores table/shelf itself which are correctly tagged `background`. 5) Semantic Match Correctness 'Red soda' maps to Coca-Cola, 'Green Soda' matches Sprite can both correct types of obstructers removing them clears way for water bottle. Plan passes all validation criteria.",
   "final_action_plan": [
     {
       "step": 1,
       "action": "remove",
-      "target": "green soda can",
-      "target_role": "search_occulder",
+      "target": "red soda can",
+      "target_role": "search_occluder",
       "step_intent": "clear_occluder_to_reveal_primary_target",
-      "explanation": "The green soda can is directly in front of the clear water bottle and must be moved to allow access for grasping."
+      "explanation": "The red soda can is in front of the clear water bottle, blocking access. It must be removed first."
     },
     {
       "step": 2,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The green soda can is also in front of the clear water bottle, blocking access. It must be removed to clear the path."
+    },
+    {
+      "step": 3,
       "action": "pick",
       "target": "clear water bottle",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "The clear water bottle is now accessible after removing the occluding green soda can."
+      "explanation": "Now that the obstructing cans have been removed, the clear water bottle is accessible and can be picked up."
     }
   ]
 }

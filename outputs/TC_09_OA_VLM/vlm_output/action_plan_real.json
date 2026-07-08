@@ -4,58 +4,62 @@
   "plan_intent": "search_for_hidden_or_blocked_target",
   "visual_analysis": [
     {
-      "object": "blue water bottle",
-      "description": "blue bottle with water",
-      "status": "target",
-      "target_role": "primary_target"
+      "object": "black soda can",
+      "description": "black soda can in front",
+      "status": "obstructing",
+      "target_role": "search_occluder"
     },
     {
       "object": "green soda can",
-      "description": "green can labeled Sprite",
+      "description": "green soda can in front",
       "status": "obstructing",
       "target_role": "search_occluder"
     },
     {
       "object": "red soda can",
-      "description": "red can labeled Coca Cola",
-      "status": "clear",
+      "description": "red soda can in front",
+      "status": "obstructing",
       "target_role": "search_occluder"
     },
     {
-      "object": "black soda can",
-      "description": "black can labeled Air Soda",
-      "status": "clear",
-      "target_role": "clear_background"
-    },
-    {
-      "object": "white soda can",
-      "description": "white can labeled Milkis",
-      "status": "clear",
-      "target_role": "clear_background"
-    },
-    {
-      "object": "brown box",
-      "description": "brown cardboard box",
-      "status": "clear_background",
-      "target_role": "background"
+      "object": "blue water bottle",
+      "description": "blue water bottle in back",
+      "status": "target",
+      "target_role": "primary_target"
     }
   ],
   "action_plan": [
     {
       "step": 1,
       "action": "remove",
-      "target": "green soda can",
+      "target": "black soda can",
       "target_role": "search_occluder",
       "step_intent": "clear_occluder_to_reveal_primary_target",
-      "explanation": "remove to access the blue water bottle"
+      "explanation": "Remove to access the blue water bottle."
     },
     {
       "step": 2,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove to access the blue water bottle."
+    },
+    {
+      "step": 3,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove to access the blue water bottle."
+    },
+    {
+      "step": 4,
       "action": "pick",
       "target": "blue water bottle",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "pick the blue water bottle"
+      "explanation": "Final step to pick the blue water bottle."
     }
   ]
 }

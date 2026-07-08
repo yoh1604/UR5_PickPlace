@@ -1,0 +1,18 @@
+[
+  {
+    "step": 2,
+    "action": "remove",
+    "target": "green soda can",
+    "target_role": "search_occluder",
+    "step_intent": "clear_occluder_to_reveal_primary_target",
+    "explanation": "Remove the green soda can which is in front of and blocking access to the clear water bottle."
+  },
+  {
+    "step": 3,
+    "action": "pick",
+    "target": "clear water bottle",
+    "target_role": "primary_target",
+    "step_intent": "pick_primary_target",
+    "explanation": "Pick the second requested item, the clear water bottle, which is now accessible."
+  }
+]

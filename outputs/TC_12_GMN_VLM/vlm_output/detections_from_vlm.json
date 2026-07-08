@@ -1,6 +1,6 @@
 [
   {
-    "label": "clear water bottle",
+    "label": "blue water bottle",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -39,12 +39,12 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A red aluminum soda can positioned directly in front of the water bottle.",
+    "description": "A red aluminum can with white lettering, positioned in front of the water bottle.",
     "status": "obstructing",
     "target_role": "search_occluder"
   },
   {
-    "label": "white milk can",
+    "label": "white soda can",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -61,7 +61,7 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A white can with purple text to the right of the other objects.",
+    "description": "A white aluminum can with purple and pink graphics, to the right of the other items.",
     "status": "clear",
     "target_role": "background"
   }

@@ -1,30 +1,30 @@
 {
   "object": "green soda can",
   "pixel_center_uv": [
-    355,
+    394,
     213
   ],
   "pixel_center_uv_mean": [
-    355,
-    212
+    394,
+    213
   ],
-  "median_depth_m": 0.3760000169277191,
-  "mean_depth_m": 0.3769427239894867,
+  "median_depth_m": 0.39400002360343933,
+  "mean_depth_m": 0.39555105566978455,
   "point_camera_m": [
-    0.027575993910431862,
-    -0.03117850050330162,
-    0.3760000169277191
+    0.06865587830543518,
+    -0.032584428787231445,
+    0.39400002360343933
   ],
   "point_camera_mean_m": [
-    0.027761857956647873,
-    -0.03125903010368347,
-    0.3767036497592926
+    0.06915004551410675,
+    -0.03184977173805237,
+    0.39520248770713806
   ],
   "debug": {
-    "mask_pixels": 8383,
-    "valid_depth_pixels": 6333,
-    "valid_depth_ratio": 0.7554574734581891,
-    "used_pixels_after_depth_fill": 8383,
+    "mask_pixels": 7715,
+    "valid_depth_pixels": 5940,
+    "valid_depth_ratio": 0.7699287103046014,
+    "used_pixels_after_depth_fill": 7715,
     "min_depth_m": 0.1,
     "max_depth_m": 2.0,
     "depth_scale": 0.0010000000474974513,

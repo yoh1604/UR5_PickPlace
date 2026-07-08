@@ -5,9 +5,9 @@
   "source_target": "gripper_tip",
   "active_test_name": "TC_12_OA_VLM",
   "translation_tool0_pregrasp": [
-    0.6431695171837716,
-    -0.4559298808070652,
-    0.4256542048513605
+    0.6077970502893625,
+    -0.40399842542764486,
+    0.3270104470832501
   ],
   "quaternion_tool0_xyzw": [
     -0.28340175782789895,
@@ -22,14 +22,14 @@
   ],
   "orientation_source": "fixed_rpy",
   "gripper_tip_grasp_base": [
-    0.7126407211492289,
-    -0.5295929248200437,
-    0.28746511255940976
+    0.6772682542548198,
+    -0.4776614694406234,
+    0.18882135479129938
   ],
   "gripper_tip_pregrasp_base": [
-    0.7126407211492289,
-    -0.5295929248200437,
-    0.41746511255940977
+    0.6772682542548198,
+    -0.4776614694406234,
+    0.31882135479129936
   ],
   "tool0_to_gripper_tip_offset_tool_frame": [
     0.0,
@@ -37,9 +37,9 @@
     0.17
   ],
   "pregrasp_z_m": 0.13,
-  "score": 0.5793733596801758,
-  "width": 0.06958755105733871,
-  "depth": 0.019999999552965164,
+  "score": 0.3126821517944336,
+  "width": 0.08383917808532715,
+  "depth": 0.029999999329447746,
   "height": 0.019999999552965164,
   "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_12_OA_VLM/vision_output/best_grasp_base.json",
   "note": "Kirim translation_tool0_pregrasp + quaternion_tool0_xyzw ke MoveIt sebagai target tool0. Jangan kirim gripper_tip_grasp_base langsung ke MoveIt.",
@@ -51,14 +51,14 @@
   "manual_nudge_history": [
     {
       "from": [
-        -0.5931695171837715,
-        0.4089298808070652,
-        0.4256542048513605
+        -0.5577970502893624,
+        0.35699842542764487,
+        0.3270104470832501
       ],
       "to": [
-        -0.6431695171837716,
-        0.4559298808070652,
-        0.4256542048513605
+        -0.6077970502893625,
+        0.40399842542764486,
+        0.3270104470832501
       ],
       "dx": -0.05,
       "dy": 0.047,
@@ -76,19 +76,19 @@
     "reason": "tf_echo showed base and base_link differ by 180 deg yaw around Z."
   },
   "translation_tool0_pregrasp_original_base": [
-    -0.6431695171837716,
-    0.4559298808070652,
-    0.4256542048513605
+    -0.6077970502893625,
+    0.40399842542764486,
+    0.3270104470832501
   ],
   "gripper_tip_grasp_base_original_base": [
-    -0.7126407211492289,
-    0.5295929248200437,
-    0.28746511255940976
+    -0.6772682542548198,
+    0.4776614694406234,
+    0.18882135479129938
   ],
   "gripper_tip_pregrasp_base_original_base": [
-    -0.7126407211492289,
-    0.5295929248200437,
-    0.41746511255940977
+    -0.6772682542548198,
+    0.4776614694406234,
+    0.31882135479129936
   ],
   "quaternion_preserved_not_rotated": true,
   "quaternion_note": "Preserved because grasp.py should run with --orientation_mode current."

@@ -1,23 +1,23 @@
 {
-  "resolved_primary_target": "brown coffee bottle",
-  "target_visibility": "clear",
-  "plan_intent": "pick_target",
+  "resolved_primary_target": "white soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
   "visual_analysis": [
     {
       "object": "brown coffee bottle",
-      "description": "A brown plastic bottle with a green cap, labeled CAFFINO, is in the foreground.",
+      "description": "A brown bottle with a green cap, positioned in front.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white and purple soda can, partially hidden behind the brown bottle.",
       "status": "target",
       "target_role": "primary_target"
     },
     {
-      "object": "white drink can",
-      "description": "A white and red can is partially visible behind the brown bottle.",
-      "status": "clear",
-      "target_role": "background"
-    },
-    {
-      "object": "brown paper package",
-      "description": "A large brown paper package is in the background.",
+      "object": "wooden shelf",
+      "description": "A wooden shelf holding the objects.",
       "status": "clear_background",
       "target_role": "background"
     }
@@ -25,11 +25,19 @@
   "action_plan": [
     {
       "step": 1,
-      "action": "pick",
+      "action": "remove",
       "target": "brown coffee bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The brown coffee bottle is in front of and blocking access to the white soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "white soda can",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "The user requested 'coca-cola', which is not present. The brown coffee bottle is the most similar beverage available. It is clearly visible and unobstructed."
+      "explanation": "Pick the white soda can, which is the resolved target for the user's request for 'coca-cola', now that it is accessible."
     }
   ]
 }

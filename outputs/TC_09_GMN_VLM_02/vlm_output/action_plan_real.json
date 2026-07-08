@@ -1,0 +1,63 @@
+{
+  "resolved_primary_target": "clear water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic bottle of mineral water, located in the back row.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green soda can, located in the front row, blocking the clear water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red soda can, located in the front row, blocking the clear water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "white milkis can",
+      "description": "A white can with purple graphics on the left side of the shelf.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "black soda can",
+      "description": "A black can located behind the white milkis can.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The green soda can is in front and physically blocks the robot's access to the clear water bottle."
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can is also in the front row and blocks access to the clear water bottle."
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The path to the clear water bottle is now clear, and it can be picked up."
+    }
+  ]
+}

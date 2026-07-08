@@ -1,0 +1,4 @@
+{
+  "require_replan": true,
+  "reason": "The user request specifically asks for 'coca-cola' and 'mineral water'. The provided action plan (Step 2) targets a \"green bottle\". In the scene, there is a clear mineral water bottle with blue cap/labeling, and Sprite can which looks greenish soda cans? Or maybe dark coke zero sugar can in back?, but \"Green Bottle\" does not match either requested object well if it refers to sprite (which was never asked for). More importantly, picking this target leaves the 'coca-cola' request unfulfilled or satisfies an incorrect item."
+}

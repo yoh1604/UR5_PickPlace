@@ -2908,4 +2908,11 @@ Saved post RGB snapshot: /home/b401/Documents/pick_place_occlusion_noetic/output
 
 STEP_INDEX dari config: 2
 Target untuk post-check: red soda can
+validasi by vlm
+
+Remaining plan saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_07_OA_VLM/post_check_output/STEP_2_remaining_plan.json
+[]
+
+✅ Step yang diverifikasi berhasil menurut post-check.
+✅ Semua step dalam action_plan sudah selesai.
 

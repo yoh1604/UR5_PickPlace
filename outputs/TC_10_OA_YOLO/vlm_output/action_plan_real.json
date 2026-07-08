@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "blue water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "red can with label",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "green can with label",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "blue water bottle",
+      "description": "clear bottle with blue cap",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "black can",
+      "description": "tall black can",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white soda can",
+      "description": "white can with purple label",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove front object blocking the blue water bottle"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the primary target after clearing occlusion"
+    }
+  ]
+}

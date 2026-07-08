@@ -1,0 +1,29 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red soda can is on the bottom shelf, closer to the camera.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white and purple soda can is on the top shelf, further from the camera.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested coca-cola, which corresponds to the red soda can. It is unobstructed and can be picked directly."
+    }
+  ]
+}

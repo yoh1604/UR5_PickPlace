@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "step": 3,
+    "action": "pick",
+    "target": "clear water bottle",
+    "target_role": "primary_target",
+    "step_intent": "pick_primary_target",
+    "explanation": "Now that the obstructing cans have been removed, the clear water bottle is accessible and can be picked up."
+  }
+]

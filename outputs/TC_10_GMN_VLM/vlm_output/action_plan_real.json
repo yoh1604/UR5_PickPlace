@@ -1,0 +1,63 @@
+{
+  "resolved_primary_target": "red soda can and clear water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red Coca-Cola can on the left side of the shelf.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic bottle of water, located behind the green soda can.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green Sprite can located in front of the clear water bottle.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "black soda can",
+      "description": "A black F&N soda water can, located behind the green can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white Milkis can on the right side of the shelf.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the first requested item, red soda can, which is unobstructed."
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the green soda can which is in front of and blocking access to the clear water bottle."
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the second requested item, the clear water bottle, which is now accessible."
+    }
+  ]
+}

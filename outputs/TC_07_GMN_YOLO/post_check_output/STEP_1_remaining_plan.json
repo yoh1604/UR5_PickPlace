@@ -4,7 +4,7 @@
     "action": "pick",
     "target": "red soda can",
     "target_role": "primary_target",
-    "explanation": "Target is now accessible.",
-    "step_intent": "pickup_obj_as_requested"
+    "step_intent": "pick_primary_target",
+    "explanation": "Pick the red soda can now that it is accessible."
   }
 ]

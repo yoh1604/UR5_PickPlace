@@ -378,13 +378,9 @@ Return ONLY valid JSON
                     ]
                 }
             ]
-            # CATATAN PENTING: Jangan gunakan "response_format": {"type": "json_object"} 
-            # karena Qwen di Ollama sering crash dengan parameter itu. 
-            # Prompt kamu sudah menyuruhnya mengembalikan JSON.
         }
         
-        # 3. Kirim request dengan timeout panjang (180 detik)
-        response = requests.post(url, json=payload, headers=headers, timeout=300)
+        response = requests.post(url, json=payload, headers=headers, timeout=500)
         
         if response.status_code != 200:
             raise RuntimeError(f"Error {response.status_code} dari Ollama: {response.text}")
@@ -449,10 +445,7 @@ Return ONLY JSON
 "reason":"object visible"
 }}
 
-
-
 OR
-
 
 {{
 "target_found_after_action":false,

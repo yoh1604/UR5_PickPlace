@@ -1,0 +1,41 @@
+[
+  {
+    "label": "green soda can",
+    "confidence": 0.6666771769523621,
+    "bbox": [
+      315,
+      141,
+      370,
+      283
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green soda can"
+  },
+  {
+    "label": "green soda can",
+    "confidence": 0.5586275458335876,
+    "bbox": [
+      255,
+      154,
+      292,
+      271
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green soda can"
+  },
+  {
+    "label": "green soda can",
+    "confidence": 0.546336829662323,
+    "bbox": [
+      210,
+      156,
+      260,
+      277
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green soda can"
+  }
+]

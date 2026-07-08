@@ -1,0 +1,7 @@
+{
+  "test_name": "TC_10_GMN_VLM",
+  "step_index": 2,
+  "attempt": 1,
+  "source": "vision_output",
+  "note": "PRE-check archive dibuat dari current_scene dan vision_output sebelum/sekitar aksi robot step ini."
+}

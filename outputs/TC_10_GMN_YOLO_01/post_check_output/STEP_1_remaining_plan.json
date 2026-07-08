@@ -1,0 +1,18 @@
+[
+  {
+    "step": 2,
+    "action": "remove",
+    "target": "green soda can",
+    "target_role": "search_occluder",
+    "step_intent": "clear_occluder_to_reveal_primary_target",
+    "explanation": "Removing the green soda can because its bottom edge is lower and it physically blocks the robot's access to the clear water bottle."
+  },
+  {
+    "step": 3,
+    "action": "pick",
+    "target": "clear water bottle",
+    "target_role": "primary_target",
+    "step_intent": "pick_primary_target",
+    "explanation": "Picking the second requested item, the clear water bottle, now that the path is clear."
+  }
+]

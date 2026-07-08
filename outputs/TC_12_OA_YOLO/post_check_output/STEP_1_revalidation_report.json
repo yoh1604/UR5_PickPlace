@@ -1,0 +1,22 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The action plan correctly targets a water bottle ('blue water bottle') which satisfies the user's request for 'mineral water' visually corresponding to the Club brand beverage in the scene. The intermediate step of removing the 'green soda can' (Sprite) is logically valid as it clears clutter adjacent to the target, improving safety and accessibility during the final pick operation.",
+  "final_action_plan": [
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "green soda can is next to the blue water bottle and might block access"
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "blue water bottle is now clear to pick"
+    }
+  ]
+}

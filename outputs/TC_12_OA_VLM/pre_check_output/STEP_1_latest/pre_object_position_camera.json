@@ -1,35 +1,35 @@
 {
   "object": "red soda can",
   "pixel_center_uv": [
-    301,
-    214
+    280,
+    210
   ],
   "pixel_center_uv_mean": [
-    300,
-    213
+    279,
+    210
   ],
-  "median_depth_m": 0.445000022649765,
-  "mean_depth_m": 0.4454667270183563,
+  "median_depth_m": 0.37700000405311584,
+  "mean_depth_m": 0.3778420686721802,
   "point_camera_m": [
-    -0.029478423297405243,
-    -0.035897620022296906,
-    0.445000022649765
+    -0.04548647999763489,
+    -0.03392600640654564,
+    0.37700000405311584
   ],
   "point_camera_mean_m": [
-    -0.02989579737186432,
-    -0.03637172281742096,
-    0.4453025162220001
+    -0.04577219486236572,
+    -0.03394624963402748,
+    0.37760165333747864
   ],
   "debug": {
-    "mask_pixels": 3888,
-    "valid_depth_pixels": 2584,
-    "valid_depth_ratio": 0.6646090534979424,
-    "used_pixels_after_depth_fill": 3888,
+    "mask_pixels": 8467,
+    "valid_depth_pixels": 6135,
+    "valid_depth_ratio": 0.7245777725286406,
+    "used_pixels_after_depth_fill": 8467,
     "min_depth_m": 0.1,
     "max_depth_m": 2.0,
     "depth_scale": 0.0010000000474974513,
-    "fx": 385.724365234375,
-    "fy": 385.28033447265625,
+    "fx": 385.8294677734375,
+    "fy": 385.38531494140625,
     "ppx": 326.5517883300781,
     "ppy": 244.87197875976562,
     "method": "all_mask_pixels_with_invalid_depth_filled_by_median_depth"

@@ -1,3 +1,66 @@
+# import requests
+
+# OLLAMA = "http://10.7.101.217:11434"
+
+# r = requests.get(f"{OLLAMA}/api/tags")
+
+# print(r.status_code)
+# print(r.text)
+
+# import requests
+
+# OLLAMA = "http://10.7.101.217:11434"
+
+# payload = {
+#     "model": "qwen3.5:27b",
+#     "messages": [
+#         {
+#             "role": "user",
+#             "content": "Say hello."
+#         }
+#     ],
+#     "stream": False
+# }
+
+# r = requests.post(
+#     f"{OLLAMA}/api/chat",
+#     json=payload
+# )
+
+# print(r.status_code)
+# print(r.text)
+
+import requests
+import base64
+
+HOST = "http://10.7.101.217:11434"
+
+IMAGE = "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg"
+
+with open(IMAGE, "rb") as f:
+    img = base64.b64encode(f.read()).decode()
+
+payload = {
+    "model": "qwen3.5:27b",
+    "messages": [
+        {
+            "role": "user",
+            "content": "What objects are visible?",
+            "images": [img]
+        }
+    ],
+    "stream": False
+}
+
+r = requests.post(
+    HOST + "/api/chat",
+    json=payload,
+    timeout=300
+)
+
+print(r.status_code)
+print(r.text)
+
 import requests
 import json
 import base64

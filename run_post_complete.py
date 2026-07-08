@@ -336,6 +336,8 @@ def revalidate_remaining_plan(remaining_plan):
         planner_json=temp_planner_json
     )
 
+    print(json.dumps(validation_result, indent=2))
+
     status = str(validation_result.get("validation_status", "FAIL")).upper()
     feedback = validation_result.get("feedback", "No feedback provided.")
 
@@ -395,7 +397,7 @@ def get_target_step_from_validation(validation_result, step_index):
 
 def run_post_check(target):
 
-    mode=os.getenv("POSTCHECK_MODE","vlm")
+    mode=os.getenv("POSTCHECK_MODE","yolo")
 
     if not os.path.exists(POST_IMAGE_PATH):
         raise FileNotFoundError(POST_IMAGE_PATH)

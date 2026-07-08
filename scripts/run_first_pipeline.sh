@@ -82,8 +82,8 @@ if [ "$LOCK_STABLE_CONFIG" = "1" ]; then
   # DESCEND_Z="0"
   DESCEND_Z="0.12"
 
-  NUDGE_DX="-0.045"
-  NUDGE_DY="0.047"
+  NUDGE_DX="-0.05"
+  NUDGE_DY="0.035"
   NUDGE_DZ="0.0"
 
   SAFE_LIFT_Z="0.05"
@@ -101,7 +101,7 @@ else
   DESCEND_Z="${DESCEND_Z:-0.12}"
 
   NUDGE_DX="${NUDGE_DX:--0.05}"
-  NUDGE_DY="${NUDGE_DY:-0.047}"
+  NUDGE_DY="${NUDGE_DY:-0.035}"
   NUDGE_DZ="${NUDGE_DZ:-0.0}"
 
   SAFE_LIFT_Z="${SAFE_LIFT_Z:-0.05}"

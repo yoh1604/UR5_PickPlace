@@ -1,6 +1,6 @@
 [
   {
-    "label": "blue water bottle",
+    "label": "black soda can",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -17,9 +17,9 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "blue bottle with water",
-    "status": "target",
-    "target_role": "primary_target"
+    "description": "black soda can in front",
+    "status": "obstructing",
+    "target_role": "search_occluder"
   },
   {
     "label": "green soda can",
@@ -39,7 +39,7 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "green can labeled Sprite",
+    "description": "green soda can in front",
     "status": "obstructing",
     "target_role": "search_occluder"
   },
@@ -61,12 +61,12 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "red can labeled Coca Cola",
-    "status": "clear",
+    "description": "red soda can in front",
+    "status": "obstructing",
     "target_role": "search_occluder"
   },
   {
-    "label": "black soda can",
+    "label": "blue water bottle",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -83,52 +83,8 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "black can labeled Air Soda",
-    "status": "clear",
-    "target_role": "clear_background"
-  },
-  {
-    "label": "white soda can",
-    "confidence": null,
-    "bbox_format": "normalized_0_1000_xyxy",
-    "bbox": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "bbox_original_format": "normalized_0_1000_yxyx",
-    "bbox_original_yxyx": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "source": "vlm_visual_analysis",
-    "description": "white can labeled Milkis",
-    "status": "clear",
-    "target_role": "clear_background"
-  },
-  {
-    "label": "brown box",
-    "confidence": null,
-    "bbox_format": "normalized_0_1000_xyxy",
-    "bbox": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "bbox_original_format": "normalized_0_1000_yxyx",
-    "bbox_original_yxyx": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "source": "vlm_visual_analysis",
-    "description": "brown cardboard box",
-    "status": "clear_background",
-    "target_role": "background"
+    "description": "blue water bottle in back",
+    "status": "target",
+    "target_role": "primary_target"
   }
 ]

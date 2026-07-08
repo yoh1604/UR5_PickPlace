@@ -662,7 +662,6 @@ Mask shape: (480, 640)
 Depth raw dtype: float32
 Depth raw min: 0.0
 Depth raw max: 65535.0
-Depth meter min: 0.0
 Depth meter max: 65.53500366210938
 [PointCloud] Clean mask saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_06_GMN_VLM/vision_output/fastsam_mask_clean_debug.png
 

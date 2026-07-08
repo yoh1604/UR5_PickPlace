@@ -1,0 +1,49 @@
+{
+  "resolved_primary_target": "black soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red soda can with white text is in the front, blocking the black soda can.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "black soda can",
+      "description": "A black soda can, likely soda water, is located behind the red soda can. This is interpreted as 'sprite'.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white can with purple text and graphics, located behind the red soda can and to the right of the target.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown coffee bottle",
+      "description": "A brown plastic bottle with a green cap, located to the right of the cans.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "red soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The red soda can is in front of and blocking the robot's access to the target black soda can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "black soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the black soda can, which is the intended target, now that the path is clear."
+    }
+  ]
+}

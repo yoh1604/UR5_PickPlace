@@ -2,53 +2,53 @@
   "success": true,
   "method": "graspnet_baseline_d455",
   "best_grasp": {
-    "score": 0.46955615282058716,
+    "score": 0.5837844610214233,
     "translation_camera": [
-      0.03330296277999878,
-      -0.11281159520149231,
-      0.46800002455711365
+      -0.0036197698209434748,
+      -0.07945391535758972,
+      0.3930000364780426
     ],
     "rotation_matrix_camera": [
       [
-        0.05689249932765961,
-        0.9917080998420715,
-        -0.11523126810789108
+        0.5313771963119507,
+        -0.7907350063323975,
+        -0.3039349615573883
       ],
       [
-        -0.43903547525405884,
-        0.12851069867610931,
-        0.8892316222190857
+        -0.16952382028102875,
+        0.2522660195827484,
+        -0.9526927471160889
       ],
       [
-        0.8966667056083679,
-        0.0,
-        0.44270631670951843
+        0.8300000429153442,
+        0.557763397693634,
+        -2.4380613083963e-08
       ]
     ],
-    "width": 0.08129917085170746,
+    "width": 0.07743910700082779,
     "height": 0.019999999552965164,
     "depth": 0.029999999329447746,
     "object_id": -1,
     "frame": "RealSense D455 aligned color camera frame",
     "rank": 0,
-    "distance_to_object_center": 0.016825627086888967
+    "distance_to_object_center": 0.049900335790877506
   },
   "object_center_camera": [
-    0.042957076469207496,
-    -0.11958654519023099,
-    0.48000001907348633
+    -0.005715637838477916,
+    -0.02975833182279599,
+    0.3970000147819519
   ],
   "frame": "RealSense D455 aligned color camera frame",
   "note": "Masih camera frame. Perlu transform camera-to-base sebelum eksekusi UR5.",
   "meta": {
     "object_center_camera": [
-      0.042957076469207496,
-      -0.11958654519023099,
-      0.48000001907348633
+      -0.005715637838477916,
+      -0.02975833182279599,
+      0.3970000147819519
     ],
-    "num_mask_points": 10559,
-    "num_workspace_points": 3034,
-    "num_cloud_masked": 3034,
+    "num_mask_points": 9142,
+    "num_workspace_points": 5988,
+    "num_cloud_masked": 5988,
     "rgb_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
     "depth_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
     "intrinsics_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
@@ -56,8 +56,8 @@
     "intrinsics": {
       "width": 640,
       "height": 480,
-      "fx": 385.724365234375,
-      "fy": 385.28033447265625,
+      "fx": 385.6192626953125,
+      "fy": 385.17535400390625,
       "ppx": 326.5517883300781,
       "ppy": 244.87197875976562,
       "depth_scale": 0.0010000000474974513

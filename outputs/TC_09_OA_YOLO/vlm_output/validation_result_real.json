@@ -1,22 +1,46 @@
 {
   "validation_status": "PASS",
-  "feedback": "The action_plan correctly resolves 'drink mineral water' to picking a blue water bottle (visible in image). The plan safely handles an intermediate obstacle by removing the green soda can which acts as an occluder. This aligns with physical constraints for grasping objects surrounded by other items.",
+  "feedback": "The final target 'clear bottle' (identified with blue cap and water content visually consistent with RYS label) matches the user's request for mineral water. The occluders ('white can', 'black can', 'green can', 'red can') are present in the scene as neighboring objects that physically surround or partially block access to the water bottle given a standard robot gripper approach vector, making their removal before picking a safe and logical strategy.",
   "final_action_plan": [
     {
       "step": 1,
       "action": "remove",
-      "target": "green soda can",
+      "target": "white can",
       "target_role": "search_occluder",
       "step_intent": "clear_occluder_to_reveal_primary_target",
-      "explanation": "removing it to access the bottle"
+      "explanation": "remove front obstructing object"
     },
     {
       "step": 2,
+      "action": "remove",
+      "target": "black can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove adjacent obstructing object"
+    },
+    {
+      "step": 3,
+      "action": "remove",
+      "target": "green can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove obstructing object next to the black can"
+    },
+    {
+      "step": 4,
+      "action": "remove",
+      "target": "red can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove final remaining obstructing object in front"
+    },
+    {
+      "step": 5,
       "action": "pick",
-      "target": "blue water bottle",
+      "target": "clear bottle",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "picking the water bottle"
+      "explanation": "pick the clear bottle once it is unobstructed"
     }
   ]
 }

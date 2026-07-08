@@ -1,15 +1,15 @@
 [
   {
-    "label": "bottle",
-    "confidence": 0.6916427612304688,
+    "label": "red soda can",
+    "confidence": 0.8196858167648315,
     "bbox": [
-      273,
-      130,
-      325,
-      287
+      270,
+      137,
+      329,
+      288
     ],
     "bbox_format": "xyxy_pixel",
     "source": "yolo_world",
-    "target_query": "brown bottle"
+    "target_query": "red soda can"
   }
 ]

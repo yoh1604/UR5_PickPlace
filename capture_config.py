@@ -10,7 +10,7 @@ load_dotenv(ENV_PATH)
 # TEST CONFIG
 # ============================================================
 
-TEST_NAME = "TC_12_GMN_VLM"
+TEST_NAME = "TC_09_OA_YOLO"
 
 USER_QUERY = os.getenv(
     "USER_QUERY",

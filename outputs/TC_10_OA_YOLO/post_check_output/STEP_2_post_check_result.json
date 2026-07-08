@@ -1,0 +1,40 @@
+{
+  "test_name": "TC_10_OA_YOLO",
+  "step_index": 2,
+  "target": "blue water bottle",
+  "post_check_status": "STILL_FOUND",
+  "target_found_after_action": true,
+  "best_detection": {
+    "label": "blue water bottle",
+    "confidence": 0.8348867297172546,
+    "bbox": [
+      279,
+      86,
+      335,
+      275
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "blue water bottle"
+  },
+  "all_detections": [
+    {
+      "label": "blue water bottle",
+      "confidence": 0.8348867297172546,
+      "bbox": [
+        279,
+        86,
+        335,
+        275
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "blue water bottle"
+    }
+  ],
+  "post_image_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg",
+  "post_yolo_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_OA_YOLO/post_check_output/STEP_2_post_check_yolo_result.jpg",
+  "post_fastsam_mask": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_OA_YOLO/post_check_output/STEP_2_post_check_fastsam_mask.png",
+  "post_fastsam_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_OA_YOLO/post_check_output/STEP_2_post_check_fastsam_result.jpg",
+  "note": "validated by VLM + localized by YOLO"
+}

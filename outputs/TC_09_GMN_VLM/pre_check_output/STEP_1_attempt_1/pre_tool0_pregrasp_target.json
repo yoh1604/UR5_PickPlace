@@ -5,9 +5,9 @@
   "source_target": "gripper_tip",
   "active_test_name": "TC_09_GMN_VLM",
   "translation_tool0_pregrasp": [
-    -0.6066486720496739,
-    0.4536117493268573,
-    0.42946430796557933
+    -0.5025033400971447,
+    0.47735047436439226,
+    0.42735458632121814
   ],
   "quaternion_tool0_xyzw": [
     -0.28340175782789895,
@@ -22,14 +22,14 @@
   ],
   "orientation_source": "fixed_rpy",
   "gripper_tip_grasp_base": [
-    -0.6761198760151312,
-    0.5292747933398358,
-    0.2912752156736286
+    -0.5719745440626021,
+    0.5630135183773708,
+    0.2891654940292674
   ],
   "gripper_tip_pregrasp_base": [
-    -0.6761198760151312,
-    0.5292747933398358,
-    0.4212752156736286
+    -0.5719745440626021,
+    0.5630135183773708,
+    0.4191654940292674
   ],
   "tool0_to_gripper_tip_offset_tool_frame": [
     0.0,
@@ -37,31 +37,31 @@
     0.17
   ],
   "pregrasp_z_m": 0.13,
-  "score": 0.6642128229141235,
-  "width": 0.07209191471338272,
+  "score": 0.2758041024208069,
+  "width": 0.07557850331068039,
   "depth": 0.019999999552965164,
   "height": 0.019999999552965164,
   "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_09_GMN_VLM/vision_output/best_grasp_base.json",
   "note": "Kirim translation_tool0_pregrasp + quaternion_tool0_xyzw ke MoveIt sebagai target tool0. Jangan kirim gripper_tip_grasp_base langsung ke MoveIt.",
   "manual_nudge_base_m": {
     "dx": -0.05,
-    "dy": 0.045,
+    "dy": 0.035,
     "dz": 0.0
   },
   "manual_nudge_history": [
     {
       "from": [
-        -0.5566486720496738,
-        0.40861174932685734,
-        0.42946430796557933
+        -0.45250334009714466,
+        0.4423504743643923,
+        0.42735458632121814
       ],
       "to": [
-        -0.6066486720496739,
-        0.4536117493268573,
-        0.42946430796557933
+        -0.5025033400971447,
+        0.47735047436439226,
+        0.42735458632121814
       ],
       "dx": -0.05,
-      "dy": 0.045,
+      "dy": 0.035,
       "dz": 0.0,
       "frame": "base"
     }

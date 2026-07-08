@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "method": "camera_to_base_transform",
+  "translation_base": [
+    -0.6006308944991081,
+    0.6131831585222033,
+    0.1738427346544834
+  ],
+  "rotation_matrix_base": [
+    [
+      0.6386162133747324,
+      -0.522102540317454,
+      0.5653125551014282
+    ],
+    [
+      0.5621542135404012,
+      -0.18514555261105647,
+      -0.8060420356799937
+    ],
+    [
+      0.5255016955224574,
+      0.8325443323603349,
+      0.17526518742327507
+    ]
+  ],
+  "score": 0.3395615220069885,
+  "width": 0.06812124699354172,
+  "height": 0.019999999552965164,
+  "depth": 0.029999999329447746,
+  "object_id": -1,
+  "frame": "UR5 base frame",
+  "source_frame": "RealSense D455 aligned color camera frame",
+  "rotation_validation": {
+    "determinant": 0.9999999987735787,
+    "orthonormal_error": 1.098282557958936e-07
+  },
+  "camera_grasp_used": {
+    "translation_camera": [
+      0.10443318635225296,
+      0.03916415944695473,
+      0.4180000126361847
+    ],
+    "rotation_matrix_camera": [
+      [
+        0.8544597029685974,
+        -0.49094492197036743,
+        -0.16991698741912842
+      ],
+      [
+        -0.517707347869873,
+        -0.8319324851036072,
+        -0.199668288230896
+      ],
+      [
+        -0.04333333298563957,
+        0.25857576727867126,
+        -0.9650185108184814
+      ]
+    ]
+  },
+  "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
+  "pre_grasp_preview": {
+    "translation_base": [
+      -0.6006308944991081,
+      0.6131831585222033,
+      0.2738427346544834
+    ],
+    "offset_z_m": 0.1,
+    "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
+  },
+  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_10_GMN_YOLO/vision_output/best_grasp_camera.json",
+  "source_transform": "/home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json"
+}

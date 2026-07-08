@@ -1,6 +1,6 @@
 [
   {
-    "label": "black soda can",
+    "label": "red soda can",
     "confidence": null,
     "bbox_format": "normalized_0_1000_xyxy",
     "bbox": [
@@ -17,51 +17,7 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "a black can partially visible on the left",
-    "status": "obstructing",
-    "target_role": "primary_target"
-  },
-  {
-    "label": "beige envelope",
-    "confidence": null,
-    "bbox_format": "normalized_0_1000_xyxy",
-    "bbox": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "bbox_original_format": "normalized_0_1000_yxyx",
-    "bbox_original_yxyx": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "source": "vlm_visual_analysis",
-    "description": "a large beige envelope behind cans",
-    "status": "clear_background",
-    "target_role": "background"
-  },
-  {
-    "label": "brown bottle",
-    "confidence": null,
-    "bbox_format": "normalized_0_1000_xyxy",
-    "bbox": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "bbox_original_format": "normalized_0_1000_yxyx",
-    "bbox_original_yxyx": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "source": "vlm_visual_analysis",
-    "description": "a bottle with a brown base and blue cap in the center",
+    "description": "red soda can with logo",
     "status": "obstructing",
     "target_role": "search_occluder"
   },
@@ -83,8 +39,52 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "a white can on the right",
-    "status": "clear_background",
-    "target_role": "background"
+    "description": "white soda can with cartoon",
+    "status": "clear",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "green soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "green soda can",
+    "status": "clear",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "blue water bottle",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "blue water bottle",
+    "status": "target",
+    "target_role": "primary_target"
   }
 ]

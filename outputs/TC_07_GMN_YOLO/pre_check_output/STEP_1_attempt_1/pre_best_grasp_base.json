@@ -2,9 +2,9 @@
   "success": true,
   "method": "camera_to_base_transform",
   "translation_base": [
-    -0.6270212672147683,
-    0.5284576054051546,
-    0.17783569747251018
+    -0.6298455776430869,
+    0.5586069500367268,
+    0.29448394278898377
   ],
   "rotation_matrix_base": [
     [
@@ -23,10 +23,10 @@
       0.7839306509013377
     ]
   ],
-  "score": 0.41815024614334106,
-  "width": 0.06655711680650711,
+  "score": 0.43024516105651855,
+  "width": 0.07575973123311996,
   "height": 0.019999999552965164,
-  "depth": 0.019999999552965164,
+  "depth": 0.029999999329447746,
   "object_id": -1,
   "frame": "UR5 base frame",
   "source_frame": "RealSense D455 aligned color camera frame",
@@ -36,9 +36,9 @@
   },
   "camera_grasp_used": {
     "translation_camera": [
-      0.02584296278655529,
-      0.03338545933365822,
-      0.37700003385543823
+      0.04642628878355026,
+      -0.08247695863246918,
+      0.40300002694129944
     ],
     "rotation_matrix_camera": [
       [
@@ -61,9 +61,9 @@
   "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
   "pre_grasp_preview": {
     "translation_base": [
-      -0.6270212672147683,
-      0.5284576054051546,
-      0.2778356974725102
+      -0.6298455776430869,
+      0.5586069500367268,
+      0.3944839427889838
     ],
     "offset_z_m": 0.1,
     "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."

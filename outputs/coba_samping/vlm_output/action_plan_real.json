@@ -1,0 +1,35 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green soda can with the 'Sprite' logo, located in the foreground inside a black bowl.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "black bowl",
+      "description": "A black bowl that contains the green soda can.",
+      "status": "clear_background",
+      "target_role": "background"
+    },
+    {
+      "object": "red can",
+      "description": "A red can with a silver top, partially visible to the right and slightly behind the main target area.",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested 'sprite', and the green soda can is clearly visible and unobstructed in the foreground."
+    }
+  ]
+}

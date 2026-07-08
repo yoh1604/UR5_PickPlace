@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The user requested 'mineral water'. The planner correctly identifies a 'clear water bottle' (Club brand) on the shelf which matches this request. The object is visibly unobstructed and accessible for grasping without needing to remove other items first. No occluders need to be removed based on visual assessment of the scene.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The clear water bottle is unobstructed and can be picked up directly to fulfill the user's request."
+    }
+  ]
+}

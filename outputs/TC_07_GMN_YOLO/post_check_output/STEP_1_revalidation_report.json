@@ -1,4 +1,4 @@
 {
-  "error": "Gagal memparsing JSON dari VLM lokal.\nOutput mentah:\n{\n\"validation_status\": \"FAIL\",\n\"feedback\": \"**Semantic Mismatch:** User requested 'coca-cola'. The plan attempts to pick a \\\"red soda can\\\". Even assuming semantic matching, there is absolutely no Coca-Cola or red soda can in the scene. Visible objects are an orange Caffino bottle and a white Nesquik container.\\n\\n**Hallucination:** Rule 4 dictates returning FAIL if 'the selected target does not exist'. The plan contains hallucinated object.\",\n\"final_action_plan\": [\n    {\n        \"step\": 2,\n        \"action\": \"pick\",\n        \"target\": \"red soda can\",\n        \"target_role\": \"primary_target\",\n        \"explanation\": \"\",\n        step_intent: \"pickup_obj_as_requested\"\n    }\n]\n\n}",
+  "error": "Gagal memparsing JSON dari VLM lokal.\nOutput mentah:\n",
   "validation_status": "FAIL"
 }
