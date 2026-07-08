@@ -87,20 +87,14 @@ DISCARD_LIFT_UP="${DISCARD_LIFT_UP:-0.05}"
 DISCARD_VELOCITY="${DISCARD_VELOCITY:-0.08}"
 DISCARD_ACCELERATION="${DISCARD_ACCELERATION:-0.04}"
 
-# 1 = skip Cartesian lift di discard. Ini menghindari error fraction lift rendah.
 DISCARD_SKIP_LIFT="${DISCARD_SKIP_LIFT:-1}"
 
 DISABLE_GRIPPER="${DISABLE_GRIPPER:-0}"
 
 
-# ============================================================
-# HELPERS
-# ============================================================
-
 get_validation_status() {
   local step_index="$1"
   local p
-  # Adjust this path if your validator saves its output elsewhere
   p="outputs/$TEST_NAME/post_check_output/STEP_${step_index}_post_check_result.json"
 
   python3 - <<PY
@@ -172,11 +166,9 @@ update_capture_config() {
 
   need_file "$CAPTURE_CONFIG" "capture_config.py"
 
-  # 1. Export so Python's os.getenv picks it up instantly
   export TEST_NAME="$test_name"
   export STEP_INDEX="$step_index"
 
-  # 2. Update the file safely for manual script executions (FIXED PYTHON SUBSTITUTION)
   python3 - <<PY
 from pathlib import Path
 import re

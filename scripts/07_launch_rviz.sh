@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 set -e
 
 PROJECT_DIR="$HOME/pick_place_occlusion_noetic"

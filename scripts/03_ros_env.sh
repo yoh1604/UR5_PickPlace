@@ -3,8 +3,6 @@
 source /opt/ros/noetic/setup.bash
 if [ -f "$HOME/ur5_noetic_ws/devel/setup.bash" ]; then
   source "$HOME/ur5_noetic_ws/devel/setup.bash"
-elif [ -f "$HOME/catkin_ws/devel/setup.bash" ]; then
-  source "$HOME/catkin_ws/devel/setup.bash"
 fi
 
 export ROS_MASTER_URI=http://localhost:11311

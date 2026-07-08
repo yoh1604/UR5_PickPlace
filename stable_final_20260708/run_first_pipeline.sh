@@ -68,6 +68,10 @@ DISCARD_SCRIPT="${DISCARD_SCRIPT:-robot_executor/execute_from_current_pregrasp_t
 WAYPOINTS_JSON="${WAYPOINTS_JSON:-configs/waypoints_ur5.json}"
 
 
+# ============================================================
+# GRASP PARAMS - STABLE CONFIG
+# ============================================================
+
 LOCK_STABLE_CONFIG="${LOCK_STABLE_CONFIG:-1}"
 
 TOOL0_TO_GRIPPER_TIP="${TOOL0_TO_GRIPPER_TIP:-0 0 0.17}"
@@ -90,6 +94,7 @@ if [ "$LOCK_STABLE_CONFIG" = "1" ]; then
   MAX_BASE_DELTA="1.80"
   MAX_WRIST_DELTA="1.5"
 else
+  # Mode tuning: boleh override dari export environment.
   PREGRASP_Z="${PREGRASP_Z:-0.13}"
   # PREGRASP_Z="${PREGRASP_Z:-0.5}"
   # DESCEND_Z="${DESCEND_Z:-0.5}"
@@ -131,6 +136,7 @@ SKIP_NUDGE="${SKIP_NUDGE:-0}"
 SKIP_BASE_LINK_CONVERT="${SKIP_BASE_LINK_CONVERT:-0}"
 SKIP_GRASP="${SKIP_GRASP:-0}"
 
+#   export SKIP_DISCARD=0
 SKIP_DISCARD="${SKIP_DISCARD:-1}"
 
 
@@ -140,6 +146,8 @@ SKIP_DISCARD="${SKIP_DISCARD:-1}"
 
 case "$MODE" in
   plan)
+    # Pada grasp.py sekarang, tanpa --execute tetap ada prompt ENTER lalu execute.
+    # Jadi "plan" = manual-confirm execution, bukan dry-run murni.
     EXECUTE_FLAG=""
     ;;
   execute)
@@ -418,6 +426,7 @@ if [ "$SKIP_CAPTURE" = "0" ]; then
   need_file "$DEPTH_PATH" "Depth npy"
   need_file "$INTRINSICS_PATH" "Camera intrinsics"
 
+  # conda deactivate || true
   safe_conda_deactivate
 else
   log_section "STEP 1: SKIP CAPTURE"
@@ -450,6 +459,7 @@ if [ "$SKIP_VISION" = "0" ]; then
 
   need_file "$MASK_PATH" "FastSAM mask"
 
+  # conda deactivate || true
   safe_conda_deactivate
 else
   log_section "STEP 2: SKIP VISION"
@@ -483,6 +493,7 @@ if [ "$SKIP_GRASPNET" = "0" ]; then
 
   need_file "$BEST_GRASP_CAMERA_JSON" "best_grasp_camera.json"
 
+  # conda deactivate || true
   safe_conda_deactivate
 else
   log_section "STEP 3: SKIP GRASPNET"
@@ -582,6 +593,7 @@ print("[CHECK BASE_LINK] original base:", data.get("translation_tool0_pregrasp_o
 print("[CHECK BASE_LINK] manual_nudge_base_m:", data.get("manual_nudge_base_m"))
 PY
 
+# conda deactivate || true
 safe_conda_deactivate
 
 

@@ -10,8 +10,13 @@ from dotenv import load_dotenv
 from perception.yolo_world_engine import YoloWorldEngine
 from perception.fastsam_engine import FastSAMEngine
 from perception.depth_engine import DepthEngine
+from planning.validator_engine import LogicValidator, PostCheckValidator
+
+# Import Langfuse context to ensure background sync completes
+from langfuse.decorators import langfuse_context
 
 from capture_config import (
+    USER_QUERY,
     PROJECT_DIR,
     ENV_PATH,
     BASE_DIR,
@@ -119,12 +124,6 @@ def file_info(path):
 
 
 def sync_current_rgb_to_post_image():
-    """
-    Kunci sinkronisasi post-check:
-    - current_scene_rgb.jpg adalah RGB terbaru dari capture D455.
-    - depth_raw.npy harus berasal dari capture yang sama.
-    - post_scene_rgb.jpg hanya salinan byte-identical dari current_scene_rgb.jpg.
-    """
     if not Path(IMAGE_PATH).exists():
         raise FileNotFoundError(f"IMAGE_PATH tidak ditemukan: {IMAGE_PATH}")
     if not Path(DEPTH_PATH).exists():
@@ -188,13 +187,6 @@ def save_post_snapshot():
 # ============================================================
 
 def normalize_repeated_words(text):
-    """
-    Membersihkan target dengan kata berulang.
-    Contoh:
-    - "orange orange" -> "orange"
-    - "red red soda can" -> "red soda can"
-    """
-
     if text is None:
         return ""
 
@@ -209,42 +201,15 @@ def normalize_repeated_words(text):
 
 
 def build_yolo_aliases(target):
-    """
-    Membuat beberapa prompt alternatif untuk YOLO-World.
-
-    Alasan:
-    YOLO-World open-vocabulary sensitif ke wording.
-    Contoh:
-    - "pink lotion bottle" bisa gagal pada model lokal,
-      tapi "lotion bottle" atau "bottle" bisa berhasil.
-    """
-
     target = normalize_repeated_words(target)
-
     aliases = [target]
 
-    # Generic bottle / lotion aliases
     if "lotion" in target or "bottle" in target:
-        aliases.extend([
-            "pink lotion bottle",
-            "lotion bottle",
-            "body lotion",
-            "pink bottle",
-            "bottle",
-            "lotion",
-        ])
+        aliases.extend(["pink lotion bottle", "lotion bottle", "body lotion", "pink bottle", "bottle", "lotion"])
 
-    # Soda / can aliases
     if "soda" in target or "can" in target:
-        aliases.extend([
-            "soda can",
-            "red soda can",
-            "can",
-            "drink can",
-            "beverage can",
-        ])
+        aliases.extend(["soda can", "red soda can", "can", "drink can", "beverage can"])
 
-    # Fruit aliases
     if "lemon" in target:
         aliases.extend(["lemon", "yellow lemon", "fruit"])
     if "orange" in target:
@@ -254,7 +219,6 @@ def build_yolo_aliases(target):
     if "bell pepper" in target or "pepper" in target:
         aliases.extend(["bell pepper", "pepper", "vegetable"])
 
-    # Buang duplikat, pertahankan urutan
     unique = []
     for alias in aliases:
         alias = normalize_repeated_words(alias)
@@ -268,20 +232,130 @@ def build_yolo_aliases(target):
 # VALIDATION RESULT
 # ============================================================
 
+def get_provider_keys():
+    openai_key = os.getenv("OPENAI_API_KEY")
+    gemini_key = os.getenv("GEMINI_API_KEY")
+    # ollama_key = os.getenv("OLLAMA_")
+    return openai_key, gemini_key
+
+def create_validator(openai_key, gemini_key):
+    use_local = os.getenv("USE_LOCAL_VLM", "False").lower() in ("true", "1", "yes")
+    if use_local:
+        return LogicValidator(api_key=None, provider="local")
+    if openai_key:
+        return LogicValidator(api_key=openai_key, provider="openai")
+    if gemini_key:
+        return LogicValidator(api_key=gemini_key, provider="gemini")
+    raise RuntimeError("Tidak ada API key untuk validator.")
+
+
+def create_postcheck_validator():
+
+    use_local = os.getenv(
+        "USE_LOCAL_VLM",
+        "False"
+    ).lower() in ("true","1","yes")
+
+    if use_local:
+        return PostCheckValidator(
+            api_key=None,
+            provider="local"
+        )
+
+    openai_key, gemini_key = get_provider_keys()
+
+    if openai_key:
+        return PostCheckValidator(
+            api_key=openai_key,
+            provider="openai"
+        )
+
+    if gemini_key:
+        return PostCheckValidator(
+            api_key=gemini_key,
+            provider="gemini"
+        )
+
+    raise RuntimeError("No validator available")
+
+
+def vlm_postcheck(target):
+
+    validator=create_postcheck_validator()
+    response=validator.validate_target_presence(
+            image_path=POST_IMAGE_PATH,
+            target=target
+    )
+
+    found=response.get(
+            "target_found_after_action",
+            False
+    )
+
+    confidence=response.get(
+            "confidence",
+            0.0
+    )
+
+    if found:
+        best_detection={
+            "label":target,
+            "confidence":confidence,
+            "source":"vlm_postcheck",
+            "target_query":target
+        }
+        detections=[best_detection]
+
+    else:
+        best_detection=None
+        detections=[]
+
+
+    return found,best_detection,detections
+
+def revalidate_remaining_plan(remaining_plan):
+    """
+    Melakukan reasoning ulang apakah sisa action_plan masih logis 
+    untuk dieksekusi berdasarkan kondisi lingkungan terbaru setelah aksi sebelumnya.
+    """
+    if not remaining_plan:
+        return True, "Tidak ada step tersisa, tidak perlu validasi."
+
+    print("\n🔍 MELAKUKAN REASONING ULANG TERHADAP SISA PLAN...")
+    openai_key, gemini_key = get_provider_keys()
+    # validator = create_validator(openai_key, gemini_key)
+    validator = LogicValidator(provider="local", model_name="qwen3.5:27b")
+
+    temp_planner_json = {
+        "action_plan": remaining_plan
+    }
+
+    validation_result = validator.validate_strategy(
+        image_path=POST_IMAGE_PATH,
+        user_query=USER_QUERY,
+        planner_json=temp_planner_json
+    )
+
+    print(json.dumps(validation_result, indent=2))
+
+    status = str(validation_result.get("validation_status", "FAIL")).upper()
+    feedback = validation_result.get("feedback", "No feedback provided.")
+
+    print(f"Status Re-validasi: {status}")
+    print(f"Feedback VLM: {feedback}")
+
+    is_valid = (status == "PASS")
+    
+    revalidation_log = POST_OUTPUT_DIR / f"STEP_{STEP_INDEX}_revalidation_report.json"
+    save_json(revalidation_log, validation_result)
+
+    return is_valid, feedback
+
 def load_validation_result(validation_path):
     return load_json(validation_path, label="Validation JSON")
 
 
 def get_target_step_from_validation(validation_result, step_index):
-    """
-    Mengambil target berdasarkan STEP_INDEX dari config.
-
-    STEP_INDEX bersifat 1-based:
-    STEP_INDEX = 1 -> final_plan[0]
-    STEP_INDEX = 2 -> final_plan[1]
-    STEP_INDEX = 3 -> final_plan[2]
-    """
-
     status = str(validation_result.get("validation_status", "FAIL")).upper()
 
     if status != "PASS":
@@ -301,10 +375,7 @@ def get_target_step_from_validation(validation_result, step_index):
     list_index = step_index - 1
 
     if list_index >= len(final_plan):
-        raise RuntimeError(
-            f"STEP_INDEX={step_index} melebihi jumlah action_plan. "
-            f"Jumlah step tersedia: {len(final_plan)}"
-        )
+        raise RuntimeError(f"STEP_INDEX={step_index} melebihi jumlah action_plan. Jumlah step tersedia: {len(final_plan)}")
 
     selected_step = final_plan[list_index]
 
@@ -325,21 +396,40 @@ def get_target_step_from_validation(validation_result, step_index):
 # ============================================================
 
 def run_post_check(target):
-    """
-    Jalankan YOLO-World pada gambar setelah aksi robot.
 
-    Untuk verifikasi step sebelumnya:
-    - Pakai POST_IMAGE_PATH.
-    - Jika target masih ditemukan: STILL_FOUND.
-    - Jika target tidak ditemukan: REMOVED_SUCCESS.
-    """
+    mode=os.getenv("POSTCHECK_MODE","yolo")
 
     if not os.path.exists(POST_IMAGE_PATH):
-        raise FileNotFoundError(
-            f"Gambar post-check tidak ditemukan: {POST_IMAGE_PATH}\n"
-            f"Capture scene terbaru setelah aksi robot, lalu copy current_scene_rgb.jpg "
-            f"menjadi post_scene_rgb.jpg."
-        )
+        raise FileNotFoundError(POST_IMAGE_PATH)
+
+    if mode=="vlm":
+        target_found,_,_=vlm_postcheck(target)
+        print("validasi by vlm")
+
+        if not target_found:
+            result={
+                "test_name":TEST_NAME,
+                "step_index":STEP_INDEX,
+                "target":target,
+                "post_check_status":"REMOVED_SUCCESS",
+                "target_found_after_action":False,
+                "best_detection":None,
+                "all_detections":[],
+                "post_image_path":POST_IMAGE_PATH,
+                "post_yolo_image":None,
+                "post_fastsam_mask":None,
+                "post_fastsam_image":None,
+                "note":"validated by VLM"
+            }
+
+            save_json(POST_CHECK_JSON,result)
+            return result
+        
+        print("VLM says object still exists")
+        print("Switching to YOLO localization")
+
+    elif mode=="yolo":
+        print("Pure YOLO post-check")
 
     yolo = YoloWorldEngine(
         model_name=YOLO_WORLD_MODEL_PATH,
@@ -348,21 +438,17 @@ def run_post_check(target):
     )
 
     try:
-        best_detection, all_detections = yolo.detect_target(
+        best_detection,all_detections=yolo.detect_target(
             image_path=POST_IMAGE_PATH,
             target=target,
             output_json=POST_YOLO_JSON,
             output_image=POST_YOLO_IMAGE,
             conf=0.5,
-            use_generic_fallback=False,
+            use_generic_fallback=False
         )
 
-        target_found = True
-        post_status = "STILL_FOUND"
-
-        bbox = best_detection["bbox"]
-
-        fastsam = FastSAMEngine(
+        bbox=best_detection["bbox"]
+        fastsam=FastSAMEngine(
             model_name=FASTSAM_MODEL_PATH,
             device="cpu",
             imgsz=640,
@@ -371,62 +457,142 @@ def run_post_check(target):
             output_dir=str(POST_OUTPUT_DIR),
         )
 
-        post_fastsam_mask, post_fastsam_image = fastsam.segment_bbox(
-            image_path=POST_IMAGE_PATH,
-            bbox=bbox,
-            mask_path=POST_FASTSAM_MASK,
-            result_image_path=POST_FASTSAM_IMAGE,
-        )
+        post_fastsam_mask,post_fastsam_image= fastsam.segment_bbox(
+                image_path=POST_IMAGE_PATH,
+                bbox=bbox,
+                mask_path=POST_FASTSAM_MASK,
+                result_image_path=POST_FASTSAM_IMAGE,
+            )
 
-        result = {
-            "test_name": TEST_NAME,
-            "step_index": STEP_INDEX,
-            "target": target,
-            "post_check_status": post_status,
-            "target_found_after_action": target_found,
-            "best_detection": best_detection,
-            "all_detections": all_detections,
-            "post_image_path": POST_IMAGE_PATH,
-            "post_yolo_image": POST_YOLO_IMAGE,
-            "post_fastsam_mask": post_fastsam_mask,
-            "post_fastsam_image": post_fastsam_image,
-            "note": (
-                "Target masih terdeteksi setelah aksi robot. "
-                "Step belum dianggap selesai."
-            ),
+        result={
+            "test_name":TEST_NAME,
+            "step_index":STEP_INDEX,
+            "target":target,
+            "post_check_status":"STILL_FOUND",
+            "target_found_after_action":True,
+            "best_detection":best_detection,
+            "all_detections":all_detections,
+            "post_image_path":POST_IMAGE_PATH,
+            "post_yolo_image":POST_YOLO_IMAGE,
+            "post_fastsam_mask":post_fastsam_mask,
+            "post_fastsam_image":post_fastsam_image,
+            "note":"validated by VLM + localized by YOLO"
+        }
+    except RuntimeError:
+        result={
+            "test_name":TEST_NAME,
+
+            "step_index":STEP_INDEX,
+
+            "target":target,
+            "post_check_status":"REMOVED_SUCCESS",
+            "target_found_after_action":False,
+            "best_detection":None,
+            "all_detections":[],
+            "post_image_path":POST_IMAGE_PATH,
+            "post_yolo_image":None,
+            "post_fastsam_mask":None,
+            "post_fastsam_image":None,
+            "note":"VLM found target but YOLO failed"
         }
 
-    except RuntimeError as e:
-        error_msg = str(e).lower()
-
-        if "tidak menemukan target" in error_msg or "not found" in error_msg:
-            result = {
-                "test_name": TEST_NAME,
-                "step_index": STEP_INDEX,
-                "target": target,
-                "post_check_status": "REMOVED_SUCCESS",
-                "target_found_after_action": False,
-                "best_detection": None,
-                "all_detections": [],
-                "post_image_path": POST_IMAGE_PATH,
-                "post_yolo_image": POST_YOLO_IMAGE,
-                "post_fastsam_mask": None,
-                "post_fastsam_image": None,
-                "note": (
-                    "Target tidak ditemukan setelah aksi robot. "
-                    "Step dianggap berhasil."
-                ),
-            }
-        else:
-            raise
-
-    save_json(POST_CHECK_JSON, result)
-
-    print("\nPost-check selesai.")
-    print(f"Saved to: {POST_CHECK_JSON}")
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+    save_json(POST_CHECK_JSON,result)
 
     return result
+
+
+
+# def run_post_check(target):
+#     mode=os.getenv(
+#             "POSTCHECK_MODE",
+#             "yolo"
+#     )
+#     if not os.path.exists(POST_IMAGE_PATH):
+#         raise FileNotFoundError(
+#             f"Gambar post-check tidak ditemukan: {POST_IMAGE_PATH}\n"
+#             f"Capture scene terbaru setelah aksi robot, lalu copy current_scene_rgb.jpg menjadi post_scene_rgb.jpg."
+#         )
+
+#     yolo = YoloWorldEngine(
+#         model_name=YOLO_WORLD_MODEL_PATH,
+#         conf=0.5,
+#         output_dir=str(POST_OUTPUT_DIR),
+#     )
+
+#     try:
+#         best_detection, all_detections = yolo.detect_target(
+#             image_path=POST_IMAGE_PATH,
+#             target=target,
+#             output_json=POST_YOLO_JSON,
+#             output_image=POST_YOLO_IMAGE,
+#             conf=0.5,
+#             use_generic_fallback=False,
+#         )
+
+#         target_found = True
+#         post_status = "STILL_FOUND"
+
+#         bbox = best_detection["bbox"]
+
+#         fastsam = FastSAMEngine(
+#             model_name=FASTSAM_MODEL_PATH,
+#             device="cpu",
+#             imgsz=640,
+#             conf=0.4,
+#             iou=0.9,
+#             output_dir=str(POST_OUTPUT_DIR),
+#         )
+
+#         post_fastsam_mask, post_fastsam_image = fastsam.segment_bbox(
+#             image_path=POST_IMAGE_PATH,
+#             bbox=bbox,
+#             mask_path=POST_FASTSAM_MASK,
+#             result_image_path=POST_FASTSAM_IMAGE,
+#         )
+
+#         result = {
+#             "test_name": TEST_NAME,
+#             "step_index": STEP_INDEX,
+#             "target": target,
+#             "post_check_status": post_status,
+#             "target_found_after_action": target_found,
+#             "best_detection": best_detection,
+#             "all_detections": all_detections,
+#             "post_image_path": POST_IMAGE_PATH,
+#             "post_yolo_image": POST_YOLO_IMAGE,
+#             "post_fastsam_mask": post_fastsam_mask,
+#             "post_fastsam_image": post_fastsam_image,
+#             "note": "Target masih terdeteksi setelah aksi robot. Step belum dianggap selesai.",
+#         }
+
+#     except RuntimeError as e:
+#         error_msg = str(e).lower()
+
+#         if "tidak menemukan target" in error_msg or "not found" in error_msg:
+#             result = {
+#                 "test_name": TEST_NAME,
+#                 "step_index": STEP_INDEX,
+#                 "target": target,
+#                 "post_check_status": "REMOVED_SUCCESS",
+#                 "target_found_after_action": False,
+#                 "best_detection": None,
+#                 "all_detections": [],
+#                 "post_image_path": POST_IMAGE_PATH,
+#                 "post_yolo_image": POST_YOLO_IMAGE,
+#                 "post_fastsam_mask": None,
+#                 "post_fastsam_image": None,
+#                 "note": "Target tidak ditemukan setelah aksi robot. Step dianggap berhasil.",
+#             }
+#         else:
+#             raise
+
+#     save_json(POST_CHECK_JSON, result)
+
+#     print("\nPost-check selesai.")
+#     print(f"Saved to: {POST_CHECK_JSON}")
+#     print(json.dumps(result, indent=2, ensure_ascii=False))
+
+#     return result
 
 
 # ============================================================
@@ -434,18 +600,6 @@ def run_post_check(target):
 # ============================================================
 
 def create_remaining_plan_after_success(validation_result, post_check_result, step_index):
-    """
-    Jika post-check sukses, hapus semua step sampai STEP_INDEX,
-    lalu simpan remaining_plan.json.
-
-    Contoh:
-    final_plan = [step1, step2, step3]
-
-    STEP_INDEX = 1 sukses -> remaining = [step2, step3]
-    STEP_INDEX = 2 sukses -> remaining = [step3]
-    STEP_INDEX = 3 sukses -> remaining = []
-    """
-
     final_plan = validation_result.get("final_action_plan", [])
 
     if not isinstance(final_plan, list):
@@ -459,11 +613,10 @@ def create_remaining_plan_after_success(validation_result, post_check_result, st
         raise RuntimeError(f"STEP_INDEX tidak valid: {step_index}")
 
     remaining_plan = final_plan[step_index:]
-
     save_json(REMAINING_PLAN_JSON, remaining_plan)
 
     print("\nRemaining plan saved to:", REMAINING_PLAN_JSON)
-    print(json.dumps(remaining_plan, indent=2, ensure_ascii=False))
+    print(json.dumps(remaining_plan))
 
     return remaining_plan
 
@@ -473,34 +626,19 @@ def create_remaining_plan_after_success(validation_result, post_check_result, st
 # ============================================================
 
 def sanity_check_object_position(object_position):
-    """
-    Check kasar agar target yang terlalu aneh tidak langsung dianggap normal.
-
-    Ini belum menggantikan workspace check di base frame.
-    Tujuannya hanya memberi warning sebelum lanjut GraspNet/robot.
-    """
-
     point = object_position.get("point_camera_m")
 
     if not point or len(point) != 3:
         print("[WARN] object_position tidak punya point_camera_m valid.")
-        return {
-            "ok": False,
-            "reason": "point_camera_m missing or invalid",
-        }
+        return {"ok": False, "reason": "point_camera_m missing or invalid"}
 
     x, y, z = point
-
     warnings = []
 
-    if z < 0.10:
-        warnings.append("depth z terlalu dekat dari kamera")
-    if z > 1.20:
-        warnings.append("depth z terlalu jauh dari kamera")
-    if abs(x) > 0.50:
-        warnings.append("camera x terlalu besar")
-    if abs(y) > 0.50:
-        warnings.append("camera y terlalu besar")
+    if z < 0.10: warnings.append("depth z terlalu dekat dari kamera")
+    if z > 1.20: warnings.append("depth z terlalu jauh dari kamera")
+    if abs(x) > 0.50: warnings.append("camera x terlalu besar")
+    if abs(y) > 0.50: warnings.append("camera y terlalu besar")
 
     ok = len(warnings) == 0
 
@@ -511,65 +649,33 @@ def sanity_check_object_position(object_position):
         for w in warnings:
             print(" -", w)
 
-    return {
-        "ok": ok,
-        "point_camera_m": point,
-        "warnings": warnings,
-    }
+    return {"ok": ok, "point_camera_m": point, "warnings": warnings}
 
 
 # ============================================================
 # YOLO NEXT TARGET WITH ALIAS
 # ============================================================
 
-def detect_next_target_with_aliases(
-    yolo,
-    image_path,
-    next_target,
-    next_output_dir,
-    next_step_number,
-    next_yolo_json,
-    next_yolo_image,
-):
-    """
-    Deteksi target berikutnya dengan beberapa prompt alternatif.
-
-    Output standar tetap:
-    - next_yolo_json
-    - next_yolo_image
-
-    Semua hasil percobaan alias juga disimpan untuk debugging.
-    """
-
+def detect_next_target_with_aliases(yolo, image_path, next_target, next_output_dir, next_step_number, next_yolo_json, next_yolo_image):
     aliases = build_yolo_aliases(next_target)
 
     print("\n[YOLO-World] Trying aliases for next target:")
     for alias in aliases:
         print(" -", alias)
 
-    # Untuk objek kecil seperti lotion bottle, 0.6 sering terlalu tinggi.
-    # Urutan confidence dari ketat ke longgar.
     conf_list = [0.50, 0.40, 0.30, 0.20]
-
     best_detection = None
     all_detections = []
     used_query = None
     used_conf = None
     last_error = None
-
     debug_results = []
 
     for conf in conf_list:
         for query in aliases:
             alias_safe = safe_name(query)
-            alias_yolo_json = (
-                next_output_dir
-                / f"STEP_{next_step_number}_next_yolo_{alias_safe}_conf_{str(conf).replace('.', '_')}.json"
-            )
-            alias_yolo_image = (
-                next_output_dir
-                / f"STEP_{next_step_number}_next_yolo_{alias_safe}_conf_{str(conf).replace('.', '_')}.jpg"
-            )
+            alias_yolo_json = next_output_dir / f"STEP_{next_step_number}_next_yolo_{alias_safe}_conf_{str(conf).replace('.', '_')}.json"
+            alias_yolo_image = next_output_dir / f"STEP_{next_step_number}_next_yolo_{alias_safe}_conf_{str(conf).replace('.', '_')}.jpg"
 
             print(f"\n[YOLO-World] Trying query='{query}' conf={conf}")
 
@@ -594,12 +700,8 @@ def detect_next_target_with_aliases(
                 copy_if_exists(alias_yolo_image, next_yolo_image)
 
                 debug_results.append({
-                    "query": query,
-                    "conf": conf,
-                    "status": "FOUND",
-                    "best_detection": best_detection,
-                    "output_json": str(alias_yolo_json),
-                    "output_image": str(alias_yolo_image),
+                    "query": query, "conf": conf, "status": "FOUND",
+                    "best_detection": best_detection, "output_json": str(alias_yolo_json), "output_image": str(alias_yolo_image)
                 })
 
                 print("[YOLO-World] SUCCESS")
@@ -608,45 +710,19 @@ def detect_next_target_with_aliases(
                 print(json.dumps(best_detection, indent=2, ensure_ascii=False))
 
                 debug_json = next_output_dir / f"STEP_{next_step_number}_next_yolo_alias_debug.json"
-                save_json(debug_json, {
-                    "target_original": next_target,
-                    "aliases": aliases,
-                    "conf_list": conf_list,
-                    "used_query": used_query,
-                    "used_conf": used_conf,
-                    "debug_results": debug_results,
-                })
+                save_json(debug_json, {"target_original": next_target, "aliases": aliases, "conf_list": conf_list, "used_query": used_query, "used_conf": used_conf, "debug_results": debug_results})
 
                 return best_detection, all_detections, used_query, used_conf
 
             except RuntimeError as e:
                 last_error = str(e)
-                debug_results.append({
-                    "query": query,
-                    "conf": conf,
-                    "status": "FAILED",
-                    "error": str(e),
-                    "output_json": str(alias_yolo_json),
-                    "output_image": str(alias_yolo_image),
-                })
+                debug_results.append({"query": query, "conf": conf, "status": "FAILED", "error": str(e), "output_json": str(alias_yolo_json), "output_image": str(alias_yolo_image)})
                 print(f"[YOLO-World] Failed query='{query}' conf={conf}: {e}")
 
     debug_json = next_output_dir / f"STEP_{next_step_number}_next_yolo_alias_debug_FAILED.json"
-    save_json(debug_json, {
-        "target_original": next_target,
-        "aliases": aliases,
-        "conf_list": conf_list,
-        "last_error": last_error,
-        "debug_results": debug_results,
-    })
+    save_json(debug_json, {"target_original": next_target, "aliases": aliases, "conf_list": conf_list, "last_error": last_error, "debug_results": debug_results})
 
-    raise RuntimeError(
-        f"YOLO-World tidak menemukan target next step: {next_target}. "
-        f"Aliases tried: {aliases}. "
-        f"Conf tried: {conf_list}. "
-        f"Last error: {last_error}. "
-        f"Debug saved to: {debug_json}"
-    )
+    raise RuntimeError(f"YOLO-World tidak menemukan target next step: {next_target}. Aliases tried: {aliases}. Conf tried: {conf_list}. Last error: {last_error}.")
 
 
 # ============================================================
@@ -654,15 +730,6 @@ def detect_next_target_with_aliases(
 # ============================================================
 
 def copy_next_target_outputs_to_main_vision(next_result):
-    """
-    Copy output target berikutnya ke VISION_OUTPUT_DIR utama.
-
-    Ini penting supaya GraspNet step berikutnya membaca:
-    - current_scene_rgb.jpg
-    - depth_raw.npy
-    - vision_output/fastsam_mask.png
-    """
-
     mappings = [
         (next_result["next_yolo_json"], VISION_OUTPUT_DIR / "detections_yolo.json"),
         (next_result["next_yolo_image"], VISION_OUTPUT_DIR / "yolo_world_result.jpg"),
@@ -670,36 +737,18 @@ def copy_next_target_outputs_to_main_vision(next_result):
         (next_result["next_fastsam_image"], VISION_OUTPUT_DIR / "fastsam_result.jpg"),
         (next_result["next_object_position_json"], VISION_OUTPUT_DIR / "object_position_camera.json"),
     ]
-
     for src, dst in mappings:
         copy_if_exists(src, dst)
 
 
 def process_next_target_after_success(remaining_plan):
-    """
-    Setelah post-check sukses, langsung proses target berikutnya:
-    YOLO-World -> FastSAM -> Depth extraction.
-
-    PENTING:
-    Untuk next target, pakai IMAGE_PATH/current_scene_rgb.jpg.
-    Karena:
-    - GraspNet memakai current_scene_rgb.jpg
-    - GraspNet memakai depth_raw.npy
-    - Mask harus berasal dari RGB yang sama dengan depth
-    """
-
     if not isinstance(remaining_plan, list) or len(remaining_plan) == 0:
         print("\n✅ Tidak ada target berikutnya untuk diproses.")
         return None
 
-    if not os.path.exists(IMAGE_PATH):
-        raise FileNotFoundError(f"IMAGE_PATH tidak ditemukan: {IMAGE_PATH}")
-
-    if not os.path.exists(DEPTH_PATH):
-        raise FileNotFoundError(f"DEPTH_PATH tidak ditemukan: {DEPTH_PATH}")
-
-    if not os.path.exists(INTRINSICS_PATH):
-        raise FileNotFoundError(f"INTRINSICS_PATH tidak ditemukan: {INTRINSICS_PATH}")
+    if not os.path.exists(IMAGE_PATH): raise FileNotFoundError(f"IMAGE_PATH tidak ditemukan: {IMAGE_PATH}")
+    if not os.path.exists(DEPTH_PATH): raise FileNotFoundError(f"DEPTH_PATH tidak ditemukan: {DEPTH_PATH}")
+    if not os.path.exists(INTRINSICS_PATH): raise FileNotFoundError(f"INTRINSICS_PATH tidak ditemukan: {INTRINSICS_PATH}")
 
     next_step = remaining_plan[0]
     next_target = normalize_repeated_words(next_step.get("target", ""))
@@ -714,146 +763,64 @@ def process_next_target_after_success(remaining_plan):
     print("Next step:")
     print(json.dumps(next_step, indent=2, ensure_ascii=False))
     print("Next target untuk YOLO/FastSAM:", next_target)
-    print("RGB untuk next target:", IMAGE_PATH)
-    print("Depth untuk next target:", DEPTH_PATH)
 
     next_output_dir = POST_OUTPUT_DIR / f"STEP_{next_step_number}_next_target"
     next_output_dir.mkdir(parents=True, exist_ok=True)
 
     next_yolo_json = next_output_dir / f"STEP_{next_step_number}_next_detections_yolo.json"
     next_yolo_image = next_output_dir / f"STEP_{next_step_number}_next_yolo_result.jpg"
-
     next_fastsam_mask = next_output_dir / f"STEP_{next_step_number}_next_fastsam_mask.png"
     next_fastsam_image = next_output_dir / f"STEP_{next_step_number}_next_fastsam_result.jpg"
-
     next_object_position_json = next_output_dir / f"STEP_{next_step_number}_next_object_position_camera.json"
 
-    # ============================================================
-    # YOLO-WORLD NEXT TARGET WITH ALIAS FALLBACK
-    # ============================================================
-
-    yolo = YoloWorldEngine(
-        model_name=YOLO_WORLD_MODEL_PATH,
-        conf=0.5,
-        output_dir=str(next_output_dir),
-    )
+    yolo = YoloWorldEngine(model_name=YOLO_WORLD_MODEL_PATH, conf=0.5, output_dir=str(next_output_dir))
 
     best_detection, all_detections, used_query, used_conf = detect_next_target_with_aliases(
-        yolo=yolo,
-        image_path=IMAGE_PATH,
-        next_target=next_target,
-        next_output_dir=next_output_dir,
-        next_step_number=next_step_number,
-        next_yolo_json=next_yolo_json,
-        next_yolo_image=next_yolo_image,
+        yolo=yolo, image_path=IMAGE_PATH, next_target=next_target, next_output_dir=next_output_dir,
+        next_step_number=next_step_number, next_yolo_json=next_yolo_json, next_yolo_image=next_yolo_image,
     )
 
-    bbox = best_detection["bbox"]
-
-    # ============================================================
-    # FASTSAM NEXT TARGET
-    # ============================================================
-
-    fastsam = FastSAMEngine(
-        model_name=FASTSAM_MODEL_PATH,
-        device="cpu",
-        imgsz=640,
-        conf=0.4,
-        iou=0.9,
-        output_dir=str(next_output_dir),
-    )
+    fastsam = FastSAMEngine(model_name=FASTSAM_MODEL_PATH, device="cpu", imgsz=640, conf=0.4, iou=0.9, output_dir=str(next_output_dir))
 
     mask_path, fastsam_result_path = fastsam.segment_bbox(
-        image_path=IMAGE_PATH,
-        bbox=bbox,
-        mask_path=str(next_fastsam_mask),
-        result_image_path=str(next_fastsam_image),
+        image_path=IMAGE_PATH, bbox=best_detection["bbox"], mask_path=str(next_fastsam_mask), result_image_path=str(next_fastsam_image),
     )
 
-    # ============================================================
-    # DEPTH NEXT TARGET
-    # ============================================================
-
-    depth = DepthEngine(
-        depth_path=DEPTH_PATH,
-        intrinsics_path=INTRINSICS_PATH,
-        min_depth=0.1,
-        max_depth=2.0,
-    )
+    depth = DepthEngine(depth_path=DEPTH_PATH, intrinsics_path=INTRINSICS_PATH, min_depth=0.1, max_depth=2.0)
 
     object_position = depth.extract_from_mask(
-        target=next_target,
-        mask_path=mask_path,
-        output_path=str(next_object_position_json),
+        target=next_target, mask_path=mask_path, output_path=str(next_object_position_json),
     )
 
     sanity = sanity_check_object_position(object_position)
 
     next_result = {
-        "test_name": TEST_NAME,
-        "current_step_index_completed": STEP_INDEX,
-        "next_step": next_step,
-        "next_target": next_target,
-        "target_query_used": used_query,
-        "confidence_threshold_used": used_conf,
-        "best_detection": best_detection,
-        "all_detections": all_detections,
-        "next_rgb_image_used": IMAGE_PATH,
-        "next_depth_used": DEPTH_PATH,
-        "next_yolo_json": str(next_yolo_json),
-        "next_yolo_image": str(next_yolo_image),
-        "next_fastsam_mask": str(next_fastsam_mask),
-        "next_fastsam_image": str(next_fastsam_image),
-        "next_object_position_json": str(next_object_position_json),
-        "object_position": object_position,
+        "test_name": TEST_NAME, "current_step_index_completed": STEP_INDEX, "next_step": next_step,
+        "next_target": next_target, "target_query_used": used_query, "confidence_threshold_used": used_conf,
+        "best_detection": best_detection, "all_detections": all_detections, "next_rgb_image_used": IMAGE_PATH,
+        "next_depth_used": DEPTH_PATH, "next_yolo_json": str(next_yolo_json), "next_yolo_image": str(next_yolo_image),
+        "next_fastsam_mask": str(next_fastsam_mask), "next_fastsam_image": str(next_fastsam_image),
+        "next_object_position_json": str(next_object_position_json), "object_position": object_position,
         "sanity_check_object_position": sanity,
-        "note": (
-            "Next target has been detected, segmented, and localized using "
-            "current_scene_rgb.jpg and depth_raw.npy from the same capture. "
-            "YOLO-World alias fallback is enabled."
-        ),
+        "note": "Next target has been detected, segmented, and localized.",
     }
 
     next_result_json = next_output_dir / f"STEP_{next_step_number}_next_target_result.json"
-
     save_json(next_result_json, next_result)
 
     print("\n✅ Next target pipeline selesai.")
-    print("Saved to:", next_result_json)
-    print(json.dumps(next_result, indent=2, ensure_ascii=False))
-
     copy_next_target_outputs_to_main_vision(next_result)
 
     pipeline_ready_json = VISION_OUTPUT_DIR / "next_target_ready.json"
-    save_json(
-        pipeline_ready_json,
-        {
-            "ready": True,
-            "test_name": TEST_NAME,
-            "completed_step_index": STEP_INDEX,
-            "next_step_number": next_step_number,
-            "next_target": next_target,
-            "target_query_used": used_query,
-            "confidence_threshold_used": used_conf,
-            "vision_output_dir": str(VISION_OUTPUT_DIR),
-            "next_rgb_image_used": IMAGE_PATH,
-            "next_depth_used": DEPTH_PATH,
-            "sanity_check_object_position": sanity,
-            "standard_outputs": {
-                "detections_yolo": str(VISION_OUTPUT_DIR / "detections_yolo.json"),
-                "yolo_world_result": str(VISION_OUTPUT_DIR / "yolo_world_result.jpg"),
-                "fastsam_mask": str(VISION_OUTPUT_DIR / "fastsam_mask.png"),
-                "fastsam_result": str(VISION_OUTPUT_DIR / "fastsam_result.jpg"),
-                "object_position_camera": str(VISION_OUTPUT_DIR / "object_position_camera.json"),
-            },
-            "note": (
-                "Output next target sudah dicopy ke VISION_OUTPUT_DIR utama. "
-                "Lanjutkan ke GraspNet untuk step berikutnya."
-            ),
+    save_json(pipeline_ready_json, {
+        "ready": True, "test_name": TEST_NAME, "completed_step_index": STEP_INDEX, "next_step_number": next_step_number,
+        "next_target": next_target, "vision_output_dir": str(VISION_OUTPUT_DIR),
+        "standard_outputs": {
+            "detections_yolo": str(VISION_OUTPUT_DIR / "detections_yolo.json"),
+            "yolo_world_result": str(VISION_OUTPUT_DIR / "yolo_world_result.jpg"),
+            "fastsam_mask": str(VISION_OUTPUT_DIR / "fastsam_mask.png"),
         },
-    )
-
-    print("\n✅ Next target ready marker saved to:", pipeline_ready_json)
+    })
 
     return next_result
 
@@ -867,78 +834,45 @@ def main():
     sync_current_rgb_to_post_image()
     save_post_snapshot()
 
-    print("\n===== POST-CHECK PIPELINE START =====")
-    print("TEST_NAME:", TEST_NAME)
-    print("STEP_INDEX:", STEP_INDEX)
-    print("IMAGE_PATH:", IMAGE_PATH)
-    print("POST_IMAGE_PATH:", POST_IMAGE_PATH)
-    print("DEPTH_PATH:", DEPTH_PATH)
-    print("VISION_OUTPUT_DIR:", VISION_OUTPUT_DIR)
-    print("POST_OUTPUT_DIR:", POST_OUTPUT_DIR)
-    print("YOLO_WORLD_MODEL_PATH:", YOLO_WORLD_MODEL_PATH)
-    print("FASTSAM_MODEL_PATH:", FASTSAM_MODEL_PATH)
-
     validation_result = load_validation_result(VALIDATION_JSON)
-
-    target, selected_step, final_plan = get_target_step_from_validation(
-        validation_result,
-        STEP_INDEX,
-    )
-
-    print(f"\nStep yang diverifikasi: STEP_INDEX={STEP_INDEX}")
-    print(json.dumps(selected_step, indent=2, ensure_ascii=False))
+    target, selected_step, final_plan = get_target_step_from_validation(validation_result, STEP_INDEX)
 
     post_check_result = run_post_check(target)
-
-    remaining_plan = create_remaining_plan_after_success(
-        validation_result,
-        post_check_result,
-        STEP_INDEX,
-    )
+    remaining_plan = create_remaining_plan_after_success(validation_result, post_check_result, STEP_INDEX)
 
     if post_check_result.get("post_check_status") == "REMOVED_SUCCESS":
         print("\n✅ Step yang diverifikasi berhasil menurut post-check.")
 
         if len(remaining_plan) > 0:
             print("➡️ Masih ada step berikutnya.")
+            
+            is_still_valid, vlm_feedback = revalidate_remaining_plan(remaining_plan)
+
+            if not is_still_valid:
+                print("\n🛑 STOP! LINGKUNGAN TELAH BERUBAH SECARA DRASTIS.")
+                print(f"Alasan VLM: {vlm_feedback}")
+                print("Sisa plan sudah tidak aman atau tidak relevan.")
+                print("TINDAKAN: Kembali ke script run_d455_pipeline.py untuk RE-PLANNING total.")
+                
+                # Simpan marker untuk sistem bash script agar tahu harus re-plan
+                save_json(VISION_OUTPUT_DIR / "require_replanning.json", {"require_replan": True, "reason": vlm_feedback})
+                return # Keluar dari script, jangan lanjutkan proses next target
+            # -----------------------------------
+
+            print("\n✅ VLM menyatakan sisa plan masih valid dan aman. Melanjutkan proses...")
             print("Target berikutnya:", remaining_plan[0].get("target"))
 
             print("\n🔍 Memproses YOLO/FastSAM/depth untuk target berikutnya...")
             next_result = process_next_target_after_success(remaining_plan)
-
-            if next_result is not None:
-                print("\n✅ Target berikutnya sudah siap untuk aksi robot berikutnya.")
-                print("Next target:", next_result["next_target"])
-                print("YOLO query used:", next_result.get("target_query_used"))
-                print("YOLO conf used:", next_result.get("confidence_threshold_used"))
-                print("Next FastSAM:", next_result["next_fastsam_image"])
-
-                obj_pos = next_result.get("object_position") or {}
-                if "point_camera_m" in obj_pos:
-                    print("Next 3D camera point:", obj_pos["point_camera_m"])
-                else:
-                    print("[WARN] point_camera_m tidak ditemukan di object_position.")
-
-                sanity = next_result.get("sanity_check_object_position", {})
-                if not sanity.get("ok", False):
-                    print("\n⚠️ WARNING:")
-                    print("Next target camera position mencurigakan.")
-                    print("Jangan langsung gerakkan robot sebelum cek hasil transform ke base.")
-
-                print("\nLANJUTKAN STEP BERIKUTNYA:")
-                print("1. Jalankan GraspNet untuk target berikutnya.")
-                print("2. Transform camera -> base.")
-                print("3. Convert gripper_tip -> tool0.")
-                print("4. Cek translation_tool0_pregrasp.")
-                print("5. Baru move robot jika target masuk workspace.")
-
         else:
             print("✅ Semua step dalam action_plan sudah selesai.")
-
     else:
         print("\n⚠️ Step yang diverifikasi belum berhasil.")
-        print("Target masih terlihat. Ulangi aksi robot atau capture ulang.")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        # Ensures Langfuse background threads finish uploading before script exit
+        langfuse_context.flush()
