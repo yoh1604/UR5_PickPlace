@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 from datetime import datetime
-
+import os
 import pandas as pd
 import streamlit as st
 
@@ -10,7 +10,9 @@ import streamlit as st
 # PROJECT CONFIG
 # ============================================================
 
-PROJECT_DIR = Path.home() / "Documents" / "pick_place_occlusion_noetic"
+PROJECT_DIR = os.getcwd() 
+# # Path relatif ke folder output
+# TEST_DIR = os.path.join(PROJECT_DIR, "outputs", "TC_02_GMN_VLM")
 
 
 # ============================================================
