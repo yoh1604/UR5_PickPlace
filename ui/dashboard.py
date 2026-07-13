@@ -74,7 +74,7 @@ def show_image(title, path):
         st.warning("Image belum ada.")
         return
 
-    st.image(str(path), use_container_width=True)
+    st.image(str(path), width="stretch")
 
 
 def show_file_info(path):
@@ -252,7 +252,7 @@ st.caption("Dashboard read-only untuk melihat output VLM, vision, grasp, post-ch
 
 st.sidebar.header("Configuration")
 
-default_test_name = "CL_OAI_IM_TYP_002"
+default_test_name = "TC_01_GMN_VLM"
 
 test_name = st.sidebar.text_input(
     "TEST_NAME",
@@ -292,7 +292,7 @@ with col_c:
 
 st.dataframe(
     summarize_file_table(vlm_dir, vision_dir, post_dir),
-    use_container_width=True,
+    width="stretch",
     hide_index=True,
 )
 
@@ -308,7 +308,7 @@ plan_df = summarize_action_plan(vlm_dir)
 if len(plan_df) == 0:
     st.warning("Belum ada action plan / validation result.")
 else:
-    st.dataframe(plan_df, use_container_width=True, hide_index=True)
+    st.dataframe(plan_df, width="stretch", hide_index=True)
 
 with st.expander("Show raw VLM JSON"):
     tab_vlm_1, tab_vlm_2, tab_vlm_3 = st.tabs([
@@ -338,7 +338,7 @@ post_df = summarize_post_checks(post_dir)
 if len(post_df) == 0:
     st.warning("Belum ada post-check result.")
 else:
-    st.dataframe(post_df, use_container_width=True, hide_index=True)
+    st.dataframe(post_df, width="stretch", hide_index=True)
 
 
 # ============================================================
@@ -352,7 +352,7 @@ next_df = summarize_next_targets(post_dir)
 if len(next_df) == 0:
     st.info("Belum ada folder STEP_X_next_target.")
 else:
-    st.dataframe(next_df, use_container_width=True, hide_index=True)
+    st.dataframe(next_df, width="stretch", hide_index=True)
 
 
 # ============================================================
@@ -652,143 +652,142 @@ if selected_step is not None:
             else:
                 st.info("POST FastSAM tidak ada jika target sudah hilang.")
 
-steps = get_post_steps(post_dir)
+# steps = get_post_steps(post_dir)
 
-if not steps:
-    st.warning("Belum ada STEP_X_post_check_result.json.")
-    selected_step = None
-else:
-    selected_step = st.selectbox(
-        "Pilih STEP_INDEX untuk post-check",
-        steps,
-        index=0,  # default tampilkan STEP 1, bukan step terakhir
-    )
+# if not steps:
+#     st.warning("Belum ada STEP_X_post_check_result.json.")
+#     selected_step = None
+# else:
+#     selected_step = st.selectbox(
+#         "Pilih STEP_INDEX untuk post-check",
+#         steps,
+#         index=0,  # default tampilkan STEP 1, bukan step terakhir
+#     )
 
-if selected_step is not None:
-    st.subheader(f"STEP {selected_step} Pre-check vs Post-check")
+# if selected_step is not None:
+#     st.subheader(f"STEP {selected_step} Pre-check vs Post-check")
 
-    step_post_result = post_dir / f"STEP_{selected_step}_post_check_result.json"
-    step_post_yolo_json = post_dir / f"STEP_{selected_step}_post_check_detections_yolo.json"
-    step_post_yolo_image = post_dir / f"STEP_{selected_step}_post_check_yolo_result.jpg"
-    step_post_fastsam_mask = post_dir / f"STEP_{selected_step}_post_check_fastsam_mask.png"
-    step_pre_fastsam_image = post_dir / f"STEP_{selected_step}_post_check_fastsam_result.jpg"
-    step_remaining_plan = post_dir / f"STEP_{selected_step}_remaining_plan.json"
-    step_sync_report = post_dir / f"STEP_{selected_step}_sync_report.json"
+#     step_post_result = post_dir / f"STEP_{selected_step}_post_check_result.json"
+#     step_post_yolo_json = post_dir / f"STEP_{selected_step}_post_check_detections_yolo.json"
+#     step_post_yolo_image = post_dir / f"STEP_{selected_step}_post_check_yolo_result.jpg"
+#     step_post_fastsam_mask = post_dir / f"STEP_{selected_step}_post_check_fastsam_mask.png"
+#     step_pre_fastsam_image = post_dir / f"STEP_{selected_step}_post_check_fastsam_result.jpg"
+#     step_remaining_plan = post_dir / f"STEP_{selected_step}_remaining_plan.json"
+#     step_sync_report = post_dir / f"STEP_{selected_step}_sync_report.json"
 
-    col1, col2 = st.columns(2)
+#     col1, col2 = st.columns(2)
 
-    with col1:
-        show_image(
-            f"STEP {selected_step} Pre-check Result",
-            step_pre_fastsam_image,
-        )
+#     with col1:
+#         show_image(
+#             f"STEP {selected_step} Pre-check Result",
+#             step_pre_fastsam_image,
+#         )
 
-        show_image(
-            f"STEP {selected_step} Post-check YOLO Result",
-            step_post_yolo_image,
-        )
+#         show_image(
+#             f"STEP {selected_step} Post-check YOLO Result",
+#             step_post_yolo_image,
+#         )
 
         
 
-    with col2:
-        show_json(
-            f"STEP {selected_step} Post-check Result",
-            step_post_result,
-        )
+#     with col2:
+#         show_json(
+#             f"STEP {selected_step} Post-check Result",
+#             step_post_result,
+#         )
 
-        show_json(
-            f"STEP {selected_step} Remaining Plan",
-            step_remaining_plan,
-        )
+#         show_json(
+#             f"STEP {selected_step} Remaining Plan",
+#             step_remaining_plan,
+#         )
 
-        show_json(
-            f"STEP {selected_step} Sync Report",
-            step_sync_report,
-        )
+#         show_json(
+#             f"STEP {selected_step} Sync Report",
+#             step_sync_report,
+#         )
 
-    with st.expander(f"STEP {selected_step} Raw Post-check Files"):
-        show_json(
-            f"STEP {selected_step} YOLO Detections",
-            step_post_yolo_json,
-        )
+#     with st.expander(f"STEP {selected_step} Raw Post-check Files"):
+#         show_json(
+#             f"STEP {selected_step} YOLO Detections",
+#             step_post_yolo_json,
+#         )
 
-        if step_post_fastsam_mask.exists():
-            st.caption(str(step_post_fastsam_mask))
-            st.image(str(step_post_fastsam_mask), use_container_width=True)
-        else:
-            st.warning("FastSAM mask belum ada untuk step ini.")
-
-
-# ============================================================
-# NEXT TARGET VIEWER
-# ============================================================
-
-st.header("6. Next Target Viewer")
-
-if selected_step is None:
-    st.info("Pilih STEP_INDEX dulu.")
-else:
-    prepared_step = selected_step + 1
-    next_dir = post_dir / f"STEP_{prepared_step}_next_target"
-
-    st.subheader(f"Next target prepared for STEP {prepared_step}")
-    st.caption(str(next_dir))
-
-    if not next_dir.exists():
-        st.info(f"Tidak ada folder next target: {next_dir}")
-    else:
-        next_yolo_result = next_dir / f"STEP_{prepared_step}_next_yolo_result.jpg"
-        next_fastsam_result = next_dir / f"STEP_{prepared_step}_next_fastsam_result.jpg"
-        next_fastsam_mask = next_dir / f"STEP_{prepared_step}_next_fastsam_mask.png"
-        next_target_result = next_dir / f"STEP_{prepared_step}_next_target_result.json"
-        next_object_position = next_dir / f"STEP_{prepared_step}_next_object_position_camera.json"
-        next_alias_debug = next_dir / f"STEP_{prepared_step}_next_yolo_alias_debug.json"
-
-        col1, col2 = st.columns(2)
-
-        with col1:
-            show_image(
-                f"STEP {prepared_step} Next YOLO Result",
-                next_yolo_result,
-            )
-
-            show_image(
-                f"STEP {prepared_step} Next FastSAM Result",
-                next_fastsam_result,
-            )
-
-            if next_fastsam_mask.exists():
-                show_image(
-                    f"STEP {prepared_step} Next FastSAM Mask",
-                    next_fastsam_mask,
-                )
-
-        with col2:
-            show_json(
-                f"STEP {prepared_step} Next Target Result",
-                next_target_result,
-            )
-
-            show_json(
-                f"STEP {prepared_step} Next Object Position",
-                next_object_position,
-            )
-
-            show_json(
-                f"STEP {prepared_step} YOLO Alias Debug",
-                next_alias_debug,
-            )
+#         if step_post_fastsam_mask.exists():
+#             st.caption(str(step_post_fastsam_mask))
+#             st.image(str(step_post_fastsam_mask), width="stretch")
+#         else:
+#             st.warning("FastSAM mask belum ada untuk step ini.")
 
 
-# ============================================================
-# LATEST ACTIVE VISION OUTPUT
-# ============================================================
+# # ============================================================
+# # NEXT TARGET VIEWER
+# # ============================================================
 
-st.header("7. Latest Active Vision Output")
+# st.header("6. Next Target Viewer")
+
+# if selected_step is None:
+#     st.info("Pilih STEP_INDEX dulu.")
+# else:
+#     prepared_step = selected_step + 1
+#     next_dir = post_dir / f"STEP_{prepared_step}_next_target"
+
+#     st.subheader(f"Next target prepared for STEP {prepared_step}")
+#     st.caption(str(next_dir))
+
+#     if not next_dir.exists():
+#         st.info(f"Tidak ada folder next target: {next_dir}")
+#     else:
+#         next_yolo_result = next_dir / f"STEP_{prepared_step}_next_yolo_result.jpg"
+#         next_fastsam_result = next_dir / f"STEP_{prepared_step}_next_fastsam_result.jpg"
+#         next_fastsam_mask = next_dir / f"STEP_{prepared_step}_next_fastsam_mask.png"
+#         next_target_result = next_dir / f"STEP_{prepared_step}_next_target_result.json"
+#         next_object_position = next_dir / f"STEP_{prepared_step}_next_object_position_camera.json"
+#         next_alias_debug = next_dir / f"STEP_{prepared_step}_next_yolo_alias_debug.json"
+
+#         col1, col2 = st.columns(2)
+
+#         with col1:
+#             show_image(
+#                 f"STEP {prepared_step} Next YOLO Result",
+#                 next_yolo_result,
+#             )
+
+#             show_image(
+#                 f"STEP {prepared_step} Next FastSAM Result",
+#                 next_fastsam_result,
+#             )
+
+#             if next_fastsam_mask.exists():
+#                 show_image(
+#                     f"STEP {prepared_step} Next FastSAM Mask",
+#                     next_fastsam_mask,
+#                 )
+
+#         with col2:
+#             show_json(
+#                 f"STEP {prepared_step} Next Target Result",
+#                 next_target_result,
+#             )
+
+#             show_json(
+#                 f"STEP {prepared_step} Next Object Position",
+#                 next_object_position,
+#             )
+
+#             show_json(
+#                 f"STEP {prepared_step} YOLO Alias Debug",
+#                 next_alias_debug,
+#             )
+
+
+# # ============================================================
+# # LATEST ACTIVE VISION OUTPUT
+# # ============================================================
+
+st.header("6. Latest Active Vision Output")
 
 st.info(
     "Folder vision_output adalah output target aktif terakhir. "
-    "File di sini bisa tertimpa oleh step berikutnya, jadi jangan dipakai sebagai arsip step 1."
 )
 
 col1, col2 = st.columns(2)
@@ -809,7 +808,7 @@ with col2:
 # GRASP OUTPUT
 # ============================================================
 
-st.header("8. Latest Grasp Output")
+st.header("7. Latest Grasp Output")
 
 tab_g1, tab_g2, tab_g3, tab_g4 = st.tabs([
     "best_grasp_camera",
@@ -835,24 +834,24 @@ with tab_g4:
 # SNAPSHOTS AND RAW CAMERA FILES
 # ============================================================
 
-st.header("9. Snapshots and Camera Files")
+st.header("8. Snapshots and Camera Files")
 
 col1, col2 = st.columns(2)
 
 with col1:
-    show_image("Current Scene RGB", PROJECT_DIR / "data/d455_capture/current_scene_rgb.jpg")
-    show_image("Current Scene Depth", PROJECT_DIR / "data/d455_capture/current_scene_depth.png")
+    show_image("Current Scene RGB", snapshot_dir / "current_scene_rgb.jpg")
+    show_image("Current Scene Depth", snapshot_dir / "current_scene_depth.png")
 
 with col2:
-    show_image("Post Scene RGB", PROJECT_DIR / "data/d455_capture/post_scene_rgb.jpg")
-    show_image("Snapshot Post RGB", snapshot_dir / "post_scene_rgb.jpg")
+    show_image("Post Scene RGB", snapshot_dir / "post_scene_rgb.jpg")
+    # show_image("Snapshot Post RGB", snapshot_dir / "post_scene_rgb.jpg")
 
 
 # ============================================================
 # FILE TREE HINT
 # ============================================================
 
-st.header("10. Output Folder Notes")
+st.header("9. Output Folder Notes")
 
 st.markdown(
     f"""
@@ -896,7 +895,7 @@ else:
     tail_lines = st.slider(
         "Show last N log lines",
         min_value=50,
-        max_value=2000,
+        max_value=999999999,
         value=300,
         step=50,
     )
