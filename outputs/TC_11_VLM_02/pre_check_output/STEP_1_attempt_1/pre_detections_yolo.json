@@ -1,12 +1,12 @@
 [
   {
     "label": "red soda can",
-    "confidence": 0.8739691972732544,
+    "confidence": 0.8726249933242798,
     "bbox": [
-      290,
-      135,
-      349,
-      290
+      278,
+      133,
+      339,
+      293
     ],
     "bbox_format": "xyxy_pixel",
     "source": "yolo_world",

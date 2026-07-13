@@ -1,6 +1,6 @@
 {
   "validation_status": "PASS",
-  "feedback": "The user requested 'coke' and the planner correctly identified a red Coca-Cola can (referred to as 'red soda can') standing clearly visible on the shelf. The action plan is simple, direct, corresponds exactly to the visual scene provided, matches semantic intent, removes no unnecessary objects, avoids background hazards like removing furniture or floor items.",
+  "feedback": "The user requested a 'coker' (interpreted as Coke/Coca-Cola). The planner has identified the target as a 'red soda can', which corresponds to the visually observed red and white Coca-Cola cans on the shelf. This satisfies Rule #2 regarding semantic matching where generic descriptors ('soda can') are allowed for specific brands when supported by visual context (color/branding match). The action plan is safe; there are no occlusions blocking access, and it correctly targets a single object that matches the user's intent.",
   "final_action_plan": [
     {
       "step": 1,
@@ -8,7 +8,7 @@
       "target": "red soda can",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "The user wants to drink coke, and the red soda can is clearly visible and unobstructed."
+      "explanation": "The red soda can is the requested item and is clear to pick."
     }
   ]
 }

@@ -4,34 +4,34 @@
   "current_rgb": {
     "exists": true,
     "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
-    "size_bytes": 95969,
-    "mtime_unix": 1783331590.2229435,
-    "mtime_readable": "2026-07-06 16:53:10",
-    "sha256": "02a1007e81a950f5df0c0db981b70b0c705c64b1921478fa6f24e1d46ab7d66e"
+    "size_bytes": 83786,
+    "mtime_unix": 1783932375.8292332,
+    "mtime_readable": "2026-07-13 15:46:15",
+    "sha256": "912ae66aee50e9ee0ef05f35ce997a6dcdd1fc5521a2e44f57a96b80df3e8bd9"
   },
   "post_rgb": {
     "exists": true,
     "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg",
-    "size_bytes": 95969,
-    "mtime_unix": 1783336111.3409548,
-    "mtime_readable": "2026-07-06 18:08:31",
-    "sha256": "02a1007e81a950f5df0c0db981b70b0c705c64b1921478fa6f24e1d46ab7d66e"
+    "size_bytes": 83786,
+    "mtime_unix": 1783932380.7453566,
+    "mtime_readable": "2026-07-13 15:46:20",
+    "sha256": "912ae66aee50e9ee0ef05f35ce997a6dcdd1fc5521a2e44f57a96b80df3e8bd9"
   },
   "depth_raw": {
     "exists": true,
     "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
     "size_bytes": 614528,
-    "mtime_unix": 1783331590.2229435,
-    "mtime_readable": "2026-07-06 16:53:10",
-    "sha256": "6a4a49df2bc97a38de3d12abde7967986d9fe54a6e2b0417bc9896dcf4436eee"
+    "mtime_unix": 1783932375.8292332,
+    "mtime_readable": "2026-07-13 15:46:15",
+    "sha256": "de2b73b6e2c5ef470241f95b2ba19e4e657c55a87cdb4d904d7ef62552937e90"
   },
   "intrinsics": {
     "exists": true,
     "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
-    "size_bytes": 187,
-    "mtime_unix": 1783331590.2309437,
-    "mtime_readable": "2026-07-06 16:53:10",
-    "sha256": "5fe859397403b68c000d43baeab3f3e320c567c800434b51d0108b4c9002f291"
+    "size_bytes": 186,
+    "mtime_unix": 1783932375.8372333,
+    "mtime_readable": "2026-07-13 15:46:15",
+    "sha256": "9fe29a35bd36b1e5265edce8add16fae5f666dbd2d396cc5c1ebefb6266f92cc"
   },
   "post_rgb_is_exact_copy_of_current_rgb": true,
   "note": "post_scene_rgb.jpg dibuat dengan copyfile dari current_scene_rgb.jpg terbaru sebelum post-check."

@@ -5,9 +5,15 @@
   "visual_analysis": [
     {
       "object": "red soda can",
-      "description": "A red and white soda can standing on a wooden surface.",
+      "description": "A red and white Coca-Cola can is on a wooden shelf.",
       "status": "target",
       "target_role": "primary_target"
+    },
+    {
+      "object": "wooden shelf",
+      "description": "The wooden surface the can is resting on.",
+      "status": "clear_background",
+      "target_role": "background"
     }
   ],
   "action_plan": [
@@ -17,7 +23,7 @@
       "target": "red soda can",
       "target_role": "primary_target",
       "step_intent": "pick_primary_target",
-      "explanation": "The user wants to drink coke, and the red soda can is clearly visible and unobstructed."
+      "explanation": "The red soda can is the requested item and is clear to pick."
     }
   ]
 }

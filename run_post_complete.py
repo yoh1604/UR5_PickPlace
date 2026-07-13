@@ -397,7 +397,7 @@ def get_target_step_from_validation(validation_result, step_index):
 
 def run_post_check(target):
 
-    mode=os.getenv("POSTCHECK_MODE","yolo")
+    mode=os.getenv("POSTCHECK_MODE","vlm")
 
     if not os.path.exists(POST_IMAGE_PATH):
         raise FileNotFoundError(POST_IMAGE_PATH)

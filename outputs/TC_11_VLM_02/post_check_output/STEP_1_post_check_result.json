@@ -2,39 +2,13 @@
   "test_name": "TC_11_VLM_02",
   "step_index": 1,
   "target": "red soda can",
-  "post_check_status": "STILL_FOUND",
-  "target_found_after_action": true,
-  "best_detection": {
-    "label": "red soda can",
-    "confidence": 0.7280262112617493,
-    "bbox": [
-      393,
-      135,
-      452,
-      289
-    ],
-    "bbox_format": "xyxy_pixel",
-    "source": "yolo_world",
-    "target_query": "red soda can"
-  },
-  "all_detections": [
-    {
-      "label": "red soda can",
-      "confidence": 0.7280262112617493,
-      "bbox": [
-        393,
-        135,
-        452,
-        289
-      ],
-      "bbox_format": "xyxy_pixel",
-      "source": "yolo_world",
-      "target_query": "red soda can"
-    }
-  ],
+  "post_check_status": "REMOVED_SUCCESS",
+  "target_found_after_action": false,
+  "best_detection": null,
+  "all_detections": [],
   "post_image_path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg",
-  "post_yolo_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_11_VLM_02/post_check_output/STEP_1_post_check_yolo_result.jpg",
-  "post_fastsam_mask": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_11_VLM_02/post_check_output/STEP_1_post_check_fastsam_mask.png",
-  "post_fastsam_image": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_11_VLM_02/post_check_output/STEP_1_post_check_fastsam_result.jpg",
-  "note": "validated by VLM + localized by YOLO"
+  "post_yolo_image": null,
+  "post_fastsam_mask": null,
+  "post_fastsam_image": null,
+  "note": "validated by VLM"
 }

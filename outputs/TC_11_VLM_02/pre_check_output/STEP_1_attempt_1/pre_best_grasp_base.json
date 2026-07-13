@@ -2,72 +2,72 @@
   "success": true,
   "method": "camera_to_base_transform",
   "translation_base": [
-    -0.6487190720775386,
-    0.49771418707712883,
-    0.2773747595651249
+    -0.6615345654939888,
+    0.4722912713378008,
+    0.27149492700715866
   ],
   "rotation_matrix_base": [
     [
-      -0.024098185136625882,
-      -0.9554806806435027,
-      -0.29406811862826143
+      -0.5908573060081469,
+      -0.4030020238413873,
+      -0.6989113169523333
     ],
     [
-      0.9426636329109814,
-      0.07622658532517852,
-      -0.3249229433952095
+      0.6624794322936512,
+      0.2520590874201856,
+      -0.7053986328550518
     ],
     [
-      0.3328734032582648,
-      -0.28503739964401803,
-      0.8988598147264032
+      0.4604440592325484,
+      -0.8798042972671694,
+      0.11804959236917206
     ]
   ],
-  "score": 0.41692420840263367,
-  "width": 0.06810354441404343,
+  "score": 0.412977397441864,
+  "width": 0.07115507125854492,
   "height": 0.019999999552965164,
-  "depth": 0.019999999552965164,
+  "depth": 0.029999999329447746,
   "object_id": -1,
   "frame": "UR5 base frame",
   "source_frame": "RealSense D455 aligned color camera frame",
   "rotation_validation": {
-    "determinant": 1.0000001182969125,
-    "orthonormal_error": 2.1802866005632725e-07
+    "determinant": 1.0000000343376718,
+    "orthonormal_error": 9.52387993723273e-08
   },
   "camera_grasp_used": {
     "translation_camera": [
-      -0.0102009242400527,
-      -0.06665860861539841,
-      0.37300002574920654
+      -0.037314027547836304,
+      -0.061272189021110535,
+      0.36400002241134644
     ],
     "rotation_matrix_camera": [
       [
-        0.6540746092796326,
-        -0.6235225796699524,
-        -0.42825937271118164
+        0.05689249932765961,
+        -0.11523131281137466,
+        -0.9917080998420715
       ],
       [
-        -0.309978187084198,
-        0.2954989969730377,
-        -0.9036558270454407
+        -0.43903547525405884,
+        0.8892316222190857,
+        -0.1285107433795929
       ],
       [
-        0.690000057220459,
-        0.7238094210624695,
-        -3.1638712982839934e-08
+        0.8966667056083679,
+        0.44270631670951843,
+        -1.9351308111481558e-08
       ]
     ]
   },
   "note": "Pose grasp sudah ditransformasikan dari camera frame ke UR5 base frame. Untuk test pertama, gunakan pre-grasp dengan z ditambah 0.10 m dan jangan langsung descend.",
   "pre_grasp_preview": {
     "translation_base": [
-      -0.6487190720775386,
-      0.49771418707712883,
-      0.3773747595651249
+      -0.6615345654939888,
+      0.4722912713378008,
+      0.3714949270071587
     ],
     "offset_z_m": 0.1,
     "note": "Gunakan pose ini untuk test pertama agar robot hanya bergerak ke atas objek."
   },
-  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_14_VLM_02/vision_output/best_grasp_camera.json",
+  "source_file": "/home/b401/Documents/pick_place_occlusion_noetic/outputs/TC_11_VLM_02/vision_output/best_grasp_camera.json",
   "source_transform": "/home/b401/Documents/pick_place_occlusion_noetic/configs/T_base_camera.json"
 }

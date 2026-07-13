@@ -17,8 +17,30 @@
       0
     ],
     "source": "vlm_visual_analysis",
-    "description": "A red and white soda can standing on a wooden surface.",
+    "description": "A red and white Coca-Cola can is on a wooden shelf.",
     "status": "target",
     "target_role": "primary_target"
+  },
+  {
+    "label": "wooden shelf",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "The wooden surface the can is resting on.",
+    "status": "clear_background",
+    "target_role": "background"
   }
 ]
