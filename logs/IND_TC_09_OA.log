@@ -1,0 +1,408 @@
+/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/google/api_core/_python_version_support.py:255: FutureWarning: You are using a Python version (3.10.20) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
+  warnings.warn(message, FutureWarning)
+/home/b401/Documents/pick_place_occlusion_noetic/planning/vlm_engine.py:14: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+
+========== D455 TEST CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+ENV_PATH: /home/b401/Documents/pick_place_occlusion_noetic/.env
+TEST_NAME: IND_TC_09_OA
+USER_QUERY: Saya mau minum air putih
+STEP_INDEX: 1
+
+========== INPUT PATHS ==========
+BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture
+IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+DEPTH_VIS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_depth.png
+POST_IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg
+
+========== OUTPUT PATHS ==========
+OUTPUT_BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs
+TEST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA
+VLM_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output
+VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output
+POST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output
+
+========== MAIN OUTPUT FILES ==========
+ACTION_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/action_plan_real.json
+VLM_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/detections_from_vlm.json
+VALIDATION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/validation_result_real.json
+YOLO_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output/detections_yolo.json
+YOLO_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output/yolo_world_result.jpg
+FASTSAM_MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output/fastsam_mask.png
+FASTSAM_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output/fastsam_result.jpg
+OBJECT_POSITION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output/object_position_camera.json
+
+========== POST-CHECK OUTPUT FILES ==========
+POST_CHECK_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_remaining_plan.json
+
+========== SNAPSHOT OUTPUTS ==========
+SNAPSHOT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots
+SNAPSHOT_CURRENT_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots/current_scene_rgb.jpg
+SNAPSHOT_CURRENT_DEPTH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots/current_scene_depth.png
+SNAPSHOT_POST_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots/post_scene_rgb.jpg
+=====================================
+
+Saved RGB snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots/current_scene_rgb.jpg
+Saved depth snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots/current_scene_depth.png
+ENV path: /home/b401/Documents/pick_place_occlusion_noetic/.env
+OPENAI_API_KEY detected: True
+GEMINI_API_KEY detected: False
+Menggunakan OpenAI Cloud VLM Planner...
+
+Action plan berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/action_plan_real.json
+{
+  "resolved_primary_target": "blue water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "blue water bottle",
+      "description": "blue plastic bottle with label",
+      "status": "obstructing",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "green Sprite can",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "clear the green soda can to access the water bottle"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the water bottle to fulfill the user request"
+    }
+  ]
+}
+
+VLM detections berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/detections_from_vlm.json
+[
+  {
+    "label": "blue water bottle",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "blue plastic bottle with label",
+    "status": "obstructing",
+    "target_role": "primary_target"
+  },
+  {
+    "label": "green soda can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "green Sprite can",
+    "status": "obstructing",
+    "target_role": "search_occluder"
+  }
+]
+Menggunakan Local/Ollama LogicValidator...
+
+Validation berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/validation_result_real.json
+{
+  "error": "Gagal memparsing JSON dari VLM lokal.\nOutput mentah:\n",
+  "validation_status": "FAIL"
+}
+Traceback (most recent call last):
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 892, in <module>
+    main()
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 852, in main
+    spatial_result = run_spatial_pipeline(validation_result)
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 723, in run_spatial_pipeline
+    target, first_step, final_plan = get_first_target_from_validation(
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 234, in get_first_target_from_validation
+    raise RuntimeError("Plan belum PASS. Tidak boleh lanjut ke YOLO/FastSAM.")
+RuntimeError: Plan belum PASS. Tidak boleh lanjut ke YOLO/FastSAM.
+/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/google/api_core/_python_version_support.py:255: FutureWarning: You are using a Python version (3.10.20) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
+  warnings.warn(message, FutureWarning)
+/home/b401/Documents/pick_place_occlusion_noetic/planning/vlm_engine.py:14: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+
+========== D455 TEST CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+ENV_PATH: /home/b401/Documents/pick_place_occlusion_noetic/.env
+TEST_NAME: IND_TC_09_OA
+USER_QUERY: Saya mau minum air putih
+STEP_INDEX: 1
+
+========== INPUT PATHS ==========
+BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture
+IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+DEPTH_VIS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_depth.png
+POST_IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg
+
+========== OUTPUT PATHS ==========
+OUTPUT_BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs
+TEST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA
+VLM_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output
+VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output
+POST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output
+
+========== MAIN OUTPUT FILES ==========
+ACTION_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/action_plan_real.json
+VLM_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/detections_from_vlm.json
+VALIDATION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/validation_result_real.json
+YOLO_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output/detections_yolo.json
+YOLO_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output/yolo_world_result.jpg
+FASTSAM_MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output/fastsam_mask.png
+FASTSAM_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output/fastsam_result.jpg
+OBJECT_POSITION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vision_output/object_position_camera.json
+
+========== POST-CHECK OUTPUT FILES ==========
+POST_CHECK_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/post_check_output/STEP_1_remaining_plan.json
+
+========== SNAPSHOT OUTPUTS ==========
+SNAPSHOT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots
+SNAPSHOT_CURRENT_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots/current_scene_rgb.jpg
+SNAPSHOT_CURRENT_DEPTH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots/current_scene_depth.png
+SNAPSHOT_POST_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots/post_scene_rgb.jpg
+=====================================
+
+Saved RGB snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots/current_scene_rgb.jpg
+Saved depth snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/snapshots/current_scene_depth.png
+ENV path: /home/b401/Documents/pick_place_occlusion_noetic/.env
+OPENAI_API_KEY detected: True
+GEMINI_API_KEY detected: False
+Menggunakan OpenAI Cloud VLM Planner...
+
+Action plan berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/action_plan_real.json
+{
+  "resolved_primary_target": "blue water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "white can",
+      "description": "white can with cartoon design",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red can",
+      "description": "red can with text",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green can",
+      "description": "green can with text",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "blue water bottle",
+      "description": "clear blue water bottle",
+      "status": "target",
+      "target_role": "primary_target"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "white can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the white can to access the water bottle."
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "red can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the red can to access the water bottle."
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the blue water bottle."
+    }
+  ]
+}
+
+VLM detections berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/detections_from_vlm.json
+[
+  {
+    "label": "white can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "white can with cartoon design",
+    "status": "obstructing",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "red can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "red can with text",
+    "status": "obstructing",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "green can",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "green can with text",
+    "status": "obstructing",
+    "target_role": "search_occluder"
+  },
+  {
+    "label": "blue water bottle",
+    "confidence": null,
+    "bbox_format": "normalized_0_1000_xyxy",
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "bbox_original_format": "normalized_0_1000_yxyx",
+    "bbox_original_yxyx": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source": "vlm_visual_analysis",
+    "description": "clear blue water bottle",
+    "status": "target",
+    "target_role": "primary_target"
+  }
+]
+Menggunakan Local/Ollama LogicValidator...
+
+Validation berhasil dibuat.
+Saved to: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_09_OA/vlm_output/validation_result_real.json
+{
+  "error": "Gagal memparsing JSON dari VLM lokal.\nOutput mentah:\n",
+  "validation_status": "FAIL"
+}
+Traceback (most recent call last):
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 892, in <module>
+    main()
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 852, in main
+    spatial_result = run_spatial_pipeline(validation_result)
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 723, in run_spatial_pipeline
+    target, first_step, final_plan = get_first_target_from_validation(
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_d455_pipeline.py", line 234, in get_first_target_from_validation
+    raise RuntimeError("Plan belum PASS. Tidak boleh lanjut ke YOLO/FastSAM.")
+RuntimeError: Plan belum PASS. Tidak boleh lanjut ke YOLO/FastSAM.

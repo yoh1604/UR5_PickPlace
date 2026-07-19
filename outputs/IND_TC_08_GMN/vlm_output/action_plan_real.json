@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "red soda can",
+      "description": "A red soda can with 'Coca-Cola' branding, located in the front row, second from the left.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "green soda can",
+      "description": "A green soda can with 'Sprite' branding, located in the front row, on the right.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white can with purple and blue text, located on the far left of the front row.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "clear water bottle",
+      "description": "A clear plastic water bottle with a blue cap, located behind the red and green soda cans.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "brown paper bag",
+      "description": "A brown paper bag standing in the background behind the drinks.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Picking the first requested item, the coca-cola can. It is clear and directly accessible."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Picking the second requested item, the sprite can. It is also clear and directly accessible."
+    }
+  ]
+}

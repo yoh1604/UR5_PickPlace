@@ -1,0 +1,57 @@
+{
+  "resolved_primary_target": "blue water bottle",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "white can",
+      "description": "white can with cartoon design",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red can",
+      "description": "red can with text",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green can",
+      "description": "green can with text",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "blue water bottle",
+      "description": "clear blue water bottle",
+      "status": "target",
+      "target_role": "primary_target"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "white can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the white can to access the water bottle."
+    },
+    {
+      "step": 2,
+      "action": "remove",
+      "target": "red can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the red can to access the water bottle."
+    },
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the blue water bottle."
+    }
+  ]
+}

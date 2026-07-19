@@ -1,0 +1,4 @@
+{
+  "error": "Gagal memparsing JSON dari VLM lokal.\nOutput mentah:\n",
+  "validation_status": "FAIL"
+}

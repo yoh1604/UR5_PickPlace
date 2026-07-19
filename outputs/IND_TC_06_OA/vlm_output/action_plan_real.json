@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "green can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "green can",
+      "description": "green soda can",
+      "status": "obstructed",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "orange bottle",
+      "description": "orange caffe latte bottle",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red can",
+      "description": "red soda can",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "white can",
+      "description": "white can with purple design",
+      "status": "clear",
+      "target_role": "clear_background"
+    },
+    {
+      "object": "brown box",
+      "description": "brown cardboard box",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "orange bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "Remove the orange bottle to access the green can."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the green can as it is the primary target."
+    }
+  ]
+}

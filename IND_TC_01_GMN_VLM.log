@@ -1,0 +1,128 @@
+/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/google/api_core/_python_version_support.py:255: FutureWarning: You are using a Python version (3.10.20) which Google will stop supporting in new releases of google.api_core once it reaches its end of life (2026-10-04). Please upgrade to the latest Python version, or at least Python 3.11, to continue receiving updates for google.api_core past that date.
+  warnings.warn(message, FutureWarning)
+/home/b401/Documents/pick_place_occlusion_noetic/planning/validator_engine.py:15: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+
+========== D455 TEST CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/pick_place_occlusion_noetic
+ENV_PATH: /home/b401/Documents/pick_place_occlusion_noetic/.env
+TEST_NAME: IND_TC_01_GMN_VLM
+USER_QUERY: Saya mau minuman berkafein
+STEP_INDEX: 1
+
+========== INPUT PATHS ==========
+BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture
+IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json
+DEPTH_VIS_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_depth.png
+POST_IMAGE_PATH: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg
+
+========== OUTPUT PATHS ==========
+OUTPUT_BASE_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs
+TEST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM
+VLM_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/vlm_output
+VISION_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/vision_output
+POST_OUTPUT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/post_check_output
+
+========== MAIN OUTPUT FILES ==========
+ACTION_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/vlm_output/action_plan_real.json
+VLM_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/vlm_output/detections_from_vlm.json
+VALIDATION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/vlm_output/validation_result_real.json
+YOLO_DETECTIONS_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/vision_output/detections_yolo.json
+YOLO_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/vision_output/yolo_world_result.jpg
+FASTSAM_MASK_PATH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/vision_output/fastsam_mask.png
+FASTSAM_RESULT_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/vision_output/fastsam_result.jpg
+OBJECT_POSITION_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/vision_output/object_position_camera.json
+
+========== POST-CHECK OUTPUT FILES ==========
+POST_CHECK_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/post_check_output/STEP_1_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/post_check_output/STEP_1_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/post_check_output/STEP_1_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/post_check_output/STEP_1_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/post_check_output/STEP_1_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/post_check_output/STEP_1_remaining_plan.json
+
+========== SNAPSHOT OUTPUTS ==========
+SNAPSHOT_DIR: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/snapshots
+SNAPSHOT_CURRENT_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/snapshots/current_scene_rgb.jpg
+SNAPSHOT_CURRENT_DEPTH: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/snapshots/current_scene_depth.png
+SNAPSHOT_POST_RGB: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/snapshots/post_scene_rgb.jpg
+=====================================
+
+
+===== SYNC CHECK CURRENT/POST/DEPTH =====
+current RGB: /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg
+post RGB   : /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg
+depth raw  : /home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy
+post == current: True
+sync report: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/post_check_output/STEP_1_sync_report.json
+Saved post RGB snapshot: /home/b401/Documents/pick_place_occlusion_noetic/outputs/IND_TC_01_GMN_VLM/snapshots/post_scene_rgb.jpg
+
+STEP_INDEX dari config: 1
+Target untuk post-check: brown bottle
+Traceback (most recent call last):
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_post_complete.py", line 875, in <module>
+    main()
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_post_complete.py", line 840, in main
+    post_check_result = run_post_check(target)
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_post_complete.py", line 406, in run_post_check
+    target_found,_,_=vlm_postcheck(target)
+  File "/home/b401/Documents/pick_place_occlusion_noetic/run_post_complete.py", line 285, in vlm_postcheck
+    response=validator.validate_target_presence(
+  File "/home/b401/Documents/pick_place_occlusion_noetic/planning/validator_engine.py", line 474, in validate_target_presence
+    result,_,_=self._validate_local(
+  File "/home/b401/Documents/pick_place_occlusion_noetic/planning/validator_engine.py", line 383, in _validate_local
+    response = requests.post(url, json=payload, headers=headers, timeout=500)
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/urllib3/connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/http/client.py", line 1395, in getresponse
+    response.begin()
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/http/client.py", line 323, in begin
+    version, status, reason = self._read_status()
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/http/client.py", line 284, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/socket.py", line 717, in readinto
+    return self._sock.recv_into(b)
+KeyboardInterrupt
+Exception ignored in atexit callback: <bound method PromptCacheTaskManager.shutdown of <langfuse.prompt_cache.PromptCacheTaskManager object at 0x7fc743890280>>
+Traceback (most recent call last):
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/langfuse/prompt_cache.py", line 123, in shutdown
+    consumer.join()
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/threading.py", line 1096, in join
+    self._wait_for_tstate_lock()
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/threading.py", line 1116, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+KeyboardInterrupt: 
+Exception ignored in atexit callback: <bound method TaskManager.shutdown of <langfuse._task_manager.task_manager.TaskManager object at 0x7fc743867bb0>>
+Traceback (most recent call last):
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/langfuse/_task_manager/task_manager.py", line 198, in shutdown
+    self.join()
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/site-packages/langfuse/_task_manager/task_manager.py", line 181, in join
+    media_upload_consumer.join()
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/threading.py", line 1096, in join
+    self._wait_for_tstate_lock()
+  File "/home/b401/miniconda3/envs/ur5_pickplace/lib/python3.10/threading.py", line 1116, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+KeyboardInterrupt: 

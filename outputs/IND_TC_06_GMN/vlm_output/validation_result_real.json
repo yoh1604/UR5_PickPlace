@@ -1,0 +1,4 @@
+{
+  "error": "Gagal memparsing JSON dari VLM lokal.\nOutput mentah:\nValid JSON Output:\n{\n\"validation_status\": \"PASS\",\n\"feedback\": \"The action_plan is validated successfully.\",\n\"final_action_plan\": [\n    {\n      \"step\": 1,\n      \"action\": \"remove\",\n      \"target\": \"orange bottle\",\n      \"target_role\": \"search_occluder\",\n      \"step_intent\": \"clear_occluder_to_reveal_primary_target\",\n      \"explanation\": \"The orange bottle is in front of the target green soda can and must be moved to provide access.\"\n    },\n    {\n      \"step\": 2,\n      \"action\": \"pick\",\n      \"target\": \"green soda can\",\n      \"target_role\": \"primary_target\",\n      \"step_intent\": \"pick_primary_target\",\n      \"explanation\": \"Pick the green soda can now that the path is clear.\"\n    }\n  ]\n}",
+  "validation_status": "FAIL"
+}

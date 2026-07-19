@@ -1,0 +1,47 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "clear",
+  "plan_intent": "pick_target",
+  "visual_analysis": [
+    {
+      "object": "brown bottle",
+      "description": "brown bottle on left",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "green can",
+      "description": "green can behind the red soda can",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "red soda can",
+      "description": "red soda can in the middle",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "blue water bottle",
+      "description": "blue water bottle behind red soda can",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white box",
+      "description": "white box on the right",
+      "status": "clear",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The red soda can is directly accessible and not obstructed."
+    }
+  ]
+}

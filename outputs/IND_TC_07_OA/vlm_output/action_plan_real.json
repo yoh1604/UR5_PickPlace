@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "red soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "yellow bottle",
+      "description": "yellow bottle with label",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "green soda can",
+      "description": "green soda can with label",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "blue can",
+      "description": "blue can with label",
+      "status": "clear",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red soda can",
+      "description": "red soda can with label",
+      "status": "obstructed",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "brown box",
+      "description": "large brown box",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "green soda can",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "remove occluder in front of the primary target"
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "red soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "pick the primary target"
+    }
+  ]
+}

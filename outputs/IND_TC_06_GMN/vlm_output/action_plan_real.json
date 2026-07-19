@@ -1,0 +1,55 @@
+{
+  "resolved_primary_target": "green soda can",
+  "target_visibility": "obstructed",
+  "plan_intent": "search_for_hidden_or_blocked_target",
+  "visual_analysis": [
+    {
+      "object": "green soda can",
+      "description": "A green and white soda can, labeled Sprite, located behind an orange bottle.",
+      "status": "target",
+      "target_role": "primary_target"
+    },
+    {
+      "object": "orange bottle",
+      "description": "An orange plastic bottle with a blue cap, labeled Caffino, sitting in front of the green soda can.",
+      "status": "obstructing",
+      "target_role": "search_occluder"
+    },
+    {
+      "object": "red soda can",
+      "description": "A red soda can, labeled Coca-Cola, to the right of the orange bottle.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "white soda can",
+      "description": "A white can with purple and pink graphics, labeled Milkis, to the right of the red soda can.",
+      "status": "clear",
+      "target_role": "background"
+    },
+    {
+      "object": "cardboard box",
+      "description": "A brown cardboard box in the background behind all the drinks.",
+      "status": "clear_background",
+      "target_role": "background"
+    }
+  ],
+  "action_plan": [
+    {
+      "step": 1,
+      "action": "remove",
+      "target": "orange bottle",
+      "target_role": "search_occluder",
+      "step_intent": "clear_occluder_to_reveal_primary_target",
+      "explanation": "The orange bottle is in front of the target green soda can and must be moved to provide access."
+    },
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the green soda can now that the path is clear."
+    }
+  ]
+}

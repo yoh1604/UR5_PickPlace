@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The action plan correctly identifies and selects a CAFFINO bottle visible on the table to fulfill the request for a caffeinated drink ('minuman berkafein'). The target object (bottle with label 'CAFFINO') is clearly visible, unobstructed, and matches the user's intent. Minor discrepancies in color description (blue vs teal cap) are acceptable visual variations.",
+  "final_action_plan": [
+    {
+      "step": 1,
+      "action": "pick",
+      "target": "brown bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The user requested a caffeinated drink, and the brown bottle is a coffee drink that is clearly visible and unobstructed."
+    }
+  ]
+}
