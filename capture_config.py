@@ -10,14 +10,14 @@ load_dotenv(ENV_PATH)
 # TEST CONFIG
 # ============================================================
 
-TEST_NAME = "IND_TC_09_OA"
+TEST_NAME = "IND_TC_09_GMN"
 
 USER_QUERY = os.getenv(
     "USER_QUERY",
     "Saya mau minum air putih",
 )
 
-STEP_INDEX = int(os.getenv("STEP_INDEX", "1"))
+STEP_INDEX = int(os.getenv("STEP_INDEX", "3"))
 
 
 # ============================================================

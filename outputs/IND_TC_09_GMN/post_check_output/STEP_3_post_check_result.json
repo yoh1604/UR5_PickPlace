@@ -1,0 +1,14 @@
+{
+  "test_name": "IND_TC_09_GMN",
+  "step_index": 3,
+  "target": "clear water bottle",
+  "post_check_status": "REMOVED_SUCCESS",
+  "target_found_after_action": false,
+  "best_detection": null,
+  "all_detections": [],
+  "post_image_path": "/home/b401/Documents/UR5_PickPlace/data/d455_capture/post_scene_rgb.jpg",
+  "post_yolo_image": null,
+  "post_fastsam_mask": null,
+  "post_fastsam_image": null,
+  "note": "validated by VLM"
+}

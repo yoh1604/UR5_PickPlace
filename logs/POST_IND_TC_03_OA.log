@@ -1,0 +1,78 @@
+
+========== D455 TEST CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/UR5_PickPlace
+ENV_PATH: /home/b401/Documents/UR5_PickPlace/.env
+TEST_NAME: IND_TC_03_OA
+USER_QUERY: Saya mau coke
+STEP_INDEX: 1
+
+========== INPUT PATHS ==========
+BASE_DIR: /home/b401/Documents/UR5_PickPlace/data/d455_capture
+IMAGE_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/camera_intrinsics.json
+DEPTH_VIS_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_depth.png
+POST_IMAGE_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/post_scene_rgb.jpg
+
+========== OUTPUT PATHS ==========
+OUTPUT_BASE_DIR: /home/b401/Documents/UR5_PickPlace/outputs
+TEST_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA
+VLM_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/vlm_output
+VISION_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/vision_output
+POST_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output
+
+========== MAIN OUTPUT FILES ==========
+ACTION_PLAN_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/vlm_output/action_plan_real.json
+VLM_DETECTIONS_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/vlm_output/detections_from_vlm.json
+VALIDATION_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/vlm_output/validation_result_real.json
+YOLO_DETECTIONS_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/vision_output/detections_yolo.json
+YOLO_RESULT_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/vision_output/yolo_world_result.jpg
+FASTSAM_MASK_PATH: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/vision_output/fastsam_mask.png
+FASTSAM_RESULT_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/vision_output/fastsam_result.jpg
+OBJECT_POSITION_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/vision_output/object_position_camera.json
+
+========== POST-CHECK OUTPUT FILES ==========
+POST_CHECK_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output/STEP_1_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output/STEP_1_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output/STEP_1_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output/STEP_1_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output/STEP_1_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output/STEP_1_remaining_plan.json
+
+========== SNAPSHOT OUTPUTS ==========
+SNAPSHOT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/snapshots
+SNAPSHOT_CURRENT_RGB: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/snapshots/current_scene_rgb.jpg
+SNAPSHOT_CURRENT_DEPTH: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/snapshots/current_scene_depth.png
+SNAPSHOT_POST_RGB: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/snapshots/post_scene_rgb.jpg
+=====================================
+
+
+===== SYNC CHECK CURRENT/POST/DEPTH =====
+current RGB: /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg
+post RGB   : /home/b401/Documents/UR5_PickPlace/data/d455_capture/post_scene_rgb.jpg
+depth raw  : /home/b401/Documents/UR5_PickPlace/data/d455_capture/depth_raw.npy
+post == current: True
+sync report: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output/STEP_1_sync_report.json
+Saved post RGB snapshot: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/snapshots/post_scene_rgb.jpg
+
+STEP_INDEX dari config: 1
+Target untuk post-check: red soda can
+validasi by vlm
+VLM says object still exists
+Switching to YOLO localization
+Loading YOLO-World model: /home/b401/Documents/UR5_PickPlace/models/yolov8l-worldv2.pt
+
+[YOLO-World] Target dari action plan: red soda can
+[YOLO-World] Dynamic classes: ['red soda can']
+
+image 1/1 /home/b401/Documents/UR5_PickPlace/data/d455_capture/post_scene_rgb.jpg: 480x640 (no detections), 36.2ms
+Speed: 0.5ms preprocess, 36.2ms inference, 45.3ms postprocess per image at shape (1, 3, 480, 640)
+[YOLO-World] Detections saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output/STEP_1_post_check_detections_yolo.json
+[YOLO-World] Result image saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output/STEP_1_post_check_yolo_result.jpg
+[]
+
+Remaining plan saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_03_OA/post_check_output/STEP_1_remaining_plan.json
+[]
+
+✅ Step yang diverifikasi berhasil menurut post-check.
+✅ Semua step dalam action_plan sudah selesai.

@@ -1,0 +1,235 @@
+
+========== D455 TEST CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/UR5_PickPlace
+ENV_PATH: /home/b401/Documents/UR5_PickPlace/.env
+TEST_NAME: IND_TC_08_GMN
+USER_QUERY: Saya mau coca cola dan sprite, ambil keduanya
+STEP_INDEX: 1
+
+========== INPUT PATHS ==========
+BASE_DIR: /home/b401/Documents/UR5_PickPlace/data/d455_capture
+IMAGE_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/camera_intrinsics.json
+DEPTH_VIS_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_depth.png
+POST_IMAGE_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/post_scene_rgb.jpg
+
+========== OUTPUT PATHS ==========
+OUTPUT_BASE_DIR: /home/b401/Documents/UR5_PickPlace/outputs
+TEST_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN
+VLM_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vlm_output
+VISION_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output
+POST_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output
+
+========== MAIN OUTPUT FILES ==========
+ACTION_PLAN_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vlm_output/action_plan_real.json
+VLM_DETECTIONS_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vlm_output/detections_from_vlm.json
+VALIDATION_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vlm_output/validation_result_real.json
+YOLO_DETECTIONS_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/detections_yolo.json
+YOLO_RESULT_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/yolo_world_result.jpg
+FASTSAM_MASK_PATH: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/fastsam_mask.png
+FASTSAM_RESULT_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/fastsam_result.jpg
+OBJECT_POSITION_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/object_position_camera.json
+
+========== POST-CHECK OUTPUT FILES ==========
+POST_CHECK_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_1_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_1_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_1_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_1_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_1_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_1_remaining_plan.json
+
+========== SNAPSHOT OUTPUTS ==========
+SNAPSHOT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/snapshots
+SNAPSHOT_CURRENT_RGB: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/snapshots/current_scene_rgb.jpg
+SNAPSHOT_CURRENT_DEPTH: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/snapshots/current_scene_depth.png
+SNAPSHOT_POST_RGB: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/snapshots/post_scene_rgb.jpg
+=====================================
+
+
+===== SYNC CHECK CURRENT/POST/DEPTH =====
+current RGB: /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg
+post RGB   : /home/b401/Documents/UR5_PickPlace/data/d455_capture/post_scene_rgb.jpg
+depth raw  : /home/b401/Documents/UR5_PickPlace/data/d455_capture/depth_raw.npy
+post == current: True
+sync report: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_1_sync_report.json
+Saved post RGB snapshot: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/snapshots/post_scene_rgb.jpg
+
+STEP_INDEX dari config: 1
+Target untuk post-check: red soda can
+validasi by vlm
+
+Remaining plan saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_1_remaining_plan.json
+[{"step": 2, "action": "pick", "target": "green soda can", "target_role": "primary_target", "step_intent": "pick_primary_target", "explanation": "Picking the second requested item, the sprite can. It is also clear and directly accessible."}]
+
+✅ Step yang diverifikasi berhasil menurut post-check.
+➡️ Masih ada step berikutnya.
+
+🔍 MELAKUKAN REASONING ULANG TERHADAP SISA PLAN...
+{
+  "validation_status": "PASS",
+  "feedback": "The remaining action plan is valid. The primary target 'green soda can' corresponds to the Sprite can visible in the current scene, which matches the user's requested second item (Sprite). Semantic matching confirms 'green soda can' refers to the Sprite can (same product line). The Planner has already completed the first target (Coca Cola) in previous steps, so its absence in the current scene is acceptable. The grasp action is safe (single object, no occluders blocking access) and logically executable. The plan does not introduce hallucinated objects or unsafe sequences.",
+  "final_action_plan": [
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Picking the second requested item, the sprite can. It is also clear and directly accessible."
+    }
+  ]
+}
+Status Re-validasi: PASS
+Feedback VLM: The remaining action plan is valid. The primary target 'green soda can' corresponds to the Sprite can visible in the current scene, which matches the user's requested second item (Sprite). Semantic matching confirms 'green soda can' refers to the Sprite can (same product line). The Planner has already completed the first target (Coca Cola) in previous steps, so its absence in the current scene is acceptable. The grasp action is safe (single object, no occluders blocking access) and logically executable. The plan does not introduce hallucinated objects or unsafe sequences.
+
+✅ VLM menyatakan sisa plan masih valid dan aman. Melanjutkan proses...
+Target berikutnya: green soda can
+
+🔍 Memproses YOLO/FastSAM/depth untuk target berikutnya...
+
+===== PROCESS NEXT TARGET AFTER POST-CHECK SUCCESS =====
+Next step:
+{
+  "step": 2,
+  "action": "pick",
+  "target": "green soda can",
+  "target_role": "primary_target",
+  "step_intent": "pick_primary_target",
+  "explanation": "Picking the second requested item, the sprite can. It is also clear and directly accessible."
+}
+Next target untuk YOLO/FastSAM: green soda can
+Loading YOLO-World model: /home/b401/Documents/UR5_PickPlace/models/yolov8l-worldv2.pt
+
+[YOLO-World] Trying aliases for next target:
+ - green soda can
+ - soda can
+ - red soda can
+ - can
+ - drink can
+ - beverage can
+
+[YOLO-World] Trying query='green soda can' conf=0.5
+
+[YOLO-World] Target dari action plan: green soda can
+[YOLO-World] Dynamic classes: ['green soda can', 'can']
+
+image 1/1 /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg: 480x640 1 green soda can, 35.8ms
+Speed: 0.7ms preprocess, 35.8ms inference, 297.7ms postprocess per image at shape (1, 3, 480, 640)
+[YOLO-World] Detections saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_yolo_green_soda_can_conf_0_5.json
+[YOLO-World] Result image saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_yolo_green_soda_can_conf_0_5.jpg
+[
+  {
+    "label": "green soda can",
+    "confidence": 0.9005215167999268,
+    "bbox": [
+      331,
+      135,
+      389,
+      288
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green soda can"
+  }
+]
+[YOLO-World] Best detection:
+{
+  "label": "green soda can",
+  "confidence": 0.9005215167999268,
+  "bbox": [
+    331,
+    135,
+    389,
+    288
+  ],
+  "bbox_format": "xyxy_pixel",
+  "source": "yolo_world",
+  "target_query": "green soda can"
+}
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_yolo_green_soda_can_conf_0_5.json -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_detections_yolo.json
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_yolo_green_soda_can_conf_0_5.jpg -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_yolo_result.jpg
+[YOLO-World] SUCCESS
+Used query: green soda can
+Used conf: 0.5
+{
+  "label": "green soda can",
+  "confidence": 0.9005215167999268,
+  "bbox": [
+    331,
+    135,
+    389,
+    288
+  ],
+  "bbox_format": "xyxy_pixel",
+  "source": "yolo_world",
+  "target_query": "green soda can",
+  "target_query_original": "green soda can",
+  "target_query_used": "green soda can",
+  "confidence_threshold_used": 0.5
+}
+Loading FastSAM model: /home/b401/Documents/UR5_PickPlace/models/FastSAM-x.pt
+
+[FastSAM] Segmenting bbox: [331, 135, 389, 288]
+
+image 1/1 /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg: 480x640 1 object, 257.7ms
+Speed: 0.4ms preprocess, 257.7ms inference, 11.6ms postprocess per image at shape (1, 3, 480, 640)
+[FastSAM] Mask saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_fastsam_mask.png
+[FastSAM] Result image saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_fastsam_result.jpg
+[DepthEngine] Mask asli shape: (480, 640)
+[DepthEngine] Depth shape: (480, 640)
+[DepthEngine] Mask asli unique values: [  0 255]
+[DepthEngine] Pixel mask setelah binary: 8081
+
+[DepthEngine] Jumlah pixel mask: 8081
+[DepthEngine] Jumlah depth valid pada mask: 7252
+[DepthEngine] Median depth valid: 0.6070000529289246
+[DepthEngine] Mean depth valid: 0.6059688925743103
+[DepthEngine] Object position saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_object_position_camera.json
+{
+  "object": "green soda can",
+  "pixel_center_uv": [
+    361,
+    211
+  ],
+  "pixel_center_uv_mean": [
+    360,
+    210
+  ],
+  "median_depth_m": 0.6070000529289246,
+  "mean_depth_m": 0.6059688925743103,
+  "point_camera_m": [
+    0.053674012422561646,
+    -0.053716160356998444,
+    0.6070000529289246
+  ],
+  "point_camera_mean_m": [
+    0.05349728465080261,
+    -0.05308287963271141,
+    0.6060414910316467
+  ],
+  "debug": {
+    "mask_pixels": 8081,
+    "valid_depth_pixels": 7252,
+    "valid_depth_ratio": 0.8974136864249475,
+    "used_pixels_after_depth_fill": 8081,
+    "min_depth_m": 0.1,
+    "max_depth_m": 2.0,
+    "depth_scale": 0.0010000000474974513,
+    "fx": 385.724365234375,
+    "fy": 385.28033447265625,
+    "ppx": 326.5517883300781,
+    "ppy": 244.87197875976562,
+    "method": "all_mask_pixels_with_invalid_depth_filled_by_median_depth"
+  },
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Belum ditransformasikan ke base frame UR5."
+}
+[OK] object_position camera sanity check masuk akal: [0.053674012422561646, -0.053716160356998444, 0.6070000529289246]
+
+✅ Next target pipeline selesai.
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_detections_yolo.json -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/detections_yolo.json
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_yolo_result.jpg -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/yolo_world_result.jpg
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_fastsam_mask.png -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/fastsam_mask.png
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_fastsam_result.jpg -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/fastsam_result.jpg
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/post_check_output/STEP_2_next_target/STEP_2_next_object_position_camera.json -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/object_position_camera.json

@@ -1,0 +1,4 @@
+{
+  "require_replan": true,
+  "reason": "The primary target 'green can' (Sprite) does not match the user's request for 'coke' (Coca-Cola). According to semantic matching rules, Sprite and Coca-Cola are different brands/products. The image clearly shows the green can is labeled 'Sprite' (not Coca-Cola), which violates user target consistency. The Planner has incorrectly substituted the primary target."
+}

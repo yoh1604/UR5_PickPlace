@@ -26,8 +26,8 @@ class BaseVLMClient:
     DEFAULT_MODELS = {
         "openai": "gpt-4o",
         "gemini": "gemini-2.5-pro",
-        "ollama": "qwen3.5:27b",
-        "local": "qwen3.5:27b"
+        "ollama": "qwen3-vl:latest",
+        "local": "qwen3-vl:latest"
     }
 
     def __init__(self, api_key=None, provider="openai", model_name=None):

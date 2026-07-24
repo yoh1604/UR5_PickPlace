@@ -1,0 +1,45 @@
+{
+  "target_original": "clear water bottle",
+  "aliases": [
+    "clear water bottle",
+    "pink lotion bottle",
+    "lotion bottle",
+    "body lotion",
+    "pink bottle",
+    "bottle",
+    "lotion"
+  ],
+  "conf_list": [
+    0.5,
+    0.4,
+    0.3,
+    0.2
+  ],
+  "used_query": "clear water bottle",
+  "used_conf": 0.5,
+  "debug_results": [
+    {
+      "query": "clear water bottle",
+      "conf": 0.5,
+      "status": "FOUND",
+      "best_detection": {
+        "label": "bottle",
+        "confidence": 0.874420702457428,
+        "bbox": [
+          342,
+          79,
+          398,
+          280
+        ],
+        "bbox_format": "xyxy_pixel",
+        "source": "yolo_world",
+        "target_query": "clear water bottle",
+        "target_query_original": "clear water bottle",
+        "target_query_used": "clear water bottle",
+        "confidence_threshold_used": 0.5
+      },
+      "output_json": "/home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_yolo_clear_water_bottle_conf_0_5.json",
+      "output_image": "/home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_yolo_clear_water_bottle_conf_0_5.jpg"
+    }
+  ]
+}

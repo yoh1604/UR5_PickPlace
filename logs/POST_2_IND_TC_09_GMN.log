@@ -1,0 +1,236 @@
+
+========== D455 TEST CONFIG ==========
+PROJECT_DIR: /home/b401/Documents/UR5_PickPlace
+ENV_PATH: /home/b401/Documents/UR5_PickPlace/.env
+TEST_NAME: IND_TC_09_GMN
+USER_QUERY: Saya mau minum air putih
+STEP_INDEX: 2
+
+========== INPUT PATHS ==========
+BASE_DIR: /home/b401/Documents/UR5_PickPlace/data/d455_capture
+IMAGE_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg
+DEPTH_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/depth_raw.npy
+INTRINSICS_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/camera_intrinsics.json
+DEPTH_VIS_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_depth.png
+POST_IMAGE_PATH: /home/b401/Documents/UR5_PickPlace/data/d455_capture/post_scene_rgb.jpg
+
+========== OUTPUT PATHS ==========
+OUTPUT_BASE_DIR: /home/b401/Documents/UR5_PickPlace/outputs
+TEST_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN
+VLM_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vlm_output
+VISION_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output
+POST_OUTPUT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output
+
+========== MAIN OUTPUT FILES ==========
+ACTION_PLAN_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vlm_output/action_plan_real.json
+VLM_DETECTIONS_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vlm_output/detections_from_vlm.json
+VALIDATION_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vlm_output/validation_result_real.json
+YOLO_DETECTIONS_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output/detections_yolo.json
+YOLO_RESULT_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output/yolo_world_result.jpg
+FASTSAM_MASK_PATH: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output/fastsam_mask.png
+FASTSAM_RESULT_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output/fastsam_result.jpg
+OBJECT_POSITION_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output/object_position_camera.json
+
+========== POST-CHECK OUTPUT FILES ==========
+POST_CHECK_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_2_post_check_result.json
+POST_YOLO_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_2_post_check_detections_yolo.json
+POST_YOLO_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_2_post_check_yolo_result.jpg
+POST_FASTSAM_MASK: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_2_post_check_fastsam_mask.png
+POST_FASTSAM_IMAGE: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_2_post_check_fastsam_result.jpg
+REMAINING_PLAN_JSON: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_2_remaining_plan.json
+
+========== SNAPSHOT OUTPUTS ==========
+SNAPSHOT_DIR: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/snapshots
+SNAPSHOT_CURRENT_RGB: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/snapshots/current_scene_rgb.jpg
+SNAPSHOT_CURRENT_DEPTH: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/snapshots/current_scene_depth.png
+SNAPSHOT_POST_RGB: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/snapshots/post_scene_rgb.jpg
+=====================================
+
+
+===== SYNC CHECK CURRENT/POST/DEPTH =====
+current RGB: /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg
+post RGB   : /home/b401/Documents/UR5_PickPlace/data/d455_capture/post_scene_rgb.jpg
+depth raw  : /home/b401/Documents/UR5_PickPlace/data/d455_capture/depth_raw.npy
+post == current: True
+sync report: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_2_sync_report.json
+Saved post RGB snapshot: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/snapshots/post_scene_rgb.jpg
+
+STEP_INDEX dari config: 2
+Target untuk post-check: red soda can
+validasi by vlm
+
+Remaining plan saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_2_remaining_plan.json
+[{"step": 3, "action": "pick", "target": "clear water bottle", "target_role": "primary_target", "step_intent": "pick_primary_target", "explanation": "The path to the clear water bottle is now clear, and it can be picked up."}]
+
+✅ Step yang diverifikasi berhasil menurut post-check.
+➡️ Masih ada step berikutnya.
+
+🔍 MELAKUKAN REASONING ULANG TERHADAP SISA PLAN...
+{
+  "validation_status": "PASS",
+  "feedback": "The user requested clear water ('air putih'). The action plan correctly targets the 'clear water bottle' which corresponds to the Crystal Water bottle visible in the scene. The bottle is a transparent water container labeled 'Crystal Water', matching the requested object type. The explanation states the path to the bottle is clear, which is consistent with the visual scene showing the bottle unobstructed on the table. There are no semantic mismatches (Crystal Water is water, not soda or other beverages) and no unsafe grasping conditions. The single remaining target is logically valid for the user's request.",
+  "final_action_plan": [
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "clear water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "The path to the clear water bottle is now clear, and it can be picked up."
+    }
+  ]
+}
+Status Re-validasi: PASS
+Feedback VLM: The user requested clear water ('air putih'). The action plan correctly targets the 'clear water bottle' which corresponds to the Crystal Water bottle visible in the scene. The bottle is a transparent water container labeled 'Crystal Water', matching the requested object type. The explanation states the path to the bottle is clear, which is consistent with the visual scene showing the bottle unobstructed on the table. There are no semantic mismatches (Crystal Water is water, not soda or other beverages) and no unsafe grasping conditions. The single remaining target is logically valid for the user's request.
+
+✅ VLM menyatakan sisa plan masih valid dan aman. Melanjutkan proses...
+Target berikutnya: clear water bottle
+
+🔍 Memproses YOLO/FastSAM/depth untuk target berikutnya...
+
+===== PROCESS NEXT TARGET AFTER POST-CHECK SUCCESS =====
+Next step:
+{
+  "step": 3,
+  "action": "pick",
+  "target": "clear water bottle",
+  "target_role": "primary_target",
+  "step_intent": "pick_primary_target",
+  "explanation": "The path to the clear water bottle is now clear, and it can be picked up."
+}
+Next target untuk YOLO/FastSAM: clear water bottle
+Loading YOLO-World model: /home/b401/Documents/UR5_PickPlace/models/yolov8l-worldv2.pt
+
+[YOLO-World] Trying aliases for next target:
+ - clear water bottle
+ - pink lotion bottle
+ - lotion bottle
+ - body lotion
+ - pink bottle
+ - bottle
+ - lotion
+
+[YOLO-World] Trying query='clear water bottle' conf=0.5
+
+[YOLO-World] Target dari action plan: clear water bottle
+[YOLO-World] Dynamic classes: ['clear water bottle', 'bottle']
+
+image 1/1 /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg: 480x640 1 bottle, 36.4ms
+Speed: 0.7ms preprocess, 36.4ms inference, 16.1ms postprocess per image at shape (1, 3, 480, 640)
+[YOLO-World] Detections saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_yolo_clear_water_bottle_conf_0_5.json
+[YOLO-World] Result image saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_yolo_clear_water_bottle_conf_0_5.jpg
+[
+  {
+    "label": "bottle",
+    "confidence": 0.874420702457428,
+    "bbox": [
+      342,
+      79,
+      398,
+      280
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "clear water bottle"
+  }
+]
+[YOLO-World] Best detection:
+{
+  "label": "bottle",
+  "confidence": 0.874420702457428,
+  "bbox": [
+    342,
+    79,
+    398,
+    280
+  ],
+  "bbox_format": "xyxy_pixel",
+  "source": "yolo_world",
+  "target_query": "clear water bottle"
+}
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_yolo_clear_water_bottle_conf_0_5.json -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_detections_yolo.json
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_yolo_clear_water_bottle_conf_0_5.jpg -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_yolo_result.jpg
+[YOLO-World] SUCCESS
+Used query: clear water bottle
+Used conf: 0.5
+{
+  "label": "bottle",
+  "confidence": 0.874420702457428,
+  "bbox": [
+    342,
+    79,
+    398,
+    280
+  ],
+  "bbox_format": "xyxy_pixel",
+  "source": "yolo_world",
+  "target_query": "clear water bottle",
+  "target_query_original": "clear water bottle",
+  "target_query_used": "clear water bottle",
+  "confidence_threshold_used": 0.5
+}
+Loading FastSAM model: /home/b401/Documents/UR5_PickPlace/models/FastSAM-x.pt
+
+[FastSAM] Segmenting bbox: [342, 79, 398, 280]
+
+image 1/1 /home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg: 480x640 1 object, 315.0ms
+Speed: 0.5ms preprocess, 315.0ms inference, 11.2ms postprocess per image at shape (1, 3, 480, 640)
+[FastSAM] Mask saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_fastsam_mask.png
+[FastSAM] Result image saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_fastsam_result.jpg
+[DepthEngine] Mask asli shape: (480, 640)
+[DepthEngine] Depth shape: (480, 640)
+[DepthEngine] Mask asli unique values: [  0 255]
+[DepthEngine] Pixel mask setelah binary: 8724
+
+[DepthEngine] Jumlah pixel mask: 8724
+[DepthEngine] Jumlah depth valid pada mask: 7179
+[DepthEngine] Median depth valid: 0.6050000190734863
+[DepthEngine] Mean depth valid: 0.6048046946525574
+[DepthEngine] Object position saved to: /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_object_position_camera.json
+{
+  "object": "clear water bottle",
+  "pixel_center_uv": [
+    372,
+    184
+  ],
+  "pixel_center_uv_mean": [
+    371,
+    183
+  ],
+  "median_depth_m": 0.6050000190734863,
+  "mean_depth_m": 0.6048046946525574,
+  "point_camera_m": [
+    0.07081319391727448,
+    -0.09542837738990784,
+    0.6050000190734863
+  ],
+  "point_camera_mean_m": [
+    0.07066420465707779,
+    -0.09536585956811905,
+    0.604813277721405
+  ],
+  "debug": {
+    "mask_pixels": 8724,
+    "valid_depth_pixels": 7179,
+    "valid_depth_ratio": 0.8229023383768913,
+    "used_pixels_after_depth_fill": 8724,
+    "min_depth_m": 0.1,
+    "max_depth_m": 2.0,
+    "depth_scale": 0.0010000000474974513,
+    "fx": 385.724365234375,
+    "fy": 385.28033447265625,
+    "ppx": 326.5517883300781,
+    "ppy": 244.87197875976562,
+    "method": "all_mask_pixels_with_invalid_depth_filled_by_median_depth"
+  },
+  "frame": "RealSense D455 aligned color camera frame",
+  "note": "Belum ditransformasikan ke base frame UR5."
+}
+[OK] object_position camera sanity check masuk akal: [0.07081319391727448, -0.09542837738990784, 0.6050000190734863]
+
+✅ Next target pipeline selesai.
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_detections_yolo.json -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output/detections_yolo.json
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_yolo_result.jpg -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output/yolo_world_result.jpg
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_fastsam_mask.png -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output/fastsam_mask.png
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_fastsam_result.jpg -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output/fastsam_result.jpg
+[COPY] /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_3_next_target/STEP_3_next_object_position_camera.json -> /home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/vision_output/object_position_camera.json

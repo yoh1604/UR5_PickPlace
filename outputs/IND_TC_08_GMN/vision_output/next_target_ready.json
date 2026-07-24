@@ -1,0 +1,13 @@
+{
+  "ready": true,
+  "test_name": "IND_TC_08_GMN",
+  "completed_step_index": 1,
+  "next_step_number": 2,
+  "next_target": "green soda can",
+  "vision_output_dir": "/home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output",
+  "standard_outputs": {
+    "detections_yolo": "/home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/detections_yolo.json",
+    "yolo_world_result": "/home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/yolo_world_result.jpg",
+    "fastsam_mask": "/home/b401/Documents/UR5_PickPlace/outputs/IND_TC_08_GMN/vision_output/fastsam_mask.png"
+  }
+}

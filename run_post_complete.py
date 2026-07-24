@@ -324,7 +324,7 @@ def revalidate_remaining_plan(remaining_plan):
     print("\n🔍 MELAKUKAN REASONING ULANG TERHADAP SISA PLAN...")
     openai_key, gemini_key = get_provider_keys()
     # validator = create_validator(openai_key, gemini_key)
-    validator = LogicValidator(provider="local", model_name="qwen3.5:27b")
+    validator = LogicValidator(provider="local", model_name="qwen3-vl:latest")
 
     temp_planner_json = {
         "action_plan": remaining_plan

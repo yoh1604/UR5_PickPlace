@@ -1,0 +1,66 @@
+{
+  "test_name": "IND_TC_09_GMN",
+  "step_index": 1,
+  "target": "green soda can",
+  "post_check_status": "STILL_FOUND",
+  "target_found_after_action": true,
+  "best_detection": {
+    "label": "green soda can",
+    "confidence": 0.8965885639190674,
+    "bbox": [
+      295,
+      140,
+      351,
+      286
+    ],
+    "bbox_format": "xyxy_pixel",
+    "source": "yolo_world",
+    "target_query": "green soda can"
+  },
+  "all_detections": [
+    {
+      "label": "green soda can",
+      "confidence": 0.8965885639190674,
+      "bbox": [
+        295,
+        140,
+        351,
+        286
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "green soda can"
+    },
+    {
+      "label": "green soda can",
+      "confidence": 0.6340624094009399,
+      "bbox": [
+        210,
+        156,
+        260,
+        277
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "green soda can"
+    },
+    {
+      "label": "green soda can",
+      "confidence": 0.6192688941955566,
+      "bbox": [
+        254,
+        154,
+        292,
+        272
+      ],
+      "bbox_format": "xyxy_pixel",
+      "source": "yolo_world",
+      "target_query": "green soda can"
+    }
+  ],
+  "post_image_path": "/home/b401/Documents/UR5_PickPlace/data/d455_capture/post_scene_rgb.jpg",
+  "post_yolo_image": "/home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_1_post_check_yolo_result.jpg",
+  "post_fastsam_mask": "/home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_1_post_check_fastsam_mask.png",
+  "post_fastsam_image": "/home/b401/Documents/UR5_PickPlace/outputs/IND_TC_09_GMN/post_check_output/STEP_1_post_check_fastsam_result.jpg",
+  "note": "validated by VLM + localized by YOLO"
+}

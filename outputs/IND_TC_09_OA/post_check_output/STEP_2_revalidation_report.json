@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The action plan correctly targets the blue water bottle (Crystal Water bottle with blue cap), which is the only water source in the scene and matches the user's request for 'air putih' (water). The bottle is visible and unobstructed, making the pick action safe and logically executable. Minor naming differences ('blue water bottle' vs. 'CRYSTAL WATER bottle') are acceptable per semantic matching rules since they refer to the same physical object. No hallucinated objects or unsafe grasping conditions are present.",
+  "final_action_plan": [
+    {
+      "step": 3,
+      "action": "pick",
+      "target": "blue water bottle",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the blue water bottle."
+    }
+  ]
+}

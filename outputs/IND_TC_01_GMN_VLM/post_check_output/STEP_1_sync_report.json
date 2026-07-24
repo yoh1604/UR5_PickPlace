@@ -3,34 +3,34 @@
   "step_index": 1,
   "current_rgb": {
     "exists": true,
-    "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/current_scene_rgb.jpg",
+    "path": "/home/b401/Documents/UR5_PickPlace/data/d455_capture/current_scene_rgb.jpg",
     "size_bytes": 648872,
-    "mtime_unix": 1784454267.473874,
-    "mtime_readable": "2026-07-19 16:44:27",
+    "mtime_unix": 1784459117.8509095,
+    "mtime_readable": "2026-07-19 18:05:17",
     "sha256": "ac869da7c403f93f6ba56a9cea14898f976764b36bafc661e435875d1e5a5f20"
   },
   "post_rgb": {
     "exists": true,
-    "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/post_scene_rgb.jpg",
+    "path": "/home/b401/Documents/UR5_PickPlace/data/d455_capture/post_scene_rgb.jpg",
     "size_bytes": 648872,
-    "mtime_unix": 1784454324.2153368,
-    "mtime_readable": "2026-07-19 16:45:24",
+    "mtime_unix": 1784460151.635132,
+    "mtime_readable": "2026-07-19 18:22:31",
     "sha256": "ac869da7c403f93f6ba56a9cea14898f976764b36bafc661e435875d1e5a5f20"
   },
   "depth_raw": {
     "exists": true,
-    "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/depth_raw.npy",
+    "path": "/home/b401/Documents/UR5_PickPlace/data/d455_capture/depth_raw.npy",
     "size_bytes": 614528,
-    "mtime_unix": 1783932375.8292332,
-    "mtime_readable": "2026-07-13 15:46:15",
+    "mtime_unix": 1784452755.1573737,
+    "mtime_readable": "2026-07-19 16:19:15",
     "sha256": "de2b73b6e2c5ef470241f95b2ba19e4e657c55a87cdb4d904d7ef62552937e90"
   },
   "intrinsics": {
     "exists": true,
-    "path": "/home/b401/Documents/pick_place_occlusion_noetic/data/d455_capture/camera_intrinsics.json",
+    "path": "/home/b401/Documents/UR5_PickPlace/data/d455_capture/camera_intrinsics.json",
     "size_bytes": 186,
-    "mtime_unix": 1783932375.8372333,
-    "mtime_readable": "2026-07-13 15:46:15",
+    "mtime_unix": 1784452755.154374,
+    "mtime_readable": "2026-07-19 16:19:15",
     "sha256": "9fe29a35bd36b1e5265edce8add16fae5f666dbd2d396cc5c1ebefb6266f92cc"
   },
   "post_rgb_is_exact_copy_of_current_rgb": true,

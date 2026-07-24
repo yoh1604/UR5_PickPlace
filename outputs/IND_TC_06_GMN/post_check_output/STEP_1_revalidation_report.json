@@ -1,0 +1,14 @@
+{
+  "validation_status": "PASS",
+  "feedback": "The user requested Sprite (indicated by 'Saya mau sprite'). The action plan targets 'green soda can' which matches the Sprite can visible in the image (green color with 'Sprite' label). Semantic matching is valid as 'green soda can' refers to the same object as 'Sprite' per Rule 2. The path is clear per the explanation, and the object is physically present. No occluders are referenced in the plan, and safety requirements are met. The plan correctly addresses the single requested target without hallucination or logical errors.",
+  "final_action_plan": [
+    {
+      "step": 2,
+      "action": "pick",
+      "target": "green soda can",
+      "target_role": "primary_target",
+      "step_intent": "pick_primary_target",
+      "explanation": "Pick the green soda can now that the path is clear."
+    }
+  ]
+}
